@@ -1,0 +1,6 @@
+module Pods_Cat_Reloaded {
+  umbrella header "Pods-Cat-Reloaded-umbrella.h"
+
+  export *
+  module * { export * }
+}
