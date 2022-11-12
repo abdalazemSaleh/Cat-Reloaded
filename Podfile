@@ -10,5 +10,6 @@ pod 'TransitionButton'
 
 # Firebase
 pod 'Firebase/Core'
+pod 'Firebase/Crashlytics'
 
 end
