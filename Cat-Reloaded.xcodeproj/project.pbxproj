@@ -550,6 +550,7 @@
 				7FB4F36828EB50F3008557ED /* Frameworks */,
 				7FB4F36928EB50F3008557ED /* Resources */,
 				57EA2721C29611027A5B6050 /* [CP] Embed Pods Frameworks */,
+				9B4BE18BBCE0E01EB866EC57 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -644,6 +645,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cat-Reloaded/Pods-Cat-Reloaded-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B4BE18BBCE0E01EB866EC57 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cat-Reloaded/Pods-Cat-Reloaded-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cat-Reloaded/Pods-Cat-Reloaded-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cat-Reloaded/Pods-Cat-Reloaded-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

@@ -10,6 +10,7 @@ pod 'TransitionButton'
 
 # Pods for login or sign up
 pod 'FBSDKLoginKit'
+pod 'GoogleSignIn'
 
 # Firebase
 pod 'Firebase/Core'
