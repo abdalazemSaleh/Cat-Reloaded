@@ -15,8 +15,12 @@ class LoginVC: UIViewController {
     var contentView: UIView!
     let logo                    = GFImageView(frame: .zero)
     let loginLabel              = GFTitleLabel(textAlignment: .left, fontSize: 24, weight: .bold)
-    let email                   = GFTextField(placeholder: "Email")
+    let phone                   = GFTextField(placeholder: "Phone number")
+    let phoneError              = GFErrorLabel(text: "Check your phone number.")
+    let phoneContainer          = UIStackView()
     let password                = GFTextField(placeholder: "Password")
+    let passwordError           = GFErrorLabel(text: "Check you password")
+    let passwordContainer       = UIStackView()
     let textFieldsStack         = UIStackView()
     let forgetPassword          = GFSimpleButton(title: "Forget password?", titleColor: .label)
     let loginbutton             = TransitionButton(frame: .zero)
@@ -29,9 +33,7 @@ class LoginVC: UIViewController {
     let sginUpStackView         = UIStackView()
     
     var isExpend: Bool              = false
-    let padding: CGFloat            = 20
-    var itemViews: [UIView]         = []
-    var textFiledInStack: [UIView]  = []
+    let padding: CGFloat            = 16
     var presenter: LoginPresenter!
     
     // MARK: - View life cycle
@@ -48,6 +50,8 @@ class LoginVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+        phoneError.isHidden     = true
+        passwordError.isHidden  = true
     }
             
     // MARK: - Functions
@@ -81,14 +85,13 @@ class LoginVC: UIViewController {
     }
     // Cehcl if textfiled is empty
     func isTextFieldsIsEmpty() -> loginParms {
-        guard let phoneNumber = email.text, !phoneNumber.isEmpty else {
-             presentGFAlert(title: "Woops", message: "Phone Number is empty, please enter your phone. 😅", buttonTitle: "OK")
-            loginbutton.handelButtonAfterStopAnimation()
+        guard let phoneNumber = phone.text, !phoneNumber.isEmpty else {
+            phoneError.isHidden = false
             return loginParms.init(phone: "", password: "")
         }
         guard let password = password.text, !password.isEmpty else {
-             presentGFAlert(title: "Woops", message: "\(password.placeholder ?? "") is empty, please enter your password. 😅", buttonTitle: "OK")
-            loginbutton.handelButtonAfterStopAnimation()
+            phoneError.isHidden = true
+            passwordError.isHidden = false
             return loginParms.init(phone: "", password: "")
         }
         return loginParms.init(phone: phoneNumber, password: password)
@@ -97,6 +100,8 @@ class LoginVC: UIViewController {
     @objc func forgetPasswordClicked() {}
     @objc func loginButtonClicked() {
         let model = isTextFieldsIsEmpty()
+        guard !model.phone.isEmpty, !model.password.isEmpty else { return }
+        passwordError.isHidden = true
         let parms = [
             "phoneNumber" : model.phone,
             "password" : model.password
@@ -104,6 +109,6 @@ class LoginVC: UIViewController {
         presenter.login(parms: parms)
     }
     @objc func signUpButtonClicked() { presenter.signUp() }
-    @objc func googleButtonCliced() { presenter.loginWithGoogle(controller: self)}
-    @objc func facebookButtonClicked() { presenter.loginWithFacebook(controller: self)}
+    @objc func googleButtonCliced() { presenter.loginWithGoogle(controller: self) }
+    @objc func facebookButtonClicked() { presenter.loginWithFacebook(controller: self) }
 }

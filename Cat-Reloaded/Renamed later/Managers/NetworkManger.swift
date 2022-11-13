@@ -28,19 +28,13 @@ class NetworkManger {
         
         Alamofire.request(url, method: method, parameters: parms, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
             guard let statusCode = response.response?.statusCode else { return }
-            
+            print(statusCode)
             guard let responseType: HTTPStatusCode = HTTPStatusCode(rawValue: statusCode) else {
                 return completion(.failure(GFErro.invalidResponse))
             }
             switch responseType {
             case .ok:
                 guard let data = response.data else { return }
-//                do {
-//                    let info = try JSONDecoder().decode(T.self, from: data)
-//                    completion(.success(info))
-//                } catch let jsonerror {
-//                    print(jsonerror.localizedDescription)
-//                }
                 ParsJson.shared.parsJson(modal: modal, data: data) { result in
                     switch result {
                     case .success(let userInfo):
@@ -51,11 +45,11 @@ class NetworkManger {
                 }
             #warning("don't forget Return error message with completion")
             case .badRequest:
-                print("BadReques")
+                completion(.failure(.alreadyInFavorites))
             case .notAuthorized:
-                print("NoAuth")
+                completion(.failure(.invalidData))
             case .forbidden:
-                print("Forbidden")
+                completion(.failure(.unableToFavorite))
             case .notFound:
                 print("NotFound")
             case .DataInvalid:
@@ -65,22 +59,12 @@ class NetworkManger {
             case .badGateway:
                 print("badGateway")
             }
-            
-            //            print("Status Code: - \(statusCode)")
-            //            guard let data = response.data else { return }
-            //            do {
-            //                let info = try JSONDecoder().decode(T.self, from: data)
-            //                completion(.success(info))
-            //            } catch let jsonerror {
-            //                print(jsonerror.localizedDescription)
-            //            }
-            
         }
     }
 }
 
 enum ServerResponse<T> {
-    case success(T), failure(Error?)
+    case success(T), failure(GFErro)
 }
 
 #warning("Move parsJson to another file")

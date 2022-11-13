@@ -18,7 +18,7 @@ extension TransitionButton {
         translatesAutoresizingMaskIntoConstraints = false
     }
     func handelButtonAfterStopAnimation() {
-        stopAnimation()
-        self.layer.cornerRadius      = 8
+            self.stopAnimation()
+            self.cornerRadius  = 8
     }
 }
