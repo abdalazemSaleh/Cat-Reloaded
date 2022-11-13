@@ -8,13 +8,15 @@
 import UIKit
 
 extension LoginVC: LoginView {
+    
     func goToHomeScreen() { presentGFTabBar() }
     
     func startAnimation() { loginbutton.startAnimation() }
     
     func stopAnimation() {
-        loginbutton.stopAnimation(animationStyle: .shake)
-        loginbutton.layer.cornerRadius = 8
+        DispatchQueue.main.async {
+            self.loginbutton.handelButtonAfterStopAnimation()
+        }
     }
     
     func alertMessage(message: String) { presentGFAlert(title: "Woops", message: message, buttonTitle: "OK") }

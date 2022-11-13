@@ -40,7 +40,7 @@ class LoginPresenter {
                 }
                 self.view?.stopAnimation()
             case .failure(let error):
-                print(error?.localizedDescription ?? "Error while login please try agine")
+                print(error)
                 self.view?.stopAnimation()
             }
         }

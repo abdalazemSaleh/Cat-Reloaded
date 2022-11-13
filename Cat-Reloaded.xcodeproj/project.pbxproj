@@ -56,6 +56,7 @@
 		7FB4F38728EB5458008557ED /* GFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4F38628EB5458008557ED /* GFButton.swift */; };
 		7FB4F39728EB567E008557ED /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4F39628EB567E008557ED /* Constant.swift */; };
 		7FB4F39928EB56B0008557ED /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4F39828EB56B0008557ED /* ErrorMessages.swift */; };
+		7FDE9B1E29203C1100949945 /* GFErrorLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDE9B1D29203C1100949945 /* GFErrorLabel.swift */; };
 		7FF92EB528F075D7001EA736 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF92EB428F075D7001EA736 /* RegisterPresenter.swift */; };
 		7FF92EB828F07624001EA736 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF92EB728F07624001EA736 /* RegisterVC.swift */; };
 		7FF92EBA28F07688001EA736 /* RegisterActiveConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF92EB928F07688001EA736 /* RegisterActiveConstraint.swift */; };
@@ -117,6 +118,7 @@
 		7FB4F38628EB5458008557ED /* GFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFButton.swift; sourceTree = "<group>"; };
 		7FB4F39628EB567E008557ED /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		7FB4F39828EB56B0008557ED /* ErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessages.swift; sourceTree = "<group>"; };
+		7FDE9B1D29203C1100949945 /* GFErrorLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFErrorLabel.swift; sourceTree = "<group>"; };
 		7FF92EB428F075D7001EA736 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
 		7FF92EB728F07624001EA736 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		7FF92EB928F07688001EA736 /* RegisterActiveConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterActiveConstraint.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 			children = (
 				7F9052B028EB731A0044F76C /* GFTitleLabel.swift */,
 				7F9052B228EB748C0044F76C /* GFBodyLabel.swift */,
+				7FDE9B1D29203C1100949945 /* GFErrorLabel.swift */,
 			);
 			path = Labels;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 				7F30C24728ECE79F0007AACF /* GFImageView.swift in Sources */,
 				7F61788E290DCA8D00AA101B /* URLs.swift in Sources */,
 				7FF92EBA28F07688001EA736 /* RegisterActiveConstraint.swift in Sources */,
+				7FDE9B1E29203C1100949945 /* GFErrorLabel.swift in Sources */,
 				7FAAFF7F28F4CE7A008A9FF2 /* CirclesVC.swift in Sources */,
 				7FAAFF7928F4CD83008A9FF2 /* GFTabBarController.swift in Sources */,
 				7FAAFF9328F82A05008A9FF2 /* PodCATCell.swift in Sources */,
