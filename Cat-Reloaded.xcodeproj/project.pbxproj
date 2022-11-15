@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		095E0D3650EA7703E21E6E68 /* libPods-Cat-Reloaded.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 673E2FB7DFD3E47785CB27BC /* libPods-Cat-Reloaded.a */; };
+		7F078F0E2923F40200895441 /* CircleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F078F0D2923F40200895441 /* CircleModel.swift */; };
+		7F078F102923F45A00895441 /* CirclesVC+CollectionVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F078F0F2923F45A00895441 /* CirclesVC+CollectionVIew.swift */; };
+		7F078F122923F49E00895441 /* CirclesVC+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F078F112923F49E00895441 /* CirclesVC+Protocol.swift */; };
+		7F078F162923F50700895441 /* CircleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F078F152923F50700895441 /* CircleCell.swift */; };
+		7F078F182923F52B00895441 /* CircleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F078F172923F52B00895441 /* CircleHeader.swift */; };
+		7F078F1B2923F56B00895441 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F078F1A2923F56B00895441 /* CustomSegmentedControl.swift */; };
 		7F08218F29200B55008AB3BD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F08218E29200B55008AB3BD /* GoogleService-Info.plist */; };
 		7F30C23528EC44350007AACF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F30C23428EC44350007AACF /* ViewController.swift */; };
 		7F30C23B28ECDCF00007AACF /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F30C23A28ECDCF00007AACF /* Onboarding.swift */; };
@@ -67,6 +73,12 @@
 /* Begin PBXFileReference section */
 		010DF12504816B4E3B6725EC /* Pods-Cat-Reloaded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cat-Reloaded.debug.xcconfig"; path = "Target Support Files/Pods-Cat-Reloaded/Pods-Cat-Reloaded.debug.xcconfig"; sourceTree = "<group>"; };
 		673E2FB7DFD3E47785CB27BC /* libPods-Cat-Reloaded.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cat-Reloaded.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F078F0D2923F40200895441 /* CircleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleModel.swift; sourceTree = "<group>"; };
+		7F078F0F2923F45A00895441 /* CirclesVC+CollectionVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CirclesVC+CollectionVIew.swift"; sourceTree = "<group>"; };
+		7F078F112923F49E00895441 /* CirclesVC+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CirclesVC+Protocol.swift"; sourceTree = "<group>"; };
+		7F078F152923F50700895441 /* CircleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCell.swift; sourceTree = "<group>"; };
+		7F078F172923F52B00895441 /* CircleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleHeader.swift; sourceTree = "<group>"; };
+		7F078F1A2923F56B00895441 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		7F08218E29200B55008AB3BD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F30C23428EC44350007AACF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7F30C23A28ECDCF00007AACF /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
@@ -148,6 +160,38 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7F078F082923EF7100895441 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7F078F0D2923F40200895441 /* CircleModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7F078F132923F4CD00895441 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7F078F152923F50700895441 /* CircleCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		7F078F142923F4CF00895441 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				7F078F172923F52B00895441 /* CircleHeader.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		7F078F192923F55500895441 /* GFSegmentVIew */ = {
+			isa = PBXGroup;
+			children = (
+				7F078F1A2923F56B00895441 /* CustomSegmentedControl.swift */,
+			);
+			path = GFSegmentVIew;
+			sourceTree = "<group>";
+		};
 		7F30C23928ECDCD00007AACF /* BoardingVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,13 +229,6 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		7F617893290EE73B00AA101B /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		7F617894290EE74100AA101B /* VCs */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,24 +247,12 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		7F617896290EE79800AA101B /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		7F617897290EE79D00AA101B /* Header */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Header;
-			sourceTree = "<group>";
-		};
 		7F617898290EE7A900AA101B /* VC */ = {
 			isa = PBXGroup;
 			children = (
 				7FAAFF7E28F4CE7A008A9FF2 /* CirclesVC.swift */,
+				7F078F0F2923F45A00895441 /* CirclesVC+CollectionVIew.swift */,
+				7F078F112923F49E00895441 /* CirclesVC+Protocol.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -272,8 +297,8 @@
 			isa = PBXGroup;
 			children = (
 				7F617898290EE7A900AA101B /* VC */,
-				7F617897290EE79D00AA101B /* Header */,
-				7F617896290EE79800AA101B /* Cells */,
+				7F078F142923F4CF00895441 /* Header */,
+				7F078F132923F4CD00895441 /* Cells */,
 			);
 			path = Circles;
 			sourceTree = "<group>";
@@ -307,7 +332,7 @@
 		7FAAFF7B28F4CE2B008A9FF2 /* Sprent 2 */ = {
 			isa = PBXGroup;
 			children = (
-				7F617893290EE73B00AA101B /* Model */,
+				7F078F082923EF7100895441 /* Model */,
 				7F617894290EE74100AA101B /* VCs */,
 				7F617895290EE74C00AA101B /* Presenter */,
 			);
@@ -449,6 +474,7 @@
 		7FB4F39128EB560A008557ED /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				7F078F192923F55500895441 /* GFSegmentVIew */,
 				7FAAFF8F28F61E0A008A9FF2 /* GFCollectionView */,
 				7FAAFF7728F4CD66008A9FF2 /* GFTab bar controller */,
 				7F30C27628EDC54D0007AACF /* PageControl */,
@@ -681,6 +707,7 @@
 				7FB4F38728EB5458008557ED /* GFButton.swift in Sources */,
 				7FAAFF8A28F4E117008A9FF2 /* GFCardView.swift in Sources */,
 				7FAAFF7D28F4CE5A008A9FF2 /* HomeVC.swift in Sources */,
+				7F078F102923F45A00895441 /* CirclesVC+CollectionVIew.swift in Sources */,
 				7F62DD8F28FDFB3400FEC944 /* HeaderView.swift in Sources */,
 				7F30C23528EC44350007AACF /* ViewController.swift in Sources */,
 				7FB4F39928EB56B0008557ED /* ErrorMessages.swift in Sources */,
@@ -693,6 +720,7 @@
 				7F30C25128ED8E180007AACF /* BoardingVC.swift in Sources */,
 				7F617892290DD1F700AA101B /* SginUpModel.swift in Sources */,
 				7FAAFF8828F4E062008A9FF2 /* Home+Constarint.swift in Sources */,
+				7F078F1B2923F56B00895441 /* CustomSegmentedControl.swift in Sources */,
 				7F30C2B328EF62900007AACF /* GFMediaButton.swift in Sources */,
 				7FF92EBC28F0774B001EA736 /* Register+Protocol.swift in Sources */,
 				7F55642928F1FD10009342A6 /* GFAlertVC.swift in Sources */,
@@ -705,6 +733,9 @@
 				7F61788A290DBAE700AA101B /* NetworkManger.swift in Sources */,
 				7FAAFF8528F4DCD9008A9FF2 /* GFCirclerImage.swift in Sources */,
 				7F617890290DD00A00AA101B /* LoginModel.swift in Sources */,
+				7F078F182923F52B00895441 /* CircleHeader.swift in Sources */,
+				7F078F122923F49E00895441 /* CirclesVC+Protocol.swift in Sources */,
+				7F078F0E2923F40200895441 /* CircleModel.swift in Sources */,
 				7FB4F37128EB50F3008557ED /* SceneDelegate.swift in Sources */,
 				7FAAFF8128F4CE8F008A9FF2 /* EventsVC.swift in Sources */,
 				7F30C28328EE09290007AACF /* Login+Protocol.swift in Sources */,
@@ -723,6 +754,7 @@
 				7FF92EBA28F07688001EA736 /* RegisterActiveConstraint.swift in Sources */,
 				7FDE9B1E29203C1100949945 /* GFErrorLabel.swift in Sources */,
 				7FAAFF7F28F4CE7A008A9FF2 /* CirclesVC.swift in Sources */,
+				7F078F162923F50700895441 /* CircleCell.swift in Sources */,
 				7FAAFF7928F4CD83008A9FF2 /* GFTabBarController.swift in Sources */,
 				7FAAFF9328F82A05008A9FF2 /* PodCATCell.swift in Sources */,
 			);
