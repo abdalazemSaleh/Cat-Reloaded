@@ -15,8 +15,12 @@ class LoginVC: UIViewController {
     var contentView: UIView!
     let logo                    = GFImageView(frame: .zero)
     let loginLabel              = GFTitleLabel(textAlignment: .left, fontSize: 24, weight: .bold)
-    let email                   = GFTextField(placeholder: "Email")
+    let phone                   = GFTextField(placeholder: "Phone number")
+    let phoneError              = GFErrorLabel(text: "Check your phone number.")
+    let phoneContainer          = UIStackView()
     let password                = GFTextField(placeholder: "Password")
+    let passwordError           = GFErrorLabel(text: "Check you password")
+    let passwordContainer       = UIStackView()
     let textFieldsStack         = UIStackView()
     let forgetPassword          = GFSimpleButton(title: "Forget password?", titleColor: .label)
     let loginbutton             = TransitionButton(frame: .zero)
@@ -29,9 +33,7 @@ class LoginVC: UIViewController {
     let sginUpStackView         = UIStackView()
     
     var isExpend: Bool              = false
-    let padding: CGFloat            = 20
-    var itemViews: [UIView]         = []
-    var textFiledInStack: [UIView]  = []
+    let padding: CGFloat            = 16
     var presenter: LoginPresenter!
     
     // MARK: - View life cycle
@@ -48,6 +50,8 @@ class LoginVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+        phoneError.isHidden     = true
+        passwordError.isHidden  = true
     }
             
     // MARK: - Functions
@@ -62,33 +66,37 @@ class LoginVC: UIViewController {
 
     // Handel view while using keyboard
     func handelViewWhileUsingKeyboard() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardApper), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDisApper), name: UIResponder.keyboardWillHideNotification, object: nil)
+        initializeHideKeyboard()
+        subscribeToNotification(UIResponder.keyboardWillShowNotification, selector: #selector(keyboardWillShowOrHide))
+        subscribeToNotification(UIResponder.keyboardWillHideNotification, selector: #selector(keyboardWillShowOrHide))
     }
-    
-    @objc func keyboardApper() {
-        if !isExpend {
-            self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.scrollView.frame.height + 340)
-            isExpend = true
+    #warning("Need to refactor this method")
+    @objc func keyboardWillShowOrHide(notification: NSNotification) {
+        if let scrollView = scrollView, let userInfo = notification.userInfo, let endValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey], let durationValue = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey], let curveValue = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] {
+
+            let endRect = view.convert((endValue as AnyObject).cgRectValue, from: view.window)
+
+            let keyboardOverlap = scrollView.frame.maxY - endRect.origin.y
+
+            scrollView.contentInset.bottom = keyboardOverlap
+
+            let duration = (durationValue as AnyObject).doubleValue
+            let options = UIView.AnimationOptions(rawValue: UInt((curveValue as AnyObject).integerValue << 16))
+            UIView.animate(withDuration: duration!, delay: 0, options: options, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
         }
     }
     
-    @objc func keyboardDisApper() {
-        if isExpend {
-            self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.scrollView.frame.height - 340)
-            self.isExpend = false
-        }
-    }
-    // Cehcl if textfiled is empty
+    // Cehck if textfiled is empty
     func isTextFieldsIsEmpty() -> loginParms {
-        guard let phoneNumber = email.text, !phoneNumber.isEmpty else {
-             presentGFAlert(title: "Woops", message: "Phone Number is empty, please enter your phone. 😅", buttonTitle: "OK")
-            loginbutton.handelButtonAfterStopAnimation()
+        guard let phoneNumber = phone.text, !phoneNumber.isEmpty else {
+            phoneError.isHidden = false
             return loginParms.init(phone: "", password: "")
         }
         guard let password = password.text, !password.isEmpty else {
-             presentGFAlert(title: "Woops", message: "\(password.placeholder ?? "") is empty, please enter your password. 😅", buttonTitle: "OK")
-            loginbutton.handelButtonAfterStopAnimation()
+            phoneError.isHidden = true
+            passwordError.isHidden = false
             return loginParms.init(phone: "", password: "")
         }
         return loginParms.init(phone: phoneNumber, password: password)
@@ -97,6 +105,8 @@ class LoginVC: UIViewController {
     @objc func forgetPasswordClicked() {}
     @objc func loginButtonClicked() {
         let model = isTextFieldsIsEmpty()
+        guard !model.phone.isEmpty, !model.password.isEmpty else { return }
+        passwordError.isHidden = true
         let parms = [
             "phoneNumber" : model.phone,
             "password" : model.password
@@ -104,6 +114,6 @@ class LoginVC: UIViewController {
         presenter.login(parms: parms)
     }
     @objc func signUpButtonClicked() { presenter.signUp() }
-    @objc func googleButtonCliced() { presenter.loginWithGoogle(controller: self)}
-    @objc func facebookButtonClicked() { presenter.loginWithFacebook(controller: self)}
+    @objc func googleButtonCliced() { presenter.loginWithGoogle(controller: self) }
+    @objc func facebookButtonClicked() { presenter.loginWithFacebook(controller: self) }
 }

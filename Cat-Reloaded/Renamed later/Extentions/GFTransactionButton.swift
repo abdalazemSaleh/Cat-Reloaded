@@ -6,6 +6,7 @@
 //
 
 import TransitionButton
+import UIKit
 
 extension TransitionButton {
     func customTransactionButton(title: String) {
@@ -18,7 +19,9 @@ extension TransitionButton {
         translatesAutoresizingMaskIntoConstraints = false
     }
     func handelButtonAfterStopAnimation() {
-        stopAnimation()
-        self.layer.cornerRadius      = 8
+            self.stopAnimation()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.cornerRadius  = 8
+        }
     }
 }

@@ -7,72 +7,53 @@
 
 import UIKit
 
-enum CirclesSection {
-    case main
-}
-
-struct CirclesModel: Hashable {
-    let circleName: String
-    let circleImage: UIImage
-}
-
-class CirclesVC: UIViewController {
-
-//    // MARK: - Vailables
-//    static let sectionHeaderElementKind = "section-header-element-kind"
-//    var collectionView: UICollectionView!
-//    var dataSource: UICollectionViewDiffableDataSource<CirclesSection, CirclesModel>!
+class CirclesVC: UIViewController, UICollectionViewDelegate {
+    
+    // MARK: - Vailables
+    static let sectionHeaderElementKind = "section-header-element-kind"
+    var collectionView: UICollectionView!
+    var dataSource: UICollectionViewDiffableDataSource<CirclesSection, CirclesModel>!
+    
+    var tech: [CirclesModel] = []
+    var nonTech: [CirclesModel] = []
+    
+    var myIndex: Int = 0
     
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        
-//        configureCollectionView()
-        
+        configureNavigationController()
+        configureCollectionView()
+        configureDataSource()
+        appendData()
     }
-    
-//    private func configureCollectionView() {
-//        collectionView  = UICollectionView(frame: view.bounds, collectionViewLayout: generateLayout())
-//        view.addSubview(collectionView)
-//        collectionView.backgroundColor  = .systemBackground
-//        
-//    }
-//
-//    
-//    private func configureDataSource() {
-//        dataSource = UICollectionViewDiffableDataSource<CirclesSection, CirclesModel>(collectionView: collectionView, cellProvider: { (collectionView: UICollectionView, indexPath: IndexPath, model: CirclesModel) -> UICollectionViewCell in
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeaderCell.reuseIdentifer, for: indexPath) as! HeaderCell
-//            cell.set(welcometitle: "Welcome Abdalazem", aboutTitle: "About CAT")
-//            return cell
-//        })
-//    }
-//    
-//    /// Handel collectionview flow layout
-//    private func generateLayout() -> UICollectionViewLayout {
-//        let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-//            return self?.generateMemoriesLayout()
-//        }
-//        return layout
-//    }
-//    
-//    
-//    func generateMemoriesLayout() -> NSCollectionLayoutSection {
-//        // item
-//        let itemSize    = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-//        let item        = NSCollectionLayoutItem(layoutSize: itemSize)
-//        // group
-//        let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .absolute(180))
-//        let group       = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-//        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
-//        // section
-//        let section     = NSCollectionLayoutSection(group: group)
-////        section.boundarySupplementaryItems = [sectionHeader]
-//        section.orthogonalScrollingBehavior = .groupPaging
-//        // Return
-//        return section
-//    }
-
-
-    
+    // MARK: - Functions
+    func configureNavigationController() {
+        view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.prefersLargeTitles  =   true
+    }
+    #warning("Remove later")
+    func appendData() {
+        tech.append(CirclesModel.init(circleName: "iOS", circleImage: "ios"))
+        tech.append(CirclesModel.init(circleName: "Android", circleImage: "android"))
+        tech.append(CirclesModel.init(circleName: "Flutter", circleImage: "flutter"))
+        tech.append(CirclesModel.init(circleName: "UI/UX", circleImage: "ui"))
+        tech.append(CirclesModel.init(circleName: "Front-End", circleImage: "front"))
+        tech.append(CirclesModel.init(circleName: "Back-End", circleImage: "Back"))
+        tech.append(CirclesModel.init(circleName: "Cyber Security", circleImage: "cyber"))
+        tech.append(CirclesModel.init(circleName: "Data", circleImage: "data"))
+        tech.append(CirclesModel.init(circleName: "Gaming", circleImage: "gaming"))
+        
+//        nonTech.append(CirclesModel.init(circleName: "HR", circleImage: "HR"))
+//        nonTech.append(CirclesModel.init(circleName: "Logistics", circleImage: "Logistics"))
+//        nonTech.append(CirclesModel.init(circleName: "Media", circleImage: "Media"))
+//        nonTech.append(CirclesModel.init(circleName: "PR", circleImage: "PR"))
+        
+        nonTech.append(CirclesModel.init(circleName: "iOS", circleImage: "ios"))
+        nonTech.append(CirclesModel.init(circleName: "UI/UX", circleImage: "ui"))
+        nonTech.append(CirclesModel.init(circleName: "Data", circleImage: "data"))
+        nonTech.append(CirclesModel.init(circleName: "Cyber Security", circleImage: "cyber"))
+        nonTech.append(CirclesModel.init(circleName: "Gaming", circleImage: "gaming"))
+        updateData(on: tech)
+    }
 }

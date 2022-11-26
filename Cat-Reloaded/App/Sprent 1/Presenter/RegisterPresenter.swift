@@ -29,14 +29,10 @@ class RegisterPresenter {
             switch result {
             case .success(let data):
                 print(data)
-//                if data.errorCode == 1000 {
-//                    self.view?.alertMessage(message: GFErro.invalidData.rawValue)
-//                } else {
-//                    self.view?.goToHomeScreen()
-//                }
                 self.view?.stopAnimation()
+                self.view?.goToHomeScreen()
             case .failure(let error):
-                print(error?.localizedDescription ?? "Error while login please try agine")
+                print(error.rawValue)
                 self.view?.stopAnimation()
             }
         }

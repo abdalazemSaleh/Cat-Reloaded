@@ -19,7 +19,6 @@ extension RegisterVC {
         configureTextFieldsStack()
         configureSginUpButton()
         configureLoginButton()
-        
         sharedConstraint()
     }
     
@@ -85,23 +84,47 @@ extension RegisterVC {
             signUpLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding)
         ])
     }
-    
-    // Configure text field stack
-    func configureTextFieldsStack() {
-        textFieldsStack.axis            = .vertical
-        textFieldsStack.spacing         = padding
-        
-        textFiledInStack = [fullName, email, phoneNumber, password, conformPassword ]
-        
-        for textField in textFiledInStack {
+    // Configure Containers
+    func configureContainers() {
+        containers = [fullNameContainer, emailContainer, phoneContainer, passwordContainer, passwordConfirmContainer]
+        for container in containers {
+            container.axis      = .vertical
+            container.spacing   = 4
+        }
+        let textFileds: [UITextField] = [fullName, email, phoneNumber, password, conformPassword ]
+
+        for textFiled in textFileds {
             NSLayoutConstraint.activate([
-                textField.heightAnchor.constraint(equalToConstant: 48)
+                textFiled.heightAnchor.constraint(equalToConstant: 48),
             ])
-            textFieldsStack.addArrangedSubview(textField)
         }
         
+        fullNameContainer.addArrangedSubview(fullName)
+        fullNameContainer.addArrangedSubview(fullNameError)
+        
+        emailContainer.addArrangedSubview(email)
+        emailContainer.addArrangedSubview(emailErorr)
+        
+        phoneContainer.addArrangedSubview(phoneNumber)
+        phoneContainer.addArrangedSubview(phoneNumberErorr)
+        
+        passwordContainer.addArrangedSubview(password)
+        passwordContainer.addArrangedSubview(passwordErorr)
+        
+        passwordConfirmContainer.addArrangedSubview(conformPassword)
+        passwordConfirmContainer.addArrangedSubview(passwordConfirmErorr)
+    }
+    // Configure text field stack
+    func configureTextFieldsStack() {
+        configureContainers()
+        textFieldsStack.axis            = .vertical
+        textFieldsStack.spacing         = padding
         textFieldsStack.translatesAutoresizingMaskIntoConstraints = false
         
+        for container in containers {
+            textFieldsStack.addArrangedSubview(container)
+        }
+
         NSLayoutConstraint.activate([
             textFieldsStack.topAnchor.constraint(equalTo: signUpLabel.bottomAnchor, constant: padding),
             textFieldsStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),

@@ -58,7 +58,7 @@ extension LoginVC {
     
     /// Add items to content view
     func addItemViewToContentView() {
-        itemViews   = [logo, loginLabel, textFieldsStack, forgetPassword, loginbutton, sginUpStackView, loginWithLabel, mediaLoginStack]
+        let itemViews: [UIView] = [logo, loginLabel, textFieldsStack, forgetPassword, loginbutton, sginUpStackView, loginWithLabel, mediaLoginStack]
         for itemView in itemViews {
             contentView.addSubview(itemView)
         }
@@ -88,19 +88,33 @@ extension LoginVC {
         ])
     }
     
+    func configureContainers() {
+        phoneContainer.axis         = .vertical
+        phoneContainer.spacing      = 4
+        
+        passwordContainer.axis      = .vertical
+        passwordContainer.spacing   = 4
+                
+        NSLayoutConstraint.activate([
+            phone.heightAnchor.constraint(equalToConstant: 48),
+            password.heightAnchor.constraint(equalToConstant: 48)
+        ])
+        
+        phoneContainer.addArrangedSubview(phone)
+        phoneContainer.addArrangedSubview(phoneError)
+        
+        passwordContainer.addArrangedSubview(password)
+        passwordContainer.addArrangedSubview(passwordError)
+    }
+    
     /// configure text fields stack
     func configureTextFieldsStack(){
+        configureContainers()
         textFieldsStack.axis            = .vertical
         textFieldsStack.spacing         = padding
-        
-        textFiledInStack = [email, password]
-        
-        for textField in textFiledInStack {
-            NSLayoutConstraint.activate([
-                textField.heightAnchor.constraint(equalToConstant: 48)
-            ])
-            textFieldsStack.addArrangedSubview(textField)
-        }
+                
+        textFieldsStack.addArrangedSubview(phoneContainer)
+        textFieldsStack.addArrangedSubview(passwordContainer)
         
         textFieldsStack.translatesAutoresizingMaskIntoConstraints = false
         
@@ -180,7 +194,7 @@ extension LoginVC {
         
     /// Shared comstraint
     func sharedConstraint() {
-        itemViews       = [textFieldsStack, loginbutton]
+        let itemViews: [UIView]  = [textFieldsStack, loginbutton]
         
         for itemView in itemViews {
             NSLayoutConstraint.activate([

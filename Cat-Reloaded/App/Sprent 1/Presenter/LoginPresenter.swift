@@ -33,23 +33,37 @@ class LoginPresenter {
             switch result {
             case .success(let date):
                 print(date)
-                if date.errorCode == 1000 {
-                    self.view?.alertMessage(message: GFErro.invalidData.rawValue)
-                } else {
-                    self.view?.goToHomeScreen()
-                }
+                self.view?.goToHomeScreen()
                 self.view?.stopAnimation()
             case .failure(let error):
-                print(error?.localizedDescription ?? "Error while login please try agine")
+                print(error)
                 self.view?.stopAnimation()
             }
         }
     }
+    #warning("Under tested")
     // Login with facebook
     func loginWithFacebook(controller: UIViewController) {
         let loginManger = LoginManager()
         loginManger.logIn(permissions: ["public_profile", "email"], from: controller) { result, error in
             guard error == nil, let token = result?.token?.tokenString else { return }
+            print(token)
+            let parms = [
+                "provider" : "facebook",
+                "token" : token
+            ]
+            // Send data to back end
+            NetworkManger.shared.request(modal: ExternalSignUpModel.self, url: URLs.external.rawValue, method: .post, parms: parms, header: nil) { result in
+                switch result {
+                case .success(let data):
+                    print(data)
+                    self.view?.goToHomeScreen()
+                    self.view?.stopAnimation()
+                case .failure(let error):
+                    print(error)
+                    self.view?.stopAnimation()
+                }
+            }
             print(token)
         }
     }
@@ -60,8 +74,23 @@ class LoginPresenter {
             guard error == nil else { return }
             guard let user = user else { return }
             user.authentication.do { authentication, error in
-                let idToken = authentication?.idToken
+                guard let token = authentication?.idToken else { return }
                 // Send ID token to backend
+                let parms = [
+                    "provider" : "google",
+                    "token" : token
+                ]
+                NetworkManger.shared.request(modal: ExternalSignUpModel.self, url: URLs.external.rawValue, method: .post, parms: parms, header: nil) { result in
+                    switch result {
+                    case .success(let data):
+                        print(data)
+                        self.view?.goToHomeScreen()
+                        self.view?.stopAnimation()
+                    case .failure(let error):
+                        print(error)
+                        self.view?.stopAnimation()
+                    }
+                }
             }
         }
     }
