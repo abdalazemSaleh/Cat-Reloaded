@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Login by phone
 struct LoginModel: Codable {
     let token: String?
     let id: String?
@@ -21,3 +22,6 @@ struct  loginParms {
     let phone: String
     let password: String
 }
+
+
+
