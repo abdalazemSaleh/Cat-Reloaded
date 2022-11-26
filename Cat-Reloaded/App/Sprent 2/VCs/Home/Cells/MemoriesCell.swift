@@ -10,7 +10,7 @@ import UIKit
 class MemoriesCell: UICollectionViewCell {
     
     // MARK: - Variables
-    static let reuseIdentifer               = "MemoriesCell"
+    static let reuseIdentifer       = "MemoriesCell"
     let imageView                   = GFImageView(frame: .zero)    
     let padding: CGFloat            = 20
     
@@ -36,7 +36,6 @@ class MemoriesCell: UICollectionViewCell {
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
-        
     }
     
     func set(_ image: String) {

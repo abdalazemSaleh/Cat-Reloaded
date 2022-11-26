@@ -80,21 +80,25 @@ class RegisterVC: UIViewController {
     
     // Handel view while using keyboard
     func handelViewWhileUsingKeyboard() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardApper), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDisApper), name: UIResponder.keyboardWillHideNotification, object: nil)
+        initializeHideKeyboard()
+        subscribeToNotification(UIResponder.keyboardWillShowNotification, selector: #selector(keyboardWillShowOrHide))
+        subscribeToNotification(UIResponder.keyboardWillHideNotification, selector: #selector(keyboardWillShowOrHide))
     }
-    
-    @objc func keyboardApper() {
-        if !isExpend {
-            self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.scrollView.frame.height + 640)
-            isExpend = true
-        }
-    }
-    
-    @objc func keyboardDisApper() {
-        if isExpend {
-            self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.scrollView.frame.height - 640)
-            self.isExpend = false
+    #warning("Need to refactor this method")
+    @objc func keyboardWillShowOrHide(notification: NSNotification) {
+        if let scrollView = scrollView, let userInfo = notification.userInfo, let endValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey], let durationValue = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey], let curveValue = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] {
+
+            let endRect = view.convert((endValue as AnyObject).cgRectValue, from: view.window)
+
+            let keyboardOverlap = scrollView.frame.maxY - endRect.origin.y
+
+            scrollView.contentInset.bottom = keyboardOverlap
+
+            let duration = (durationValue as AnyObject).doubleValue
+            let options = UIView.AnimationOptions(rawValue: UInt((curveValue as AnyObject).integerValue << 16))
+            UIView.animate(withDuration: duration!, delay: 0, options: options, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
         }
     }
     

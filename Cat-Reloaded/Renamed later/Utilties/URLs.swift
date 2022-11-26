@@ -13,4 +13,5 @@ enum URLs: String {
     // URLs
     case login      = "/auth/signin/password"
     case sginup     = "/auth/signup/password"
+    case external   = "/auth/signup/external"
 }

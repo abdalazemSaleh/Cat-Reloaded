@@ -123,5 +123,4 @@ class BoardingVC: UIViewController {
         let indexPath = IndexPath(item: currenPage, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
-    
 }
