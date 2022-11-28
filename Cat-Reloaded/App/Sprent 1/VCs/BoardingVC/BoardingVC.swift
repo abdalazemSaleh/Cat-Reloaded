@@ -27,6 +27,11 @@ class BoardingVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        if UserDefaults.standard.object(forKey: "isFirstTime") != nil {
+            skipButtonClicked()
+        } else {
+            UserDefaults.standard.set("True", forKey: "isFirstTime")
+        }
         addSlide()
         configureUI()
         configureCollectionView()

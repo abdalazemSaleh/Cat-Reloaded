@@ -33,6 +33,12 @@ extension UIViewController {
         self.present(tabBar, animated: true)
     }
     
+    func presentLoginScreen() {
+        let vc = GFNavigationController()
+        vc.modalPresentationStyle   = .overFullScreen
+        vc.modalTransitionStyle     = .crossDissolve
+        self.present(vc, animated: true)
+    }
 }
 
 

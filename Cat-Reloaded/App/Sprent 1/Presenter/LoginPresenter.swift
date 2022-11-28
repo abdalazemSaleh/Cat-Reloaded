@@ -28,13 +28,12 @@ class LoginPresenter {
     // Login
     func login(parms: [String: Any]) {
         view?.startAnimation()
-        NetworkManger.shared.request(modal: LoginModel.self, url: URLs.login.rawValue, method: .post, parms: parms, header: nil) { [weak self] result in
+        NetworkManger.shared.request(modal: ProfileModel.self, url: URLs.login.rawValue, method: .post, parms: parms, header: nil) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success(let date):
-                print(date)
+            case .success(let user):
+                UserData.chacheUserModel(user: user)
                 self.view?.goToHomeScreen()
-                self.view?.stopAnimation()
                 self.view?.stopAnimation()
             case .failure(let error):
                 self.view?.alertMessage(message: error.rawValue)
@@ -44,7 +43,6 @@ class LoginPresenter {
     }
     // Login with facebook
     func loginWithFacebook(controller: UIViewController) {
-        view?.startAnimation()
         let loginManger = LoginManager()
         loginManger.logIn(permissions: ["public_profile", "email"], from: controller) { result, error in
             guard error == nil, let token = result?.token?.tokenString else { return }
@@ -54,23 +52,20 @@ class LoginPresenter {
                 "token" : token
             ]
             // Send data to back end
-            NetworkManger.shared.request(modal: ExternalSignUpModel.self, url: URLs.external.rawValue, method: .post, parms: parms, header: nil) { result in
+            NetworkManger.shared.request(modal: ProfileModel.self, url: URLs.external.rawValue, method: .post, parms: parms, header: nil) { result in
                 switch result {
-                case .success(let data):
-                    print(data)
+                case .success(let user):
+                    print(user)
+                    UserData.chacheUserModel(user: user)
                     self.view?.goToHomeScreen()
-                    self.view?.stopAnimation()
                 case .failure(let error):
                     self.view?.alertMessage(message: error.localizedDescription)
-                    self.view?.stopAnimation()
                 }
             }
-            print(token)
         }
     }
     // Login with google
     func loginWithGoogle(controller: UIViewController) {
-        view?.startAnimation()
         let signInConfig = GIDConfiguration(clientID: "783608969759-0brae1mhmc6nnrl682teqi6lr8onhm49.apps.googleusercontent.com")
         GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: controller) { user, error in
             guard error == nil else { return }
@@ -82,15 +77,14 @@ class LoginPresenter {
                     "provider" : "google",
                     "token" : token
                 ]
-                NetworkManger.shared.request(modal: ExternalSignUpModel.self, url: URLs.external.rawValue, method: .post, parms: parms, header: nil) { result in
+                NetworkManger.shared.request(modal: ProfileModel.self, url: URLs.external.rawValue, method: .post, parms: parms, header: nil) { result in
                     switch result {
-                    case .success(let data):
-                        print(data)
+                    case .success(let user):
+                        print(user)
+                        UserData.chacheUserModel(user: user)
                         self.view?.goToHomeScreen()
-                        self.view?.stopAnimation()
                     case .failure(let error):
                         self.view?.alertMessage(message: error.localizedDescription)
-                        self.view?.stopAnimation()
                     }
                 }
             }

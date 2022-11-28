@@ -1,13 +1,15 @@
 //
-//  SginUpModel.swift
+//  ProfileModel.swift
 //  Cat-Reloaded
 //
-//  Created by Abdalazem Saleh on 2022-10-29.
+//  Created by Abdalazem Saleh on 2022-11-28.
 //
 
 import Foundation
 
-struct SignUpModel: Codable {
+// Profile Model
+// Using in : - Login, SignUp, External signUp
+struct ProfileModel: Codable {
     let token: String?
     let id: String?
     let fullName : String?
@@ -17,23 +19,17 @@ struct SignUpModel: Codable {
     let errorCode: Int?
 }
 
+// Login Parms
+struct  loginParms {
+    let phone: String
+    let password: String
+}
+// Sign up Parms
 struct signUpParms {
     let fullName: String
     let email: String
     let phonNumber: String
     let password: String
     let passwordConfirmation: String
-}
-
-
-// Sign up with facebook & google model
-struct ExternalSignUpModel: Codable {
-    let token: String?
-    let id: String?
-    let fullName : String?
-    let email: String?
-    let phoneNumber: String?
-    let errorCode: Int?
-    let message: String?
 }
 
