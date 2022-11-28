@@ -25,6 +25,14 @@ class GFTextField: UITextField {
         self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: attributes)
     }
     
+    convenience init(SecurePlaceholder: String) {
+        self.init(frame: .zero)
+        self.isSecureTextEntry = true
+        self.attributedPlaceholder = NSAttributedString(string: SecurePlaceholder, attributes: attributes)
+        self.enablePasswordToggle()
+        
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

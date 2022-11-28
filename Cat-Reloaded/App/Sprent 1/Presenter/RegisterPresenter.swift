@@ -31,6 +31,7 @@ class RegisterPresenter {
                 print(data)
                 self.view?.stopAnimation()
                 self.view?.goToHomeScreen()
+                self.view?.stopAnimation()
             case .failure(let error):
                 print(error.rawValue)
                 self.view?.stopAnimation()

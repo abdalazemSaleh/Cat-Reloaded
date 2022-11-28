@@ -19,10 +19,13 @@ extension LoginVC: LoginView {
         }
     }
     
-    func alertMessage(message: String) { presentGFAlert(title: "Woops", message: message, buttonTitle: "OK") }
+    func alertMessage(message: String) {
+        print(message)
+//        presentAlertMessage(message: message)
+    }
     
     func goToRegisterVC() {
         let vc  = RegisterVC()
         nav(vc: vc)
-    }    
+    }
 }

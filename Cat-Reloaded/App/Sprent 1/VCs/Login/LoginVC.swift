@@ -18,7 +18,7 @@ class LoginVC: UIViewController {
     let phone                   = GFTextField(placeholder: "Phone number")
     let phoneError              = GFErrorLabel(text: "Check your phone number.")
     let phoneContainer          = UIStackView()
-    let password                = GFTextField(placeholder: "Password")
+    let password                = GFTextField(SecurePlaceholder: "Password")
     let passwordError           = GFErrorLabel(text: "Check you password")
     let passwordContainer       = UIStackView()
     let textFieldsStack         = UIStackView()
@@ -40,13 +40,13 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor    = .systemBackground
-        presenter               = LoginPresenter(view: self)        
+        presenter               = LoginPresenter(view: self)
         configureUI()
         configureActionButtons()
         handelViewWhileUsingKeyboard()
         facebookButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 4, bottom: 0, right: 4)
     }
-        
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
@@ -102,7 +102,7 @@ class LoginVC: UIViewController {
         return loginParms.init(phone: phoneNumber, password: password)
     }
     // Action buttons
-    @objc func forgetPasswordClicked() {}
+    @objc func forgetPasswordClicked() { }
     @objc func loginButtonClicked() {
         let model = isTextFieldsIsEmpty()
         guard !model.phone.isEmpty, !model.password.isEmpty else { return }

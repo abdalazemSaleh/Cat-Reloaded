@@ -7,7 +7,6 @@
 
 import Foundation
 
-#warning("Handel this hole shit")
 struct SignUpModel: Codable {
     let token: String?
     let id: String?

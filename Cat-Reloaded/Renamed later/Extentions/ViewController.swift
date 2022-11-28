@@ -25,7 +25,7 @@ extension UIViewController {
             self.present(alertVC, animated: true)
         }
     }
-    
+        
     func presentGFTabBar() {
         let tabBar = GFTabBarController()
         tabBar.modalPresentationStyle   = .overFullScreen
@@ -64,5 +64,5 @@ extension UIViewController {
 
     func unsubscribeFromAllNotifications() {
         NotificationCenter.default.removeObserver(self)
-    }    
+    }
 }
