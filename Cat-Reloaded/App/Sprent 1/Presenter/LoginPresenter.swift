@@ -35,15 +35,16 @@ class LoginPresenter {
                 print(date)
                 self.view?.goToHomeScreen()
                 self.view?.stopAnimation()
+                self.view?.stopAnimation()
             case .failure(let error):
-                print(error)
+                self.view?.alertMessage(message: error.rawValue)
                 self.view?.stopAnimation()
             }
         }
     }
-    #warning("Under tested")
     // Login with facebook
     func loginWithFacebook(controller: UIViewController) {
+        view?.startAnimation()
         let loginManger = LoginManager()
         loginManger.logIn(permissions: ["public_profile", "email"], from: controller) { result, error in
             guard error == nil, let token = result?.token?.tokenString else { return }
@@ -60,7 +61,7 @@ class LoginPresenter {
                     self.view?.goToHomeScreen()
                     self.view?.stopAnimation()
                 case .failure(let error):
-                    print(error)
+                    self.view?.alertMessage(message: error.localizedDescription)
                     self.view?.stopAnimation()
                 }
             }
@@ -69,6 +70,7 @@ class LoginPresenter {
     }
     // Login with google
     func loginWithGoogle(controller: UIViewController) {
+        view?.startAnimation()
         let signInConfig = GIDConfiguration(clientID: "783608969759-0brae1mhmc6nnrl682teqi6lr8onhm49.apps.googleusercontent.com")
         GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: controller) { user, error in
             guard error == nil else { return }
@@ -87,7 +89,7 @@ class LoginPresenter {
                         self.view?.goToHomeScreen()
                         self.view?.stopAnimation()
                     case .failure(let error):
-                        print(error)
+                        self.view?.alertMessage(message: error.localizedDescription)
                         self.view?.stopAnimation()
                     }
                 }

@@ -7,9 +7,8 @@
 
 import UIKit
 
+// MARK: - Handel text field spacer
 extension UITextField {
-    
-    // MARK: - Handel text field spacer
     func handelTextFieldSpacer(){
         var textView: UIView {
             let view = UIView()
@@ -21,7 +20,10 @@ extension UITextField {
         self.leftView = textView
         self.leftViewMode = .always
     }
-    
+
+}
+
+extension UITextField {
     // MARK: - Add arrow button to picker text field
     func pickerTextField() {
         var textView: UIView {
@@ -39,10 +41,10 @@ extension UITextField {
     func handelImageViewConstraint(view: UIView) {
         let image       = UIImageView()
         view.addSubview(image)
-        
+
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image     = UIImage(systemName: "arrowtriangle.down.fill")
-        
+
         NSLayoutConstraint.activate([
             image.topAnchor.constraint(equalTo: view.topAnchor),
             image.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -58,7 +60,10 @@ extension UITextField {
         toolBar.tintColor       = Colors.mainColor
         self.inputAccessoryView = toolBar
     }
-    // MARK: - Text field validation
+}
+
+// MARK: - Text field validation
+extension UITextField {
     func isValidEmail() -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
@@ -77,3 +82,23 @@ extension UITextField {
         return emailTest.evaluate(with: self.text)
     }
 }
+
+// MARK: - Handel Secure TextField
+let button = UIButton(type: .custom)
+extension UITextField {
+    func enablePasswordToggle(){
+        button.setImage(UIImage(systemName: "eye"), for: .normal)
+        button.setImage(UIImage(systemName: "eye.slash"), for: .selected)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -12, bottom: 0, right: 0)
+        button.addTarget(self, action: #selector(togglePasswordView), for: .touchUpInside)
+        rightView = button
+        rightViewMode = .always
+        button.alpha = 0.4
+    }
+    
+    @objc func togglePasswordView(_ sender: Any) {
+        isSecureTextEntry.toggle()
+        button.isSelected.toggle()
+    }
+}
+

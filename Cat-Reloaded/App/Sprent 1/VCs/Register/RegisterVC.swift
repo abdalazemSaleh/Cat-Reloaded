@@ -65,6 +65,9 @@ class RegisterVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
         // handel error label
+        makeAllErrorLabelsHidden()
+    }
+    func makeAllErrorLabelsHidden() {
         errorLabels = [fullNameError, emailErorr, phoneNumberErorr, passwordErorr, passwordConfirmErorr]
         for errorLabel in errorLabels {
             errorLabel.isHidden = true
@@ -104,27 +107,28 @@ class RegisterVC: UIViewController {
     
     // Cehcl if textfiled is empty
     func isTextFieldsIsEmpty() -> signUpParms? {
-        let textFields: [UITextField] = [fullName, email, phoneNumber, password, conformPassword]
-        var parms: [String] = []
-        for textField in textFields {
-            let text: String = textField.text ?? ""
-            print(text)
-            guard !text.isEmpty else {
-                // TODO: - Handel error label
-                if textField == fullName { handelErrorLable(textField: .name) }
-                else if textField == email { handelErrorLable(textField: .email) }
-                else if textField == phoneNumber { handelErrorLable(textField: .phone) }
-                else if textField == password { handelErrorLable(textField: .password) }
-                return nil
-            }
-            parms.append(text)
+        guard let text = fullName.text, !text.isEmpty else {
+            handelErrorLable(textField: .name)
+            return nil
+        }
+        guard email.isValidEmail() else {
+            handelErrorLable(textField: .email)
+            return nil
+        }
+        guard phoneNumber.isValidPhoneNumber() else {
+            handelErrorLable(textField: .phone)
+            return nil
+        }
+        guard password.isValidPassword() else {
+            handelErrorLable(textField: .password)
+            return nil
         }
         guard password.text == conformPassword.text else {
             passwordErorr.isHidden          = true
             passwordConfirmErorr.isHidden   = false
             return nil
         }
-        return signUpParms(fullName: parms[0], email: parms[1], phonNumber: parms[2], password: parms[3], passwordConfirmation: parms[4])
+        return signUpParms(fullName: fullName.text!, email: email.text!, phonNumber: phoneNumber.text!, password: password.text!, passwordConfirmation: password.text!)
     }
     
     func handelErrorLable(textField: errorLabels) {
@@ -145,7 +149,7 @@ class RegisterVC: UIViewController {
     
     // Action buttons
     @objc func signUpButtonClicked() {
-        passwordConfirmErorr.isHidden = true
+        makeAllErrorLabelsHidden()
         guard let model = isTextFieldsIsEmpty() else { return }
         let parms: [String : Any] = [
             "fullName" : model.fullName,

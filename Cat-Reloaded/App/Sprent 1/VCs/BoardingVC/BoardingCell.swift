@@ -36,6 +36,7 @@ class BoardingCell: UICollectionViewCell {
         label.numberOfLines         = 2
         
         itemViews = [imageView, pageControl, label]
+        imageView.contentMode = .scaleAspectFit
         
         for itemView in itemViews {
             contentView.addSubview(itemView)
