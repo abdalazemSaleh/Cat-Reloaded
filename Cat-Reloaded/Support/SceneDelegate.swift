@@ -16,9 +16,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window                      = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene         = windowScene
-        window?.rootViewController  = GFNavigationController()
         window?.makeKeyAndVisible()
         
+        if UserData.getUserModel() != nil {
+            window?.rootViewController = GFTabBarController()
+        } else {
+            window?.rootViewController  = GFNavigationController()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
