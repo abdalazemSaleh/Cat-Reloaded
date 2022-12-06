@@ -28,13 +28,13 @@ class LoginPresenter {
     // Login
     func login(parms: [String: Any]) {
         view?.startAnimation()
-        NetworkManger.shared.request(modal: LoginModel.self, url: URLs.login.rawValue, method: .post, parms: parms, header: nil) { [weak self] result in
+        NetworkManger.shared.request(modal: ProfileModel.self, url: URLs.login.rawValue, method: .post, parms: parms, header: nil) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success(let date):
-                print(date)
+            case .success(let user):
+                print(user)
+                UserData.chacheUserModel(user: user)
                 self.view?.goToHomeScreen()
-                self.view?.stopAnimation()
                 self.view?.stopAnimation()
             case .failure(let error):
                 self.view?.alertMessage(message: error.rawValue)
@@ -54,10 +54,11 @@ class LoginPresenter {
                 "token" : token
             ]
             // Send data to back end
-            NetworkManger.shared.request(modal: ExternalSignUpModel.self, url: URLs.external.rawValue, method: .post, parms: parms, header: nil) { result in
+            NetworkManger.shared.request(modal: ProfileModel.self, url: URLs.external.rawValue, method: .post, parms: parms, header: nil) { result in
                 switch result {
-                case .success(let data):
-                    print(data)
+                case .success(let user):
+                    print(user)
+                    UserData.chacheUserModel(user: user)
                     self.view?.goToHomeScreen()
                     self.view?.stopAnimation()
                 case .failure(let error):
@@ -82,10 +83,11 @@ class LoginPresenter {
                     "provider" : "google",
                     "token" : token
                 ]
-                NetworkManger.shared.request(modal: ExternalSignUpModel.self, url: URLs.external.rawValue, method: .post, parms: parms, header: nil) { result in
+                NetworkManger.shared.request(modal: ProfileModel.self, url: URLs.external.rawValue, method: .post, parms: parms, header: nil) { result in
                     switch result {
-                    case .success(let data):
-                        print(data)
+                    case .success(let user):
+                        print(user)
+                        UserData.chacheUserModel(user: user)
                         self.view?.goToHomeScreen()
                         self.view?.stopAnimation()
                     case .failure(let error):

@@ -5,8 +5,8 @@
 //  Created by Abdalazem Saleh on 2022-10-29.
 //
 
-import Foundation
-
+//import Foundation
+//
 // Login by phone
 struct LoginModel: Codable {
     let token: String?
@@ -22,6 +22,3 @@ struct  loginParms {
     let phone: String
     let password: String
 }
-
-
-

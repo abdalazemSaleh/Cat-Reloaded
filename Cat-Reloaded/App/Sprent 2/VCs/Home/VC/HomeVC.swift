@@ -39,11 +39,12 @@ class HomeVC: UIViewController {
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Chash Data: - \(UserData.getUserModel())")
         configureNavigationController()
-//        configureUI()
+        configureUI()
         configureCollectionView()
         configureDataSource()
-//        configureCollectionViewConstraint()
+        configureCollectionViewConstraint()
     }
     
     // MARK: - Functions
