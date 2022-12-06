@@ -30,6 +30,11 @@ class PodCATCell: UICollectionViewCell {
         imageView.image = UIImage(systemName: "photo.fill")
         
         contentView.addSubview(imageView)
+        
+        imageView.contentMode = .scaleToFill
+        imageView.layer.cornerRadius = 4
+        imageView.clipsToBounds = true
+
         contentView.backgroundColor = .systemBackground
         
         NSLayoutConstraint.activate([

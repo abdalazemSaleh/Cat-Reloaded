@@ -41,10 +41,10 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         print("Chash Data: - \(UserData.getUserModel())")
         configureNavigationController()
-//        configureUI()
+        configureUI()
         configureCollectionView()
         configureDataSource()
-//        configureCollectionViewConstraint()
+        configureCollectionViewConstraint()
     }
     
     // MARK: - Functions
