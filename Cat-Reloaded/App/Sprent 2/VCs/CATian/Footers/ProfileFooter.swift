@@ -1,14 +1,13 @@
 //
-//  MainFooter.swift
+//  ProfileFooter.swift
 //  Cat-Reloaded
 //
-//  Created by Omar Tharwat on 08/12/2022.
+//  Created by Omar Tharwat on 11/12/2022.
 //
 
-import Foundation
 import UIKit
 
-class CustomTableViewFooter: UITableViewHeaderFooterView {
+class ProfileFooter : UITableViewHeaderFooterView {
     
     let logOutButton = GFSimpleButton(title: " Log Out", titleColor: .label)
 
@@ -22,21 +21,23 @@ class CustomTableViewFooter: UITableViewHeaderFooterView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
 
-extension CustomTableViewFooter {
+extension ProfileFooter {
     func configure() {
-        contentView.backgroundColor = .white
+        addSubview(logOutButton)
+        backgroundColor = .white
         logOutButton.setTitleColor(UIColor.darkGray, for: .normal)
         logOutButton.setImage(UIImage(systemName: "rectangle.portrait.and.arrow.right"), for: .normal)
         logOutButton.tintColor = .darkGray
-    addSubview(logOutButton)
     NSLayoutConstraint.activate([
-        logOutButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100),
-        logOutButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-        logOutButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 40)
+        logOutButton.topAnchor.constraint(equalTo: topAnchor, constant: 100),
+        logOutButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+        logOutButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 40)
     ])
 
 
   }
+    
 }
