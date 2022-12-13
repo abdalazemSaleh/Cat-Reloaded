@@ -46,6 +46,7 @@
 		7F9052B128EB731A0044F76C /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B028EB731A0044F76C /* GFTitleLabel.swift */; };
 		7F9052B328EB748C0044F76C /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B228EB748C0044F76C /* GFBodyLabel.swift */; };
 		7F9052B528EB76D20044F76C /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B428EB76D20044F76C /* GFTextField.swift */; };
+		7F94C9B12947BFC800D44363 /* CircleDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F94C9B02947BFC800D44363 /* CircleDetailsVC.swift */; };
 		7FAAFF7928F4CD83008A9FF2 /* GFTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAFF7828F4CD83008A9FF2 /* GFTabBarController.swift */; };
 		7FAAFF7D28F4CE5A008A9FF2 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAFF7C28F4CE5A008A9FF2 /* HomeVC.swift */; };
 		7FAAFF7F28F4CE7A008A9FF2 /* CirclesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAFF7E28F4CE7A008A9FF2 /* CirclesVC.swift */; };
@@ -66,6 +67,12 @@
 		7FB4F39728EB567E008557ED /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4F39628EB567E008557ED /* Constant.swift */; };
 		7FB4F39928EB56B0008557ED /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4F39828EB56B0008557ED /* ErrorMessages.swift */; };
 		7FDE9B1E29203C1100949945 /* GFErrorLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDE9B1D29203C1100949945 /* GFErrorLabel.swift */; };
+		7FE959592948C860001B2554 /* GFTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE959582948C860001B2554 /* GFTextView.swift */; };
+		7FE9595B2948D09A001B2554 /* BoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9595A2948D09A001B2554 /* BoardCell.swift */; };
+		7FE9595F29492366001B2554 /* CircleDetailsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9595E29492366001B2554 /* CircleDetailsHeaderCell.swift */; };
+		7FE9596229492E46001B2554 /* CircleDetails+CollectionVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9596129492E46001B2554 /* CircleDetails+CollectionVIew.swift */; };
+		7FE9596429492E53001B2554 /* CircleDetails+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9596329492E53001B2554 /* CircleDetails+Protocol.swift */; };
+		7FE9596629492E74001B2554 /* CircleDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9596529492E74001B2554 /* CircleDetailsModel.swift */; };
 		7FF92EB528F075D7001EA736 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF92EB428F075D7001EA736 /* RegisterPresenter.swift */; };
 		7FF92EB828F07624001EA736 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF92EB728F07624001EA736 /* RegisterVC.swift */; };
 		7FF92EBA28F07688001EA736 /* RegisterActiveConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF92EB928F07688001EA736 /* RegisterActiveConstraint.swift */; };
@@ -115,6 +122,7 @@
 		7F9052B028EB731A0044F76C /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
 		7F9052B228EB748C0044F76C /* GFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFBodyLabel.swift; sourceTree = "<group>"; };
 		7F9052B428EB76D20044F76C /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
+		7F94C9B02947BFC800D44363 /* CircleDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailsVC.swift; sourceTree = "<group>"; };
 		7FAAFF7828F4CD83008A9FF2 /* GFTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTabBarController.swift; sourceTree = "<group>"; };
 		7FAAFF7C28F4CE5A008A9FF2 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		7FAAFF7E28F4CE7A008A9FF2 /* CirclesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesVC.swift; sourceTree = "<group>"; };
@@ -137,6 +145,12 @@
 		7FB4F39628EB567E008557ED /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		7FB4F39828EB56B0008557ED /* ErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessages.swift; sourceTree = "<group>"; };
 		7FDE9B1D29203C1100949945 /* GFErrorLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFErrorLabel.swift; sourceTree = "<group>"; };
+		7FE959582948C860001B2554 /* GFTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextView.swift; sourceTree = "<group>"; };
+		7FE9595A2948D09A001B2554 /* BoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCell.swift; sourceTree = "<group>"; };
+		7FE9595E29492366001B2554 /* CircleDetailsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailsHeaderCell.swift; sourceTree = "<group>"; };
+		7FE9596129492E46001B2554 /* CircleDetails+CollectionVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CircleDetails+CollectionVIew.swift"; sourceTree = "<group>"; };
+		7FE9596329492E53001B2554 /* CircleDetails+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CircleDetails+Protocol.swift"; sourceTree = "<group>"; };
+		7FE9596529492E74001B2554 /* CircleDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailsModel.swift; sourceTree = "<group>"; };
 		7FF92EB428F075D7001EA736 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
 		7FF92EB728F07624001EA736 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		7FF92EB928F07688001EA736 /* RegisterActiveConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterActiveConstraint.swift; sourceTree = "<group>"; };
@@ -170,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				7F078F0D2923F40200895441 /* CircleModel.swift */,
+				7FE9596529492E74001B2554 /* CircleDetailsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,6 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				7F078F152923F50700895441 /* CircleCell.swift */,
+				7FE9595A2948D09A001B2554 /* BoardCell.swift */,
+				7FE9595E29492366001B2554 /* CircleDetailsHeaderCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -246,14 +263,14 @@
 			path = VCs;
 			sourceTree = "<group>";
 		};
-		7F617898290EE7A900AA101B /* VC */ = {
+		7F617898290EE7A900AA101B /* CirclesVC */ = {
 			isa = PBXGroup;
 			children = (
 				7FAAFF7E28F4CE7A008A9FF2 /* CirclesVC.swift */,
 				7F078F0F2923F45A00895441 /* CirclesVC+CollectionVIew.swift */,
 				7F078F112923F49E00895441 /* CirclesVC+Protocol.swift */,
 			);
-			path = VC;
+			path = CirclesVC;
 			sourceTree = "<group>";
 		};
 		7F62DD9028FDFB4100FEC944 /* Cells */ = {
@@ -295,7 +312,8 @@
 		7F62DD9428FF4CBA00FEC944 /* Circles */ = {
 			isa = PBXGroup;
 			children = (
-				7F617898290EE7A900AA101B /* VC */,
+				7FE9596029492E32001B2554 /* CircleDetailsVC */,
+				7F617898290EE7A900AA101B /* CirclesVC */,
 				7F078F142923F4CF00895441 /* Header */,
 				7F078F132923F4CD00895441 /* Cells */,
 			);
@@ -345,13 +363,6 @@
 				7F62DD9028FDFB4100FEC944 /* Cells */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		7FAAFF8F28F61E0A008A9FF2 /* GFCollectionView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = GFCollectionView;
 			sourceTree = "<group>";
 		};
 		7FB4F36228EB50F3008557ED = {
@@ -472,8 +483,8 @@
 		7FB4F39128EB560A008557ED /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				7FE959572948C83F001B2554 /* GFTextView */,
 				7F078F192923F55500895441 /* GFSegmentVIew */,
-				7FAAFF8F28F61E0A008A9FF2 /* GFCollectionView */,
 				7FAAFF7728F4CD66008A9FF2 /* GFTab bar controller */,
 				7F30C27628EDC54D0007AACF /* PageControl */,
 				7FB4F39028EB55E3008557ED /* NavigationController */,
@@ -528,6 +539,24 @@
 				7F61788D290DCA8D00AA101B /* URLs.swift */,
 			);
 			path = Utilties;
+			sourceTree = "<group>";
+		};
+		7FE959572948C83F001B2554 /* GFTextView */ = {
+			isa = PBXGroup;
+			children = (
+				7FE959582948C860001B2554 /* GFTextView.swift */,
+			);
+			path = GFTextView;
+			sourceTree = "<group>";
+		};
+		7FE9596029492E32001B2554 /* CircleDetailsVC */ = {
+			isa = PBXGroup;
+			children = (
+				7F94C9B02947BFC800D44363 /* CircleDetailsVC.swift */,
+				7FE9596129492E46001B2554 /* CircleDetails+CollectionVIew.swift */,
+				7FE9596329492E53001B2554 /* CircleDetails+Protocol.swift */,
+			);
+			path = CircleDetailsVC;
 			sourceTree = "<group>";
 		};
 		7FF92EB028F0751F001EA736 /* Renamed later */ = {
@@ -711,6 +740,7 @@
 				7F078F102923F45A00895441 /* CirclesVC+CollectionVIew.swift in Sources */,
 				7F62DD8F28FDFB3400FEC944 /* HeaderView.swift in Sources */,
 				7F30C23528EC44350007AACF /* ViewController.swift in Sources */,
+				7FE9596429492E53001B2554 /* CircleDetails+Protocol.swift in Sources */,
 				7FB4F39928EB56B0008557ED /* ErrorMessages.swift in Sources */,
 				7FF92EB528F075D7001EA736 /* RegisterPresenter.swift in Sources */,
 				7F61788C290DC4CF00AA101B /* ParsingJson.swift in Sources */,
@@ -719,6 +749,8 @@
 				7F9052B328EB748C0044F76C /* GFBodyLabel.swift in Sources */,
 				7F30C2AB28EE24630007AACF /* GFTransactionButton.swift in Sources */,
 				7F30C25128ED8E180007AACF /* BoardingVC.swift in Sources */,
+				7FE9595B2948D09A001B2554 /* BoardCell.swift in Sources */,
+				7FE9596229492E46001B2554 /* CircleDetails+CollectionVIew.swift in Sources */,
 				7F617892290DD1F700AA101B /* SginUpModel.swift in Sources */,
 				7F3AD4AD2937927300AF0AB1 /* Encodable.swift in Sources */,
 				7FAAFF8828F4E062008A9FF2 /* Home+Constarint.swift in Sources */,
@@ -732,8 +764,10 @@
 				7F30C27A28EDC6AE0007AACF /* BoardingVC+Extention.swift in Sources */,
 				7F3AD4A92937902400AF0AB1 /* UserDefults.swift in Sources */,
 				7FAAFF8328F4CEA7008A9FF2 /* CATianVC.swift in Sources */,
+				7FE9596629492E74001B2554 /* CircleDetailsModel.swift in Sources */,
 				7F55642B28F1FD71009342A6 /* GFAlertContainerView.swift in Sources */,
 				7F61788A290DBAE700AA101B /* NetworkManger.swift in Sources */,
+				7FE9595F29492366001B2554 /* CircleDetailsHeaderCell.swift in Sources */,
 				7FAAFF8528F4DCD9008A9FF2 /* GFCirclerImage.swift in Sources */,
 				7F617890290DD00A00AA101B /* LoginModel.swift in Sources */,
 				7F3AD4AB2937904D00AF0AB1 /* ProfileModel.swift in Sources */,
@@ -742,6 +776,7 @@
 				7F078F0E2923F40200895441 /* CircleModel.swift in Sources */,
 				7FB4F37128EB50F3008557ED /* SceneDelegate.swift in Sources */,
 				7FAAFF8128F4CE8F008A9FF2 /* EventsVC.swift in Sources */,
+				7F94C9B12947BFC800D44363 /* CircleDetailsVC.swift in Sources */,
 				7F30C28328EE09290007AACF /* Login+Protocol.swift in Sources */,
 				7F30C27D28EE07FA0007AACF /* LoginVC.swift in Sources */,
 				7F62DD97290018B100FEC944 /* HeaderCell.swift in Sources */,
@@ -756,6 +791,7 @@
 				7F30C24728ECE79F0007AACF /* GFImageView.swift in Sources */,
 				7F61788E290DCA8D00AA101B /* URLs.swift in Sources */,
 				7FF92EBA28F07688001EA736 /* RegisterActiveConstraint.swift in Sources */,
+				7FE959592948C860001B2554 /* GFTextView.swift in Sources */,
 				7FDE9B1E29203C1100949945 /* GFErrorLabel.swift in Sources */,
 				7FAAFF7F28F4CE7A008A9FF2 /* CirclesVC.swift in Sources */,
 				7F078F162923F50700895441 /* CircleCell.swift in Sources */,

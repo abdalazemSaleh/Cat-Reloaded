@@ -9,6 +9,10 @@ import UIKit
 
 class CirclesVC: UIViewController, UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        nav(vc: CircleDetailsVC())
+    }
+    
     // MARK: - Vailables
     static let sectionHeaderElementKind = "section-header-element-kind"
     var collectionView: UICollectionView!
@@ -22,10 +26,14 @@ class CirclesVC: UIViewController, UICollectionViewDelegate {
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationController()
         configureCollectionView()
         configureDataSource()
         appendData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationController()
     }
     // MARK: - Functions
     func configureNavigationController() {
