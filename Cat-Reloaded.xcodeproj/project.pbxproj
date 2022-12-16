@@ -73,6 +73,9 @@
 		7FE9596229492E46001B2554 /* CircleDetails+CollectionVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9596129492E46001B2554 /* CircleDetails+CollectionVIew.swift */; };
 		7FE9596429492E53001B2554 /* CircleDetails+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9596329492E53001B2554 /* CircleDetails+Protocol.swift */; };
 		7FE9596629492E74001B2554 /* CircleDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9596529492E74001B2554 /* CircleDetailsModel.swift */; };
+		7FE9596829494188001B2554 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9596729494188001B2554 /* HomeModel.swift */; };
+		7FE9596B294942A4001B2554 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9596A294942A3001B2554 /* HomePresenter.swift */; };
+		7FE9596D29494308001B2554 /* Home+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9596C29494308001B2554 /* Home+Protocol.swift */; };
 		7FF92EB528F075D7001EA736 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF92EB428F075D7001EA736 /* RegisterPresenter.swift */; };
 		7FF92EB828F07624001EA736 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF92EB728F07624001EA736 /* RegisterVC.swift */; };
 		7FF92EBA28F07688001EA736 /* RegisterActiveConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF92EB928F07688001EA736 /* RegisterActiveConstraint.swift */; };
@@ -151,6 +154,9 @@
 		7FE9596129492E46001B2554 /* CircleDetails+CollectionVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CircleDetails+CollectionVIew.swift"; sourceTree = "<group>"; };
 		7FE9596329492E53001B2554 /* CircleDetails+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CircleDetails+Protocol.swift"; sourceTree = "<group>"; };
 		7FE9596529492E74001B2554 /* CircleDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailsModel.swift; sourceTree = "<group>"; };
+		7FE9596729494188001B2554 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		7FE9596A294942A3001B2554 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		7FE9596C29494308001B2554 /* Home+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Home+Protocol.swift"; sourceTree = "<group>"; };
 		7FF92EB428F075D7001EA736 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
 		7FF92EB728F07624001EA736 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		7FF92EB928F07688001EA736 /* RegisterActiveConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterActiveConstraint.swift; sourceTree = "<group>"; };
@@ -183,6 +189,7 @@
 		7F078F082923EF7100895441 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7FE9596729494188001B2554 /* HomeModel.swift */,
 				7F078F0D2923F40200895441 /* CircleModel.swift */,
 				7FE9596529492E74001B2554 /* CircleDetailsModel.swift */,
 			);
@@ -297,6 +304,7 @@
 				7FAAFF7C28F4CE5A008A9FF2 /* HomeVC.swift */,
 				7FAAFF8B28F5B5C0008A9FF2 /* Home+CollectionView.swift */,
 				7FAAFF8728F4E062008A9FF2 /* Home+Constarint.swift */,
+				7FE9596C29494308001B2554 /* Home+Protocol.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -559,6 +567,14 @@
 			path = CircleDetailsVC;
 			sourceTree = "<group>";
 		};
+		7FE9596929494283001B2554 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7FE9596A294942A3001B2554 /* HomePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		7FF92EB028F0751F001EA736 /* Renamed later */ = {
 			isa = PBXGroup;
 			children = (
@@ -575,6 +591,7 @@
 			children = (
 				7FAAFF7A28F4CE1E008A9FF2 /* Sprent 1 */,
 				7FAAFF7B28F4CE2B008A9FF2 /* Sprent 2 */,
+				7FE9596929494283001B2554 /* Presenter */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -750,6 +767,7 @@
 				7F30C2AB28EE24630007AACF /* GFTransactionButton.swift in Sources */,
 				7F30C25128ED8E180007AACF /* BoardingVC.swift in Sources */,
 				7FE9595B2948D09A001B2554 /* BoardCell.swift in Sources */,
+				7FE9596D29494308001B2554 /* Home+Protocol.swift in Sources */,
 				7FE9596229492E46001B2554 /* CircleDetails+CollectionVIew.swift in Sources */,
 				7F617892290DD1F700AA101B /* SginUpModel.swift in Sources */,
 				7F3AD4AD2937927300AF0AB1 /* Encodable.swift in Sources */,
@@ -778,6 +796,7 @@
 				7FAAFF8128F4CE8F008A9FF2 /* EventsVC.swift in Sources */,
 				7F94C9B12947BFC800D44363 /* CircleDetailsVC.swift in Sources */,
 				7F30C28328EE09290007AACF /* Login+Protocol.swift in Sources */,
+				7FE9596B294942A4001B2554 /* HomePresenter.swift in Sources */,
 				7F30C27D28EE07FA0007AACF /* LoginVC.swift in Sources */,
 				7F62DD97290018B100FEC944 /* HeaderCell.swift in Sources */,
 				7FF92EBE28F08A94001EA736 /* GFPickerTextField.swift in Sources */,
@@ -790,6 +809,7 @@
 				7F30C23B28ECDCF00007AACF /* Onboarding.swift in Sources */,
 				7F30C24728ECE79F0007AACF /* GFImageView.swift in Sources */,
 				7F61788E290DCA8D00AA101B /* URLs.swift in Sources */,
+				7FE9596829494188001B2554 /* HomeModel.swift in Sources */,
 				7FF92EBA28F07688001EA736 /* RegisterActiveConstraint.swift in Sources */,
 				7FE959592948C860001B2554 /* GFTextView.swift in Sources */,
 				7FDE9B1E29203C1100949945 /* GFErrorLabel.swift in Sources */,

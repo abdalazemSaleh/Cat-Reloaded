@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MemoriesCell: UICollectionViewCell {
     
@@ -41,6 +42,7 @@ class MemoriesCell: UICollectionViewCell {
     }
     
     func set(_ image: String) {
-        imageView.image = UIImage(named: image)
+        let url = URL(string: image)
+        imageView.kf.setImage(with: url)
     }
 }

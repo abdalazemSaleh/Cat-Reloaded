@@ -23,9 +23,8 @@ enum HTTPStatusCode: Int, Error {
 class NetworkManger {
     static let shared = NetworkManger()
     
-    func request<T: Codable>(modal: T.Type, url: String, method: HTTPMethod, parms: [String:Any], header: [String:Any]?, completion: @escaping (ServerResponse<T>) -> Void) {
+    func request<T: Codable>(modal: T.Type, url: String, method: HTTPMethod, parms: [String:Any]?, header: [String:Any]?, completion: @escaping (ServerResponse<T>) -> Void) {
         let url = URLs.baseURL.rawValue + url
-        
         Alamofire.request(url, method: method, parameters: parms, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
             guard let statusCode = response.response?.statusCode else { return }
             print(statusCode)

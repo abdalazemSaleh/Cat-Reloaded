@@ -28,9 +28,11 @@ extension HomeVC {
     }
     /// Configure collection view data source
     func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Image>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, image: Image) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, MainHomeModel>(collectionView: collectionView) {
+            (collectionView: UICollectionView, indexPath: IndexPath, model: MainHomeModel) -> UICollectionViewCell? in
             let sectionType = Section.allCases[indexPath.section]
+            let mainModel = model.data[indexPath.row]
+            print(mainModel)
             switch sectionType {
             case .headerCell:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeaderCell.reuseIdentifer, for: indexPath) as! HeaderCell
@@ -38,11 +40,11 @@ extension HomeVC {
                 return cell
             case .memorires:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemoriesCell.reuseIdentifer, for: indexPath) as! MemoriesCell
-                cell.set(image.image)
+                print("indexPath:-\(indexPath)")
+                cell.set(mainModel.imageUrl!)
                 return cell
             case .podCat:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PodCATCell.reuseIdentifer, for: indexPath) as! PodCATCell
-                cell.set(image.image)
                 return cell
             }
         }
@@ -53,8 +55,6 @@ extension HomeVC {
             supplementaryView.label.text = Section.allCases[indexPath.section].rawValue
             return supplementaryView
         }
-        let snapshot = snapshotForCurrentState()
-        dataSource.apply(snapshot, animatingDifferences: false)
     }
     /// Handel collectionview flow layout
     private func generateLayout() -> UICollectionViewLayout {
@@ -122,28 +122,13 @@ extension HomeVC {
         return section
     }
     
-    ///handel collection view data
-    func snapshotForCurrentState() -> NSDiffableDataSourceSnapshot<Section, Image> {
-        memories.append(Image.init(image: "1"))
-        memories.append(Image.init(image: "2"))
-        memories.append(Image.init(image: "3"))
-        
-        podCat.append(Image.init(image: "4"))
-        podCat.append(Image.init(image: "5"))
-        podCat.append(Image.init(image: "6"))
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Image>()
-        
-        snapshot.appendSections([Section.headerCell])
-//        snapshot.appendItems()
-        
-        snapshot.appendSections([Section.memorires])
+    func updateData(on memories: [MainHomeModel]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, MainHomeModel>()
+        snapshot.appendSections([.headerCell])
+        snapshot.appendSections([.memorires])
         snapshot.appendItems(memories)
-        
-        snapshot.appendSections([Section.podCat])
-        snapshot.appendItems(podCat)
-        
-        return snapshot
+        snapshot.appendSections([.podCat])
+        DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true)  }
     }
 }
 

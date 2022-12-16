@@ -19,7 +19,7 @@ class HomeVC: UIViewController {
     
     static let sectionHeaderElementKind = "section-header-element-kind"
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section, Image>!
+    var dataSource: UICollectionViewDiffableDataSource<Section, MainHomeModel>!
     
     let welcomeCardTitle        = GFTitleLabel(textAlignment: .left, fontSize: 24, weight: .bold)
     let welcomeCard             = GFCardView(label: "Become a CATian", bodyLabel: "Get new experiences with us and we are engoy this.", image: Images.becomACATian!)
@@ -29,17 +29,25 @@ class HomeVC: UIViewController {
     let aboutCatCard             = GFCardView(label: "", bodyLabel: "Know more about CAT world", image: Images.becomACATian!)
     let aboutCatCardStack        = UIStackView()
     
-    var memories: [Image]     = []
+    var memories: [MainHomeModel]     = []
     var podCat: [Image]       = []
     
     var itemViews: [UIView]     = []
     var sharedView: [UIView]    = []
     let padding: CGFloat        = 20
-
+    
+    var testArr: [MainHomeModel] = []
+    
+    var memoriess: Memories!
+    
+    var presenter: HomePresenter!
+    
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Chash Data: - \(UserData.getUserModel())")
+        view.backgroundColor    = .systemBackground
+        presenter               = HomePresenter(view: self)
+        presenter.fetchMemories()
         configureNavigationController()
         configureUI()
         configureCollectionView()
