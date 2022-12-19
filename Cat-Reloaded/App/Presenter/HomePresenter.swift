@@ -8,7 +8,8 @@
 import Foundation
 
 protocol HomeView: AnyObject {
-    func getMemories(data: MainHomeModel)
+    func getMemories(data: HomeModel)
+    func getPodCat(data: HomeModel)
 }
 
 class HomePresenter {
@@ -19,7 +20,7 @@ class HomePresenter {
     }
     // Code
     func fetchMemories() {
-        NetworkManger.shared.request(modal: MainHomeModel.self, url: URLs.memories.rawValue, method: .get, parms: nil, header: nil) { [weak self] result in
+        NetworkManger.shared.request(modal: HomeModel.self, url: URLs.memories.rawValue, method: .get, parms: nil, header: nil) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):
@@ -31,12 +32,11 @@ class HomePresenter {
     }
     
     func fetchPodCat() {
-        NetworkManger.shared.request(modal: PodCat.self, url: URLs.podCat.rawValue, method: .get, parms: nil, header: nil) { [weak self] result in
+        NetworkManger.shared.request(modal: HomeModel.self, url: URLs.podCat.rawValue, method: .get, parms: nil, header: nil) { [weak self] result in
             guard let self = self else { return }
-
             switch result {
             case .success(let data):
-                print(data)
+                self.view?.getPodCat(data: data)
             case .failure(let error):
                 print(error)
             }

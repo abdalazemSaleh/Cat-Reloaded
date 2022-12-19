@@ -28,11 +28,9 @@ extension HomeVC {
     }
     /// Configure collection view data source
     func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, MainHomeModel>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, model: MainHomeModel) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, HomeData>(collectionView: collectionView) {
+            (collectionView: UICollectionView, indexPath: IndexPath, model: HomeData) -> UICollectionViewCell? in
             let sectionType = Section.allCases[indexPath.section]
-            let mainModel = model.data[indexPath.row]
-            print(mainModel)
             switch sectionType {
             case .headerCell:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeaderCell.reuseIdentifer, for: indexPath) as! HeaderCell
@@ -41,10 +39,11 @@ extension HomeVC {
             case .memorires:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemoriesCell.reuseIdentifer, for: indexPath) as! MemoriesCell
                 print("indexPath:-\(indexPath)")
-                cell.set(mainModel.imageUrl!)
+                cell.set(model.imageUrl!)
                 return cell
             case .podCat:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PodCATCell.reuseIdentifer, for: indexPath) as! PodCATCell
+                cell.set(model.thumbnailUrl!)
                 return cell
             }
         }
@@ -122,8 +121,8 @@ extension HomeVC {
         return section
     }
     
-    func updateData(on memories: [MainHomeModel]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, MainHomeModel>()
+    func updateData(on memories: [HomeData]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, HomeData>()
         snapshot.appendSections([.headerCell])
         snapshot.appendSections([.memorires])
         snapshot.appendItems(memories)
@@ -133,6 +132,12 @@ extension HomeVC {
 }
 
 extension HomeVC: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = Full_imageVC()
+        vc.imageUrl = memories.data[indexPath.row].imageUrl!
+        vc.modalPresentationStyle   = .overFullScreen
+        vc.modalTransitionStyle     = .crossDissolve
+        present(vc, animated: true)
+    }
 }
 

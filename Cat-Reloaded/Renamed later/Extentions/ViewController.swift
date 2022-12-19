@@ -10,7 +10,7 @@ import UIKit
 extension UIViewController {
     
     func nav(vc: UIViewController) {
-        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: false)
     }
     
     func dismis() {

@@ -66,7 +66,7 @@ extension CircleDetailsVC {
         let itemSize    = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item        = NSCollectionLayoutItem(layoutSize: itemSize)
         // group
-        let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(750))
+        let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(550))
         let group       = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         // section
         let section     = NSCollectionLayoutSection(group: group)

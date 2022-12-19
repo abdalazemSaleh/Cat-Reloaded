@@ -8,9 +8,12 @@
 import Foundation
 
 extension HomeVC: HomeView {
-    func getMemories(data: MainHomeModel) {
-        memories.append(data)
-        print("My testArr is:- \(memories)")
-        updateData(on: memories)
+    func getPodCat(data: HomeModel) {
+        print("Wait for it ")
+    }
+    
+    func getMemories(data: HomeModel) {
+        memories = data
+        updateData(on: memories.data)
     }
 }

@@ -5,6 +5,7 @@
 //  Created by Abdalazem Saleh on 2022-10-13.
 //
 
+import Kingfisher
 import UIKit
 
 class PodCATCell: UICollectionViewCell {
@@ -47,6 +48,7 @@ class PodCATCell: UICollectionViewCell {
     }
     
     func set(_ image: String) {
-        imageView.image = UIImage(named: image)
+        let url = URL(string: image)
+        imageView.kf.setImage(with: url)
     }
 }
