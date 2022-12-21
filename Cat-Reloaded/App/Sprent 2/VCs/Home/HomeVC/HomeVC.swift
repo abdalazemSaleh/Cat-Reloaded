@@ -39,6 +39,9 @@ class HomeVC: UIViewController {
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(clickable))
+        aboutCatCard.addGestureRecognizer(gesture)
         view.backgroundColor    = .systemBackground
         presenter               = HomePresenter(view: self)
         presenter.fetchMemories()
@@ -48,6 +51,9 @@ class HomeVC: UIViewController {
         configureCollectionView()
         configureDataSource()
         configureCollectionViewConstraint()
+    }
+    @objc func clickable() {
+        nav(vc: AboutCatVC())
     }
     
     // MARK: - Functions

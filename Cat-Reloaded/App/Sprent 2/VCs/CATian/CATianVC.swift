@@ -13,7 +13,4 @@ class CATianVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
     }
-    
-
-
 }

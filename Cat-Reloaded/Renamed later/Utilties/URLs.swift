@@ -18,4 +18,8 @@ enum URLs: String {
     case podCat     = "/team/podcat/1"
     case memories   = "/team/memories/1"
     
+    case info       = "/team/info"
+    case founders   = "/team/founders"
+    case teamBoard  = "/team/board"
+    
 }

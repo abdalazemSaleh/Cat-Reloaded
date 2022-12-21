@@ -46,6 +46,10 @@
 		7F9052B128EB731A0044F76C /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B028EB731A0044F76C /* GFTitleLabel.swift */; };
 		7F9052B328EB748C0044F76C /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B228EB748C0044F76C /* GFBodyLabel.swift */; };
 		7F9052B528EB76D20044F76C /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B428EB76D20044F76C /* GFTextField.swift */; };
+		7F92A42D2952317200F09A04 /* TeamBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F92A42C2952317200F09A04 /* TeamBoardCell.swift */; };
+		7F92A42F2952693200F09A04 /* AboutCatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F92A42E2952693200F09A04 /* AboutCatModel.swift */; };
+		7F92A431295288CE00F09A04 /* AboutCatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F92A430295288CD00F09A04 /* AboutCatPresenter.swift */; };
+		7F92A43329528C7C00F09A04 /* AboutCat+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F92A43229528C7C00F09A04 /* AboutCat+Protocol.swift */; };
 		7F94C9B12947BFC800D44363 /* CircleDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F94C9B02947BFC800D44363 /* CircleDetailsVC.swift */; };
 		7FAAFF7928F4CD83008A9FF2 /* GFTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAFF7828F4CD83008A9FF2 /* GFTabBarController.swift */; };
 		7FAAFF7D28F4CE5A008A9FF2 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAFF7C28F4CE5A008A9FF2 /* HomeVC.swift */; };
@@ -67,6 +71,9 @@
 		7FB4F39728EB567E008557ED /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4F39628EB567E008557ED /* Constant.swift */; };
 		7FB4F39928EB56B0008557ED /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4F39828EB56B0008557ED /* ErrorMessages.swift */; };
 		7FCF67B42950D897000059B9 /* Full_imageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCF67B32950D897000059B9 /* Full_imageVC.swift */; };
+		7FCF67B729510232000059B9 /* AboutCat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCF67B629510232000059B9 /* AboutCat.swift */; };
+		7FCF67B92951042E000059B9 /* AboutCat+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCF67B82951042E000059B9 /* AboutCat+CollectionView.swift */; };
+		7FCF67BB29511A49000059B9 /* AboutCatHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCF67BA29511A49000059B9 /* AboutCatHeaderCell.swift */; };
 		7FDE9B1E29203C1100949945 /* GFErrorLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDE9B1D29203C1100949945 /* GFErrorLabel.swift */; };
 		7FE959592948C860001B2554 /* GFTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE959582948C860001B2554 /* GFTextView.swift */; };
 		7FE9595B2948D09A001B2554 /* BoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9595A2948D09A001B2554 /* BoardCell.swift */; };
@@ -126,6 +133,10 @@
 		7F9052B028EB731A0044F76C /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
 		7F9052B228EB748C0044F76C /* GFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFBodyLabel.swift; sourceTree = "<group>"; };
 		7F9052B428EB76D20044F76C /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
+		7F92A42C2952317200F09A04 /* TeamBoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBoardCell.swift; sourceTree = "<group>"; };
+		7F92A42E2952693200F09A04 /* AboutCatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCatModel.swift; sourceTree = "<group>"; };
+		7F92A430295288CD00F09A04 /* AboutCatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCatPresenter.swift; sourceTree = "<group>"; };
+		7F92A43229528C7C00F09A04 /* AboutCat+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AboutCat+Protocol.swift"; sourceTree = "<group>"; };
 		7F94C9B02947BFC800D44363 /* CircleDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailsVC.swift; sourceTree = "<group>"; };
 		7FAAFF7828F4CD83008A9FF2 /* GFTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTabBarController.swift; sourceTree = "<group>"; };
 		7FAAFF7C28F4CE5A008A9FF2 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -149,6 +160,9 @@
 		7FB4F39628EB567E008557ED /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		7FB4F39828EB56B0008557ED /* ErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessages.swift; sourceTree = "<group>"; };
 		7FCF67B32950D897000059B9 /* Full_imageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Full_imageVC.swift; sourceTree = "<group>"; };
+		7FCF67B629510232000059B9 /* AboutCat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCat.swift; sourceTree = "<group>"; };
+		7FCF67B82951042E000059B9 /* AboutCat+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AboutCat+CollectionView.swift"; sourceTree = "<group>"; };
+		7FCF67BA29511A49000059B9 /* AboutCatHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCatHeaderCell.swift; sourceTree = "<group>"; };
 		7FDE9B1D29203C1100949945 /* GFErrorLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFErrorLabel.swift; sourceTree = "<group>"; };
 		7FE959582948C860001B2554 /* GFTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextView.swift; sourceTree = "<group>"; };
 		7FE9595A2948D09A001B2554 /* BoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCell.swift; sourceTree = "<group>"; };
@@ -194,6 +208,7 @@
 				7FE9596729494188001B2554 /* HomeModel.swift */,
 				7F078F0D2923F40200895441 /* CircleModel.swift */,
 				7FE9596529492E74001B2554 /* CircleDetailsModel.swift */,
+				7F92A42E2952693200F09A04 /* AboutCatModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -288,6 +303,8 @@
 				7F62DD96290018B100FEC944 /* HeaderCell.swift */,
 				7FAAFF8D28F5ED1A008A9FF2 /* MemoriesCell.swift */,
 				7FAAFF9228F82A05008A9FF2 /* PodCATCell.swift */,
+				7FCF67BA29511A49000059B9 /* AboutCatHeaderCell.swift */,
+				7F92A42C2952317200F09A04 /* TeamBoardCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -300,7 +317,7 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
-		7F62DD9228FDFB4600FEC944 /* VC */ = {
+		7F62DD9228FDFB4600FEC944 /* HomeVC */ = {
 			isa = PBXGroup;
 			children = (
 				7FAAFF7C28F4CE5A008A9FF2 /* HomeVC.swift */,
@@ -308,7 +325,7 @@
 				7FAAFF8728F4E062008A9FF2 /* Home+Constarint.swift */,
 				7FE9596C29494308001B2554 /* Home+Protocol.swift */,
 			);
-			path = VC;
+			path = HomeVC;
 			sourceTree = "<group>";
 		};
 		7F62DD9328FF4CB800FEC944 /* CATian */ = {
@@ -368,7 +385,8 @@
 		7FAAFF8628F4E04E008A9FF2 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				7F62DD9228FDFB4600FEC944 /* VC */,
+				7FCF67B52951020B000059B9 /* AboutCatVC */,
+				7F62DD9228FDFB4600FEC944 /* HomeVC */,
 				7F62DD9128FDFB4300FEC944 /* Header */,
 				7F62DD9028FDFB4100FEC944 /* Cells */,
 			);
@@ -552,6 +570,16 @@
 			path = Utilties;
 			sourceTree = "<group>";
 		};
+		7FCF67B52951020B000059B9 /* AboutCatVC */ = {
+			isa = PBXGroup;
+			children = (
+				7FCF67B629510232000059B9 /* AboutCat.swift */,
+				7FCF67B82951042E000059B9 /* AboutCat+CollectionView.swift */,
+				7F92A43229528C7C00F09A04 /* AboutCat+Protocol.swift */,
+			);
+			path = AboutCatVC;
+			sourceTree = "<group>";
+		};
 		7FE959572948C83F001B2554 /* GFTextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,6 +602,7 @@
 			isa = PBXGroup;
 			children = (
 				7FE9596A294942A3001B2554 /* HomePresenter.swift */,
+				7F92A430295288CD00F09A04 /* AboutCatPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -766,6 +795,7 @@
 				7F61788C290DC4CF00AA101B /* ParsingJson.swift in Sources */,
 				7FB4F39728EB567E008557ED /* Constant.swift in Sources */,
 				7F9052B528EB76D20044F76C /* GFTextField.swift in Sources */,
+				7F92A43329528C7C00F09A04 /* AboutCat+Protocol.swift in Sources */,
 				7F9052B328EB748C0044F76C /* GFBodyLabel.swift in Sources */,
 				7F30C2AB28EE24630007AACF /* GFTransactionButton.swift in Sources */,
 				7F30C25128ED8E180007AACF /* BoardingVC.swift in Sources */,
@@ -777,6 +807,7 @@
 				7FAAFF8828F4E062008A9FF2 /* Home+Constarint.swift in Sources */,
 				7F078F1B2923F56B00895441 /* CustomSegmentedControl.swift in Sources */,
 				7F30C2B328EF62900007AACF /* GFMediaButton.swift in Sources */,
+				7FCF67BB29511A49000059B9 /* AboutCatHeaderCell.swift in Sources */,
 				7FF92EBC28F0774B001EA736 /* Register+Protocol.swift in Sources */,
 				7F55642928F1FD10009342A6 /* GFAlertVC.swift in Sources */,
 				7FB4F36F28EB50F3008557ED /* AppDelegate.swift in Sources */,
@@ -785,6 +816,7 @@
 				7F30C27A28EDC6AE0007AACF /* BoardingVC+Extention.swift in Sources */,
 				7F3AD4A92937902400AF0AB1 /* UserDefults.swift in Sources */,
 				7FAAFF8328F4CEA7008A9FF2 /* CATianVC.swift in Sources */,
+				7FCF67B92951042E000059B9 /* AboutCat+CollectionView.swift in Sources */,
 				7FE9596629492E74001B2554 /* CircleDetailsModel.swift in Sources */,
 				7F55642B28F1FD71009342A6 /* GFAlertContainerView.swift in Sources */,
 				7F61788A290DBAE700AA101B /* NetworkManger.swift in Sources */,
@@ -794,9 +826,11 @@
 				7F3AD4AB2937904D00AF0AB1 /* ProfileModel.swift in Sources */,
 				7F078F182923F52B00895441 /* CircleHeader.swift in Sources */,
 				7F078F122923F49E00895441 /* CirclesVC+Protocol.swift in Sources */,
+				7FCF67B729510232000059B9 /* AboutCat.swift in Sources */,
 				7F078F0E2923F40200895441 /* CircleModel.swift in Sources */,
 				7FB4F37128EB50F3008557ED /* SceneDelegate.swift in Sources */,
 				7FAAFF8128F4CE8F008A9FF2 /* EventsVC.swift in Sources */,
+				7F92A42F2952693200F09A04 /* AboutCatModel.swift in Sources */,
 				7F94C9B12947BFC800D44363 /* CircleDetailsVC.swift in Sources */,
 				7F30C28328EE09290007AACF /* Login+Protocol.swift in Sources */,
 				7FE9596B294942A4001B2554 /* HomePresenter.swift in Sources */,
@@ -808,6 +842,7 @@
 				7F9052B128EB731A0044F76C /* GFTitleLabel.swift in Sources */,
 				7FAAFF8E28F5ED1B008A9FF2 /* MemoriesCell.swift in Sources */,
 				7F30C24128ECE2710007AACF /* HelperUI.swift in Sources */,
+				7F92A42D2952317200F09A04 /* TeamBoardCell.swift in Sources */,
 				7FAAFF8C28F5B5C0008A9FF2 /* Home+CollectionView.swift in Sources */,
 				7F30C23B28ECDCF00007AACF /* Onboarding.swift in Sources */,
 				7F30C24728ECE79F0007AACF /* GFImageView.swift in Sources */,
@@ -818,6 +853,7 @@
 				7FCF67B42950D897000059B9 /* Full_imageVC.swift in Sources */,
 				7FDE9B1E29203C1100949945 /* GFErrorLabel.swift in Sources */,
 				7FAAFF7F28F4CE7A008A9FF2 /* CirclesVC.swift in Sources */,
+				7F92A431295288CE00F09A04 /* AboutCatPresenter.swift in Sources */,
 				7F078F162923F50700895441 /* CircleCell.swift in Sources */,
 				7FAAFF7928F4CD83008A9FF2 /* GFTabBarController.swift in Sources */,
 				7FAAFF9328F82A05008A9FF2 /* PodCATCell.swift in Sources */,

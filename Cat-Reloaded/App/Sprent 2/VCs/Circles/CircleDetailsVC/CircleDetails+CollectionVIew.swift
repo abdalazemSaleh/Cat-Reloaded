@@ -19,7 +19,7 @@ extension CircleDetailsVC {
         view.addSubview(collectionView)
         collectionView.backgroundColor  = .systemBackground
         collectionView.register(CircleDetailsHeaderCell.self, forCellWithReuseIdentifier: CircleDetailsHeaderCell.reuseIdentifer)
-        collectionView.register(BoardCell.self, forCellWithReuseIdentifier: BoardCell.reuseIdentifer)
+        collectionView.register(CircleBoardCell.self, forCellWithReuseIdentifier: CircleBoardCell.reuseIdentifer)
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: CircleDetailsVC.sectionHeaderElmentKind, withReuseIdentifier: HeaderView.reuseIdentifier)
     }
     
@@ -46,8 +46,8 @@ extension CircleDetailsVC {
                 print("my size: - \(cell.bounds.height)")
                 return cell
             case .main:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BoardCell.reuseIdentifer, for: indexPath) as! BoardCell
-                cell.set(image: model.image, circleName: model.name)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleBoardCell.reuseIdentifer, for: indexPath) as! CircleBoardCell
+//                cell.set(image: model.image, circleName: model.name)
                 return cell
             }
         })
