@@ -27,11 +27,17 @@ class CircleBoardCell: UICollectionViewCell {
     let twitter                 = GFMediaButton(backgroundColor: .clear, image: UIImage(named: "twitter")!)
     let linkedin                = GFMediaButton(backgroundColor: .clear, image: UIImage(named: "linkedin")!)
     
+   var facebookLink : String   = ""
+   var twitterLink : String    = ""
+   var gitHubLink : String     = ""
+   var linkedInLink : String   = ""
+    
     let mediaButtonStack        = UIStackView()
     
     var views: [UIView]         = []
     var mediaButtons: [GFMediaButton]  = []
     
+    var foundersModel: FoundersModel!
     // MARK: - initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,6 +48,8 @@ class CircleBoardCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+extension CircleBoardCell {
     // MARK: - Configure Functions
     private func configure() {
         addSubView()
@@ -50,9 +58,9 @@ class CircleBoardCell: UICollectionViewCell {
         configureMediaButtonConstraint()
         cnfigureUserNameAndPossetion()
     }
-    
+        
     // MARK: - Functions
-    func addSubView() {
+    private func addSubView() {
         addSubview(borderView)
         views = [userImage, userNameStack, userPossetion, mediaButtonStack]
         for view in views {
@@ -60,7 +68,7 @@ class CircleBoardCell: UICollectionViewCell {
         }
     }
     
-    func configureborderViewConstraint() {
+    private func configureborderViewConstraint() {
         borderView.layer.borderWidth   = 1
         borderView.layer.borderColor   = Colors.mainColor?.cgColor
         borderView.layer.cornerRadius  = 4
@@ -74,7 +82,7 @@ class CircleBoardCell: UICollectionViewCell {
         ])
     }
     
-    func configureUserImageConstraint() {
+    private func configureUserImageConstraint() {
         userImage.layer.cornerRadius   = 34
         userImage.layer.masksToBounds  = true
         userImage.translatesAutoresizingMaskIntoConstraints     = false
@@ -87,7 +95,7 @@ class CircleBoardCell: UICollectionViewCell {
         ])
     }
     
-    func cnfigureUserNameAndPossetion() {
+    private func cnfigureUserNameAndPossetion() {
         userNameStack.axis           = .vertical
         userNameStack.spacing        = 4
         
@@ -107,7 +115,7 @@ class CircleBoardCell: UICollectionViewCell {
         ])
     }
     
-    func configureMediaButtonConstraint() {
+    private func configureMediaButtonConstraint() {
         mediaButtonStack.axis           = .horizontal
         mediaButtonStack.spacing        = 16
 
@@ -132,17 +140,44 @@ class CircleBoardCell: UICollectionViewCell {
             mediaButtonStack.centerXAnchor.constraint(equalTo: userPossetion.centerXAnchor)
         ])
     }
-    
-    
+}
+
+extension CircleBoardCell {
     // MARK: - Set Function
-    func set(model: AboutCatModel) {
-        let url = URL(string: model.imageUrl!)
+    func set(model: FoundersModel) {
+        let url = URL(string: model.imageUrl)
         userImage.kf.setImage(with: url)
         
-        let users           = model.name!.split(separator: " ")
+        let users           = model.name.split(separator: " ")
         userFirstName.text  = String(users.first ?? "")
         userLastName.text   = String(users.last ?? "")
     
         userPossetion.text  = model.title
+        
+        facebookLink        = model.facebookUrl ?? ""
+        linkedInLink        = model.linkedInUrl ?? ""
+        gitHubLink          = model.githubUrl ?? ""
+        twitterLink         = model.twitterUrl ?? ""
+        
+        facebook.addTarget(self, action: #selector(facebookButtonClicked), for: .touchUpInside)
+        twitter.addTarget(self, action: #selector(twitterClicked), for: .touchUpInside)
+        linkedin.addTarget(self, action: #selector(linkedInClicked), for: .touchUpInside)
+    }
+    
+    @objc func facebookButtonClicked() {
+        openSocialMedia(with: facebookLink, type: .facebook)
+    }
+    
+    @objc func twitterClicked() {
+        guard !twitterLink.isEmpty else { return }
+        openSocialMedia(with: twitterLink, type: .facebook)
+    }
+
+    @objc func linkedInClicked() {
+        openSocialMedia(with: linkedInLink, type: .facebook)
+    }
+
+    @objc func gitHubClicked() {
+        openSocialMedia(with: gitHubLink, type: .facebook)
     }
 }

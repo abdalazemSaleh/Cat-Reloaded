@@ -7,6 +7,36 @@
 
 import UIKit
 
+enum SocialMediaNav: String {
+    case youtube    = "youtube"
+    case facebook   = "facebook"
+    case linkedin   = "linkedin"
+    case github     = "github"
+    case twitter    = "twitter"
+}
+
+extension UICollectionViewCell {
+    func openSocialMedia(with link: String, type: SocialMediaNav) {
+        var urlComponents = link.components(separatedBy: ".com/")
+        
+        if type == .twitter {
+            urlComponents = link.components(separatedBy: "in/")
+        } else if type == .youtube {
+            urlComponents   = link.components(separatedBy: "=")
+        }
+        
+        let urlId         = urlComponents.last ?? ""
+        var url           = URL(string: "\(type.rawValue)://\(urlId)")!
+        
+        if UIApplication.shared.canOpenURL(url as URL){
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            url = URL(string:link)!
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+}
+
 extension UIViewController {
     
     func nav(vc: UIViewController) {
@@ -46,18 +76,6 @@ extension UIViewController {
         vc.modalPresentationStyle   = .overFullScreen
         vc.modalTransitionStyle     = .crossDissolve
         present(vc, animated: true)
-    }
-
-    func openYoutubeViedo(with link: String) {
-        let urlComponents   = link.split(separator: "=")
-        let youtubeId = urlComponents.last ?? ""
-        var youtubeUrl = URL(string:"youtube://\(youtubeId)")!
-        if UIApplication.shared.canOpenURL(youtubeUrl as URL){
-            UIApplication.shared.open(youtubeUrl, options: [:], completionHandler: nil)
-        } else{
-                youtubeUrl = URL(string:link)!
-            UIApplication.shared.open(youtubeUrl, options: [:], completionHandler: nil)
-        }
     }
 }
 

@@ -14,12 +14,12 @@ extension AboutCatVC: AboutCatView {
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
     
-    func founders(data: [AboutCatModel]) {
+    func founders(data: [FoundersModel]) {
         snapshot.appendItems(data, toSection: .founders)
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
 
-    func teamBoard(data: [AboutCatModel]) {
+    func teamBoard(data: [TeamBoardModel]) {
         snapshot.appendItems(data, toSection: .taemBoard)
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }

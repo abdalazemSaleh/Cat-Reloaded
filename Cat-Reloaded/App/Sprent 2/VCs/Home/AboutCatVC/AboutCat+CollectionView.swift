@@ -50,13 +50,13 @@ extension AboutCatVC {
                 return cell
             case .founders:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleBoardCell.reuseIdentifer, for: indexPath) as! CircleBoardCell
-                guard let myModel = model as? AboutCatModel else { return cell}
+                guard let myModel = model as? FoundersModel else { return cell}
                 cell.set(model: myModel)
                 return cell
             case .taemBoard:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleBoardCell.reuseIdentifer, for: indexPath) as! CircleBoardCell
                 guard let myModel = model as? AboutCatModel else { return cell }
-                cell.set(model: myModel)
+//                cell.set(model: myModel)
                 cell.borderView.layer.borderColor = UIColor.white.cgColor
                 return cell
             }
@@ -77,7 +77,7 @@ extension AboutCatVC {
         // item
         let item    = CompositionalLayout.createItem(width: .fractionalWidth(1), height: .fractionalHeight(1), spacing: 0)
         // group
-        let group   = CompositionalLayout.createGroup(alignment: .vertical, width: .fractionalWidth(1), height: .estimated(820), items: [item])
+        let group   = CompositionalLayout.createGroup(alignment: .vertical, width: .fractionalWidth(1), height: .absolute(820), items: [item])
         // section
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 48, trailing: 20)
@@ -98,7 +98,7 @@ extension AboutCatVC {
         // group layout
         let group       = CompositionalLayout.createGroup(alignment: .horizontal, width: .fractionalWidth(1), height: .fractionalHeight(0.5), item: item, count: 2)
         // main group
-        let mainGroup   = CompositionalLayout.createGroup(alignment: .vertical, width: .fractionalWidth(1), height: .fractionalHeight(0.52), items: [headerGroup, group])
+        let mainGroup   = CompositionalLayout.createGroup(alignment: .vertical, width: .fractionalWidth(1), height: .absolute(440), items: [headerGroup, group])
         // header
         let headerSize  = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: CircleDetailsVC.sectionHeaderElmentKind, alignment: .top)
@@ -115,7 +115,7 @@ extension AboutCatVC {
         // item
         let item    = CompositionalLayout.createItem(width: .fractionalWidth(0.95), height: .fractionalHeight(0.5), spacing: 8)
         // group
-        let group   = CompositionalLayout.createGroup(alignment: .vertical, width: .fractionalWidth(0.5), height: .fractionalHeight(0.52), items: [item, item])
+        let group   = CompositionalLayout.createGroup(alignment: .vertical, width: .fractionalWidth(0.5), height: .absolute(440), items: [item, item])
         // header
         let headerSize  = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: CircleDetailsVC.sectionHeaderElmentKind, alignment: .top)
