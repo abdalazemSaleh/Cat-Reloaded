@@ -40,11 +40,13 @@ extension HomeVC {
             case .memorires:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemoriesCell.reuseIdentifer, for: indexPath) as! MemoriesCell
                 guard let myModel   = model as? MemoriesData else { return cell }
+                self.memoriesImageUrl.append(myModel.imageUrl)
                 cell.set(myModel)
                 return cell
             case .podCat:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PodCATCell.reuseIdentifer, for: indexPath) as! PodCATCell
                 guard let myModel = model as? PodCatData else { return cell }
+                self.podCatVideosUrls.append(myModel.episodeUrl)
                 cell.set(myModel)
                 return cell
             }
@@ -126,11 +128,17 @@ extension HomeVC {
 
 extension HomeVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = Full_imageVC()
-        //        vc.imageUrl = memories.data[indexPath.row].imageUrl!
-        vc.modalPresentationStyle   = .overFullScreen
-        vc.modalTransitionStyle     = .crossDissolve
-        present(vc, animated: true)
+        let sectionType = Section.allCases[indexPath.section]
+        switch sectionType {
+        case .headerCell:
+            break
+        case .memorires:
+            let url = memoriesImageUrl[indexPath.row]
+            presentPhoto(with: url)
+        case .podCat:
+            let url = podCatVideosUrls[indexPath.row]
+            openYoutubeViedo(with: url)
+        }
     }
 }
 

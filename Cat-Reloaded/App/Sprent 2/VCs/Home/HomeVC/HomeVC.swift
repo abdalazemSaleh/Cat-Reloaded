@@ -22,18 +22,21 @@ class HomeVC: UIViewController {
     var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>!
     var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
     
-    let welcomeCardTitle        = GFTitleLabel(textAlignment: .left, fontSize: 24, weight: .bold)
-    let welcomeCard             = GFCardView(label: "Become a CATian", bodyLabel: "Get new experiences with us and we are engoy this.", image: Images.becomACATian!)
-    let welcomeCardStack        = UIStackView()
+    let welcomeCardTitle            = GFTitleLabel(textAlignment: .left, fontSize: 24, weight: .bold)
+    let welcomeCard                 = GFCardView(label: "Become a CATian", bodyLabel: "Get new experiences with us and we are engoy this.", image: Images.becomACATian!)
+    let welcomeCardStack            = UIStackView()
         
-    let aboutCatTitle            = GFTitleLabel(textAlignment: .left, fontSize: 24, weight: .bold)
-    let aboutCatCard             = GFCardView(label: "", bodyLabel: "Know more about CAT world", image: Images.becomACATian!)
-    let aboutCatCardStack        = UIStackView()
+    let aboutCatTitle               = GFTitleLabel(textAlignment: .left, fontSize: 24, weight: .bold)
+    let aboutCatCard                = GFCardView(label: "", bodyLabel: "Know more about CAT world", image: Images.becomACATian!)
+    let aboutCatCardStack           = UIStackView()
         
-    var itemViews: [UIView]     = []
-    var sharedView: [UIView]    = []
-    let padding: CGFloat        = 20
+    var itemViews: [UIView]         = []
+    var sharedView: [UIView]        = []
+    let padding: CGFloat            = 20
         
+    var podCatVideosUrls: [String]  = []
+    var memoriesImageUrl: [String]  = []
+    
     var presenter: HomePresenter!
     // MARK: - View life cycle
     override func viewDidLoad() {

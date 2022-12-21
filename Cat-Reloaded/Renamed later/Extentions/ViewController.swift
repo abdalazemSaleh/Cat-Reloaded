@@ -39,6 +39,26 @@ extension UIViewController {
         vc.modalTransitionStyle     = .crossDissolve
         self.present(vc, animated: true)
     }
+    
+    func presentPhoto(with imageUrl: String) {
+        let vc = Full_imageVC()
+        vc.imageUrl = imageUrl
+        vc.modalPresentationStyle   = .overFullScreen
+        vc.modalTransitionStyle     = .crossDissolve
+        present(vc, animated: true)
+    }
+
+    func openYoutubeViedo(with link: String) {
+        let urlComponents   = link.split(separator: "=")
+        let youtubeId = urlComponents.last ?? ""
+        var youtubeUrl = URL(string:"youtube://\(youtubeId)")!
+        if UIApplication.shared.canOpenURL(youtubeUrl as URL){
+            UIApplication.shared.open(youtubeUrl, options: [:], completionHandler: nil)
+        } else{
+                youtubeUrl = URL(string:link)!
+            UIApplication.shared.open(youtubeUrl, options: [:], completionHandler: nil)
+        }
+    }
 }
 
 
