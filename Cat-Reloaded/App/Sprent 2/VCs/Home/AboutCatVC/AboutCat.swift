@@ -12,10 +12,11 @@ class AboutCatVC: UIViewController {
     // MARK: - Variables
     static let sectionHeaderElmentKind = "section-header-element-kind"
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<AboutCatSections, AboutCatModel>!
+    var dataSource: UICollectionViewDiffableDataSource<AboutCatSections, AnyHashable>!
+    var snapshot = NSDiffableDataSourceSnapshot<AboutCatSections, AnyHashable>()
     
     var headerTest: [AboutCatInfoModel] = []
-    var circles: [AboutCatModel] = []
+    var founders: [AboutCatModel] = []
     var teamBoard: [AboutCatModel] = []
     
     var presenter: AboutCatPresenter!

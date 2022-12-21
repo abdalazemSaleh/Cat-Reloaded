@@ -47,8 +47,8 @@ class PodCATCell: UICollectionViewCell {
         
     }
     
-    func set(_ image: String) {
-        let url = URL(string: image)
+    func set(_ podCats: PodCatData) {
+        let url = URL(string: podCats.thumbnailUrl)
         imageView.kf.setImage(with: url)
     }
 }

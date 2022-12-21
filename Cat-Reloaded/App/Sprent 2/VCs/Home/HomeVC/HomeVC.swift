@@ -19,7 +19,8 @@ class HomeVC: UIViewController {
     
     static let sectionHeaderElementKind = "section-header-element-kind"
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section, HomeData>!
+    var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>!
+    var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
     
     let welcomeCardTitle        = GFTitleLabel(textAlignment: .left, fontSize: 24, weight: .bold)
     let welcomeCard             = GFCardView(label: "Become a CATian", bodyLabel: "Get new experiences with us and we are engoy this.", image: Images.becomACATian!)
@@ -33,13 +34,10 @@ class HomeVC: UIViewController {
     var sharedView: [UIView]    = []
     let padding: CGFloat        = 20
         
-    var podCat: HomeModel!
-    var memories: HomeModel!
     var presenter: HomePresenter!
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let gesture = UITapGestureRecognizer(target: self, action: #selector(clickable))
         aboutCatCard.addGestureRecognizer(gesture)
         view.backgroundColor    = .systemBackground

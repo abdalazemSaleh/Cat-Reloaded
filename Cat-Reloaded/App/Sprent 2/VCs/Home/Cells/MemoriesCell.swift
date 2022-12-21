@@ -41,8 +41,8 @@ class MemoriesCell: UICollectionViewCell {
         ])
     }
     
-    func set(_ image: String) {
-        let url = URL(string: image)
+    func set(_ memories: MemoriesData) {
+        let url = URL(string: memories.imageUrl)
         imageView.kf.setImage(with: url)
     }
 }

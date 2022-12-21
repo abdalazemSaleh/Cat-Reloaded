@@ -17,6 +17,7 @@ extension AboutCatVC {
     func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: generateLayout())
         view.addSubview(collectionView)
+        snapshot.appendSections([.header, .founders, .taemBoard])
         collectionView.backgroundColor = .systemBackground
         collectionView.register(AboutCatHeaderCell.self, forCellWithReuseIdentifier: AboutCatHeaderCell.reuseIdentifer)
         collectionView.register(CircleBoardCell.self, forCellWithReuseIdentifier: CircleBoardCell.reuseIdentifer)
@@ -39,21 +40,24 @@ extension AboutCatVC {
     }
 
     func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<AboutCatSections, AboutCatModel>(collectionView: collectionView, cellProvider: { (collectionView: UICollectionView, indexPath: IndexPath, model: AboutCatModel) -> UICollectionViewCell in
+        dataSource = UICollectionViewDiffableDataSource<AboutCatSections, AnyHashable>(collectionView: collectionView, cellProvider: { (collectionView: UICollectionView, indexPath: IndexPath, model: AnyHashable) -> UICollectionViewCell in
             let sectionType = AboutCatSections.allCases[indexPath.section]
             switch sectionType {
             case .header:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AboutCatHeaderCell.reuseIdentifer, for: indexPath) as! AboutCatHeaderCell
-                print("my size: - \(cell.bounds.height)")
+                guard let myModel = model as? AboutCatInfoModel else { return cell }
+                cell.set(model: myModel)
                 return cell
             case .founders:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleBoardCell.reuseIdentifer, for: indexPath) as! CircleBoardCell
-//                cell.set(image: model.imageUrl, circleName: model.name)
+                guard let myModel = model as? AboutCatModel else { return cell}
+                cell.set(model: myModel)
                 return cell
             case .taemBoard:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleBoardCell.reuseIdentifer, for: indexPath) as! CircleBoardCell
+                guard let myModel = model as? AboutCatModel else { return cell }
+                cell.set(model: myModel)
                 cell.borderView.layer.borderColor = UIColor.white.cgColor
-//                cell.set(image: model.image, circleName: model.name)
                 return cell
             }
         })
@@ -66,14 +70,14 @@ extension AboutCatVC {
             return supplementaryView
         }
         
-        updateData(on: circles, board: teamBoard)
+//        updateData(on: circles, board: teamBoard)
     }
     
     private func generateAboutCatHeaderLayout() -> NSCollectionLayoutSection {
         // item
         let item    = CompositionalLayout.createItem(width: .fractionalWidth(1), height: .fractionalHeight(1), spacing: 0)
         // group
-        let group   = CompositionalLayout.createGroup(alignment: .vertical, width: .fractionalWidth(1), height: .estimated(780), items: [item])
+        let group   = CompositionalLayout.createGroup(alignment: .vertical, width: .fractionalWidth(1), height: .estimated(820), items: [item])
         // section
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 48, trailing: 20)
@@ -123,19 +127,5 @@ extension AboutCatVC {
         section.orthogonalScrollingBehavior = .continuous
         // Return
         return section
-    }
-    func updateData(on circles: [AboutCatModel], board: [AboutCatModel]) {
-        var snapshot = NSDiffableDataSourceSnapshot<AboutCatSections, AboutCatModel>()
-        
-//        snapshot.appendSections([.header])
-//        snapshot.appendItems(headerTest)
-        
-        snapshot.appendSections([.founders])
-        snapshot.appendItems(circles)
-        
-        snapshot.appendSections([.taemBoard])
-        snapshot.appendItems(board)
-        
-        DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true)  }
     }
 }

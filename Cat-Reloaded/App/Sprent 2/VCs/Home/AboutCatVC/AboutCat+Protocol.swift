@@ -9,17 +9,18 @@ import UIKit
 
 extension AboutCatVC: AboutCatView {
     func aboutCatInfo(data: AboutCatInfoModel) {
-//        headerTest.append(AboutCatInfoModel.init(about: data.about, history: data.history, vision: data.vision))
-//        var snapshot = NSDiffableDataSourceSnapshot<AboutCatSections, AboutCatModel>()
-//        snapshot.appendSections([.header])
-//        snapshot.appendItems(headerTest)
+        headerTest.append(AboutCatInfoModel.init(about: data.about, history: data.history, vision: data.vision))
+        snapshot.appendItems(headerTest, toSection: .header)
+        DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
     
     func founders(data: [AboutCatModel]) {
-        
+        snapshot.appendItems(data, toSection: .founders)
+        DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
 
     func teamBoard(data: [AboutCatModel]) {
-        
+        snapshot.appendItems(data, toSection: .taemBoard)
+        DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
 }

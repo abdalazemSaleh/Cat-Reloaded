@@ -35,6 +35,12 @@ class AboutCatHeaderCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func set(model: AboutCatInfoModel) {
+        aboutCatDescrption.text     = model.about
+        ourHistoryDescrption.text   = model.history
+        ourMissionDescrption.text   = model.vision
+    }
 }
 
 
@@ -86,7 +92,6 @@ extension AboutCatHeaderCell {
     }
     
     private func aboutCatDescrptionConstraint() {
-        aboutCatDescrption.text   = "CAT a non-profit foundation focused on. Computer Science and IT specially Open Source technologies. CAT's primary goal was to create an IT community in Mansoura University that is dynamic, innovative and highly scalable for the undergraduate computer engineering/science students, that would help them achieve a good level of technical proficiency through projects and seminars."
         NSLayoutConstraint.activate([
             aboutCatDescrption.topAnchor.constraint(equalTo: aboutCatLabel.bottomAnchor, constant: padding),
         ])
@@ -101,7 +106,6 @@ extension AboutCatHeaderCell {
     }
     
     private func ourHistoryDescrptionConstraint() {
-        ourHistoryDescrption.text   = "CAT Reloaded, Computer Assistance Team, was originally founded and located in 1996 at the Faculty of Engineering, Mansoura University, Egypt."
         NSLayoutConstraint.activate([
             ourHistoryDescrption.topAnchor.constraint(equalTo: ourHistoryLabel.bottomAnchor, constant: padding),
         ])
@@ -116,7 +120,6 @@ extension AboutCatHeaderCell {
     }
     
     private func ourMissionDescrptionConstraint() {
-        ourMissionDescrption.text   = "CAT​ aims to build a technical community suitable for those interested in computer science and IT fields, in addition to open source technologies.CAT aspires to build an ever-growing community of students who are eager to learn computer science technologies.Offering a suitable atmosphere that qualifies them technically to the labor market, and provides them with on-demand personal skills."
         NSLayoutConstraint.activate([
             ourMissionDescrption.topAnchor.constraint(equalTo: ourMissionLabel.bottomAnchor, constant: padding),
         ])

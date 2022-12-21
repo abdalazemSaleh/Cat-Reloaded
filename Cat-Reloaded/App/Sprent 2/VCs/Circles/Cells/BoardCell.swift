@@ -135,14 +135,14 @@ class CircleBoardCell: UICollectionViewCell {
     
     
     // MARK: - Set Function
-    func set(name: String, title: String, imageUrl: String, facebookUrl: String, githubUrl: String, linkedInUrl: String, twitterUrl: String) {
-        let url = URL(string: imageUrl)
+    func set(model: AboutCatModel) {
+        let url = URL(string: model.imageUrl!)
         userImage.kf.setImage(with: url)
         
-        let users           = name.split(separator: " ")
+        let users           = model.name!.split(separator: " ")
         userFirstName.text  = String(users.first ?? "")
         userLastName.text   = String(users.last ?? "")
     
-        userPossetion.text  = title
+        userPossetion.text  = model.title
     }
 }
