@@ -16,8 +16,6 @@ class AboutCatVC: UIViewController {
     var snapshot = NSDiffableDataSourceSnapshot<AboutCatSections, AnyHashable>()
     
     var headerTest: [AboutCatInfoModel] = []
-    var founders: [AboutCatModel] = []
-    var teamBoard: [AboutCatModel] = []
     
     var presenter: AboutCatPresenter!
     // MARK: - View life cycle

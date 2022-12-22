@@ -9,7 +9,7 @@ import Foundation
 
 protocol AboutCatView: AnyObject {
     func aboutCatInfo(data: AboutCatInfoModel)
-    func founders(data: [FoundersModel])
+    func founders(data: [TeamBoardModel])
     func teamBoard(data: [TeamBoardModel])
 }
 
@@ -33,7 +33,7 @@ class AboutCatPresenter {
     }
     
     func fetchFounders() {
-        NetworkManger.shared.request(modal: [FoundersModel].self, url: URLs.founders.rawValue, method: .get, parms: nil, header: nil) { [weak self] result in
+        NetworkManger.shared.request(modal: [TeamBoardModel].self, url: URLs.founders.rawValue, method: .get, parms: nil, header: nil) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):

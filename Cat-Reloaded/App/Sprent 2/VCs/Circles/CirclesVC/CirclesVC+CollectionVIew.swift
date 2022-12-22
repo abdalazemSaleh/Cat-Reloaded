@@ -24,7 +24,7 @@ extension CirclesVC {
     func configureDataSource() {
        dataSource = UICollectionViewDiffableDataSource<CirclesSection, CirclesModel>(collectionView: collectionView, cellProvider: { (collectionView: UICollectionView, indexPath: IndexPath, model: CirclesModel) -> UICollectionViewCell in
                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleCell.reuseIdentifer, for: indexPath) as! CircleCell
-           cell.set(image: model.circleImage, circleName: model.circleName)
+           cell.set(model: model)
                return cell
        })
        // Header

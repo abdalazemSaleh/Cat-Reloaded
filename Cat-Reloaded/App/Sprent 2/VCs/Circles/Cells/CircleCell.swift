@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CircleCell: UICollectionViewCell {
     static let reuseIdentifer = "CircleCell"
@@ -54,8 +55,9 @@ class CircleCell: UICollectionViewCell {
         ])
     }
     
-    func set(image: String, circleName: String) {
-        imageView.image = UIImage(named: image)
-        label.text      = circleName
+    func set(model: CirclesModel) {
+        let url = URL(string: model.imageUrl)
+        imageView.kf.setImage(with: url)
+        label.text  = model.name
     }
 }

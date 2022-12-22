@@ -75,21 +75,34 @@ extension CircleDetailsVC {
         return section
     }
     
+    /// Calculation
+    /// first i will make constant : - let membersCounter =    boardarr.counte - 1
+    /// pass this value to final group count
+    /// final group heigt = memberCounter  * 220 -> (card height)
+    /// main group height = final group heigt + 220 -> (Head card height)
     private func generateCirclesLayout() -> NSCollectionLayoutSection {
-        // item
-        let itemSize    = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1))
-        let item        = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
-        // group
-        let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.2))
-        let group       = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        // header item layout
+        let headerItem  = CompositionalLayout.createItem(width: .fractionalWidth(0.5), height: .fractionalHeight(1), spacing: 0)
+        let myinst: CGFloat   = (view.frame.width / 4)
+        headerItem.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: myinst, bottom: 8, trailing: myinst)
+        // item layout
+        let item        = CompositionalLayout.createItem(width: .fractionalWidth(0.5), height: .fractionalHeight(1), spacing: 8)
+        // goupSize
+        // header group layout
+        let headerGroup = CompositionalLayout.createGroup(alignment: .horizontal, width: .fractionalWidth(1), height: .absolute(220), item: headerItem, count: 1)
+        // group layout
+        let group       = CompositionalLayout.createGroup(alignment: .horizontal, width: .fractionalWidth(1), height: .absolute(220), item: item, count: 2)
+        
+        let finalGroup  = CompositionalLayout.createGroup(alignment: .vertical, width: .fractionalWidth(1), height: .absolute(880), item: group, count: 4)
+        // main group
+        let mainGroup   = CompositionalLayout.createGroup(alignment: .vertical, width: .fractionalWidth(1), height: .absolute(1100), items: [headerGroup, finalGroup])
         // header
         let headerSize  = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: CircleDetailsVC.sectionHeaderElmentKind, alignment: .top)
-        sectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 0)
+        sectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 12, trailing: 0)
         // section
-        let section     = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12)
+        let section     = NSCollectionLayoutSection(group: mainGroup)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 12, bottom: 0, trailing: 12)
         section.boundarySupplementaryItems = [sectionHeader]
         // Return
         return section

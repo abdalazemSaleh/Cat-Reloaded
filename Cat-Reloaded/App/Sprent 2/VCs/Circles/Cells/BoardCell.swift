@@ -37,7 +37,6 @@ class CircleBoardCell: UICollectionViewCell {
     var views: [UIView]         = []
     var mediaButtons: [GFMediaButton]  = []
     
-    var foundersModel: FoundersModel!
     // MARK: - initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -144,7 +143,7 @@ extension CircleBoardCell {
 
 extension CircleBoardCell {
     // MARK: - Set Function
-    func set(model: FoundersModel) {
+    func set(model: TeamBoardModel) {
         let url = URL(string: model.imageUrl)
         userImage.kf.setImage(with: url)
         

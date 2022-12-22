@@ -14,7 +14,7 @@ extension AboutCatVC: AboutCatView {
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
     
-    func founders(data: [FoundersModel]) {
+    func founders(data: [TeamBoardModel]) {
         snapshot.appendItems(data, toSection: .founders)
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }

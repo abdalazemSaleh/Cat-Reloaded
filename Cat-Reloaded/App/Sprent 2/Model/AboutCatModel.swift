@@ -14,18 +14,8 @@ struct AboutCatInfoModel: Hashable, Codable {
     let vision: String
 }
 
-struct FoundersModel: Hashable, Codable {
-    let name: String
-    let title: String
-    let imageUrl: String
-    let facebookUrl: String?
-    let githubUrl: String?
-    let linkedInUrl: String?
-    let twitterUrl: String?
-}
-
 struct TeamBoardModel: Hashable, Codable {
-    let id: String
+    let id: String?
     let name: String
     let title: String
     let imageUrl: String
@@ -34,15 +24,3 @@ struct TeamBoardModel: Hashable, Codable {
     let linkedInUrl: String?
     let twitterUrl: String?
 }
-
-struct AboutCatModel: Hashable, Codable {
-    let id: String
-    let name: String
-    let title: String
-    let imageUrl: String
-    let facebookUrl: String?
-    let githubUrl: String?
-    let linkedInUrl: String?
-    let twitterUrl: String?
-}
-
