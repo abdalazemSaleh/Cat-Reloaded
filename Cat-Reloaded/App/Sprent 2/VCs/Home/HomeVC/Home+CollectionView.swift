@@ -137,7 +137,7 @@ extension HomeVC: UICollectionViewDelegate {
             presentPhoto(with: url)
         case .podCat:
             let url = podCatVideosUrls[indexPath.row]
-//            openSocialMedia(with: url, type: .youtube)
+            openPodCat(with: url)
         }
     }
 }

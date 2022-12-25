@@ -10,9 +10,11 @@ import Kingfisher
 
 class Full_imageVC: UIViewController {
     // MARK: - Variables
-    let cancelButton = UIButton()
-    let image       = GFImageView(frame: .zero)
-    var imageUrl    = ""
+    let backgroundImage     = GFImageView(frame: .zero)
+    let blurEffectView      = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
+    let cancelButton        = UIButton()
+    let image               = GFImageView(frame: .zero)
+    var imageUrl            = ""
     
     // MARK: - View life cycle
     override func viewDidLoad() {
@@ -22,44 +24,43 @@ class Full_imageVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .clear
     }
     // MARK: - Functions
     private func configure() {
-        view.addSubview(image)
-        view.addSubview(cancelButton)
-        configureCancelButton()
+        configureVisualEffectViewConstraint()
         configureImage()
     }
     
-    private func configureCancelButton() {
-        cancelButton.backgroundColor    = Colors.mainColor
-        cancelButton.layer.cornerRadius = 24
-        cancelButton.setImage(UIImage(systemName: "plus"), for: .normal)
-        cancelButton.addTarget(self, action: #selector(dismisVC), for: .touchUpInside)
-        cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            cancelButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            cancelButton.heightAnchor.constraint(equalToConstant: 48),
-            cancelButton.widthAnchor.constraint(equalToConstant: 48)
-        ])
+    private func configureVisualEffectViewConstraint() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(dismisVC))
+        view.addGestureRecognizer(gesture)
+
+        view.addSubview(backgroundImage)
+        backgroundImage.frame = view.bounds
+        let myUrl = URL(string: imageUrl)
+        backgroundImage.kf.setImage(with: myUrl)
+        backgroundImage.contentMode = .scaleAspectFit
+        
+        blurEffectView.frame = view.bounds
+        backgroundImage.addSubview(blurEffectView)
     }
-    @objc private func dismisVC() {
-        dismiss(animated: true)
-    }
-    
+        
     private func configureImage() {
-        image.layer.cornerRadius    = 4
-        image.layer.masksToBounds   = true
+        view.addSubview(image)
+        image.contentMode = .scaleAspectFit
         let url = URL(string: imageUrl)
         image.kf.setImage(with: url)
 
         NSLayoutConstraint.activate([
-            image.topAnchor.constraint(equalTo: cancelButton.bottomAnchor, constant: 64),
-            image.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            image.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            image.heightAnchor.constraint(equalToConstant: 180)
+            image.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            image.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            image.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            image.heightAnchor.constraint(equalToConstant: 320)
         ])
+    }
+        
+    @objc private func dismisVC() {
+        dismiss(animated: true)
     }
 }

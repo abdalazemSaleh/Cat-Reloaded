@@ -77,6 +77,20 @@ extension UIViewController {
         vc.modalTransitionStyle     = .crossDissolve
         present(vc, animated: true)
     }
+    
+    func openPodCat(with link: String) {
+        let urlComponents   = link.components(separatedBy: "=")
+        
+        let urlId         = urlComponents.last ?? ""
+        var url           = URL(string: "youtube://\(urlId)")!
+        
+        if UIApplication.shared.canOpenURL(url as URL){
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            url = URL(string:link)!
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
 }
 
 

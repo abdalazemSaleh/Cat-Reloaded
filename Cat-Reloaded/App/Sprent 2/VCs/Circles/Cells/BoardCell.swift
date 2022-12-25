@@ -68,7 +68,7 @@ extension CircleBoardCell {
     }
     
     private func configureborderViewConstraint() {
-        borderView.layer.borderWidth   = 1
+        borderView.layer.borderWidth   = 2
         borderView.layer.borderColor   = Colors.mainColor?.cgColor
         borderView.layer.cornerRadius  = 4
         borderView.translatesAutoresizingMaskIntoConstraints               = false

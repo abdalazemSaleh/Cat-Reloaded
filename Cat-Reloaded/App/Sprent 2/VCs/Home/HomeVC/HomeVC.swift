@@ -52,7 +52,18 @@ class HomeVC: UIViewController {
         configureCollectionView()
         configureDataSource()
         configureCollectionViewConstraint()
+        
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+
     }
+    @objc func refresh() {
+        presenter.fetchMemories()
+        presenter.fetchPodCat()
+        collectionView.refreshControl?.endRefreshing()
+    }
+
+    
     @objc func clickable() {
         nav(vc: AboutCatVC())
     }

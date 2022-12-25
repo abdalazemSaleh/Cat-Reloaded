@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+extension CircleDetailsVC: CircleDetailsView {
+    
+    func techCircleDetails(data: CircleDetailsModel1) {
+        print(data)
+    }
+    
+    func nonTechCircleDetails(data: CircleDetailsModel1) {
+        print(data)
+    }
+    
+}

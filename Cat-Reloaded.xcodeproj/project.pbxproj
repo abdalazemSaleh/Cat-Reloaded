@@ -44,6 +44,7 @@
 		7F62DD8F28FDFB3400FEC944 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F62DD8E28FDFB3400FEC944 /* HeaderView.swift */; };
 		7F62DD97290018B100FEC944 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F62DD96290018B100FEC944 /* HeaderCell.swift */; };
 		7F6C955F2954D45D007D6271 /* CirclesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C955E2954D45D007D6271 /* CirclesPresenter.swift */; };
+		7F6C95612954F29A007D6271 /* CircleDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C95602954F29A007D6271 /* CircleDetailsPresenter.swift */; };
 		7F9052B128EB731A0044F76C /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B028EB731A0044F76C /* GFTitleLabel.swift */; };
 		7F9052B328EB748C0044F76C /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B228EB748C0044F76C /* GFBodyLabel.swift */; };
 		7F9052B528EB76D20044F76C /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B428EB76D20044F76C /* GFTextField.swift */; };
@@ -132,6 +133,7 @@
 		7F62DD8E28FDFB3400FEC944 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		7F62DD96290018B100FEC944 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		7F6C955E2954D45D007D6271 /* CirclesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesPresenter.swift; sourceTree = "<group>"; };
+		7F6C95602954F29A007D6271 /* CircleDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CircleDetailsPresenter.swift; path = ../../../../../../../Documents/CircleDetailsPresenter.swift; sourceTree = "<group>"; };
 		7F9052B028EB731A0044F76C /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
 		7F9052B228EB748C0044F76C /* GFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFBodyLabel.swift; sourceTree = "<group>"; };
 		7F9052B428EB76D20044F76C /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
@@ -606,6 +608,7 @@
 				7FE9596A294942A3001B2554 /* HomePresenter.swift */,
 				7F92A430295288CD00F09A04 /* AboutCatPresenter.swift */,
 				7F6C955E2954D45D007D6271 /* CirclesPresenter.swift */,
+				7F6C95602954F29A007D6271 /* CircleDetailsPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -805,6 +808,7 @@
 				7FE9595B2948D09A001B2554 /* BoardCell.swift in Sources */,
 				7FE9596D29494308001B2554 /* Home+Protocol.swift in Sources */,
 				7FE9596229492E46001B2554 /* CircleDetails+CollectionVIew.swift in Sources */,
+				7F6C95612954F29A007D6271 /* CircleDetailsPresenter.swift in Sources */,
 				7F617892290DD1F700AA101B /* SginUpModel.swift in Sources */,
 				7F3AD4AD2937927300AF0AB1 /* Encodable.swift in Sources */,
 				7FAAFF8828F4E062008A9FF2 /* Home+Constarint.swift in Sources */,
