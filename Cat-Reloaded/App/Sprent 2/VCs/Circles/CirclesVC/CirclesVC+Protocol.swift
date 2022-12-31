@@ -10,11 +10,9 @@ import Foundation
 extension CirclesVC: checkCirclesType {
     func checkIndex(_ index: Int) {
         if index == 0 {
-            selectedCircle.removeAll()
             data.removeAll()
             appendModel(type: .tech)
         } else {
-            selectedCircle.removeAll()
             data.removeAll()
             appendModel(type: .nonTech)
         }

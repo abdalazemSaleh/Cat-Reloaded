@@ -38,12 +38,14 @@ extension CircleDetailsVC {
     }
     
     func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<CircleDetailsSections, AnyHashable>(collectionView: collectionView, cellProvider: { (collectionView: UICollectionView, indexPath: IndexPath, model: AnyHashable) -> UICollectionViewCell in
+        dataSource = UICollectionViewDiffableDataSource<CircleDetailsSections, AnyHashable>(collectionView: collectionView, cellProvider: { [weak self] (collectionView: UICollectionView, indexPath: IndexPath, model: AnyHashable) -> UICollectionViewCell in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleDetailsHeaderCell.reuseIdentifer, for: indexPath) as! CircleDetailsHeaderCell
+            guard let self = self else { return cell }
             let sectionType = CircleDetailsSections.allCases[indexPath.section]
             switch sectionType {
             case .header:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleDetailsHeaderCell.reuseIdentifer, for: indexPath) as! CircleDetailsHeaderCell
-                cell.set(model: model as! CircleDetailsModel)
+                cell.set(model: model as! CircleDetailsModel, image: self.currentCircle?.imageUrl ?? "ios")
                 return cell
             case .main:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleBoardCell.reuseIdentifer, for: indexPath) as! CircleBoardCell

@@ -25,7 +25,6 @@ extension CirclesVC {
        dataSource = UICollectionViewDiffableDataSource<CirclesSection, CirclesModel>(collectionView: collectionView, cellProvider: { (collectionView: UICollectionView, indexPath: IndexPath, model: CirclesModel) -> UICollectionViewCell in
                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleCell.reuseIdentifer, for: indexPath) as! CircleCell
            print(model.id)
-           self.selectedCircle.append(.init(circle: model.id, type: model.type))
            cell.set(model: model)
                return cell
        })
@@ -77,9 +76,9 @@ extension CirclesVC {
 
 extension CirclesVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let circle          = selectedCircle[indexPath.row]
+        let circle          = data[indexPath.row]
         let vc              = CircleDetailsVC()
-        vc.currentCircle = circle
+        vc.currentCircle    = circle
         nav(vc: vc)
     }
 }

@@ -12,11 +12,6 @@ enum CircleType {
     case nonTech
 }
 
-struct selectedCircle {
-    let circle: String
-    let type: String
-}
-
 #warning("Chache Circles Data")
 class CirclesVC: UIViewController {
         
@@ -24,9 +19,7 @@ class CirclesVC: UIViewController {
     static let sectionHeaderElementKind = "section-header-element-kind"
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<CirclesSection, CirclesModel>!
-    
-    var selectedCircle: [selectedCircle] = []
-        
+            
     var presenter: CirclesPresenter!
     var data: [CirclesModel] = []
     // MARK: - View life cycle

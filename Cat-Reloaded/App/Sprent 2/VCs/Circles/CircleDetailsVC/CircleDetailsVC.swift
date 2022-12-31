@@ -15,7 +15,7 @@ class CircleDetailsVC: UIViewController {
     var dataSource: UICollectionViewDiffableDataSource<CircleDetailsSections, AnyHashable>!
     var snapshot = NSDiffableDataSourceSnapshot<CircleDetailsSections, AnyHashable>()
     
-    var currentCircle: selectedCircle?
+    var currentCircle: CirclesModel?
     
     var model: [CircleDetailsModel]    = []
     
@@ -28,7 +28,6 @@ class CircleDetailsVC: UIViewController {
         configureCollectionView()
         configureDataSource()
         fetchCircleData()
-//        testFuncForNow()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,22 +41,9 @@ class CircleDetailsVC: UIViewController {
     
     private func fetchCircleData() {
         if currentCircle?.type == "tech" {
-            presenter.featchTechCircleDetails(currentCircle?.circle ?? "ios")
+            presenter.featchTechCircleDetails(currentCircle?.id ?? "ios")
         } else {
-            presenter.featchNonTechCircleDetails(currentCircle?.circle ?? "hr")
+            presenter.featchNonTechCircleDetails(currentCircle?.id ?? "hr")
         }
     }
-    
-//    func testFuncForNow() {
-//        itemModel.append(CircleDetailsModel.init(image: "1", name: "Abdalazem"))
-//        itemModel.append(CircleDetailsModel.init(image: "2", name: "Ahmed"))
-//        itemModel.append(CircleDetailsModel.init(image: "3", name: "Mohamed"))
-//        itemModel.append(CircleDetailsModel.init(image: "1", name: "ssa"))
-//        itemModel.append(CircleDetailsModel.init(image: "2", name: "as"))
-//        itemModel.append(CircleDetailsModel.init(image: "3", name: "dfsac"))
-//        itemModel.append(CircleDetailsModel.init(image: "1", name: "scasda"))
-//        itemModel.append(CircleDetailsModel.init(image: "2", name: "asdasc"))
-//        itemModel.append(CircleDetailsModel.init(image: "3", name: "csacsa"))
-//        updateData(on: itemModel)
-//    }
 }
