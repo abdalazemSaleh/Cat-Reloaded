@@ -9,6 +9,20 @@ import UIKit
 
 extension CATianVC {
     
+    func configureTableView (){
+        tableView = UITableView(frame: view.bounds, style: .plain)
+        view.addSubview(tableView)
+        tableView.register(ProfileHeader.self, forHeaderFooterViewReuseIdentifier: self.headerId)
+        tableView.register(ProfileFooter.self, forHeaderFooterViewReuseIdentifier: self.footerId)
+        tableView.register(ProfileCell.self, forCellReuseIdentifier: self.cellId)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.isScrollEnabled = false
+        tableView.separatorStyle = .none
+        tableView.allowsSelection = false
+    }
+    
     // MARK :- HEADER
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
