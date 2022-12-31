@@ -78,6 +78,10 @@
 		7FF92EBA28F07688001EA736 /* RegisterActiveConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF92EB928F07688001EA736 /* RegisterActiveConstraint.swift */; };
 		7FF92EBC28F0774B001EA736 /* Register+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF92EBB28F0774B001EA736 /* Register+Protocol.swift */; };
 		7FF92EBE28F08A94001EA736 /* GFPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF92EBD28F08A94001EA736 /* GFPickerTextField.swift */; };
+		EACD70F42946386600940592 /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACD70F32946386600940592 /* ProfileHeader.swift */; };
+		EACD70F62946393300940592 /* ProfileFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACD70F52946393300940592 /* ProfileFooter.swift */; };
+		EACD70F829463A2B00940592 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACD70F729463A2B00940592 /* ProfileCell.swift */; };
+		EACD70FA29463E6500940592 /* CATianVC+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACD70F929463E6500940592 /* CATianVC+TableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,6 +161,10 @@
 		7FF92EBB28F0774B001EA736 /* Register+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Register+Protocol.swift"; sourceTree = "<group>"; };
 		7FF92EBD28F08A94001EA736 /* GFPickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFPickerTextField.swift; sourceTree = "<group>"; };
 		E9F7CB4973F7541BA9B959A0 /* Pods-Cat-Reloaded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cat-Reloaded.release.xcconfig"; path = "Target Support Files/Pods-Cat-Reloaded/Pods-Cat-Reloaded.release.xcconfig"; sourceTree = "<group>"; };
+		EACD70F32946386600940592 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		EACD70F52946393300940592 /* ProfileFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFooter.swift; sourceTree = "<group>"; };
+		EACD70F729463A2B00940592 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		EACD70F929463E6500940592 /* CATianVC+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATianVC+TableView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,7 +312,10 @@
 		7F62DD9328FF4CB800FEC944 /* CATian */ = {
 			isa = PBXGroup;
 			children = (
-				7FAAFF8228F4CEA7008A9FF2 /* CATianVC.swift */,
+				EA7031AA294251B10081A652 /* Header */,
+				EA7031A5294251360081A652 /* Footers */,
+				EA70319C29424A530081A652 /* VC */,
+				EA70319D29424A740081A652 /* Cells */,
 			);
 			path = CATian;
 			sourceTree = "<group>";
@@ -589,6 +600,39 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
+		EA70319C29424A530081A652 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				7FAAFF8228F4CEA7008A9FF2 /* CATianVC.swift */,
+				EACD70F929463E6500940592 /* CATianVC+TableView.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		EA70319D29424A740081A652 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EACD70F729463A2B00940592 /* ProfileCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		EA7031A5294251360081A652 /* Footers */ = {
+			isa = PBXGroup;
+			children = (
+				EACD70F52946393300940592 /* ProfileFooter.swift */,
+			);
+			path = Footers;
+			sourceTree = "<group>";
+		};
+		EA7031AA294251B10081A652 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				EACD70F32946386600940592 /* ProfileHeader.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
 		F12665F68A4E729E70764A33 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -737,8 +781,10 @@
 				7FB4F38728EB5458008557ED /* GFButton.swift in Sources */,
 				7FAAFF8A28F4E117008A9FF2 /* GFCardView.swift in Sources */,
 				7FAAFF7D28F4CE5A008A9FF2 /* HomeVC.swift in Sources */,
+				EACD70F42946386600940592 /* ProfileHeader.swift in Sources */,
 				7F078F102923F45A00895441 /* CirclesVC+CollectionVIew.swift in Sources */,
 				7F62DD8F28FDFB3400FEC944 /* HeaderView.swift in Sources */,
+				EACD70FA29463E6500940592 /* CATianVC+TableView.swift in Sources */,
 				7F30C23528EC44350007AACF /* ViewController.swift in Sources */,
 				7FE9596429492E53001B2554 /* CircleDetails+Protocol.swift in Sources */,
 				7FB4F39928EB56B0008557ED /* ErrorMessages.swift in Sources */,
@@ -779,6 +825,7 @@
 				7F94C9B12947BFC800D44363 /* CircleDetailsVC.swift in Sources */,
 				7F30C28328EE09290007AACF /* Login+Protocol.swift in Sources */,
 				7F30C27D28EE07FA0007AACF /* LoginVC.swift in Sources */,
+				EACD70F62946393300940592 /* ProfileFooter.swift in Sources */,
 				7F62DD97290018B100FEC944 /* HeaderCell.swift in Sources */,
 				7FF92EBE28F08A94001EA736 /* GFPickerTextField.swift in Sources */,
 				7F30C2B128EF4AD50007AACF /* LoginActiveConstraint.swift in Sources */,
@@ -795,6 +842,7 @@
 				7FDE9B1E29203C1100949945 /* GFErrorLabel.swift in Sources */,
 				7FAAFF7F28F4CE7A008A9FF2 /* CirclesVC.swift in Sources */,
 				7F078F162923F50700895441 /* CircleCell.swift in Sources */,
+				EACD70F829463A2B00940592 /* ProfileCell.swift in Sources */,
 				7FAAFF7928F4CD83008A9FF2 /* GFTabBarController.swift in Sources */,
 				7FAAFF9328F82A05008A9FF2 /* PodCATCell.swift in Sources */,
 			);
