@@ -45,6 +45,8 @@
 		7F62DD97290018B100FEC944 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F62DD96290018B100FEC944 /* HeaderCell.swift */; };
 		7F6C955F2954D45D007D6271 /* CirclesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C955E2954D45D007D6271 /* CirclesPresenter.swift */; };
 		7F6C95612954F29A007D6271 /* CircleDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C95602954F29A007D6271 /* CircleDetailsPresenter.swift */; };
+		7F73C9F62960BAB600579170 /* Pods-Cat-Reloaded.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7F73C9F42960BAB600579170 /* Pods-Cat-Reloaded.release.xcconfig */; };
+		7F73C9F72960BAB600579170 /* Pods-Cat-Reloaded.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7F73C9F52960BAB600579170 /* Pods-Cat-Reloaded.debug.xcconfig */; };
 		7F9052B128EB731A0044F76C /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B028EB731A0044F76C /* GFTitleLabel.swift */; };
 		7F9052B328EB748C0044F76C /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B228EB748C0044F76C /* GFBodyLabel.swift */; };
 		7F9052B528EB76D20044F76C /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B428EB76D20044F76C /* GFTextField.swift */; };
@@ -132,6 +134,8 @@
 		7F62DD96290018B100FEC944 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		7F6C955E2954D45D007D6271 /* CirclesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesPresenter.swift; sourceTree = "<group>"; };
 		7F6C95602954F29A007D6271 /* CircleDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CircleDetailsPresenter.swift; path = ../../../../../../../Documents/CircleDetailsPresenter.swift; sourceTree = "<group>"; };
+		7F73C9F42960BAB600579170 /* Pods-Cat-Reloaded.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Pods-Cat-Reloaded.release.xcconfig"; sourceTree = "<group>"; };
+		7F73C9F52960BAB600579170 /* Pods-Cat-Reloaded.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Pods-Cat-Reloaded.debug.xcconfig"; sourceTree = "<group>"; };
 		7F9052B028EB731A0044F76C /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
 		7F9052B228EB748C0044F76C /* GFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFBodyLabel.swift; sourceTree = "<group>"; };
 		7F9052B428EB76D20044F76C /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 		41EFED911917BB0E8D69BA44 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				7F73C9F52960BAB600579170 /* Pods-Cat-Reloaded.debug.xcconfig */,
+				7F73C9F42960BAB600579170 /* Pods-Cat-Reloaded.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -706,9 +712,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F73C9F62960BAB600579170 /* Pods-Cat-Reloaded.release.xcconfig in Resources */,
 				7FB4F37B28EB50F4008557ED /* LaunchScreen.storyboard in Resources */,
 				7FB4F37828EB50F4008557ED /* Assets.xcassets in Resources */,
 				7F08218F29200B55008AB3BD /* GoogleService-Info.plist in Resources */,
+				7F73C9F72960BAB600579170 /* Pods-Cat-Reloaded.debug.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
