@@ -7,7 +7,6 @@
 
 import UIKit
 
-    
     enum SFSymbols {
         
     }
@@ -25,4 +24,3 @@ import UIKit
     enum Colors {
         static let mainColor = UIColor(named: "ButtonBackgroundColor")
     }
-    

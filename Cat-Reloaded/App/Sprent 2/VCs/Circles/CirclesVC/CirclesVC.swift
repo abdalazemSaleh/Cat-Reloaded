@@ -7,28 +7,28 @@
 
 import UIKit
 
-class CirclesVC: UIViewController, UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        nav(vc: CircleDetailsVC())
-    }
-    
+enum CircleType {
+    case tech
+    case nonTech
+}
+
+#warning("Chache Circles Data")
+class CirclesVC: UIViewController {
+        
     // MARK: - Vailables
     static let sectionHeaderElementKind = "section-header-element-kind"
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<CirclesSection, CirclesModel>!
-    
-    var tech: [CirclesModel] = []
-    var nonTech: [CirclesModel] = []
-    
-    var myIndex: Int = 0
-    
+            
+    var presenter: CirclesPresenter!
+    var data: [CirclesModel] = []
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = CirclesPresenter(view: self)
         configureCollectionView()
         configureDataSource()
-        appendData()
+        appendModel(type: .tech)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,28 +40,30 @@ class CirclesVC: UIViewController, UICollectionViewDelegate {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles  =   true
     }
-    #warning("Remove later")
-    func appendData() {
-        tech.append(CirclesModel.init(circleName: "iOS", circleImage: "ios"))
-        tech.append(CirclesModel.init(circleName: "Android", circleImage: "android"))
-        tech.append(CirclesModel.init(circleName: "Flutter", circleImage: "flutter"))
-        tech.append(CirclesModel.init(circleName: "UI/UX", circleImage: "ui"))
-        tech.append(CirclesModel.init(circleName: "Front-End", circleImage: "front"))
-        tech.append(CirclesModel.init(circleName: "Back-End", circleImage: "Back"))
-        tech.append(CirclesModel.init(circleName: "Cyber Security", circleImage: "cyber"))
-        tech.append(CirclesModel.init(circleName: "Data", circleImage: "data"))
-        tech.append(CirclesModel.init(circleName: "Gaming", circleImage: "gaming"))
-        
-//        nonTech.append(CirclesModel.init(circleName: "HR", circleImage: "HR"))
-//        nonTech.append(CirclesModel.init(circleName: "Logistics", circleImage: "Logistics"))
-//        nonTech.append(CirclesModel.init(circleName: "Media", circleImage: "Media"))
-//        nonTech.append(CirclesModel.init(circleName: "PR", circleImage: "PR"))
-        
-        nonTech.append(CirclesModel.init(circleName: "iOS", circleImage: "ios"))
-        nonTech.append(CirclesModel.init(circleName: "UI/UX", circleImage: "ui"))
-        nonTech.append(CirclesModel.init(circleName: "Data", circleImage: "data"))
-        nonTech.append(CirclesModel.init(circleName: "Cyber Security", circleImage: "cyber"))
-        nonTech.append(CirclesModel.init(circleName: "Gaming", circleImage: "gaming"))
-        updateData(on: tech)
+    
+    func appendModel(type: CircleType) {
+        switch type {
+        case .tech:
+            data.append(.init(id: "ios", imageUrl: "ios", name: "iOS", type: "tech"))
+            data.append(.init(id: "android", imageUrl: "android", name: "Android", type: "tech"))
+            data.append(.init(id: "backend", imageUrl: "Back", name: "Back-End", type: "tech"))
+            data.append(.init(id: "security", imageUrl: "cyber", name: "Cyber Security", type: "tech"))
+            data.append(.init(id: "datascience", imageUrl: "data", name: "Data Scince", type: "tech"))
+            data.append(.init(id: "flutter", imageUrl: "flutter", name: "Flutter", type: "tech"))
+            data.append(.init(id: "frontend", imageUrl: "front", name: "Front-end", type: "tech"))
+            data.append(.init(id: "gamedev", imageUrl: "gaming", name: "Game Development", type: "tech"))
+            data.append(.init(id: "uiux", imageUrl: "ui", name: "UI/UX", type: "tech"))
+            data.append(.init(id: "cs", imageUrl: "ios", name: "Computer Science", type: "tech"))
+            data.append(.init(id: "embedded", imageUrl: "ios", name: "Embedded Systems", type: "tech"))
+            updateData(on: data)
+//            presenter.fetchTechCircles()
+        case .nonTech:
+            data.append(.init(id: "hr", imageUrl: "HR", name: "HR", type: "nontech"))
+            data.append(.init(id: "logistics", imageUrl: "Logistics", name: "Logistics", type: "nontech"))
+            data.append(.init(id: "media", imageUrl: "Media", name: "Media", type: "nontech"))
+            data.append(.init(id: "prfr", imageUrl: "PR", name: "PR/FR", type: "nontech"))
+            updateData(on: data)
+//            presenter.fetchNonTechCircles()
+        }
     }
 }

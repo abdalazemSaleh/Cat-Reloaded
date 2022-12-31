@@ -5,6 +5,7 @@
 //  Created by Abdalazem Saleh on 2022-10-13.
 //
 
+import Kingfisher
 import UIKit
 
 class PodCATCell: UICollectionViewCell {
@@ -34,7 +35,7 @@ class PodCATCell: UICollectionViewCell {
         imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 4
         imageView.clipsToBounds = true
-
+        
         contentView.backgroundColor = .systemBackground
         
         NSLayoutConstraint.activate([
@@ -46,7 +47,9 @@ class PodCATCell: UICollectionViewCell {
         
     }
     
-    func set(_ image: String) {
-        imageView.image = UIImage(named: image)
+    func set(_ podCats: PodCatData) {
+        let url = URL(string: podCats.thumbnailUrl)
+        print(url)
+        imageView.kf.setImage(with: url)
     }
 }

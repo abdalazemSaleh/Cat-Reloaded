@@ -12,7 +12,6 @@ class GFCardView: UIView {
     let label               = GFTitleLabel(textAlignment: .left, fontSize: 24, weight: .medium)
     let bodyLabel           = GFTitleLabel(textAlignment: .left, fontSize: 16, weight: .regular)
     let image               = GFImageView(frame: .zero)
-    
     let padding: CGFloat    = 20
     
     override init(frame: CGRect) {
@@ -61,6 +60,4 @@ class GFCardView: UIView {
             bodyLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
-    
-    
 }

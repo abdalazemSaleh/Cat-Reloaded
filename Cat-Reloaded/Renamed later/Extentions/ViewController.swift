@@ -7,10 +7,40 @@
 
 import UIKit
 
+enum SocialMediaNav: String {
+    case youtube    = "youtube"
+    case facebook   = "facebook"
+    case linkedin   = "linkedin"
+    case github     = "github"
+    case twitter    = "twitter"
+}
+
+extension UICollectionViewCell {
+    func openSocialMedia(with link: String, type: SocialMediaNav) {
+        var urlComponents = link.components(separatedBy: ".com/")
+        
+        if type == .twitter {
+            urlComponents = link.components(separatedBy: "in/")
+        } else if type == .youtube {
+            urlComponents   = link.components(separatedBy: "=")
+        }
+        
+        let urlId         = urlComponents.last ?? ""
+        var url           = URL(string: "\(type.rawValue)://\(urlId)")!
+        
+        if UIApplication.shared.canOpenURL(url as URL){
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            url = URL(string:link)!
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+}
+
 extension UIViewController {
     
     func nav(vc: UIViewController) {
-        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: false)
     }
     
     func dismis() {
@@ -38,6 +68,28 @@ extension UIViewController {
         vc.modalPresentationStyle   = .overFullScreen
         vc.modalTransitionStyle     = .crossDissolve
         self.present(vc, animated: true)
+    }
+    
+    func presentPhoto(with imageUrl: String) {
+        let vc = Full_imageVC()
+        vc.imageUrl = imageUrl
+        vc.modalPresentationStyle   = .overFullScreen
+        vc.modalTransitionStyle     = .crossDissolve
+        present(vc, animated: true)
+    }
+    
+    func openPodCat(with link: String) {
+        let urlComponents   = link.components(separatedBy: "=")
+        
+        let urlId         = urlComponents.last ?? ""
+        var url           = URL(string: "youtube://\(urlId)")!
+        
+        if UIApplication.shared.canOpenURL(url as URL){
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            url = URL(string:link)!
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
 }
 

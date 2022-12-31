@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 enum Section: String, CaseIterable {
     case headerCell = ""
@@ -28,24 +29,32 @@ extension HomeVC {
     }
     /// Configure collection view data source
     func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Image>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, image: Image) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>(collectionView: collectionView, cellProvider: { [weak self] (collectionView: UICollectionView, indexPath: IndexPath, model: AnyHashable) -> UICollectionViewCell in
             let sectionType = Section.allCases[indexPath.section]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeaderCell.reuseIdentifer, for: indexPath) as! HeaderCell
+            guard let self = self else { return cell}
             switch sectionType {
             case .headerCell:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeaderCell.reuseIdentifer, for: indexPath) as! HeaderCell
-                cell.set(welcometitle: "Welcome Abdalazem", aboutTitle: "About CAT")
+                guard let model = model as? HomeHeaderCellModel else { return cell }
+                cell.set(welcometitle: model.name ?? "Cat organization")
+                let aboutCatGesture = UITapGestureRecognizer(target: self, action: #selector(self.aboutCatCardEvent))
+                cell.aboutCatCard.addGestureRecognizer(aboutCatGesture)
                 return cell
             case .memorires:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemoriesCell.reuseIdentifer, for: indexPath) as! MemoriesCell
-                cell.set(image.image)
+                guard let myModel   = model as? MemoriesData else { return cell }
+                self.memoriesImageUrl.append(myModel.imageUrl)
+                cell.set(myModel)
                 return cell
             case .podCat:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PodCATCell.reuseIdentifer, for: indexPath) as! PodCATCell
-                cell.set(image.image)
+                guard let myModel = model as? PodCatData else { return cell }
+                self.podCatVideosUrls.append(myModel.episodeUrl)
+                cell.set(myModel)
                 return cell
             }
-        }
+        })
         dataSource.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
             guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reuseIdentifier, for: indexPath) as? HeaderView else{
                 fatalError("Cannot create header view")
@@ -53,101 +62,93 @@ extension HomeVC {
             supplementaryView.label.text = Section.allCases[indexPath.section].rawValue
             return supplementaryView
         }
-        let snapshot = snapshotForCurrentState()
-        dataSource.apply(snapshot, animatingDifferences: false)
+        snapshot.appendSections([.headerCell, .memorires, .podCat])
+        DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
-    /// Handel collectionview flow layout
-    private func generateLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            let sectionLayoutKind = Section.allCases[sectionIndex]
-            switch sectionLayoutKind {
-            case .headerCell: return self?.generateHeaderCell()
-            case .memorires: return self?.generateMemoriesLayout()
-            case .podCat: return self?.generatePodCatLayout()
+        /// Handel collectionview flow layout
+        private func generateLayout() -> UICollectionViewLayout {
+            let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+                let sectionLayoutKind = Section.allCases[sectionIndex]
+                switch sectionLayoutKind {
+                case .headerCell: return self?.generateHeaderCell()
+                case .memorires: return self?.generateMemoriesLayout()
+                case .podCat: return self?.generatePodCatLayout()
+                }
             }
+            return layout
         }
-        return layout
-    }
+        
+        private func generateHeaderCell() -> NSCollectionLayoutSection {
+            // item
+            let itemSize    = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+            let item        = NSCollectionLayoutItem(layoutSize: itemSize)
+            // group
+            let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(400))
+            let group       = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            // section
+            let section     = NSCollectionLayoutSection(group: group)
+            // return
+            return section
+        }
+        
+        private func generateMemoriesLayout() -> NSCollectionLayoutSection {
+            // item
+            let itemSize    = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+            let item        = NSCollectionLayoutItem(layoutSize: itemSize)
+            // group
+            let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(180))
+            let group       = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+            // header
+            let headerSize  = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(44))
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: HomeVC.sectionHeaderElementKind, alignment: .top)
+            sectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: padding, bottom: 0, trailing: 0)
+            // section
+            let section     = NSCollectionLayoutSection(group: group)
+            section.boundarySupplementaryItems = [sectionHeader]
+            section.orthogonalScrollingBehavior = .groupPaging
+            // Return
+            return section
+        }
+        
+        private func generatePodCatLayout() -> NSCollectionLayoutSection {
+            // item
+            let itemSize    = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+            let item        = NSCollectionLayoutItem(layoutSize: itemSize)
+            // group
+            let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(180))
+            let group       = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+            // header
+            let headerSize  = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: HomeVC.sectionHeaderElementKind, alignment: .top)
+            sectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: padding, bottom: 0, trailing: 0)
+            // section
+            let section     = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0)
+            section.boundarySupplementaryItems = [sectionHeader]
+            section.orthogonalScrollingBehavior = .groupPaging
+            // Return
+            return section
+        }
     
-    func generateHeaderCell() -> NSCollectionLayoutSection {
-        // item
-        let itemSize    = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        let item        = NSCollectionLayoutItem(layoutSize: itemSize)
-        // group
-        let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(400))
-        let group       = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        // section
-        let section     = NSCollectionLayoutSection(group: group)
-        // return
-        return section
-    }
-    
-    func generateMemoriesLayout() -> NSCollectionLayoutSection {
-        // item
-        let itemSize    = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        let item        = NSCollectionLayoutItem(layoutSize: itemSize)
-        // group
-        let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(180))
-        let group       = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
-        // header
-        let headerSize  = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: HomeVC.sectionHeaderElementKind, alignment: .top)
-        sectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: padding, bottom: 0, trailing: 0)
-        // section
-        let section     = NSCollectionLayoutSection(group: group)
-        section.boundarySupplementaryItems = [sectionHeader]
-        section.orthogonalScrollingBehavior = .groupPaging
-        // Return
-        return section
-    }
-    
-    func generatePodCatLayout() -> NSCollectionLayoutSection {
-        // item
-        let itemSize    = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        let item        = NSCollectionLayoutItem(layoutSize: itemSize)
-        // group
-        let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(180))
-        let group       = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
-        // header
-        let headerSize  = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: HomeVC.sectionHeaderElementKind, alignment: .top)
-        sectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: padding, bottom: 0, trailing: 0)
-        // section
-        let section     = NSCollectionLayoutSection(group: group)
-        section.boundarySupplementaryItems = [sectionHeader]
-        section.orthogonalScrollingBehavior = .groupPaging
-        // Return
-        return section
-    }
-    
-    ///handel collection view data
-    func snapshotForCurrentState() -> NSDiffableDataSourceSnapshot<Section, Image> {
-        memories.append(Image.init(image: "1"))
-        memories.append(Image.init(image: "2"))
-        memories.append(Image.init(image: "3"))
-        
-        podCat.append(Image.init(image: "4"))
-        podCat.append(Image.init(image: "5"))
-        podCat.append(Image.init(image: "6"))
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Image>()
-        
-        snapshot.appendSections([Section.headerCell])
-//        snapshot.appendItems()
-        
-        snapshot.appendSections([Section.memorires])
-        snapshot.appendItems(memories)
-        
-        snapshot.appendSections([Section.podCat])
-        snapshot.appendItems(podCat)
-        
-        return snapshot
+    @objc func aboutCatCardEvent() {
+        nav(vc: AboutCatVC())
     }
 }
 
 extension HomeVC: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let sectionType = Section.allCases[indexPath.section]
+        switch sectionType {
+        case .headerCell:
+            break
+        case .memorires:
+            let url = memoriesImageUrl[indexPath.row]
+            presentPhoto(with: url)
+        case .podCat:
+            let url = podCatVideosUrls[indexPath.row]
+            openPodCat(with: url)
+        }
+    }
 }
-

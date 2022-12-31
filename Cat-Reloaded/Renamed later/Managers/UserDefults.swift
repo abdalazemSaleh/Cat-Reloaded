@@ -35,6 +35,5 @@ struct UserData {
         dictionary.keys.forEach { key in
             defaults.removeObject(forKey: userKey)
         }
-    }
-    
+    }    
 }

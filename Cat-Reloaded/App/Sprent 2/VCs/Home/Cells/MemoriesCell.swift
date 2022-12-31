@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MemoriesCell: UICollectionViewCell {
     
     // MARK: - Variables
     static let reuseIdentifer       = "MemoriesCell"
-    let imageView                   = GFImageView(frame: .zero)    
+    let imageView                   = GFImageView(frame: .zero)
     let padding: CGFloat            = 20
     
     // MARK: - Init
@@ -40,7 +41,8 @@ class MemoriesCell: UICollectionViewCell {
         ])
     }
     
-    func set(_ image: String) {
-        imageView.image = UIImage(named: image)
+    func set(_ memories: MemoriesData) {
+        let url = URL(string: memories.imageUrl)
+        imageView.kf.setImage(with: url)
     }
 }

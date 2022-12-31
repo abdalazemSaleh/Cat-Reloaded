@@ -27,8 +27,6 @@ class GFMediaButton: UIButton {
     }
         
     private func configure() {
-        layer.cornerRadius      = 8
         translatesAutoresizingMaskIntoConstraints = false
     }
-        
 }

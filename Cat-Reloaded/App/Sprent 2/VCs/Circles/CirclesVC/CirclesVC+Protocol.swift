@@ -10,9 +10,22 @@ import Foundation
 extension CirclesVC: checkCirclesType {
     func checkIndex(_ index: Int) {
         if index == 0 {
-            updateData(on: tech)
+            data.removeAll()
+            appendModel(type: .tech)
         } else {
-            updateData(on: nonTech)
+            data.removeAll()
+            appendModel(type: .nonTech)
         }
+    }
+}
+
+extension CirclesVC: CirclesView {
+    func techCircles(data: [CirclesModel]) {
+        print("my data: - \(data)")
+        updateData(on: data)
+    }
+    
+    func nonTechCircles(data: [CirclesModel]) {
+        updateData(on: data)
     }
 }

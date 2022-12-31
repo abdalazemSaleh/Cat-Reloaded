@@ -32,5 +32,4 @@ class GFTextView: UITextView {
         isEditable      = false
         translatesAutoresizingMaskIntoConstraints = false
     }
-    
 }

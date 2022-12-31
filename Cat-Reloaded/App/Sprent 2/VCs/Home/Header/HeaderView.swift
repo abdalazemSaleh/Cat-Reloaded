@@ -40,4 +40,3 @@ class HeaderView: UICollectionReusableView {
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
     }
   }
-

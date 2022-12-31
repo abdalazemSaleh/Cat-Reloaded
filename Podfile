@@ -4,6 +4,7 @@ target 'Cat-Reloaded' do
 
 # Alamofire
 pod 'Alamofire'
+pod 'Kingfisher'
 
 # Pods for UI
 pod 'TransitionButton'

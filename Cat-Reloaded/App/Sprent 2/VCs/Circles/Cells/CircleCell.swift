@@ -5,6 +5,7 @@
 //  Created by Abdalazem Saleh on 2022-11-15.
 //
 
+import Kingfisher
 import UIKit
 
 class CircleCell: UICollectionViewCell {
@@ -32,6 +33,8 @@ class CircleCell: UICollectionViewCell {
         view.layer.borderColor   = Colors.mainColor?.cgColor
         view.layer.cornerRadius  = 4
         
+        imageView.contentMode    = .scaleAspectFit
+        
         view.translatesAutoresizingMaskIntoConstraints          = false
         imageView.translatesAutoresizingMaskIntoConstraints     = false
         label.translatesAutoresizingMaskIntoConstraints         = false
@@ -54,8 +57,9 @@ class CircleCell: UICollectionViewCell {
         ])
     }
     
-    func set(image: String, circleName: String) {
-        imageView.image = UIImage(named: image)
-        label.text      = circleName
+    func set(model: CirclesModel) {
+        imageView.image         = UIImage(named: model.imageUrl)
+        imageView.contentMode   = .scaleToFill
+        label.text              = model.name
     }
 }

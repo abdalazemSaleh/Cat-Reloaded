@@ -19,37 +19,44 @@ class HomeVC: UIViewController {
     
     static let sectionHeaderElementKind = "section-header-element-kind"
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section, Image>!
+    var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>!
+    var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
     
-    let welcomeCardTitle        = GFTitleLabel(textAlignment: .left, fontSize: 24, weight: .bold)
-    let welcomeCard             = GFCardView(label: "Become a CATian", bodyLabel: "Get new experiences with us and we are engoy this.", image: Images.becomACATian!)
-    let welcomeCardStack        = UIStackView()
-        
-    let aboutCatTitle            = GFTitleLabel(textAlignment: .left, fontSize: 24, weight: .bold)
-    let aboutCatCard             = GFCardView(label: "", bodyLabel: "Know more about CAT world", image: Images.becomACATian!)
-    let aboutCatCardStack        = UIStackView()
+    let padding: CGFloat            = 20
     
-    var memories: [Image]     = []
-    var podCat: [Image]       = []
+    var podCatVideosUrls: [String]  = []
+    var memoriesImageUrl: [String]  = []
     
-    var itemViews: [UIView]     = []
-    var sharedView: [UIView]    = []
-    let padding: CGFloat        = 20
-
+    var isCatian: Bool = false
+    
+    var presenter: HomePresenter!
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Chash Data: - \(UserData.getUserModel())")
+        presenter               = HomePresenter(view: self)
         configureNavigationController()
-        configureUI()
+        presenter.fetchMemories()
+        presenter.fetchPodCat()
         configureCollectionView()
         configureDataSource()
-        configureCollectionViewConstraint()
+        configureHeaderCell()
     }
     
     // MARK: - Functions
     func configureNavigationController() {
+        view.backgroundColor    = .systemBackground
         view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles  =   true
+        navigationController?.navigationBar.prefersLargeTitles  = true
+    }
+    
+    func configureHeaderCell() {
+        let userData = UserData.getUserModel()
+        if userData?.isCatian ?? false {
+            print("is allready in")
+        } else {
+            var myArr: [HomeHeaderCellModel] = []
+            myArr.append(.init(name: userData?.fullName))
+            snapshot.appendItems(myArr, toSection: .headerCell)
+        }
     }
 }

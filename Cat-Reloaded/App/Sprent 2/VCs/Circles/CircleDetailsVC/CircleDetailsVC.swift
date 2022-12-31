@@ -8,30 +8,26 @@
 import UIKit
 
 class CircleDetailsVC: UIViewController {
+    
     // MARK: - Variables
-
     static let sectionHeaderElmentKind = "section-header-element-kind"
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<CircleDetailsSections, CircleDetailsModel>!
+    var dataSource: UICollectionViewDiffableDataSource<CircleDetailsSections, AnyHashable>!
+    var snapshot = NSDiffableDataSourceSnapshot<CircleDetailsSections, AnyHashable>()
     
-    var itemModel: [CircleDetailsModel] = []
-    var headerTest: [CircleDetailsModel] = []
+    var currentCircle: CirclesModel?
     
+    var model: [CircleDetailsModel]    = []
+    
+//    var presenter: CircleDetailsPresenter!
+    
+    // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+//        presenter = CircleDetailsPresenter(view: self)
         configureCollectionView()
         configureDataSource()
-        itemModel.append(CircleDetailsModel.init(image: "1", name: "Abdalazem"))
-        itemModel.append(CircleDetailsModel.init(image: "2", name: "Ahmed"))
-        itemModel.append(CircleDetailsModel.init(image: "3", name: "Mohamed"))
-        itemModel.append(CircleDetailsModel.init(image: "1", name: "ssa"))
-        itemModel.append(CircleDetailsModel.init(image: "2", name: "as"))
-        itemModel.append(CircleDetailsModel.init(image: "3", name: "dfsac"))
-        itemModel.append(CircleDetailsModel.init(image: "1", name: "scasda"))
-        itemModel.append(CircleDetailsModel.init(image: "2", name: "asdasc"))
-        itemModel.append(CircleDetailsModel.init(image: "3", name: "csacsa"))
-        
-        updateData(on: itemModel)
+        fetchCircleData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,59 +38,12 @@ class CircleDetailsVC: UIViewController {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles  =   false
     }
-}
-
-enum CompositionalGroupAlignment {
-    case vertical
-    case horizontal
-}
-
-struct CompositionalLayout {
     
-    static func createItem(width: NSCollectionLayoutDimension,
-                           height: NSCollectionLayoutDimension,
-                           spacing: CGFloat
-    ) -> NSCollectionLayoutItem {
-        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: width,
-                                                                             heightDimension: height))
-        item.contentInsets = NSDirectionalEdgeInsets(top: spacing, leading: spacing, bottom: spacing, trailing: spacing)
-        return item
-    }
-    
-    static func createGroup(alignment: CompositionalGroupAlignment,
-                            width: NSCollectionLayoutDimension,
-                            height: NSCollectionLayoutDimension,
-                            items: [NSCollectionLayoutItem]
-    ) -> NSCollectionLayoutGroup {
-        switch alignment {
-        case .vertical:
-            return NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: width,
-                                                                                       heightDimension: height),
-                                                    subitems: items)
-        case .horizontal:
-            return NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: width,
-                                                                                         heightDimension: height),
-                                                      subitems: items)
-        }
-    }
-    
-    static func createGroup(alignment: CompositionalGroupAlignment,
-                            width: NSCollectionLayoutDimension,
-                            height: NSCollectionLayoutDimension,
-                            item: NSCollectionLayoutItem,
-                            count: Int
-    ) -> NSCollectionLayoutGroup {
-        switch alignment {
-        case .vertical:
-            return NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: width,
-                                                                                       heightDimension: height),
-                                                    subitem: item,
-                                                    count: count)
-        case .horizontal:
-            return NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: width,
-                                                                                         heightDimension: height),
-                                                      subitem: item,
-                                                      count: count)
+    private func fetchCircleData() {
+        if currentCircle?.type == "tech" {
+//            presenter.featchTechCircleDetails(currentCircle?.id ?? "ios")
+        } else {
+//            presenter.featchNonTechCircleDetails(currentCircle?.id ?? "hr")
         }
     }
 }

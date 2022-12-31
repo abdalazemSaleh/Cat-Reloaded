@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct CirclesModel: Hashable {
-    let circleName: String
-    let circleImage: String
+struct CirclesModel: Codable, Hashable {
+    let id: String
+    let imageUrl: String
+    let name: String
+    let type: String
 }
-

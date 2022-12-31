@@ -9,9 +9,19 @@ import Foundation
 
 enum URLs: String {
     // Base URL
-    case baseURL    = "https://catapp.hoscraft.cf"
+    case baseURL        = "https://catapp.hoscraft.cf"
     // URLs
-    case login      = "/auth/signin/password"
-    case sginup     = "/auth/signup/password"
-    case external   = "/auth/signup/external"
+    case login          = "/auth/signin/password"
+    case sginup         = "/auth/signup/password"
+    case external       = "/auth/signup/external"
+    
+    case podCat         = "/team/podcat/1"
+    case memories       = "/team/memories/1"
+    
+    case info           = "/team/info"
+    case founders       = "/team/founders"
+    case teamBoard      = "/team/board"
+    
+    case techCircles    = "/circles/tech"
+    case nonTechCircles = "/circles/nontech"
 }
