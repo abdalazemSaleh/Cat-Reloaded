@@ -20,7 +20,6 @@ extension HomeVC {
     func configureCollectionView() {
         collectionView  = UICollectionView(frame: view.bounds, collectionViewLayout: generateLayout())
         view.addSubview(collectionView)
-        snapshot.appendSections([.headerCell, .memorires, .podCat])
         collectionView.delegate = self
         collectionView.backgroundColor  = .systemBackground
         collectionView.register(HeaderCell.self, forCellWithReuseIdentifier: HeaderCell.reuseIdentifer)
@@ -35,7 +34,10 @@ extension HomeVC {
             switch sectionType {
             case .headerCell:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeaderCell.reuseIdentifer, for: indexPath) as! HeaderCell
-                cell.set(welcometitle: "Welcome Abdalazem", aboutTitle: "About CAT")
+                guard let model = model as? HomeHeaderCellModel else { return cell }
+                cell.set(welcometitle: model.name ?? "Cat organization")
+                let aboutCatGesture = UITapGestureRecognizer(target: self, action: #selector(self.aboutCatCardEvent))
+                cell.aboutCatCard.addGestureRecognizer(aboutCatGesture)
                 return cell
             case .memorires:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemoriesCell.reuseIdentifer, for: indexPath) as! MemoriesCell
@@ -58,6 +60,8 @@ extension HomeVC {
             supplementaryView.label.text = Section.allCases[indexPath.section].rawValue
             return supplementaryView
         }
+        snapshot.appendSections([.headerCell, .memorires, .podCat])
+        DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
         /// Handel collectionview flow layout
         private func generateLayout() -> UICollectionViewLayout {
@@ -77,7 +81,7 @@ extension HomeVC {
             let itemSize    = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
             let item        = NSCollectionLayoutItem(layoutSize: itemSize)
             // group
-            let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(400))
+            let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(400))
             let group       = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
             // section
             let section     = NSCollectionLayoutSection(group: group)
@@ -94,7 +98,7 @@ extension HomeVC {
             let group       = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
             group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
             // header
-            let headerSize  = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
+            let headerSize  = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(44))
             let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: HomeVC.sectionHeaderElementKind, alignment: .top)
             sectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: padding, bottom: 0, trailing: 0)
             // section
@@ -119,11 +123,16 @@ extension HomeVC {
             sectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: padding, bottom: 0, trailing: 0)
             // section
             let section     = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0)
             section.boundarySupplementaryItems = [sectionHeader]
             section.orthogonalScrollingBehavior = .groupPaging
             // Return
             return section
         }
+    
+    @objc func aboutCatCardEvent() {
+        nav(vc: AboutCatVC())
+    }
 }
 
 extension HomeVC: UICollectionViewDelegate {

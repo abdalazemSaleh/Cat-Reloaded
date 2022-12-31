@@ -59,7 +59,6 @@
 		7FAAFF8128F4CE8F008A9FF2 /* EventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAFF8028F4CE8F008A9FF2 /* EventsVC.swift */; };
 		7FAAFF8328F4CEA7008A9FF2 /* CATianVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAFF8228F4CEA7008A9FF2 /* CATianVC.swift */; };
 		7FAAFF8528F4DCD9008A9FF2 /* GFCirclerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAFF8428F4DCD9008A9FF2 /* GFCirclerImage.swift */; };
-		7FAAFF8828F4E062008A9FF2 /* Home+Constarint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAFF8728F4E062008A9FF2 /* Home+Constarint.swift */; };
 		7FAAFF8A28F4E117008A9FF2 /* GFCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAFF8928F4E117008A9FF2 /* GFCardView.swift */; };
 		7FAAFF8C28F5B5C0008A9FF2 /* Home+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAFF8B28F5B5C0008A9FF2 /* Home+CollectionView.swift */; };
 		7FAAFF8E28F5ED1B008A9FF2 /* MemoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAFF8D28F5ED1A008A9FF2 /* MemoriesCell.swift */; };
@@ -148,7 +147,6 @@
 		7FAAFF8028F4CE8F008A9FF2 /* EventsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsVC.swift; sourceTree = "<group>"; };
 		7FAAFF8228F4CEA7008A9FF2 /* CATianVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CATianVC.swift; sourceTree = "<group>"; };
 		7FAAFF8428F4DCD9008A9FF2 /* GFCirclerImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFCirclerImage.swift; sourceTree = "<group>"; };
-		7FAAFF8728F4E062008A9FF2 /* Home+Constarint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Home+Constarint.swift"; sourceTree = "<group>"; };
 		7FAAFF8928F4E117008A9FF2 /* GFCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFCardView.swift; sourceTree = "<group>"; };
 		7FAAFF8B28F5B5C0008A9FF2 /* Home+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Home+CollectionView.swift"; sourceTree = "<group>"; };
 		7FAAFF8D28F5ED1A008A9FF2 /* MemoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoriesCell.swift; sourceTree = "<group>"; };
@@ -326,7 +324,6 @@
 			children = (
 				7FAAFF7C28F4CE5A008A9FF2 /* HomeVC.swift */,
 				7FAAFF8B28F5B5C0008A9FF2 /* Home+CollectionView.swift */,
-				7FAAFF8728F4E062008A9FF2 /* Home+Constarint.swift */,
 				7FE9596C29494308001B2554 /* Home+Protocol.swift */,
 			);
 			path = HomeVC;
@@ -811,7 +808,6 @@
 				7F6C95612954F29A007D6271 /* CircleDetailsPresenter.swift in Sources */,
 				7F617892290DD1F700AA101B /* SginUpModel.swift in Sources */,
 				7F3AD4AD2937927300AF0AB1 /* Encodable.swift in Sources */,
-				7FAAFF8828F4E062008A9FF2 /* Home+Constarint.swift in Sources */,
 				7F078F1B2923F56B00895441 /* CustomSegmentedControl.swift in Sources */,
 				7F30C2B328EF62900007AACF /* GFMediaButton.swift in Sources */,
 				7FCF67BB29511A49000059B9 /* AboutCatHeaderCell.swift in Sources */,

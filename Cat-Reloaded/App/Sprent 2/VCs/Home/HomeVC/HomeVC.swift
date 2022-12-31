@@ -22,57 +22,41 @@ class HomeVC: UIViewController {
     var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>!
     var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
     
-    let welcomeCardTitle            = GFTitleLabel(textAlignment: .left, fontSize: 24, weight: .bold)
-    let welcomeCard                 = GFCardView(label: "Become a CATian", bodyLabel: "Get new experiences with us and we are engoy this.", image: Images.becomACATian!)
-    let welcomeCardStack            = UIStackView()
-        
-    let aboutCatTitle               = GFTitleLabel(textAlignment: .left, fontSize: 24, weight: .bold)
-    let aboutCatCard                = GFCardView(label: "", bodyLabel: "Know more about CAT world", image: Images.becomACATian!)
-    let aboutCatCardStack           = UIStackView()
-        
-    var itemViews: [UIView]         = []
-    var sharedView: [UIView]        = []
     let padding: CGFloat            = 20
         
     var podCatVideosUrls: [String]  = []
     var memoriesImageUrl: [String]  = []
     
+    var isCatian: Bool = false
+    
     var presenter: HomePresenter!
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(clickable))
-        aboutCatCard.addGestureRecognizer(gesture)
-        view.backgroundColor    = .systemBackground
         presenter               = HomePresenter(view: self)
+        configureNavigationController()
         presenter.fetchMemories()
         presenter.fetchPodCat()
-        configureNavigationController()
-        configureUI()
         configureCollectionView()
         configureDataSource()
-        configureCollectionViewConstraint()
-        
-        collectionView.refreshControl = UIRefreshControl()
-        collectionView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
-
+        configureHeaderCell()
     }
     
     // MARK: - Functions
-    
     func configureNavigationController() {
+        view.backgroundColor    = .systemBackground
         view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles  =   true
-    }
-
-    @objc func refresh() {
-        presenter.fetchMemories()
-        presenter.fetchPodCat()
-        collectionView.refreshControl?.endRefreshing()
+        navigationController?.navigationBar.prefersLargeTitles  = true
     }
     
-    @objc func clickable() {
-        nav(vc: AboutCatVC())
+    func configureHeaderCell() {
+        let userData = UserData.getUserModel()
+        if userData?.isCatian ?? false {
+            print("is allready in")
+        } else {
+            var myArr: [HomeHeaderCellModel] = []
+            myArr.append(.init(name: userData?.fullName))
+            snapshot.appendItems(myArr, toSection: .headerCell)
+        }
     }
-    
 }
