@@ -102,3 +102,14 @@ extension CircleDetailsHeaderCell {
     }
 }
 
+// MARK: - Set function
+extension CircleDetailsHeaderCell {
+    func set(model: CircleDetailsModel) {
+        let imageUrl    = URL(string: model.imageUrl)
+        let roadmapUrl = URL(string: model.roadmapUrl ?? "")
+        circleImage.kf.setImage(with: imageUrl)
+        circleName.text         = model.name
+        circleDescrption.text   = model.description
+    }
+}
+

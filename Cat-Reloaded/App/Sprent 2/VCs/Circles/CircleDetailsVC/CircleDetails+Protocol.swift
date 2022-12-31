@@ -9,12 +9,17 @@ import Foundation
 
 extension CircleDetailsVC: CircleDetailsView {
     
-    func techCircleDetails(data: CircleDetailsModel1) {
-        print(data)
+    func techCircleDetails(data: CircleDetailsModel) {
+        model.append(data)
+        snapshot.appendItems(model, toSection: .header)
+        snapshot.appendItems(data.board, toSection: .main)
+        DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
     
-    func nonTechCircleDetails(data: CircleDetailsModel1) {
-        print(data)
+    func nonTechCircleDetails(data: CircleDetailsModel) {
+        model.append(data)
+        snapshot.appendItems(model, toSection: .header)
+        DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
     
 }

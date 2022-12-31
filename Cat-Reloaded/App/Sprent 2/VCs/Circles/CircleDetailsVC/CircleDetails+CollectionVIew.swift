@@ -38,16 +38,17 @@ extension CircleDetailsVC {
     }
     
     func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<CircleDetailsSections, CircleDetailsModel>(collectionView: collectionView, cellProvider: { (collectionView: UICollectionView, indexPath: IndexPath, model: CircleDetailsModel) -> UICollectionViewCell in
+        dataSource = UICollectionViewDiffableDataSource<CircleDetailsSections, AnyHashable>(collectionView: collectionView, cellProvider: { (collectionView: UICollectionView, indexPath: IndexPath, model: AnyHashable) -> UICollectionViewCell in
             let sectionType = CircleDetailsSections.allCases[indexPath.section]
             switch sectionType {
             case .header:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleDetailsHeaderCell.reuseIdentifer, for: indexPath) as! CircleDetailsHeaderCell
-                print("my size: - \(cell.bounds.height)")
+                cell.set(model: model as! CircleDetailsModel)
                 return cell
             case .main:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleBoardCell.reuseIdentifer, for: indexPath) as! CircleBoardCell
-//                cell.set(image: model.image, circleName: model.name)
+                let model = model as! TeamBoardModel
+                cell.set(model: model)
                 return cell
             }
         })
@@ -59,6 +60,7 @@ extension CircleDetailsVC {
             supplementaryView.label.text = CircleDetailsSections.allCases[indexPath.section].rawValue
             return supplementaryView
         }
+        snapshot.appendSections([.header, .main])
     }
 
     private func generateCircleHeaderLayout() -> NSCollectionLayoutSection {
@@ -107,18 +109,4 @@ extension CircleDetailsVC {
         // Return
         return section
     }
-    
-    func updateData(on circles: [CircleDetailsModel]) {
-        headerTest.append(CircleDetailsModel.init(image: "3", name: "Test!."))
-        var snapshot = NSDiffableDataSourceSnapshot<CircleDetailsSections, CircleDetailsModel>()
-        
-        snapshot.appendSections([.header])
-        snapshot.appendItems(headerTest)
-        
-        snapshot.appendSections([.main])
-        snapshot.appendItems(circles)
-        DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true)  }
-    }
-
-    
 }

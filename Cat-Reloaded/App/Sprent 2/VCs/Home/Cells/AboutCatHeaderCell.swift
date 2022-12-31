@@ -9,7 +9,7 @@ import UIKit
 
 class AboutCatHeaderCell: UICollectionViewCell {
     // MARK: - Variables
-    static let reuseIdentifer = "CollectionViewHeaderCell"
+    static let reuseIdentifer   = "CollectionViewHeaderCell"
     
     let catImage                = GFImageView(frame: .zero)
     

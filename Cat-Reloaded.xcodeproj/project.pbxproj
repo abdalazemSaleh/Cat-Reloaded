@@ -1000,10 +1000,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 010DF12504816B4E3B6725EC /* Pods-Cat-Reloaded.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Cat-Reloaded/Cat-Reloaded.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 475V82HT95;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Cat-Reloaded/Info.plist";
@@ -1034,7 +1037,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E9F7CB4973F7541BA9B959A0 /* Pods-Cat-Reloaded.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Cat-Reloaded/Cat-Reloaded.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

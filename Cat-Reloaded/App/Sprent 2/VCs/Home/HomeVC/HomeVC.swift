@@ -57,20 +57,22 @@ class HomeVC: UIViewController {
         collectionView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
 
     }
+    
+    // MARK: - Functions
+    
+    func configureNavigationController() {
+        view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.prefersLargeTitles  =   true
+    }
+
     @objc func refresh() {
         presenter.fetchMemories()
         presenter.fetchPodCat()
         collectionView.refreshControl?.endRefreshing()
     }
-
     
     @objc func clickable() {
         nav(vc: AboutCatVC())
     }
     
-    // MARK: - Functions
-    func configureNavigationController() {
-        view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles  =   true
-    }
 }

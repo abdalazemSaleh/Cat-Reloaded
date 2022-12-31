@@ -12,12 +12,12 @@ class CircleDetailsVC: UIViewController {
     // MARK: - Variables
     static let sectionHeaderElmentKind = "section-header-element-kind"
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<CircleDetailsSections, CircleDetailsModel>!
+    var dataSource: UICollectionViewDiffableDataSource<CircleDetailsSections, AnyHashable>!
+    var snapshot = NSDiffableDataSourceSnapshot<CircleDetailsSections, AnyHashable>()
     
-    var currentCircle   = "ios"
+    var currentCircle: selectedCircle?
     
-    var itemModel: [CircleDetailsModel]     = []
-    var headerTest: [CircleDetailsModel]    = []
+    var model: [CircleDetailsModel]    = []
     
     var presenter: CircleDetailsPresenter!
     
@@ -25,10 +25,10 @@ class CircleDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = CircleDetailsPresenter(view: self)
-        presenter.featchTechCircleDetails("ios")
         configureCollectionView()
         configureDataSource()
-        testFuncForNow()
+        fetchCircleData()
+//        testFuncForNow()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -40,16 +40,24 @@ class CircleDetailsVC: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles  =   false
     }
     
-    func testFuncForNow() {
-        itemModel.append(CircleDetailsModel.init(image: "1", name: "Abdalazem"))
-        itemModel.append(CircleDetailsModel.init(image: "2", name: "Ahmed"))
-        itemModel.append(CircleDetailsModel.init(image: "3", name: "Mohamed"))
-        itemModel.append(CircleDetailsModel.init(image: "1", name: "ssa"))
-        itemModel.append(CircleDetailsModel.init(image: "2", name: "as"))
-        itemModel.append(CircleDetailsModel.init(image: "3", name: "dfsac"))
-        itemModel.append(CircleDetailsModel.init(image: "1", name: "scasda"))
-        itemModel.append(CircleDetailsModel.init(image: "2", name: "asdasc"))
-        itemModel.append(CircleDetailsModel.init(image: "3", name: "csacsa"))
-        updateData(on: itemModel)
+    private func fetchCircleData() {
+        if currentCircle?.type == "tech" {
+            presenter.featchTechCircleDetails(currentCircle?.circle ?? "ios")
+        } else {
+            presenter.featchNonTechCircleDetails(currentCircle?.circle ?? "hr")
+        }
     }
+    
+//    func testFuncForNow() {
+//        itemModel.append(CircleDetailsModel.init(image: "1", name: "Abdalazem"))
+//        itemModel.append(CircleDetailsModel.init(image: "2", name: "Ahmed"))
+//        itemModel.append(CircleDetailsModel.init(image: "3", name: "Mohamed"))
+//        itemModel.append(CircleDetailsModel.init(image: "1", name: "ssa"))
+//        itemModel.append(CircleDetailsModel.init(image: "2", name: "as"))
+//        itemModel.append(CircleDetailsModel.init(image: "3", name: "dfsac"))
+//        itemModel.append(CircleDetailsModel.init(image: "1", name: "scasda"))
+//        itemModel.append(CircleDetailsModel.init(image: "2", name: "asdasc"))
+//        itemModel.append(CircleDetailsModel.init(image: "3", name: "csacsa"))
+//        updateData(on: itemModel)
+//    }
 }

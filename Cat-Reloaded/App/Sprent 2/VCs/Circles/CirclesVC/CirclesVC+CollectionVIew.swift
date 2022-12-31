@@ -24,6 +24,8 @@ extension CirclesVC {
     func configureDataSource() {
        dataSource = UICollectionViewDiffableDataSource<CirclesSection, CirclesModel>(collectionView: collectionView, cellProvider: { (collectionView: UICollectionView, indexPath: IndexPath, model: CirclesModel) -> UICollectionViewCell in
                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleCell.reuseIdentifer, for: indexPath) as! CircleCell
+           print(model.id)
+           self.selectedCircle.append(.init(circle: model.id, type: model.type))
            cell.set(model: model)
                return cell
        })
@@ -58,10 +60,10 @@ extension CirclesVC {
         let item        = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         // group
-        let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.2))
+        let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.21))
         let group       = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         // header
-        let headerSize  = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(25))
+        let headerSize  = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(25))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: CirclesVC.sectionHeaderElementKind, alignment: .top)
         sectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
         // section
@@ -70,5 +72,14 @@ extension CirclesVC {
         section.boundarySupplementaryItems = [sectionHeader]
         // Return
         return section
+    }
+}
+
+extension CirclesVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let circle          = selectedCircle[indexPath.row]
+        let vc              = CircleDetailsVC()
+        vc.currentCircle = circle
+        nav(vc: vc)
     }
 }

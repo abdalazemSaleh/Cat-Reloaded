@@ -27,11 +27,24 @@ class AboutCatVC: UIViewController {
         presenter.fetchTeamBoard()
         configureCollectionView()
         configureDataSource()
+        
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationController()
     }
+    
+    @objc func refresh() {
+        print("Working in refrishing")
+        // Fetal error while refetchig about cat info
+//        presenter.fetchAboutCatInfo()
+        presenter.fetchFounders()
+        presenter.fetchTeamBoard()
+        collectionView.refreshControl?.endRefreshing()
+    }
+
     // MARK: - Functions
     private func configureNavigationController() {
         view.backgroundColor = .systemBackground

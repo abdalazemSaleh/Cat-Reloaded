@@ -58,21 +58,9 @@ class CircleCell: UICollectionViewCell {
     }
     
     func set(model: CirclesModel) {
-        guard let url = URL(string: "https://catapp.hoscraft.cf/static/img/circles/android.svg") else { return }
-//        imageView.kf.setImage(with: url, options: [.downloader(.default)])
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url){
-                print("image data: - \(data)")
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.imageView.image = image
-                    }
-                }
-            }
-        }
-        imageView.contentMode = .scaleToFill
-        label.text  = model.name
-        
+        imageView.image         = UIImage(named: model.imageUrl)
+        imageView.contentMode   = .scaleToFill
+        label.text              = model.name
     }
 }
 

@@ -15,20 +15,7 @@ struct ProfileModel: Codable {
     let fullName : String?
     let email: String?
     let phoneNumber: String?
-    let error: String?
     let errorCode: Int?
+    let message: String?
+    let isCatian: Bool?
 }
-
-//// Login Parms
-//struct  loginParms {
-//    let phone: String
-//    let password: String
-//}
-//// Sign up Parms
-//struct signUpParms {
-//    let fullName: String
-//    let email: String
-//    let phonNumber: String
-//    let password: String
-//    let passwordConfirmation: String
-//}
