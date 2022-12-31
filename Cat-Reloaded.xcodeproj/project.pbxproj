@@ -55,6 +55,7 @@
 		7F73CA0D2960C4F500579170 /* CirclesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F73CA0C2960C4F500579170 /* CirclesPresenter.swift */; };
 		7F73CA0F2960C6AD00579170 /* CircleDetails+CollectionVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F73CA0E2960C6AD00579170 /* CircleDetails+CollectionVIew.swift */; };
 		7F73CA112960C92000579170 /* Full_imageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F73CA102960C92000579170 /* Full_imageVC.swift */; };
+		7F73CA132960CFC800579170 /* CircleDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F73CA122960CFC800579170 /* CircleDetailsPresenter.swift */; };
 		7F9052B128EB731A0044F76C /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B028EB731A0044F76C /* GFTitleLabel.swift */; };
 		7F9052B328EB748C0044F76C /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B228EB748C0044F76C /* GFBodyLabel.swift */; };
 		7F9052B528EB76D20044F76C /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B428EB76D20044F76C /* GFTextField.swift */; };
@@ -145,6 +146,7 @@
 		7F73CA0C2960C4F500579170 /* CirclesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesPresenter.swift; sourceTree = "<group>"; };
 		7F73CA0E2960C6AD00579170 /* CircleDetails+CollectionVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CircleDetails+CollectionVIew.swift"; sourceTree = "<group>"; };
 		7F73CA102960C92000579170 /* Full_imageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Full_imageVC.swift; sourceTree = "<group>"; };
+		7F73CA122960CFC800579170 /* CircleDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailsPresenter.swift; sourceTree = "<group>"; };
 		7F9052B028EB731A0044F76C /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
 		7F9052B228EB748C0044F76C /* GFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFBodyLabel.swift; sourceTree = "<group>"; };
 		7F9052B428EB76D20044F76C /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				7F73CA082960C47E00579170 /* HomePresenter.swift */,
 				7F73CA0A2960C49900579170 /* AboutCatPresenter.swift */,
 				7F73CA0C2960C4F500579170 /* CirclesPresenter.swift */,
+				7F73CA122960CFC800579170 /* CircleDetailsPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -823,6 +826,7 @@
 				7F30C28728EE094F0007AACF /* LoginPresenter.swift in Sources */,
 				7F30C2A928EE22BE0007AACF /* TextField.swift in Sources */,
 				7F73C9FB2960C26200579170 /* AboutCatModel.swift in Sources */,
+				7F73CA132960CFC800579170 /* CircleDetailsPresenter.swift in Sources */,
 				7F30C27828EDC5620007AACF /* GFPageControl.swift in Sources */,
 				7FB4F38328EB510C008557ED /* GFNavigationController.swift in Sources */,
 				7FB4F38728EB5458008557ED /* GFButton.swift in Sources */,

@@ -19,12 +19,12 @@ class CircleDetailsVC: UIViewController {
     
     var model: [CircleDetailsModel]    = []
     
-//    var presenter: CircleDetailsPresenter!
+    var presenter: CircleDetailsPresenter!
     
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        presenter = CircleDetailsPresenter(view: self)
+        presenter = CircleDetailsPresenter(view: self)
         configureCollectionView()
         configureDataSource()
         fetchCircleData()
@@ -41,9 +41,9 @@ class CircleDetailsVC: UIViewController {
     
     private func fetchCircleData() {
         if currentCircle?.type == "tech" {
-//            presenter.featchTechCircleDetails(currentCircle?.id ?? "ios")
+            presenter.featchTechCircleDetails(currentCircle?.id ?? "ios")
         } else {
-//            presenter.featchNonTechCircleDetails(currentCircle?.id ?? "hr")
+            presenter.featchNonTechCircleDetails(currentCircle?.id ?? "hr")
         }
     }
 }
