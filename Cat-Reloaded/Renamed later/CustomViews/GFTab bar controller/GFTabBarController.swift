@@ -16,7 +16,6 @@ class GFTabBarController: UITabBarController {
         tabBar.backgroundColor          = .secondarySystemBackground
     }
     
-    
     func createHomeNC() -> UINavigationController {
         let HomeVC        = HomeVC()
         HomeVC.title      = "Home"
@@ -48,8 +47,4 @@ class GFTabBarController: UITabBarController {
 
         return UINavigationController(rootViewController: catianVC)
     }
-
-
-
-    
 }

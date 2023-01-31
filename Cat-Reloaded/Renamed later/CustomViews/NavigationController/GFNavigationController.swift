@@ -15,7 +15,7 @@ class GFNavigationController: UINavigationController {
     }
     
     func setUpNavigationController() {
-        navigationItem.backBarButtonItem?.tintColor = UIColor.green
+        navigationBar.tintColor = UIColor.green
         let mainView = BoardingVC()
         self.viewControllers = [mainView]
     }

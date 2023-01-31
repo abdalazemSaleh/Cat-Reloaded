@@ -10,12 +10,14 @@ import Foundation
 extension HomeVC: HomeView {
     func getMemories(data: MemoriesModel) {
         let memories = data.data
+        memoriesPages = data.totalPages
         snapshot.appendItems(memories, toSection: .memorires)
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
     
     func getPodCat(data: PodCatModel) {
         let podCat =  data.data
+        podCatPages = data.totalPages
         snapshot.appendItems(podCat, toSection: .podCat)
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }

@@ -20,16 +20,23 @@ enum HTTPStatusCode: Int, Error {
     case badGateway             = 502
 }
 
-class NetworkManger {
-    static let shared = NetworkManger()
+
+struct NetworkManger {
     
-    func request<T: Codable>(modal: T.Type, url: String, method: HTTPMethod, parms: [String:Any]?, header: [String:Any]?, completion: @escaping (ServerResponse<T>) -> Void) {
+    let url: String
+    let method: HTTPMethod
+    let parms: [String: Any]?
+    let header: [String: Any]?
+            
+    func request<T: Codable>(modal: T.Type, completion: @escaping (ServerResponse<T>) -> Void) {
+        
         let url = URLs.baseURL.rawValue + url
+                
         Alamofire.request(url, method: method, parameters: parms, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
             guard let statusCode = response.response?.statusCode else { return }
             print(statusCode)
             guard let responseType: HTTPStatusCode = HTTPStatusCode(rawValue: statusCode) else {
-                return completion(.failure(GFErro.invalidResponse))
+                return completion(.failure(GFError.invalidResponse))
             }
             switch responseType {
             case .ok:
@@ -62,8 +69,9 @@ class NetworkManger {
     }
 }
 
+
 enum ServerResponse<T> {
-    case success(T), failure(GFErro)
+    case success(T), failure(GFError)
 }
 
 #warning("Move parsJson to another file")

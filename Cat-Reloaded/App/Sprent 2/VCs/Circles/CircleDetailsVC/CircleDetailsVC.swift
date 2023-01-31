@@ -37,6 +37,8 @@ class CircleDetailsVC: UIViewController {
     private func configureNavigationController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles  =   false
+        
+        navigationController?.navigationBar.tintColor = Colors.mainColor
     }
     
     private func fetchCircleData() {

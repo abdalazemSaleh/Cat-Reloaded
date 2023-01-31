@@ -15,8 +15,8 @@ import UIKit
         static let Home         = UIImage(named: "Home")
         static let Circles      = UIImage(named: "Circles")
         static let Events       = UIImage(named: "Events")
-        static let facebook     = UIImage(named: "facebook")?.withTintColor(.white)
-        static let google       = UIImage(named: "google")?.withTintColor(.white)
+        static let facebook     = UIImage(named: "facebook")
+        static let google       = UIImage(named: "gamil")
         
         static let becomACATian = UIImage(named: "BecomCATian")
     }

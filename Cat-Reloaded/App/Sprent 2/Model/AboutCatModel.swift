@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct AboutCatInfoModel: Hashable, Codable {
     let about: String
     let history: String

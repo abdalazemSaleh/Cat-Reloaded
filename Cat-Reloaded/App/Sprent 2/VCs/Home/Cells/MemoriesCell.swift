@@ -27,10 +27,13 @@ class MemoriesCell: UICollectionViewCell {
     
     // MARK: - Configure function
     func configure() {
+        imageView.image = UIImage(systemName: "photo.fill")
         contentView.addSubview(imageView)
+        
         imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 4
         imageView.clipsToBounds = true
+        
         contentView.backgroundColor = .systemBackground
         
         NSLayoutConstraint.activate([
@@ -42,7 +45,9 @@ class MemoriesCell: UICollectionViewCell {
     }
     
     func set(_ memories: MemoriesData) {
-        let url = URL(string: memories.imageUrl)
-        imageView.kf.setImage(with: url)
+        DispatchQueue.main.async {
+            let url = URL(string: memories.thumbnailUrl)
+            self.imageView.kf.setImage(with: url)
+        }
     }
 }

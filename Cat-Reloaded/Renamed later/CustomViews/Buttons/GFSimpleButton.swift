@@ -25,7 +25,7 @@ class GFSimpleButton: UIButton {
     }
     
     private func configure() {
-        titleLabel?.font            = UIFont.preferredFont(forTextStyle: .headline)
+        titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         translatesAutoresizingMaskIntoConstraints = false
     }
     

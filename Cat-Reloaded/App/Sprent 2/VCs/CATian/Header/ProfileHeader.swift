@@ -8,54 +8,78 @@
 import UIKit
 
 class ProfileHeader : UITableViewHeaderFooterView {
-
-let userImage   = GFImageView(frame: .zero)
-let profileName = GFTitleLabel(textAlignment: .center, fontSize: 16, weight: .bold)
-let viewProfileButton = GFSimpleButton(title: "View Profile >", titleColor: .label)
-
-
-override init(reuseIdentifier: String?) {
-    super.init(reuseIdentifier: reuseIdentifier)
-    configure()
-    handleUserImage()
+    // MARK: - Variables
+    let userImage           = GFImageView(frame: .zero)
+    let stackView           = UIStackView()
+    let userName            = GFTitleLabel(textAlignment: .center, fontSize: 16, weight: .bold)
+    let viewProfileButton   = GFSimpleButton(title: "View Profile >", titleColor: .darkGray)
     
-}
-
-required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-}
-}
-
-extension ProfileHeader {
-    func configure() {
-        addSubview(userImage)
-        addSubview(profileName)
-        addSubview(viewProfileButton)
-        backgroundColor = .systemBackground
-        viewProfileButton.setTitleColor(UIColor.darkGray, for: .normal)
-        NSLayoutConstraint.activate([
-            userImage.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            userImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            userImage.heightAnchor.constraint(equalToConstant: 80),
-            userImage.widthAnchor.constraint(equalToConstant: 80),
-            
-            profileName.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            profileName.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: 20),
-            
-            viewProfileButton.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: 20),
-            viewProfileButton.bottomAnchor.constraint(equalTo: profileName.bottomAnchor, constant: 35)
-            
-        ])
-        profileName.text = "Omar Tharwat"
+    // MARK: - initializer
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        configure()
+        handleUserImage()
         
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+// MARK: - Configure function
+extension ProfileHeader {
+    func configure() {
+        configureUserImageConstraint()
+//        configureStackViewConstraint()
+        configureUserNameConstraint()
+        configureViewProfileButtonConstraint()
+    }
+}
+
+// MARK: - Functions
+extension ProfileHeader {
     func handleUserImage(){
-        userImage.image = UIImage(named: "5")
+        userImage.image = UIImage(named: "abd")
         userImage.layer.cornerRadius = 40
         userImage.layer.masksToBounds = false
         userImage.clipsToBounds = true
-        userImage.layer.borderWidth = 4
-        userImage.layer.borderColor = UIColor.black.cgColor
+        userImage.layer.borderWidth = 1
+        userImage.layer.borderColor = UIColor.secondaryLabel.cgColor
+    }
+}
+
+// MARK: - constraints
+extension ProfileHeader {
+    func configureUserImageConstraint() {
+        addSubview(userImage)
+        
+        NSLayoutConstraint.activate([
+            userImage.centerYAnchor.constraint(equalTo: centerYAnchor),
+            userImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            userImage.heightAnchor.constraint(equalToConstant: 80),
+            userImage.widthAnchor.constraint(equalToConstant: 80)
+        ])
     }
     
+    
+    func configureUserNameConstraint() {
+        addSubview(userName)
+        userName.text = UserData.getUserModel()?.fullName
+        
+        NSLayoutConstraint.activate([
+            userName.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            userName.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: 20)
+        ])
+    }
+    
+    func configureViewProfileButtonConstraint() {
+        addSubview(viewProfileButton)
+        viewProfileButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        
+        NSLayoutConstraint.activate([
+            viewProfileButton.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: 20),
+            viewProfileButton.bottomAnchor.constraint(equalTo: userName.bottomAnchor, constant: 35)
+        ])
+    }
 }
+

@@ -24,8 +24,9 @@ class CircleBoardCell: UICollectionViewCell {
     let userPossetion           = GFTitleLabel(textAlignment: .center, fontSize: 10, weight: .regular)
     
     let facebook                = GFMediaButton(backgroundColor: .clear, image: UIImage(named: "facebook")!)
-    let twitter                 = GFMediaButton(backgroundColor: .clear, image: UIImage(named: "facebook")!)
-    let linkedin                = GFMediaButton(backgroundColor: .clear, image: UIImage(named: "facebook")!)
+    let twitter                 = GFMediaButton(backgroundColor: .clear, image: UIImage(named: "twitter")!)
+    let linkedin                = GFMediaButton(backgroundColor: .clear, image: UIImage(named: "linkedin")!)
+    let gitHub                  = GFMediaButton(backgroundColor: .clear, image: UIImage(named: "github")!)
     
    var facebookLink : String   = ""
    var twitterLink : String    = ""
@@ -41,6 +42,8 @@ class CircleBoardCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
+        gitHub.tintColor = .red
+        gitHub.contentMode = .scaleToFill
     }
     
     required init?(coder: NSCoder) {
@@ -118,10 +121,6 @@ extension CircleBoardCell {
         mediaButtonStack.axis           = .horizontal
         mediaButtonStack.spacing        = 16
 
-        mediaButtons = [facebook, twitter, linkedin]
-        for mediaButton in mediaButtons {
-            mediaButtonStack.addArrangedSubview(mediaButton)
-        }
         mediaButtonStack.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -158,9 +157,30 @@ extension CircleBoardCell {
         gitHubLink          = model.githubUrl ?? ""
         twitterLink         = model.twitterUrl ?? ""
         
+        if !facebookLink.isEmpty {
+            mediaButtons.append(facebook)
+        }
+        
+        if !linkedInLink.isEmpty {
+            mediaButtons.append(linkedin)
+        }
+
+        if !twitterLink.isEmpty {
+            mediaButtons.append(twitter)
+        }
+
+        if !gitHubLink.isEmpty {
+            mediaButtons.append(gitHub)
+        }
+                
+        for mediaButton in mediaButtons {
+            mediaButtonStack.addArrangedSubview(mediaButton)
+        }
+        
         facebook.addTarget(self, action: #selector(facebookButtonClicked), for: .touchUpInside)
         twitter.addTarget(self, action: #selector(twitterClicked), for: .touchUpInside)
         linkedin.addTarget(self, action: #selector(linkedInClicked), for: .touchUpInside)
+        gitHub.addTarget(self, action: #selector(gitHubClicked), for: .touchUpInside)
     }
     
     @objc func facebookButtonClicked() {

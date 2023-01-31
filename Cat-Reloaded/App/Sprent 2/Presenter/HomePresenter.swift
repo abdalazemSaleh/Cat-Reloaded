@@ -19,11 +19,14 @@ class HomePresenter {
         self.view = view
     }
     // Code
-    func fetchMemories() {
-        NetworkManger.shared.request(modal: MemoriesModel.self, url: URLs.memories.rawValue, method: .get, parms: nil, header: nil) { [weak self] result in
+    func fetchMemories(page: Int) {
+        let url = URLs.memories.rawValue + "/\(page)"
+        let memoriesObject = NetworkManger(url: url, method: .get, parms: nil, header: nil)
+        memoriesObject.request(modal: MemoriesModel.self) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):
+                print(data)
                 self.view?.getMemories(data: data)
             case .failure(let error):
                 print(error)
@@ -31,8 +34,10 @@ class HomePresenter {
         }
     }
     
-    func fetchPodCat() {
-        NetworkManger.shared.request(modal: PodCatModel.self, url: URLs.podCat.rawValue, method: .get, parms: nil, header: nil) { [weak self] result in
+    func fetchPodCat(page: Int) {
+        let url = URLs.podCat.rawValue + "/\(page)"
+        let podCatObject = NetworkManger(url: url, method: .get, parms: nil, header: nil)
+        podCatObject.request(modal: PodCatModel.self) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):

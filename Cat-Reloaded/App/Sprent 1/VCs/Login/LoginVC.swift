@@ -25,8 +25,8 @@ class LoginVC: UIViewController {
     let forgetPassword          = GFSimpleButton(title: "Forget password?", titleColor: .label)
     let loginbutton             = TransitionButton(frame: .zero)
     let loginWithLabel          = GFTitleLabel(textAlignment: .center, fontSize: 16, weight: .bold)
-    let facebookButton          = GFMediaButton(backgroundColor: .blue, image: Images.facebook!)
-    let googleButton            = GFMediaButton(backgroundColor: .red, image: Images.google!)
+    let facebookButton          = GFMediaButton(backgroundColor: .clear, image: Images.facebook!)
+    let googleButton            = GFMediaButton(backgroundColor: .clear, image: Images.google!)
     let mediaLoginStack         = UIStackView()
     let newGuestLabel           = GFTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
     let signUpButton            = GFSimpleButton(title: "sgin up", titleColor: Colors.mainColor!)
@@ -44,7 +44,6 @@ class LoginVC: UIViewController {
         configureUI()
         configureActionButtons()
         handelViewWhileUsingKeyboard()
-        facebookButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 4, bottom: 0, right: 4)
     }
     
     override func viewWillAppear(_ animated: Bool) {

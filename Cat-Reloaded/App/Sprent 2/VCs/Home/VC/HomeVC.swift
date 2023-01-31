@@ -22,6 +22,13 @@ class HomeVC: UIViewController {
     var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>!
     var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
     
+    var memoriesPages       = 1
+    var memoriesCurrentPage = 1
+    var num_ofMemories      = 10
+    var podCatPages         = 1
+    var podCatCurrentPage   = 1
+    var num_ofPodCat        = 10
+    
     let padding: CGFloat            = 20
     
     var podCatVideosUrls: [String]  = []
@@ -35,21 +42,28 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         presenter               = HomePresenter(view: self)
         configureNavigationController()
-        presenter.fetchMemories()
-        presenter.fetchPodCat()
+        presenter.fetchMemories(page: memoriesCurrentPage)
+        presenter.fetchPodCat(page: podCatCurrentPage)
         configureCollectionView()
         configureDataSource()
         configureHeaderCell()
+        
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationController()
+    }
+
     // MARK: - Functions
-    func configureNavigationController() {
-        view.backgroundColor    = .systemBackground
+    private func configureNavigationController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles  = true
     }
     
-    func configureHeaderCell() {
+    private func configureHeaderCell() {
         let userData = UserData.getUserModel()
         if userData?.isCatian ?? false {
             print("is allready in")
@@ -59,4 +73,12 @@ class HomeVC: UIViewController {
             snapshot.appendItems(myArr, toSection: .headerCell)
         }
     }
+    
+    @objc private func refresh() {
+        print("Working in refrishing")
+        presenter.fetchMemories(page: memoriesCurrentPage)
+        presenter.fetchPodCat(page: podCatCurrentPage)
+        collectionView.refreshControl?.endRefreshing()
+    }
+
 }

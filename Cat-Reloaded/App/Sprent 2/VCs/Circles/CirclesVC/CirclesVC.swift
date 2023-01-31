@@ -36,9 +36,9 @@ class CirclesVC: UIViewController {
         configureNavigationController()
     }
     // MARK: - Functions
-    func configureNavigationController() {
+    private func configureNavigationController() {
         view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles  =   true
+        navigationController?.navigationBar.prefersLargeTitles  = true        
     }
     
     func appendModel(type: CircleType) {

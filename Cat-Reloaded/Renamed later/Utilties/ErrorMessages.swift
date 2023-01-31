@@ -9,7 +9,7 @@ import Foundation
 
 #warning("this messages from GitHub App don't forget. 👻")
 
-enum GFErro: String, Error {
+enum GFError: String, Error {
     
     case invalidUsername    = "This username created an invalid request. Please try again."
     case unableToComplete   = "Unable to complete your request. Please check your internet connection"

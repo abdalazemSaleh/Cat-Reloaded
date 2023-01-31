@@ -25,16 +25,16 @@ class RegisterPresenter {
     // Code
     func signUp(parms: [String : Any]) {
         view?.startAnimation()
-        NetworkManger.shared.request(modal: ProfileModel.self, url: URLs.sginup.rawValue, method: .post, parms: parms, header: nil) { result in
+        let signUpObject = NetworkManger(url: URLs.sginup.rawValue, method: .post, parms: parms, header: nil)
+        signUpObject.request(modal: ProfileModel.self) { result in
+            self.view?.stopAnimation()
             switch result {
             case .success(let user):
                 print(user)
                 UserData.chacheUserModel(user: user)
-                self.view?.stopAnimation()
                 self.view?.goToHomeScreen()
             case .failure(let error):
                 print(error.rawValue)
-                self.view?.stopAnimation()
             }
         }
     }

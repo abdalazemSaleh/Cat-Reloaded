@@ -20,7 +20,8 @@ class CirclesPresenter {
     }
     // Code
     func fetchTechCircles() {
-        NetworkManger.shared.request(modal: [CirclesModel].self, url: URLs.techCircles.rawValue, method: .get, parms: nil, header: nil) { [weak self] response in
+        let techCirclesObject = NetworkManger(url: URLs.techCircles.rawValue, method: .get, parms: nil, header: nil)
+        techCirclesObject.request(modal: [CirclesModel].self) { [weak self] response in
             guard let self = self else { return }
             switch response {
             case .success(let data):
@@ -32,7 +33,8 @@ class CirclesPresenter {
     }
     
     func fetchNonTechCircles() {
-        NetworkManger.shared.request(modal: [CirclesModel].self, url: URLs.nonTechCircles.rawValue, method: .get, parms: nil, header: nil) { [weak self] response in
+        let nonTechCirclesObject = NetworkManger(url: URLs.nonTechCircles.rawValue, method: .get, parms: nil, header: nil)
+        nonTechCirclesObject.request(modal: [CirclesModel].self) { [weak self] response in
             guard let self = self else { return }
             switch response {
             case .success(let data):

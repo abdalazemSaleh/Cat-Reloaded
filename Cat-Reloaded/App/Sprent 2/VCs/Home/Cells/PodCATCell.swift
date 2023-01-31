@@ -27,7 +27,6 @@ class PodCATCell: UICollectionViewCell {
     
     // MARK: - Configure function
     func configure() {
-        
         imageView.image = UIImage(systemName: "photo.fill")
         
         contentView.addSubview(imageView)
@@ -48,8 +47,9 @@ class PodCATCell: UICollectionViewCell {
     }
     
     func set(_ podCats: PodCatData) {
-        let url = URL(string: podCats.thumbnailUrl)
-        print(url)
-        imageView.kf.setImage(with: url)
+        DispatchQueue.main.async {
+            let url = URL(string: podCats.thumbnailUrl)
+            self.imageView.kf.setImage(with: url)
+        }
     }
 }

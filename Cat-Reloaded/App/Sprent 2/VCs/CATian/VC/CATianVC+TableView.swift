@@ -7,64 +7,68 @@
 
 import UIKit
 
-extension CATianVC {
+extension CATianVC: UITableViewDelegate, UITableViewDataSource {
     
-    func configureTableView (){
-        tableView = UITableView(frame: view.bounds, style: .plain)
+    func configureTableView() {
+        tableView = UITableView(frame: view.bounds, style: .grouped)
         view.addSubview(tableView)
+        registerTableViewCells()
+        tableViewCustomConfiguration()
+    }
+    
+    private func registerTableViewCells() {
         tableView.register(ProfileHeader.self, forHeaderFooterViewReuseIdentifier: self.headerId)
         tableView.register(ProfileFooter.self, forHeaderFooterViewReuseIdentifier: self.footerId)
         tableView.register(ProfileCell.self, forCellReuseIdentifier: self.cellId)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.isScrollEnabled = false
-        tableView.separatorStyle = .none
-        tableView.allowsSelection = false
     }
     
-    // MARK :- HEADER
+    private func tableViewCustomConfiguration() {
+        tableView.backgroundColor   = .systemBackground
+        tableView.separatorStyle    = .none
+        tableView.delegate          = self
+        tableView.dataSource        = self
+    }
     
+    // MARK: - HEADER
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
         return 100
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerId) as! ProfileHeader
+        header.viewProfileButton.addTarget(self, action: #selector(viewProfile), for: .touchUpInside)
         return header
     }
     
-    
-    // MARK :- FOOTER
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        
-        return 150
+    @objc private func viewProfile() {
+        presentGFAlert(title: "Hi🙋🏼‍♂️", message: "We working on this wait for more. 👻", buttonTitle: "Ok")
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        
-        let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: footerId) as! ProfileFooter
-        return footer
-    }
-    
-    // MARK :- CELL
-    
+    // MARK: - CELL
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 5
+        return catIanArray.count
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ProfileCell
+        let model = catIanArray[indexPath.row]
+        cell.set(model: model)
+        return cell
+    }
+
+    // MARK: - FOOTER
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 80
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ProfileCell
-        return cell
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: footerId) as! ProfileFooter
+        footer.log_outButton.addTarget(self, action: #selector(log_out), for: .touchUpInside)
+        return footer
+    }
+    @objc private func log_out() {
+        print("Good bye.👋🏻")
+        UserData.resetDefaults()
+        presentLoginScreen()
     }
 }

@@ -21,7 +21,8 @@ class AboutCatPresenter {
     }
     // Code
     func fetchAboutCatInfo() {
-        NetworkManger.shared.request(modal: AboutCatInfoModel.self, url: URLs.info.rawValue, method: .get, parms: nil, header: nil) { [weak self] result in
+        let catInfoObject = NetworkManger(url: URLs.info.rawValue, method: .get, parms: nil, header: nil)
+        catInfoObject.request(modal: AboutCatInfoModel.self) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):
@@ -33,7 +34,8 @@ class AboutCatPresenter {
     }
     
     func fetchFounders() {
-        NetworkManger.shared.request(modal: [TeamBoardModel].self, url: URLs.founders.rawValue, method: .get, parms: nil, header: nil) { [weak self] result in
+        let founderObject = NetworkManger(url: URLs.founders.rawValue, method: .get, parms: nil, header: nil)
+        founderObject.request(modal: [TeamBoardModel].self) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):
@@ -45,7 +47,8 @@ class AboutCatPresenter {
     }
     
     func fetchTeamBoard() {
-        NetworkManger.shared.request(modal: [TeamBoardModel].self, url: URLs.teamBoard.rawValue, method: .get, parms: nil, header: nil) { [weak self] result in
+        let teamBoardObject = NetworkManger(url: URLs.teamBoard.rawValue, method: .get, parms: nil, header: nil)
+        teamBoardObject.request(modal: [TeamBoardModel].self) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):
@@ -55,5 +58,4 @@ class AboutCatPresenter {
             }
         }
     }
-    
 }

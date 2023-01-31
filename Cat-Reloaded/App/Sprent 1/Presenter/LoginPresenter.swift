@@ -28,17 +28,18 @@ class LoginPresenter {
     // Login
     func login(parms: [String: Any]) {
         view?.startAnimation()
-        NetworkManger.shared.request(modal: ProfileModel.self, url: URLs.login.rawValue, method: .post, parms: parms, header: nil) { [weak self] result in
+        let loginObject = NetworkManger(url: URLs.login.rawValue, method: .post, parms: parms, header: nil)
+        loginObject.request(modal: ProfileModel.self) { [weak self] result in
             guard let self = self else { return }
+            self.view?.stopAnimation()
+            
             switch result {
             case .success(let user):
                 print(user)
                 UserData.chacheUserModel(user: user)
                 self.view?.goToHomeScreen()
-                self.view?.stopAnimation()
             case .failure(let error):
                 self.view?.alertMessage(message: error.rawValue)
-                self.view?.stopAnimation()
             }
         }
     }
@@ -54,19 +55,20 @@ class LoginPresenter {
                 "token" : token
             ]
             // Send data to back end
-            NetworkManger.shared.request(modal: ProfileModel.self, url: URLs.external.rawValue, method: .post, parms: parms, header: nil) { result in
+            let loginWithFacebookObject = NetworkManger(url: URLs.external.rawValue, method: .post, parms: parms, header: nil)
+            loginWithFacebookObject.request(modal: ProfileModel.self) { [weak self] result in
+                guard let self = self else { return }
+                self.view?.stopAnimation()
+
                 switch result {
                 case .success(let user):
                     print(user)
                     UserData.chacheUserModel(user: user)
                     self.view?.goToHomeScreen()
-                    self.view?.stopAnimation()
                 case .failure(let error):
                     self.view?.alertMessage(message: error.localizedDescription)
-                    self.view?.stopAnimation()
                 }
             }
-            print(token)
         }
     }
     // Login with google
@@ -74,6 +76,7 @@ class LoginPresenter {
         view?.startAnimation()
         let signInConfig = GIDConfiguration(clientID: "783608969759-0brae1mhmc6nnrl682teqi6lr8onhm49.apps.googleusercontent.com")
         GIDSignIn.sharedInstance.signIn(with: signInConfig, presenting: controller) { user, error in
+            self.view?.stopAnimation()
             guard error == nil else { return }
             guard let user = user else { return }
             user.authentication.do { authentication, error in
@@ -83,16 +86,18 @@ class LoginPresenter {
                     "provider" : "google",
                     "token" : token
                 ]
-                NetworkManger.shared.request(modal: ProfileModel.self, url: URLs.external.rawValue, method: .post, parms: parms, header: nil) { result in
+                // send data to back end
+                let loginWithGoogle = NetworkManger(url: URLs.external.rawValue, method: .post, parms: parms, header: nil)
+                loginWithGoogle.request(modal: ProfileModel.self) { [weak self] result in
+                    guard let self = self else { return }
+
                     switch result {
                     case .success(let user):
                         print(user)
                         UserData.chacheUserModel(user: user)
                         self.view?.goToHomeScreen()
-                        self.view?.stopAnimation()
                     case .failure(let error):
                         self.view?.alertMessage(message: error.localizedDescription)
-                        self.view?.stopAnimation()
                     }
                 }
             }
