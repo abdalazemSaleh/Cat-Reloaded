@@ -16,6 +16,7 @@ class CircleDetailsHeaderCell: UICollectionViewCell {
     let circleDescrption        = GFTextView(textAlignment: .left, fontSize: 14, weight: .regular)
     
     let roadMapButton           = GFButton(title: "Road map")
+    var roadMapUrl              = ""
     
     let padding: CGFloat        = 20
     
@@ -106,9 +107,14 @@ extension CircleDetailsHeaderCell {
 extension CircleDetailsHeaderCell {
     func set(model: CircleDetailsModel, image: String) {
         circleImage.image = UIImage(named: image)
-        let roadmapUrl = URL(string: model.roadmapUrl ?? "")
+        roadMapUrl = model.roadmapUrl ?? ""
+        roadMapButton.addTarget(CircleDetailsVC(), action: #selector(openUrl), for: .touchUpInside)
         circleName.text         = model.name
         circleDescrption.text   = model.description
     }
+    @objc private func openUrl() {
+        if let url = URL(string: roadMapUrl) {
+            UIApplication.shared.open(url)
+        }
+    }
 }
-

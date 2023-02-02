@@ -36,7 +36,7 @@ extension CircleDetailsVC {
         }
         return layout
     }
-    
+            
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<CircleDetailsSections, AnyHashable>(collectionView: collectionView, cellProvider: { [weak self] (collectionView: UICollectionView, indexPath: IndexPath, model: AnyHashable) -> UICollectionViewCell in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleDetailsHeaderCell.reuseIdentifer, for: indexPath) as! CircleDetailsHeaderCell
