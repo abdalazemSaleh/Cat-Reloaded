@@ -12,7 +12,7 @@ enum CirclesSection: CaseIterable {
 }
 
 extension CirclesVC {
-     func configureCollectionView() {
+    func configureCollectionView() {
         collectionView  = UICollectionView(frame: view.bounds, collectionViewLayout: generateLayout())
         view.addSubview(collectionView)
         collectionView.delegate = self
@@ -22,21 +22,20 @@ extension CirclesVC {
     }
     
     func configureDataSource() {
-       dataSource = UICollectionViewDiffableDataSource<CirclesSection, CirclesModel>(collectionView: collectionView, cellProvider: { (collectionView: UICollectionView, indexPath: IndexPath, model: CirclesModel) -> UICollectionViewCell in
-               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleCell.reuseIdentifer, for: indexPath) as! CircleCell
-           print(model.id)
-           cell.set(model: model)
-               return cell
-       })
-       // Header
-       dataSource.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
-           guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CircleHeader.reuseIdentifer, for: indexPath) as? CircleHeader else{
-               fatalError("Cannot create header view")
-           }
-           supplementaryView.delegate  = self
-           return supplementaryView
-       }
-   }
+        dataSource = UICollectionViewDiffableDataSource<CirclesSection, CirclesModel>(collectionView: collectionView, cellProvider: { (collectionView: UICollectionView, indexPath: IndexPath, model: CirclesModel) -> UICollectionViewCell in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleCell.reuseIdentifer, for: indexPath) as! CircleCell
+                cell.set(model: model)
+            return cell
+        })
+        // Header
+        dataSource.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
+            guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CircleHeader.reuseIdentifer, for: indexPath) as? CircleHeader else{
+                fatalError("Cannot create header view")
+            }
+            supplementaryView.delegate  = self
+            return supplementaryView
+        }
+    }
     
     func updateData(on circles: [CirclesModel]) {
         var snapshot = NSDiffableDataSourceSnapshot<CirclesSection, CirclesModel>()

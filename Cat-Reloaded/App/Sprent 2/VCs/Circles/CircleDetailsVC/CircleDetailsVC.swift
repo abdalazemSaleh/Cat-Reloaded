@@ -19,8 +19,9 @@ class CircleDetailsVC: UIViewController {
     
     var model: [CircleDetailsModel]    = []
     
-    var presenter: CircleDetailsPresenter!
+    var emptyStateView = GFEmptyStateView()
     
+    var presenter: CircleDetailsPresenter!
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()

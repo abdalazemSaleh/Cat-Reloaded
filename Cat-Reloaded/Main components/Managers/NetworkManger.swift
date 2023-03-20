@@ -1,0 +1,102 @@
+//
+//  NetworkManger.swift
+//  Cat-Reloaded
+//
+//  Created by Abdalazem Saleh on 2022-10-29.
+//
+
+import Foundation
+import Alamofire
+
+
+struct Connectivity {
+  static let sharedInstance = NetworkReachabilityManager()!
+  static var isConnectedToInternet:Bool {
+      return self.sharedInstance.isReachable
+    }
+}
+
+enum HTTPStatusCode: Int, Error {
+    case ok                     = 200
+    case badRequest             = 400
+    case notAuthorized          = 401
+    case forbidden              = 402
+    case notFound               = 404
+    case DataInvalid            = 422
+    case internalServerError    = 500
+    case badGateway             = 502
+}
+
+struct NetworkManger {
+    
+    let url: String
+    let method: HTTPMethod
+    let parms: [String: Any]?
+    let header: HTTPHeaders?
+    
+    func request<T: Codable>(modal: T.Type, completion: @escaping (ServerResponse<T>) -> Void) {
+        
+        let url = URLs.baseURL.rawValue + url
+        
+        Alamofire.request(url, method: method, parameters: parms, encoding: JSONEncoding.default, headers: header).responseJSON { response in
+            
+            guard Connectivity.isConnectedToInternet else { return completion(.failure(GFError.connectionError)) }
+            
+            guard let statusCode = response.response?.statusCode else { return }
+            guard let responseType: HTTPStatusCode = HTTPStatusCode(rawValue: statusCode) else {
+                return completion(.failure(GFError.invalidResponse))
+            }
+            switch responseType {
+            case .ok:
+                guard let data = response.data else { return }
+                ParsJson.shared.parsJson(modal: modal, data: data) { result in
+                    switch result {
+                    case .success(let userInfo):
+                        completion(.success(userInfo))
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
+#warning("don't forget Return error message with completion")
+            case .badRequest:
+                completion(.failure(.alreadyInFavorites))
+            case .notAuthorized:
+                completion(.failure(.invalidData))
+            case .forbidden:
+                completion(.failure(.unableToFavorite))
+            case .notFound:
+                completion(.failure(.invalidResponse))
+            case .DataInvalid:
+                completion(.failure(.invalidResponse))
+            case .internalServerError:
+                completion(.failure(.invalidResponse))
+            case .badGateway:
+                completion(.failure(.invalidResponse))
+            }
+        }
+    }    
+}
+
+struct ImageDownloader {
+    let urlString: String
+    func downloadImage(completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: urlString) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            guard error == nil,
+                  let response = response as? HTTPURLResponse,
+                  response.statusCode == 200,
+                  let data = data else { return }
+            
+            guard let image = UIImage(data: data) else { return }
+            
+            completion(image)
+        }
+        task.resume()
+    }
+}
+
+enum ServerResponse<T> {
+    case success(T), failure(GFError)
+}

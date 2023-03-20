@@ -35,9 +35,15 @@ class LoginPresenter {
             
             switch result {
             case .success(let user):
-                print(user)
-                UserData.chacheUserModel(user: user)
-                self.view?.goToHomeScreen()
+                UserDefaults.standard.set(user.token ?? "", forKey: "UserToken")
+                UserData.fetchUserInfo { response in
+                    switch response {
+                    case .success(_):
+                        self.view?.goToHomeScreen()
+                    case .failure(let error):
+                        print(error.rawValue)
+                    }
+                }
             case .failure(let error):
                 self.view?.alertMessage(message: error.rawValue)
             }
@@ -62,9 +68,15 @@ class LoginPresenter {
 
                 switch result {
                 case .success(let user):
-                    print(user)
-                    UserData.chacheUserModel(user: user)
-                    self.view?.goToHomeScreen()
+                    UserDefaults.standard.set(user.token ?? "", forKey: "UserToken")
+                    UserData.fetchUserInfo { response in
+                        switch response {
+                        case .success(_):
+                            self.view?.goToHomeScreen()
+                        case .failure(let error):
+                            print(error.rawValue)
+                        }
+                    }
                 case .failure(let error):
                     self.view?.alertMessage(message: error.localizedDescription)
                 }
@@ -93,9 +105,15 @@ class LoginPresenter {
 
                     switch result {
                     case .success(let user):
-                        print(user)
-                        UserData.chacheUserModel(user: user)
-                        self.view?.goToHomeScreen()
+                        UserDefaults.standard.set(user.token ?? "", forKey: "UserToken")
+                        UserData.fetchUserInfo { response in
+                            switch response {
+                            case .success(_):
+                                self.view?.goToHomeScreen()
+                            case .failure(let error):
+                                print(error.rawValue)
+                            }
+                        }
                     case .failure(let error):
                         self.view?.alertMessage(message: error.localizedDescription)
                     }

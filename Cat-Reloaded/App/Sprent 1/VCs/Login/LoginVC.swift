@@ -41,6 +41,7 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor    = .systemBackground
         presenter               = LoginPresenter(view: self)
+        phone.keyboardType      = .decimalPad
         configureUI()
         configureActionButtons()
         handelViewWhileUsingKeyboard()

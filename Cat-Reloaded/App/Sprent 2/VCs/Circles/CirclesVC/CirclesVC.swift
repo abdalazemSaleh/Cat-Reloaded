@@ -12,9 +12,7 @@ enum CircleType {
     case nonTech
 }
 
-#warning("Chache Circles Data")
-class CirclesVC: UIViewController {
-        
+class CirclesVC: UIViewController {        
     // MARK: - Vailables
     static let sectionHeaderElementKind = "section-header-element-kind"
     var collectionView: UICollectionView!

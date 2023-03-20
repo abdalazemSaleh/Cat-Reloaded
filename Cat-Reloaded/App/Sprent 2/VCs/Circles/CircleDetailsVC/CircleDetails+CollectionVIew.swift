@@ -49,6 +49,7 @@ extension CircleDetailsVC {
                 return cell
             case .main:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleBoardCell.reuseIdentifer, for: indexPath) as! CircleBoardCell
+                cell.borderView.layer.borderColor = Colors.mainColor?.cgColor
                 let model = model as! TeamBoardModel
                 cell.set(model: model)
                 return cell

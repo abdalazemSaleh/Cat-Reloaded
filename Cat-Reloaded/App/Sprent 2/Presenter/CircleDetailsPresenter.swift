@@ -5,11 +5,12 @@
 //  Created by Abdalazem Saleh on 2022-12-31.
 //
 
-import Foundation
+import UIKit
 
 protocol CircleDetailsView: AnyObject {
     func techCircleDetails(data: CircleDetailsModel)
     func nonTechCircleDetails(data: CircleDetailsModel)
+    func presentEmptyView(message: String, image: UIImage)
 }
 
 class CircleDetailsPresenter {
@@ -27,8 +28,12 @@ class CircleDetailsPresenter {
             switch response {
             case .success(let data):
                 self.view?.techCircleDetails(data: data)
-            case .failure(let gFErro):
-                print(gFErro)
+            case .failure(let error):
+                if error == .connectionError {
+                    self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
+                } else {
+                    self.view?.presentEmptyView(message: error.rawValue, image: Images.serverError!)
+                }
             }
         }
     }
@@ -41,10 +46,13 @@ class CircleDetailsPresenter {
             switch response {
             case .success(let data):
                 self.view?.nonTechCircleDetails(data: data)
-            case .failure(let gFErro):
-                print(gFErro)
+            case .failure(let error):
+                if error == .connectionError {
+                    self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
+                } else {
+                    self.view?.presentEmptyView(message: error.rawValue, image: Images.serverError!)
+                }
             }
         }
     }
 }
-

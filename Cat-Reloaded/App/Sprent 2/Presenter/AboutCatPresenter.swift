@@ -5,12 +5,13 @@
 //  Created by Abdalazem Saleh on 2022-12-31.
 //
 
-import Foundation
+import UIKit
 
 protocol AboutCatView: AnyObject {
     func aboutCatInfo(data: AboutCatInfoModel)
     func founders(data: [TeamBoardModel])
     func teamBoard(data: [TeamBoardModel])
+    func presentEmptyView(message: String, image: UIImage)
 }
 
 class AboutCatPresenter {
@@ -28,7 +29,11 @@ class AboutCatPresenter {
             case .success(let data):
                 self.view?.aboutCatInfo(data: data)
             case .failure(let error):
-                print(error)
+                if error == .connectionError {
+                    self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
+                } else {
+                    self.view?.presentEmptyView(message: error.rawValue, image: Images.serverError!)
+                }
             }
         }
     }
@@ -41,7 +46,11 @@ class AboutCatPresenter {
             case .success(let data):
                 self.view?.founders(data: data)
             case .failure(let error):
-                print(error)
+                if error == .connectionError {
+                    self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
+                } else {
+                    self.view?.presentEmptyView(message: error.rawValue, image: Images.serverError!)
+                }
             }
         }
     }
@@ -54,7 +63,11 @@ class AboutCatPresenter {
             case .success(let data):
                 self.view?.teamBoard(data: data)
             case .failure(let error):
-                print(error)
+                if error == .connectionError {
+                    self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
+                } else {
+                    self.view?.presentEmptyView(message: error.rawValue, image: Images.serverError!)
+                }
             }
         }
     }

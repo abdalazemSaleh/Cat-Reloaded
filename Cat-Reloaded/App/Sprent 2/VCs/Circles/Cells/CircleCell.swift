@@ -5,7 +5,6 @@
 //  Created by Abdalazem Saleh on 2022-11-15.
 //
 
-import Kingfisher
 import UIKit
 
 class CircleCell: UICollectionViewCell {

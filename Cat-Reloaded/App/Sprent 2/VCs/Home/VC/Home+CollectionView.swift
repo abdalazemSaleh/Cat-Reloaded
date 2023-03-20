@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 enum Section: String, CaseIterable {
     case headerCell = ""

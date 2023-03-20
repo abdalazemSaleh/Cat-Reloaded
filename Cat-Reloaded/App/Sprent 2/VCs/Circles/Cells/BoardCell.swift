@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class CircleBoardCell: UICollectionViewCell {
     // MARK: - Variables
@@ -15,6 +14,8 @@ class CircleBoardCell: UICollectionViewCell {
     let borderView              = UIView()
     
     let userImage               = UIImageView()
+    
+    let indicator               = UIActivityIndicatorView()
     
     let userFirstName           = GFTitleLabel(textAlignment: .center, fontSize: 16, weight: .bold)
     let userLastName            = GFTitleLabel(textAlignment: .center, fontSize: 16, weight: .bold)
@@ -56,11 +57,12 @@ extension CircleBoardCell {
     private func configure() {
         addSubView()
         configureborderViewConstraint()
+        configureIndicator()
         configureUserImageConstraint()
         configureMediaButtonConstraint()
         cnfigureUserNameAndPossetion()
     }
-        
+    
     // MARK: - Functions
     private func addSubView() {
         addSubview(borderView)
@@ -72,7 +74,6 @@ extension CircleBoardCell {
     
     private func configureborderViewConstraint() {
         borderView.layer.borderWidth   = 2
-        borderView.layer.borderColor   = Colors.mainColor?.cgColor
         borderView.layer.cornerRadius  = 4
         borderView.translatesAutoresizingMaskIntoConstraints               = false
         
@@ -82,6 +83,15 @@ extension CircleBoardCell {
             borderView.trailingAnchor.constraint(equalTo: trailingAnchor),
             borderView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+    
+    private func configureIndicator() {
+        userImage.addSubview(indicator)
+        
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        indicator.centerXAnchor.constraint(equalTo: userImage.centerXAnchor).isActive = true
+        indicator.centerYAnchor.constraint(equalTo: userImage.centerYAnchor).isActive = true
     }
     
     private func configureUserImageConstraint() {
@@ -143,9 +153,14 @@ extension CircleBoardCell {
 extension CircleBoardCell {
     // MARK: - Set Function
     func set(model: TeamBoardModel) {
-        let url = URL(string: model.imageUrl)
-        userImage.kf.setImage(with: url)
-        
+        indicator.startAnimating()
+        ImageDownloader(urlString: model.imageUrl).downloadImage { image in
+            DispatchQueue.main.async {
+                self.indicator.removeFromSuperview()
+                self.userImage.image = image
+            }
+        }
+
         let users           = model.name.split(separator: " ")
         userFirstName.text  = String(users.first ?? "")
         userLastName.text   = String(users.last ?? "")

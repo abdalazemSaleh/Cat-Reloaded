@@ -7,16 +7,12 @@
 
 import UIKit
 
-struct Image: Hashable {
-    let image: String
-}
-
 class HomeVC: UIViewController {
     
     // MARK: - Variables
     var scrollView: UIScrollView!
     var contentView: UIView!
-    
+            
     static let sectionHeaderElementKind = "section-header-element-kind"
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>!
@@ -36,22 +32,20 @@ class HomeVC: UIViewController {
     
     var isCatian: Bool = false
     
+    var emptyStateView = GFEmptyStateView()
+    
     var presenter: HomePresenter!
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter               = HomePresenter(view: self)
-        configureNavigationController()
         presenter.fetchMemories(page: memoriesCurrentPage)
         presenter.fetchPodCat(page: podCatCurrentPage)
         configureCollectionView()
         configureDataSource()
         configureHeaderCell()
-        
-        collectionView.refreshControl = UIRefreshControl()
-        collectionView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
-    
+        
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationController()

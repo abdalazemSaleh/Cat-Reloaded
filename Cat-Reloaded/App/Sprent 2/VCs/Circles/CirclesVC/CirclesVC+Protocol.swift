@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension CirclesVC: checkCirclesType {
+extension CirclesVC: checkSelectedIndex {
     func checkIndex(_ index: Int) {
         if index == 0 {
             data.removeAll()

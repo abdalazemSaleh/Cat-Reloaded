@@ -7,8 +7,6 @@
 
 import UIKit
 
-import UIKit
-
 class AboutCatHeaderCell: UICollectionViewCell {
     // MARK: - Variables
     static let reuseIdentifer   = "CollectionViewHeaderCell"

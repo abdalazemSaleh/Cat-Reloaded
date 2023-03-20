@@ -50,14 +50,15 @@ extension AboutCatVC {
                 return cell
             case .founders:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleBoardCell.reuseIdentifer, for: indexPath) as! CircleBoardCell
+                cell.borderView.layer.borderColor = Colors.mainColor?.cgColor
                 guard let myModel = model as? TeamBoardModel else { return cell}
                 cell.set(model: myModel)
                 return cell
             case .taemBoard:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleBoardCell.reuseIdentifer, for: indexPath) as! CircleBoardCell
                 guard let myModel = model as? TeamBoardModel else { return cell }
+                cell.borderView.layer.borderColor = UIColor.clear.cgColor
                 cell.set(model: myModel)
-                cell.borderView.layer.borderColor = UIColor.white.cgColor
                 return cell
             }
         })
