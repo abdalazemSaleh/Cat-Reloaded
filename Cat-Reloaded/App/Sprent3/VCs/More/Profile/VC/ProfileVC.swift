@@ -9,6 +9,9 @@ import UIKit
 
 class ProfileVC: UIViewController {
     // MARK: - Variables
+    // Scroll View
+    var scrollView: UIScrollView!
+    var contentView: UIView!
     /// User image
     let userImage = GFImageView(frame: .zero)
     /// Text fields
@@ -26,75 +29,22 @@ class ProfileVC: UIViewController {
     
     let stackView               = UIStackView()
     /// Buttons
-    let saveButton              = GFButton(title: "Save")
-
+    let saveButton              = GFLoaderButton(buttonTitle: "Save", buttonBackgroundColor: Colors.mainColor ?? .systemRed)
+    var isLoding: Bool           = false
     
+    // Variables
+    var views: [UIView] = []
+    var customConstraint: [NSLayoutConstraint] = []
+    var saveButtonConstraint: [NSLayoutConstraint] = []
+
+
+    var presenter: ProfilePresenter!
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // User image
-        view.addSubview(userImage)
-        userImage.image = UIImage(named: "abd")
-        userImage.layer.borderWidth = 2
-        userImage.layer.borderColor = UIColor.label.cgColor
-        userImage.layer.cornerRadius = 128/2
-        userImage.clipsToBounds = true
-        
-        // User name
-        view.addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(fullNameContainer)
-        stackView.addArrangedSubview(phoneNumberContainer)
-        stackView.addArrangedSubview(emailContainer)
-        stackView.axis = .vertical
-        stackView.spacing = 16
-        
-        fullNameLabel.text = " Full Name"
-        fullNameTextField.text = UserData.getUserModel()?.fullName
-        fullNameContainer.addArrangedSubview(fullNameLabel)
-        fullNameContainer.addArrangedSubview(fullNameTextField)
-        
-        fullNameContainer.axis         = .vertical
-        fullNameContainer.spacing      = 4
-        
-        phoneNumberLabel.text = " Phone Number"
-        phoneNumberTextField.text = UserData.getUserModel()?.phoneNumber
-        phoneNumberContainer.addArrangedSubview(phoneNumberLabel)
-        phoneNumberContainer.addArrangedSubview(phoneNumberTextField)
-        
-        phoneNumberContainer.axis         = .vertical
-        phoneNumberContainer.spacing      = 4
-
-        emailLabel.text = " Email"
-        emailTextField.text = UserData.getUserModel()?.email
-        emailContainer.addArrangedSubview(emailLabel)
-        emailContainer.addArrangedSubview(emailTextField)
-        
-        emailContainer.axis         = .vertical
-        emailContainer.spacing      = 4
-        // Button
-        view.addSubview(saveButton)
-                
-        // Constraints
-        NSLayoutConstraint.activate([
-            userImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
-            userImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            userImage.heightAnchor.constraint(equalToConstant: 128),
-            userImage.widthAnchor.constraint(equalToConstant: 128),
-            
-            fullNameTextField.heightAnchor.constraint(equalToConstant: 48),
-            phoneNumberTextField.heightAnchor.constraint(equalToConstant: 48),
-            emailTextField.heightAnchor.constraint(equalToConstant: 48),
-
-            stackView.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: 64),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
-            saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32),
-            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            saveButton.heightAnchor.constraint(equalToConstant: 48)
-        ])
+        presenter = ProfilePresenter(view: self)
+        configureUI()
+        handelViewWhileUsingKeyboard()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,4 +59,28 @@ class ProfileVC: UIViewController {
         
         navigationController?.navigationBar.tintColor = Colors.mainColor
     }
+    
+    // Handel view while using keyboard
+    func handelViewWhileUsingKeyboard() {
+        initializeHideKeyboard()
+        subscribeToNotification(UIResponder.keyboardWillShowNotification, selector: #selector(keyboardWillShowOrHide))
+        subscribeToNotification(UIResponder.keyboardWillHideNotification, selector: #selector(keyboardWillShowOrHide))
+    }
+    @objc func keyboardWillShowOrHide(notification: NSNotification) {
+        if let scrollView = scrollView, let userInfo = notification.userInfo, let endValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey], let durationValue = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey], let curveValue = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] {
+
+            let endRect = view.convert((endValue as AnyObject).cgRectValue, from: view.window)
+
+            let keyboardOverlap = scrollView.frame.maxY - endRect.origin.y
+
+            scrollView.contentInset.bottom = keyboardOverlap
+
+            let duration = (durationValue as AnyObject).doubleValue
+            let options = UIView.AnimationOptions(rawValue: UInt((curveValue as AnyObject).integerValue << 16))
+            UIView.animate(withDuration: duration!, delay: 0, options: options, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+    }
+
 }

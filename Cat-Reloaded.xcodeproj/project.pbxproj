@@ -97,6 +97,11 @@
 		7FB4F39728EB567E008557ED /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4F39628EB567E008557ED /* Constant.swift */; };
 		7FB4F39928EB56B0008557ED /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4F39828EB56B0008557ED /* ErrorMessages.swift */; };
 		7FBE49E1299BE045004105B0 /* EventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBE49E0299BE045004105B0 /* EventsPresenter.swift */; };
+		7FD4404E29D38EAB00FA1222 /* ProfileVC+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4404D29D38EAB00FA1222 /* ProfileVC+Constraints.swift */; };
+		7FD4405029D38EBA00FA1222 /* ProfileVC+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4404F29D38EBA00FA1222 /* ProfileVC+Protocol.swift */; };
+		7FD4405229D3B0CA00FA1222 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4405129D3B0CA00FA1222 /* ProfilePresenter.swift */; };
+		7FD44FAB29C9AB770080AF42 /* GFActiveIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD44FAA29C9AB770080AF42 /* GFActiveIndicator.swift */; };
+		7FD44FAD29C9ABC20080AF42 /* GFLoaderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD44FAC29C9ABC20080AF42 /* GFLoaderButton.swift */; };
 		7FDE9B1E29203C1100949945 /* GFErrorLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDE9B1D29203C1100949945 /* GFErrorLabel.swift */; };
 		7FE959592948C860001B2554 /* GFTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE959582948C860001B2554 /* GFTextView.swift */; };
 		7FE9595B2948D09A001B2554 /* BoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9595A2948D09A001B2554 /* BoardCell.swift */; };
@@ -209,6 +214,11 @@
 		7FB4F39628EB567E008557ED /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		7FB4F39828EB56B0008557ED /* ErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessages.swift; sourceTree = "<group>"; };
 		7FBE49E0299BE045004105B0 /* EventsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPresenter.swift; sourceTree = "<group>"; };
+		7FD4404D29D38EAB00FA1222 /* ProfileVC+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileVC+Constraints.swift"; sourceTree = "<group>"; };
+		7FD4404F29D38EBA00FA1222 /* ProfileVC+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileVC+Protocol.swift"; sourceTree = "<group>"; };
+		7FD4405129D3B0CA00FA1222 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		7FD44FAA29C9AB770080AF42 /* GFActiveIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFActiveIndicator.swift; sourceTree = "<group>"; };
+		7FD44FAC29C9ABC20080AF42 /* GFLoaderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFLoaderButton.swift; sourceTree = "<group>"; };
 		7FDE9B1D29203C1100949945 /* GFErrorLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFErrorLabel.swift; sourceTree = "<group>"; };
 		7FE959582948C860001B2554 /* GFTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextView.swift; sourceTree = "<group>"; };
 		7FE9595A2948D09A001B2554 /* BoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCell.swift; sourceTree = "<group>"; };
@@ -489,6 +499,7 @@
 			isa = PBXGroup;
 			children = (
 				7FBE49E0299BE045004105B0 /* EventsPresenter.swift */,
+				7FD4405129D3B0CA00FA1222 /* ProfilePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -534,6 +545,8 @@
 			isa = PBXGroup;
 			children = (
 				7F89969F2997B91A0090C4B2 /* ProfileVC.swift */,
+				7FD4404D29D38EAB00FA1222 /* ProfileVC+Constraints.swift */,
+				7FD4404F29D38EBA00FA1222 /* ProfileVC+Protocol.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -662,6 +675,7 @@
 				7FB4F38628EB5458008557ED /* GFButton.swift */,
 				7F30C23E28ECDDF50007AACF /* GFSimpleButton.swift */,
 				7F30C2B228EF62900007AACF /* GFMediaButton.swift */,
+				7FD44FAC29C9ABC20080AF42 /* GFLoaderButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -714,6 +728,7 @@
 		7FB4F39128EB560A008557ED /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				7FD44FA929C9AB650080AF42 /* Active Indicator */,
 				7F8996AA2997F1050090C4B2 /* TableViewCells */,
 				7F88725E299025560047A61D /* CollectionViewCells */,
 				7F887259298E7D180047A61D /* UICollectionReusableView */,
@@ -775,6 +790,14 @@
 				7F8996A42997D1D70090C4B2 /* DarkTheme.swift */,
 			);
 			path = Utilties;
+			sourceTree = "<group>";
+		};
+		7FD44FA929C9AB650080AF42 /* Active Indicator */ = {
+			isa = PBXGroup;
+			children = (
+				7FD44FAA29C9AB770080AF42 /* GFActiveIndicator.swift */,
+			);
+			path = "Active Indicator";
 			sourceTree = "<group>";
 		};
 		7FE959572948C83F001B2554 /* GFTextView */ = {
@@ -1014,6 +1037,7 @@
 				EACD70F42946386600940592 /* ProfileHeader.swift in Sources */,
 				7F078F102923F45A00895441 /* CirclesVC+CollectionVIew.swift in Sources */,
 				7F73CA042960C3F600579170 /* AboutCatVC+CollectionView.swift in Sources */,
+				7FD4405229D3B0CA00FA1222 /* ProfilePresenter.swift in Sources */,
 				7F62DD8F28FDFB3400FEC944 /* HeaderView.swift in Sources */,
 				EACD70FA29463E6500940592 /* CATianVC+TableView.swift in Sources */,
 				7F30C23528EC44350007AACF /* ViewController.swift in Sources */,
@@ -1024,6 +1048,7 @@
 				7F73C9F92960C24000579170 /* HomeModel.swift in Sources */,
 				7F73CA0F2960C6AD00579170 /* CircleDetails+CollectionVIew.swift in Sources */,
 				7FB4F39728EB567E008557ED /* Constant.swift in Sources */,
+				7FD44FAB29C9AB770080AF42 /* GFActiveIndicator.swift in Sources */,
 				7F9052B528EB76D20044F76C /* GFTextField.swift in Sources */,
 				7F73CA092960C47E00579170 /* HomePresenter.swift in Sources */,
 				7F9052B328EB748C0044F76C /* GFBodyLabel.swift in Sources */,
@@ -1036,6 +1061,7 @@
 				7F078F1B2923F56B00895441 /* CustomSegmentedControl.swift in Sources */,
 				7F30C2B328EF62900007AACF /* GFMediaButton.swift in Sources */,
 				7FF92EBC28F0774B001EA736 /* Register+Protocol.swift in Sources */,
+				7FD44FAD29C9ABC20080AF42 /* GFLoaderButton.swift in Sources */,
 				7F8996AC2997F1360090C4B2 /* GFSimpleCell.swift in Sources */,
 				7F55642928F1FD10009342A6 /* GFAlertVC.swift in Sources */,
 				7FB4F36F28EB50F3008557ED /* AppDelegate.swift in Sources */,
@@ -1087,6 +1113,7 @@
 				7F887260299025AC0047A61D /* ImageContainerCell.swift in Sources */,
 				7F30C23B28ECDCF00007AACF /* Onboarding.swift in Sources */,
 				7F30C24728ECE79F0007AACF /* GFImageView.swift in Sources */,
+				7FD4405029D38EBA00FA1222 /* ProfileVC+Protocol.swift in Sources */,
 				7F61788E290DCA8D00AA101B /* URLs.swift in Sources */,
 				7FF92EBA28F07688001EA736 /* RegisterActiveConstraint.swift in Sources */,
 				7F8996A52997D1D70090C4B2 /* DarkTheme.swift in Sources */,
@@ -1097,6 +1124,7 @@
 				7FBE49E1299BE045004105B0 /* EventsPresenter.swift in Sources */,
 				7F078F162923F50700895441 /* CircleCell.swift in Sources */,
 				EACD70F829463A2B00940592 /* ProfileCell.swift in Sources */,
+				7FD4404E29D38EAB00FA1222 /* ProfileVC+Constraints.swift in Sources */,
 				7F88726629915A990047A61D /* Events+CollectionView.swift in Sources */,
 				7FAAFF7928F4CD83008A9FF2 /* GFTabBarController.swift in Sources */,
 				7FAAFF9328F82A05008A9FF2 /* PodCATCell.swift in Sources */,

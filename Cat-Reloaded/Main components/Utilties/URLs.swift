@@ -31,4 +31,6 @@ enum URLs: String {
     case previousEvents = "/events/previous"
     
     case userData       = "/user/info"
+    
+    case updateProfile  = "/user/profile"
 }
