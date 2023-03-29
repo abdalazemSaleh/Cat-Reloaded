@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 extension ProfileVC {
     
@@ -61,6 +62,21 @@ extension ProfileVC {
         userImage.layer.borderColor = UIColor.label.cgColor
         userImage.layer.cornerRadius = 128/2
         userImage.clipsToBounds = true
+                
+        let changePhotoButton = GFMediaButton(backgroundColor: .clear, image: UIImage(systemName: "camera")!)
+        view.addSubview(changePhotoButton)
+        changePhotoButton.tintColor = .secondaryLabel
+        changePhotoButton.backgroundColor = .systemBackground
+        changePhotoButton.layer.cornerRadius = 20
+        changePhotoButton.addShadow()
+        changePhotoButton.addTarget(self, action: #selector(changePhoto), for: .touchUpInside)
+
+        NSLayoutConstraint.activate([
+            changePhotoButton.bottomAnchor.constraint(equalTo: userImage.bottomAnchor),
+            changePhotoButton.trailingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: -2),
+            changePhotoButton.heightAnchor.constraint(equalToConstant: 40),
+            changePhotoButton.widthAnchor.constraint(equalToConstant: 40)
+        ])
         
         customConstraint.append(userImage.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 32))
         customConstraint.append(userImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor))
@@ -119,23 +135,6 @@ extension ProfileVC {
         NSLayoutConstraint.activate(saveButtonConstraint)
     }
     
-    @objc func save() {
-        handelButtonStyle()
-        guard let fullName = fullNameTextField.text,
-              let email = emailTextField.text, emailTextField.isValidEmail(),
-              let phoneNumber = phoneNumberTextField.text, phoneNumberTextField.isValidPhoneNumber()
-        else {
-            presentGFAlert(title: "Woops.", message: "Maybe your data is missing please check your data.", buttonTitle: "OK")
-            handelButtonStyle()
-            return
-        }
-        let parms = [
-            "fullName": fullName,
-            "email" : email,
-            "phoneNumber": phoneNumber
-        ]
-        presenter.updateUserProfile(parms: parms)
-    }
     
     func handelButtonStyle() {
         NSLayoutConstraint.deactivate(saveButtonConstraint)
@@ -171,5 +170,57 @@ extension ProfileVC {
             saveButtonConstraint.append(saveButton.heightAnchor.constraint(equalToConstant: 48))
             NSLayoutConstraint.activate(saveButtonConstraint)
         }
+    }
+}
+
+extension ProfileVC {
+    @objc func save() {
+        handelButtonStyle()
+        guard let fullName = fullNameTextField.text,
+              let email = emailTextField.text, emailTextField.isValidEmail(),
+              let phoneNumber = phoneNumberTextField.text, phoneNumberTextField.isValidPhoneNumber()
+        else {
+            presentGFAlert(title: "Woops.", message: "Maybe your data is missing please check your data.", buttonTitle: "OK")
+            handelButtonStyle()
+            return
+        }
+        let parms = [
+            "fullName": fullName,
+            "email" : email,
+            "phoneNumber": phoneNumber
+        ]
+        presenter.updateUserProfile(parms: parms)
+    }
+    
+    @objc func changePhoto() {
+        var config = PHPickerConfiguration()
+        config.filter = .images
+        
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+}
+
+
+extension ProfileVC: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        
+        dismiss(animated: true)
+        guard let provider = results.first?.itemProvider else { return }
+        
+        
+        if provider.canLoadObject(ofClass: UIImage.self) {
+            provider.loadObject(ofClass: UIImage.self) { image, error in
+                if let image = image as? UIImage {
+                    DispatchQueue.main.async {
+                        self.userImage.image = image
+                    }
+                } else {
+                    self.presentGFAlert(title: "Woops.", message: error?.localizedDescription ?? "Please try agine later", buttonTitle: "OK")
+                }
+            }
+        }
+
     }
 }
