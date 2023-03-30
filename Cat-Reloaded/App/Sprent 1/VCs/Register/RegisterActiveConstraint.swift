@@ -134,13 +134,52 @@ extension RegisterVC {
     
     // Configure sgin up button
     func configureSginUpButton() {
-        signUpButton.customTransactionButton(title: "Sign up")
-        
-        NSLayoutConstraint.activate([
-            signUpButton.topAnchor.constraint(equalTo: textFieldsStack.bottomAnchor, constant: 40),
-            signUpButton.heightAnchor.constraint(equalToConstant: 48),
-            ])
+        handelSaveButtonConstraint(isLogin: isLoding)
+        NSLayoutConstraint.activate(signUpButtonConstraint)
+
+//        signUpButton.customTransactionButton(title: "Sign up")
+//
+//        NSLayoutConstraint.activate([
+//            signUpButton.topAnchor.constraint(equalTo: textFieldsStack.bottomAnchor, constant: 40),
+//            signUpButton.heightAnchor.constraint(equalToConstant: 48),
+//            ])
     }
+    
+    
+    func handelButtonStyle() {
+        NSLayoutConstraint.deactivate(signUpButtonConstraint)
+        signUpButtonConstraint.removeAll()
+        isLoding.toggle()
+        signUpButton.isLoading.toggle()
+        handelSaveButtonConstraint(isLogin: isLoding)
+        
+        UIView.animate(withDuration: 0.3) {
+            self.signUpButton.layoutIfNeeded()
+        } completion: { _ in
+            if self.signUpButton.isLoading {
+                self.signUpButton.startLoadingAnimation()
+            } else {
+                self.signUpButton.spiner.removeFromSuperview()
+            }
+        }
+    }
+    
+    private func handelSaveButtonConstraint(isLogin: Bool) {
+        if isLoding {
+            signUpButtonConstraint.append(signUpButton.topAnchor.constraint(equalTo: textFieldsStack.bottomAnchor, constant: 40))
+            signUpButtonConstraint.append(signUpButton.heightAnchor.constraint(equalToConstant: 48))
+            signUpButtonConstraint.append(signUpButton.widthAnchor.constraint(equalToConstant: 48))
+            signUpButtonConstraint.append(signUpButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor))
+            NSLayoutConstraint.activate(signUpButtonConstraint)
+        } else {
+            signUpButtonConstraint.append(signUpButton.topAnchor.constraint(equalTo: textFieldsStack.bottomAnchor, constant: 40))
+            signUpButtonConstraint.append(signUpButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20))
+            signUpButtonConstraint.append(signUpButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20))
+            signUpButtonConstraint.append(signUpButton.heightAnchor.constraint(equalToConstant: 48))
+            NSLayoutConstraint.activate(signUpButtonConstraint)
+        }
+    }
+
     
     // Configure login button
     func configureLoginButton() {
@@ -163,7 +202,7 @@ extension RegisterVC {
 
     /// Shared comstraint
     func sharedConstraint() {
-        itemViews = [textFieldsStack, signUpButton]
+        itemViews = [textFieldsStack]
 
         for itemView in itemViews {
             NSLayoutConstraint.activate([

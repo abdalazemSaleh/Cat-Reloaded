@@ -58,6 +58,7 @@ extension ProfileVC {
     private func configureUserImage() {
         
         userImage.image = UIImage(named: "abd")
+        userImage.contentMode = .scaleAspectFill
         userImage.layer.borderWidth = 2
         userImage.layer.borderColor = UIColor.label.cgColor
         userImage.layer.cornerRadius = 128/2
@@ -132,7 +133,6 @@ extension ProfileVC {
         handelSaveButtonConstraint(isLogin: isLoding)
         
         saveButton.addTarget(self, action: #selector(save), for: .touchUpInside)
-        NSLayoutConstraint.activate(saveButtonConstraint)
     }
     
     
@@ -157,8 +157,8 @@ extension ProfileVC {
     private func handelSaveButtonConstraint(isLogin: Bool) {
         if isLoding {
             saveButtonConstraint.append(saveButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 64))
-            saveButtonConstraint.append(saveButton.heightAnchor.constraint(equalToConstant: 52))
-            saveButtonConstraint.append(saveButton.widthAnchor.constraint(equalToConstant: 52))
+            saveButtonConstraint.append(saveButton.heightAnchor.constraint(equalToConstant: 48))
+            saveButtonConstraint.append(saveButton.widthAnchor.constraint(equalToConstant: 48))
             saveButtonConstraint.append(saveButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor))
             saveButtonConstraint.append(saveButton.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -32))
             NSLayoutConstraint.activate(saveButtonConstraint)

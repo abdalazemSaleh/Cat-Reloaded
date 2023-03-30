@@ -16,19 +16,27 @@ extension RegisterVC: RegisterView {
             let validPhoneNumber     = phoneNumber.isValidPhoneNumber()
             let validPassword        = password.isValidPassword()
             
-            guard validEmail else { return presentGFAlert(title: "Woops", message: "Check you email", buttonTitle: "OK") }
-            guard validPhoneNumber else { return presentGFAlert(title: "Woops", message: "Check your phone number. 🙁", buttonTitle: "OK") }
+            guard validEmail else {
+                let customAlert = GFAlertView(message: "Check your mail")
+                view.addSubview(customAlert)
+                return
+            }
+            guard validPhoneNumber else {
+                let customAlert = GFAlertView(message: "Check your phone number.")
+                view.addSubview(customAlert)
+                return
+            }
             guard validPassword else { return password.layer.borderColor = UIColor.systemRed.cgColor }
         }
     }
     
     func goToHomeScreen() { presentGFTabBar() }
-    
-    func startAnimation() { signUpButton.startAnimation()}
-    
-    func stopAnimation() { signUpButton.handelButtonAfterStopAnimation()}
-    
-    func alertMessage(message: String) { presentGFAlert(title: "Woops", message: message, buttonTitle: "OK") }
+        
+    func alertMessage(message: String) {
+        let customAlert = GFAlertView(message: message)
+        view.addSubview(customAlert)
+        return
+    }
 
     func goToLoginVC() { dismis() }
 }

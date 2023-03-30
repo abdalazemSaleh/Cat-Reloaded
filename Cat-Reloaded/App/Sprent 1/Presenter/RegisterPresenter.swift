@@ -8,8 +8,7 @@
 import Foundation
 
 protocol RegisterView: AnyObject {
-    func startAnimation()
-    func stopAnimation()
+    func handelButtonStyle()
     func goToHomeScreen()
     func checkValidation()
     func alertMessage(message: String)
@@ -24,17 +23,18 @@ class RegisterPresenter {
     }
     // Code
     func signUp(parms: [String : Any]) {
-        view?.startAnimation()
+        view?.handelButtonStyle()
         let signUpObject = NetworkManger(url: URLs.sginup.rawValue, method: .post, parms: parms, header: nil)
         signUpObject.request(modal: ProfileModel.self) { [weak self] result in
             guard let self = self else { return }
-            self.view?.startAnimation()
+            self.view?.handelButtonStyle()
             switch result {
             case .success(let user):
                 UserDefaults.standard.set(user.token ?? "", forKey: "UserToken")
                 UserData.fetchUserInfo { response in
                     switch response {
                     case .success(_):
+                        print("Successed")
                         self.view?.goToHomeScreen()
                     case .failure(let error):
                         print(error.rawValue)

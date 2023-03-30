@@ -48,7 +48,7 @@ class GFLoaderButton: UIButton {
     func loginButtonConstrains() {
         if isLoading {
             self.setTitle("", for: .normal)
-            self.layer.cornerRadius = 52 / 2
+            self.layer.cornerRadius = 48 / 2
         } else {
             self.setTitle(buttonTitle, for: .normal)
             self.layer.cornerRadius = 8
@@ -57,7 +57,7 @@ class GFLoaderButton: UIButton {
     
     func startLoadingAnimation() {
         self.addSubview(spiner)
-        spiner.frame = CGRect(x: 10, y: 10, width: 32, height: 32)
+        spiner.frame = CGRect(x: 8, y: 8, width: 32, height: 32)
         spiner.animate()
     }
 }

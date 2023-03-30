@@ -13,6 +13,7 @@ struct CATianModel {
 }
 
 class CATianVC: UIViewController {
+    
     // MARK: - Variables
     let headerId = "headerId"
     let footerId = "footerId"
@@ -21,9 +22,12 @@ class CATianVC: UIViewController {
     
     var tableView: UITableView!
     
+    var presenter: CATianPresenter!
+    
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = CATianPresenter(view: self)
         catIanArray.append(CATianModel(image: SFSymbols.setting, name: "Settings"))
         catIanArray.append(CATianModel(image: SFSymbols.privacy, name: "Privacy Policy"))
         catIanArray.append(CATianModel(image: SFSymbols.countact, name: "Contact Us"))

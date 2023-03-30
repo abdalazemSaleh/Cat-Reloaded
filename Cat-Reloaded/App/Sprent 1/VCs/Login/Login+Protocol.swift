@@ -10,17 +10,10 @@ import UIKit
 extension LoginVC: LoginView {
     
     func goToHomeScreen() { presentGFTabBar() }
-    
-    func startAnimation() { loginbutton.startAnimation() }
-    
-    func stopAnimation() {
-        DispatchQueue.main.async {
-            self.loginbutton.handelButtonAfterStopAnimation()
-        }
-    }
-    
+        
     func alertMessage(message: String) {
-        presentGFAlert(title: "Woops", message: message, buttonTitle: "OK")
+        let customAlert = GFAlertView(message: message)
+        view.addSubview(customAlert)
     }
     
     func goToRegisterVC() {

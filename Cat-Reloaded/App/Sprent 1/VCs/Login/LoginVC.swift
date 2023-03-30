@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import TransitionButton
 
 class LoginVC: UIViewController {
 
@@ -23,7 +22,8 @@ class LoginVC: UIViewController {
     let passwordContainer       = UIStackView()
     let textFieldsStack         = UIStackView()
     let forgetPassword          = GFSimpleButton(title: "Forget password?", titleColor: .label)
-    let loginbutton             = TransitionButton(frame: .zero)
+    let loginbutton             = GFLoaderButton(buttonTitle: "Login", buttonBackgroundColor: Colors.mainColor!)
+    
     let loginWithLabel          = GFTitleLabel(textAlignment: .center, fontSize: 16, weight: .bold)
     let facebookButton          = GFMediaButton(backgroundColor: .clear, image: Images.facebook!)
     let googleButton            = GFMediaButton(backgroundColor: .clear, image: Images.google!)
@@ -33,8 +33,11 @@ class LoginVC: UIViewController {
     let sginUpStackView         = UIStackView()
     
     var isExpend: Bool              = false
+    var isLoding: Bool              = false
     let padding: CGFloat            = 16
     var presenter: LoginPresenter!
+    
+    var loginButtonConstraint: [NSLayoutConstraint] = []
     
     // MARK: - View life cycle
     override func viewDidLoad() {
@@ -103,6 +106,7 @@ class LoginVC: UIViewController {
     }
     // Action buttons
     @objc func forgetPasswordClicked() { }
+        
     @objc func loginButtonClicked() {
         let model = isTextFieldsIsEmpty()
         guard !model.phone.isEmpty, !model.password.isEmpty else { return }

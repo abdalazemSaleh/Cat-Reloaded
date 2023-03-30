@@ -27,7 +27,7 @@ extension EventDetailsVC {
             let sectionType = EventDetailsSections.allCases[sectionIndex]
             switch sectionType {
             case .header:
-                return self?.generateCircleHeaderLayout()
+                return self?.generateEventDetailsLayout()
             }
         }
         return layout
@@ -56,13 +56,11 @@ extension EventDetailsVC {
         snapshot.appendSections([.header])
     }
 
-
-    private func generateCircleHeaderLayout() -> NSCollectionLayoutSection {
+    private func generateEventDetailsLayout() -> NSCollectionLayoutSection {
         // item
         let itemSize    = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item        = NSCollectionLayoutItem(layoutSize: itemSize)
         // group
-//        let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(550))
         let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
 
         let group       = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])

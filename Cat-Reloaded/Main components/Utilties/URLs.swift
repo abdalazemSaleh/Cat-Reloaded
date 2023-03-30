@@ -33,4 +33,5 @@ enum URLs: String {
     case userData       = "/user/info"
     
     case updateProfile  = "/user/profile"
+    case deleteAccount  = "/user/deleteAccount"
 }

@@ -135,12 +135,42 @@ extension LoginVC {
     
     /// Configure login button
     func configureLoginButton() {
-        loginbutton.customTransactionButton(title: "Login")
+        handelSaveButtonConstraint(isLogin: isLoding)
+        NSLayoutConstraint.activate(loginButtonConstraint)
+    }
+    
+    func handelButtonStyle() {
+        NSLayoutConstraint.deactivate(loginButtonConstraint)
+        loginButtonConstraint.removeAll()
+        isLoding.toggle()
+        loginbutton.isLoading.toggle()
+        handelSaveButtonConstraint(isLogin: isLoding)
         
-        NSLayoutConstraint.activate([
-            loginbutton.topAnchor.constraint(equalTo: forgetPassword.bottomAnchor, constant: 40),
-            loginbutton.heightAnchor.constraint(equalToConstant: 48),
-        ])
+        UIView.animate(withDuration: 0.3) {
+            self.loginbutton.layoutIfNeeded()
+        } completion: { _ in
+            if self.loginbutton.isLoading {
+                self.loginbutton.startLoadingAnimation()
+            } else {
+                self.loginbutton.spiner.removeFromSuperview()
+            }
+        }
+    }
+    
+    private func handelSaveButtonConstraint(isLogin: Bool) {
+        if isLoding {
+            loginButtonConstraint.append(loginbutton.topAnchor.constraint(equalTo: forgetPassword.bottomAnchor, constant: 40))
+            loginButtonConstraint.append(loginbutton.heightAnchor.constraint(equalToConstant: 48))
+            loginButtonConstraint.append(loginbutton.widthAnchor.constraint(equalToConstant: 48))
+            loginButtonConstraint.append(loginbutton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor))
+            NSLayoutConstraint.activate(loginButtonConstraint)
+        } else {
+            loginButtonConstraint.append(loginbutton.topAnchor.constraint(equalTo: forgetPassword.bottomAnchor, constant: 40))
+            loginButtonConstraint.append(loginbutton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20))
+            loginButtonConstraint.append(loginbutton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20))
+            loginButtonConstraint.append(loginbutton.heightAnchor.constraint(equalToConstant: 48))
+            NSLayoutConstraint.activate(loginButtonConstraint)
+        }
     }
     
     /// Configure login with media account
@@ -194,7 +224,7 @@ extension LoginVC {
         
     /// Shared comstraint
     func sharedConstraint() {
-        let itemViews: [UIView]  = [textFieldsStack, loginbutton]
+        let itemViews: [UIView]  = [textFieldsStack]
         
         for itemView in itemViews {
             NSLayoutConstraint.activate([

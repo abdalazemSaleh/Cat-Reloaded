@@ -67,7 +67,7 @@ extension CATianVC: UITableViewDelegate, UITableViewDataSource {
         case 3:
             break
         default:
-            break
+            deleteUserAccount()
         }
     }
     
@@ -101,11 +101,36 @@ extension CATianVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    private func deleteUserAccount() {
+        
+        presenter.deleteUserAccount()
+        
+        let alertController = UIAlertController(title: "Are you sure you need to delete your account?", message: "If there is any problem please contact us.", preferredStyle: .actionSheet)
+        
+        let yes = UIAlertAction(title: "Delete account", style: .destructive) { _ in
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(yes)
+        alertController.addAction(cancel)
+        
+        present(alertController, animated: true)
+    }
+    
     @objc private func log_out() {
-        print("Good bye.👋🏻")
-        UserDefaults.standard.set(nil, forKey: "UserToken")
-        UserDefaults.standard.set(false, forKey: "UserLogin")
-        UserData.resetDefaults()
-        presentLoginScreen()
+        let alertController = UIAlertController(title: "Are you sure you want logout?", message: "", preferredStyle: .actionSheet)
+        
+        let yes = UIAlertAction(title: "Log out", style: .destructive) { _ in
+            UserDefaults.standard.set(nil, forKey: "UserToken")
+            UserDefaults.standard.set(false, forKey: "UserLogin")
+            UserData.resetDefaults()
+            self.presentLoginScreen()
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(yes)
+        alertController.addAction(cancel)
+        
+        present(alertController, animated: true)
     }
 }

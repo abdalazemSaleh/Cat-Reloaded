@@ -70,5 +70,7 @@ class EventCell: UICollectionViewCell {
                 self.imageView.image = image
             }
         }
+        sessionName.text = model.name
+        sessionDate.text = model.startDate.formattedDate
     }
 }

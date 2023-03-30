@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import TransitionButton
 
 enum errorLabels {
     case name, email, phone, password
@@ -39,7 +38,7 @@ class RegisterVC: UIViewController {
     let passwordConfirmContainer    = UIStackView()
     let textFieldsStack             = UIStackView()
     /// Buttons
-    let signUpButton                = TransitionButton(frame: .zero)
+    let signUpButton                = GFLoaderButton(buttonTitle: "Sign up", buttonBackgroundColor: Colors.mainColor ?? .red)
     let familiarCAtian              = GFTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
     let login                       = GFSimpleButton(title: "Login", titleColor: Colors.mainColor!)
     let loginStack                  = UIStackView()
@@ -48,9 +47,12 @@ class RegisterVC: UIViewController {
     var containers: [UIStackView]   = []
     var errorLabels: [UILabel]      = []
     var isExpend: Bool              = false
+    var isLoding: Bool             = false
     let padding: CGFloat            = 16
     var itemViews: [UIView]         = []
     var presenter: RegisterPresenter!
+    
+    var signUpButtonConstraint: [NSLayoutConstraint] = []
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
