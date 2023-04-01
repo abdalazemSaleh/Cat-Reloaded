@@ -9,6 +9,8 @@ import Foundation
 
 extension ProfileVC: ProfileView {
     func showAlerMessage(message: String) {
-        presentGFAlert(title: "Hello", message: message, buttonTitle: "OK")
+            let customAlert = GFAlertView(message: message)
+            view.addSubview(customAlert)
+            return
     }
 }
