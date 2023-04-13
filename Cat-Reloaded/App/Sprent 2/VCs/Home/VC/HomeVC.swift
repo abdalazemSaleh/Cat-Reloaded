@@ -29,9 +29,9 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter               = HomePresenter(view: self)
-        presenter.isCatian()
         presenter.fetchMemories(page: memoriesCurrentPage)
         presenter.fetchPodCat(page: podCatCurrentPage)
+        presenter.isCatian()
         configureCollectionView()
         configureDataSource()
     }

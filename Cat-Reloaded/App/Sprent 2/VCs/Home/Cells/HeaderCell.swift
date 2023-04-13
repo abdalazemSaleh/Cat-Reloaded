@@ -14,7 +14,7 @@ struct HomeHeaderCellModel: Hashable {
 class HeaderCell: UICollectionViewCell {
     
     // MARK: - Variables
-    static let reuseIdentifer          = "HeaderCell"
+    static let reuseIdentifer   = "HeaderCell"
     
     let welcomeCardTitle        = GFTitleLabel(textAlignment: .left, fontSize: 24, weight: .bold)
     let welcomeCard             = GFCardView(label: "Become a CATian", bodyLabel: "Get new experiences with us and we are engoy this.", image: Images.becomACATian!)

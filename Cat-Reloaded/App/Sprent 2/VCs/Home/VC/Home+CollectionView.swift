@@ -35,8 +35,8 @@ extension HomeVC {
             switch sectionType {
             case .headerCell:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeaderCell.reuseIdentifer, for: indexPath) as! HeaderCell
-                guard let model = model as? HomeHeaderCellModel else { return cell }
-                cell.set(welcometitle: model.name ?? "Cat organization")
+                guard let model = model as? [HomeHeaderCellModel] else { return cell }
+                cell.set(welcometitle: model[0].name ?? "Cat organization")
                 let aboutCatGesture = UITapGestureRecognizer(target: self, action: #selector(self.aboutCatCardEvent))
                 cell.aboutCatCard.addGestureRecognizer(aboutCatGesture)
                 return cell
@@ -59,8 +59,8 @@ extension HomeVC {
             supplementaryView.label.text = Section.allCases[indexPath.section].rawValue
             return supplementaryView
         }
-        snapshot.appendSections([.headerCell, .memorires, .podCat])
-        DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
+//        snapshot.appendSections([.headerCell, .memorires, .podCat])
+//        DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
     /// Handel collectionview flow layout
     private func generateLayout() -> UICollectionViewLayout {

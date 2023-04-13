@@ -17,7 +17,6 @@ extension AboutCatVC {
     func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: generateLayout())
         view.addSubview(collectionView)
-        snapshot.appendSections([.header, .founders, .taemBoard])
         collectionView.backgroundColor = .systemBackground
         collectionView.register(AboutCatHeaderCell.self, forCellWithReuseIdentifier: AboutCatHeaderCell.reuseIdentifer)
         collectionView.register(CircleBoardCell.self, forCellWithReuseIdentifier: CircleBoardCell.reuseIdentifer)
@@ -70,8 +69,6 @@ extension AboutCatVC {
             supplementaryView.label.text = AboutCatSections.allCases[indexPath.section].rawValue
             return supplementaryView
         }
-        
-        //        updateData(on: circles, board: teamBoard)
     }
     
     private func generateAboutCatHeaderLayout() -> NSCollectionLayoutSection {

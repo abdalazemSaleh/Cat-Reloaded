@@ -14,9 +14,7 @@ class AboutCatVC: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<AboutCatSections, AnyHashable>!
     var snapshot = NSDiffableDataSourceSnapshot<AboutCatSections, AnyHashable>()
-    
-    var headerTest: [AboutCatInfoModel] = []
-    
+        
     var emptyStateView = GFEmptyStateView()
     
     var presenter: AboutCatPresenter!
@@ -39,7 +37,6 @@ class AboutCatVC: UIViewController {
     private func configureNavigationController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles  =   false
-        
         navigationController?.navigationBar.tintColor = Colors.mainColor
     }
 }

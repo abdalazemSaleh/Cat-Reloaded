@@ -8,21 +8,23 @@
 import UIKit
 
 extension HomeVC: HomeView {
-        
+    
     func getMemories(data: [MemoriesData]) {
+        snapshot.appendSections([.memorires])
         snapshot.appendItems(data, toSection: .memorires)
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
     
     func getPodCat(data: [PodCatData]) {
+        snapshot.appendSections([.podCat])
         snapshot.appendItems(data, toSection: .podCat)
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
     
     func appendBecomeCatianSection(data: [HomeHeaderCellModel]) {
-        DispatchQueue.main.async {
-            self.snapshot.appendItems([data], toSection: .headerCell)
-        }
+        snapshot.appendSections([.headerCell])
+        snapshot.appendItems([data], toSection: .headerCell)
+        DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
     
     func presentEmptyView(message: String, image: UIImage) {

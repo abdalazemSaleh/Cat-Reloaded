@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AboutCatView: AnyObject {
-    func aboutCatInfo(data: AboutCatInfoModel)
+    func aboutCatInfo(data: [AboutCatInfoModel])
     func founders(data: [TeamBoardModel])
     func teamBoard(data: [TeamBoardModel])
     func presentEmptyView(message: String, image: UIImage)
@@ -20,14 +20,17 @@ class AboutCatPresenter {
     init(view: AboutCatView) {
         self.view = view
     }
-    // Code
+    // variables
+    private(set) var headerData: [AboutCatInfoModel] =  []
+    
     func fetchAboutCatInfo() {
         let catInfoObject = NetworkManger(url: URLs.info.rawValue, method: .get, parms: nil, header: nil)
         catInfoObject.request(modal: AboutCatInfoModel.self) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                self.view?.aboutCatInfo(data: data)
+                self.headerData.append(AboutCatInfoModel.init(about: data.about, history: data.history, vision: data.vision))
+                self.view?.aboutCatInfo(data: self.headerData)
             case .failure(let error):
                 if error == .connectionError {
                     self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
