@@ -43,13 +43,11 @@ extension HomeVC {
             case .memorires:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemoriesCell.reuseIdentifer, for: indexPath) as! MemoriesCell
                 guard let myModel   = model as? MemoriesData else { return cell }
-                self.memoriesImageUrl.append(myModel.imageUrl)
                 cell.set(myModel)
                 return cell
             case .podCat:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PodCATCell.reuseIdentifer, for: indexPath) as! PodCATCell
                 guard let myModel = model as? PodCatData else { return cell }
-                self.podCatVideosUrls.append(myModel.episodeUrl)
                 cell.set(myModel)
                 return cell
             }
@@ -143,10 +141,10 @@ extension HomeVC: UICollectionViewDelegate {
         case .headerCell:
             break
         case .memorires:
-            let url = memoriesImageUrl[indexPath.row]
+            let url = presenter.memories[indexPath.row].imageUrl
             presentPhoto(with: url)
         case .podCat:
-            let url = podCatVideosUrls[indexPath.row]
+            let url = presenter.podCats[indexPath.row].episodeUrl
             openPodCat(with: url)
         }
     }
@@ -165,7 +163,7 @@ extension HomeVC: UICollectionViewDelegate {
     
     private func handelMemoriesPageNation(indexPath: IndexPath) {
         if (indexPath.row == num_ofMemories - 1 ) {
-            for _ in 1..<memoriesPages {
+            for _ in 1..<presenter.memoriesPages {
                 memoriesCurrentPage += 1
                 num_ofMemories      += 10
                 presenter.fetchMemories(page: memoriesCurrentPage)
@@ -174,13 +172,12 @@ extension HomeVC: UICollectionViewDelegate {
     }
     
     private func configurePodCatPagenation(indexPath: IndexPath) {
-        if (indexPath.row == num_ofPodCat - 1 ) {
-            for _ in 1..<podCatPages {
+        if (indexPath.row == num_ofPodCat - 1) {
+            for _ in 1..<presenter.podCatPages {
                 podCatCurrentPage += 1
                 num_ofPodCat      += 10
                 presenter.fetchPodCat(page: podCatCurrentPage)
             }
         }
     }
-    
 }

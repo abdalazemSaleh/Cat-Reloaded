@@ -8,19 +8,21 @@
 import UIKit
 
 extension HomeVC: HomeView {
-    
-    func getMemories(data: MemoriesModel) {
-        let memories = data.data
-        memoriesPages = data.totalPages
-        snapshot.appendItems(memories, toSection: .memorires)
+        
+    func getMemories(data: [MemoriesData]) {
+        snapshot.appendItems(data, toSection: .memorires)
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
     
-    func getPodCat(data: PodCatModel) {
-        let podCat =  data.data
-        podCatPages = data.totalPages
-        snapshot.appendItems(podCat, toSection: .podCat)
+    func getPodCat(data: [PodCatData]) {
+        snapshot.appendItems(data, toSection: .podCat)
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
+    }
+    
+    func appendBecomeCatianSection(data: [HomeHeaderCellModel]) {
+        DispatchQueue.main.async {
+            self.snapshot.appendItems([data], toSection: .headerCell)
+        }
     }
     
     func presentEmptyView(message: String, image: UIImage) {
@@ -31,7 +33,6 @@ extension HomeVC: HomeView {
             self.emptyStateView.retryButton.addTarget(self, action: #selector(self.retry), for: .touchUpInside)
             self.emptyStateView.frame = self.view.bounds
             self.view.addSubview(self.emptyStateView)
-            
         }
     }
     

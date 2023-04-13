@@ -9,10 +9,11 @@ import UIKit
 import Alamofire
 
 protocol HomeView: AnyObject {
-    func getMemories(data: MemoriesModel)
-    func getPodCat(data: PodCatModel)
+    func getMemories(data: [MemoriesData])
+    func getPodCat(data: [PodCatData])
     func presentEmptyView(message: String, image: UIImage)
     func presentAlert(message: String, title: String)
+    func appendBecomeCatianSection(data: [HomeHeaderCellModel])
 }
 
 class HomePresenter {
@@ -21,7 +22,15 @@ class HomePresenter {
     init(view: HomeView) {
         self.view = view
     }
-    // Code
+    // Variables
+    /// Memories
+    private(set) var memories: [MemoriesData]  = []
+    private(set) var memoriesPages       = 1
+    /// PodCat
+    private(set) var podCats: [PodCatData]  = []
+    private(set) var podCatPages         = 1
+    
+    // Memories function
     func fetchMemories(page: Int) {
         let url = URLs.memories.rawValue + "/\(page)"
         let memoriesObject = NetworkManger(url: url, method: .get, parms: nil, header: nil)
@@ -29,17 +38,21 @@ class HomePresenter {
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                self.view?.getMemories(data: data)
+                self.handelFetchMemoriesSuccessState(data: data)
             case .failure(let error):
-                if error == .connectionError {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
-                } else {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.serverError!)
-                }
+                self.handelErrorState(error: error)
             }
         }
     }
     
+    private func handelFetchMemoriesSuccessState(data: MemoriesModel) {
+        let memories = data.data
+        self.memoriesPages = data.totalPages
+        self.memories.append(contentsOf: memories)
+        self.view?.getMemories(data: memories)
+    }
+    
+    // PodCat functions
     func fetchPodCat(page: Int) {
         let url = URLs.podCat.rawValue + "/\(page)"
         let podCatObject = NetworkManger(url: url, method: .get, parms: nil, header: nil)
@@ -47,17 +60,42 @@ class HomePresenter {
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                self.view?.getPodCat(data: data)
+                self.handelFetchPodCatSuccessState(data: data)
             case .failure(let error):
-                if error == .connectionError {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
-                } else {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.serverError!)
-                }
+                self.handelErrorState(error: error)
             }
         }
     }
     
+    private func handelFetchPodCatSuccessState(data: PodCatModel) {
+        let podCats =  data.data
+        podCatPages = data.totalPages
+        self.podCats.append(contentsOf: podCats)
+        self.view?.getPodCat(data: podCats)
+    }
+
+    // Handel error function
+    private func handelErrorState(error: GFError) {
+        if error == .connectionError {
+            self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
+        } else {
+            self.view?.presentEmptyView(message: error.rawValue, image: Images.serverError!)
+        }
+    }
+    
+    // check isCatian
+    func isCatian() {
+        let userData = UserData.getUserModel()
+        let isCatian = userData?.isCatian ?? true
+                
+        if !isCatian {
+            var data: [HomeHeaderCellModel] = []
+            data.append(.init(name: userData?.fullName))
+            view?.appendBecomeCatianSection(data: data)
+        }
+    }
+    
+    // Check user data ::::
     func checkUserData() {
         let url = URLs.userData.rawValue
         let token = UserDefaults.standard.string(forKey: "UserToken") ?? ""
