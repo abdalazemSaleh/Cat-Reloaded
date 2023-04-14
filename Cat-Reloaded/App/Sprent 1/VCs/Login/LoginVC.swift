@@ -118,6 +118,8 @@ class LoginVC: UIViewController {
         presenter.login(parms: parms)
     }
     @objc func signUpButtonClicked() { presenter.signUp() }
-    @objc func googleButtonCliced() { presenter.loginWithGoogle(controller: self) }
+    @objc func googleButtonCliced() {
+//        presenter.loginWithGoogle(controller: self)
+    }
     @objc func facebookButtonClicked() { presenter.loginWithFacebook(controller: self) }
 }

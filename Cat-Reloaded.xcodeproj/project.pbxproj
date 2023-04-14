@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		095E0D3650EA7703E21E6E68 /* libPods-Cat-Reloaded.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 673E2FB7DFD3E47785CB27BC /* libPods-Cat-Reloaded.a */; };
 		7F078F0E2923F40200895441 /* CircleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F078F0D2923F40200895441 /* CircleModel.swift */; };
 		7F078F102923F45A00895441 /* CirclesVC+CollectionVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F078F0F2923F45A00895441 /* CirclesVC+CollectionVIew.swift */; };
 		7F078F122923F49E00895441 /* CirclesVC+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F078F112923F49E00895441 /* CirclesVC+Protocol.swift */; };
@@ -33,6 +32,8 @@
 		7F3AD4A92937902400AF0AB1 /* UserDefults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3AD4A82937902400AF0AB1 /* UserDefults.swift */; };
 		7F3AD4AB2937904D00AF0AB1 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3AD4AA2937904D00AF0AB1 /* ProfileModel.swift */; };
 		7F3AD4AD2937927300AF0AB1 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3AD4AC2937927300AF0AB1 /* Encodable.swift */; };
+		7F51E5F929E845CC00E5709A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7F51E5F829E845CC00E5709A /* Alamofire */; };
+		7F51E5FC29E84B4400E5709A /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 7F51E5FB29E84B4400E5709A /* FacebookLogin */; };
 		7F549EA32992EBA500E85093 /* GFEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F549EA22992EBA500E85093 /* GFEmptyStateView.swift */; };
 		7F55642928F1FD10009342A6 /* GFAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F55642828F1FD10009342A6 /* GFAlertVC.swift */; };
 		7F55642B28F1FD71009342A6 /* GFAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F55642A28F1FD71009342A6 /* GFAlertContainerView.swift */; };
@@ -123,8 +124,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		010DF12504816B4E3B6725EC /* Pods-Cat-Reloaded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cat-Reloaded.debug.xcconfig"; path = "Target Support Files/Pods-Cat-Reloaded/Pods-Cat-Reloaded.debug.xcconfig"; sourceTree = "<group>"; };
-		673E2FB7DFD3E47785CB27BC /* libPods-Cat-Reloaded.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cat-Reloaded.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F078F0D2923F40200895441 /* CircleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleModel.swift; sourceTree = "<group>"; };
 		7F078F0F2923F45A00895441 /* CirclesVC+CollectionVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CirclesVC+CollectionVIew.swift"; sourceTree = "<group>"; };
 		7F078F112923F49E00895441 /* CirclesVC+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CirclesVC+Protocol.swift"; sourceTree = "<group>"; };
@@ -236,7 +235,6 @@
 		7FF92EB928F07688001EA736 /* RegisterActiveConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterActiveConstraint.swift; sourceTree = "<group>"; };
 		7FF92EBB28F0774B001EA736 /* Register+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Register+Protocol.swift"; sourceTree = "<group>"; };
 		7FF92EBD28F08A94001EA736 /* GFPickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFPickerTextField.swift; sourceTree = "<group>"; };
-		E9F7CB4973F7541BA9B959A0 /* Pods-Cat-Reloaded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cat-Reloaded.release.xcconfig"; path = "Target Support Files/Pods-Cat-Reloaded/Pods-Cat-Reloaded.release.xcconfig"; sourceTree = "<group>"; };
 		EACD70F32946386600940592 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		EACD70F52946393300940592 /* ProfileFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFooter.swift; sourceTree = "<group>"; };
 		EACD70F729463A2B00940592 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -248,22 +246,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				095E0D3650EA7703E21E6E68 /* libPods-Cat-Reloaded.a in Frameworks */,
+				7F51E5F929E845CC00E5709A /* Alamofire in Frameworks */,
+				7F51E5FC29E84B4400E5709A /* FacebookLogin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		41EFED911917BB0E8D69BA44 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				010DF12504816B4E3B6725EC /* Pods-Cat-Reloaded.debug.xcconfig */,
-				E9F7CB4973F7541BA9B959A0 /* Pods-Cat-Reloaded.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		7F078F082923EF7100895441 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,8 +609,6 @@
 			children = (
 				7FB4F36D28EB50F3008557ED /* Cat-Reloaded */,
 				7FB4F36C28EB50F3008557ED /* Products */,
-				41EFED911917BB0E8D69BA44 /* Pods */,
-				F12665F68A4E729E70764A33 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -891,14 +879,6 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
-		F12665F68A4E729E70764A33 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				673E2FB7DFD3E47785CB27BC /* libPods-Cat-Reloaded.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -906,18 +886,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7FB4F37F28EB50F4008557ED /* Build configuration list for PBXNativeTarget "Cat-Reloaded" */;
 			buildPhases = (
-				224181B6EE225AB941B0669E /* [CP] Check Pods Manifest.lock */,
 				7FB4F36728EB50F3008557ED /* Sources */,
 				7FB4F36828EB50F3008557ED /* Frameworks */,
 				7FB4F36928EB50F3008557ED /* Resources */,
-				57EA2721C29611027A5B6050 /* [CP] Embed Pods Frameworks */,
-				9B4BE18BBCE0E01EB866EC57 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Cat-Reloaded";
+			packageProductDependencies = (
+				7F51E5F829E845CC00E5709A /* Alamofire */,
+				7F51E5FB29E84B4400E5709A /* FacebookLogin */,
+			);
 			productName = "Cat-Reloaded";
 			productReference = 7FB4F36B28EB50F3008557ED /* Cat-Reloaded.app */;
 			productType = "com.apple.product-type.application";
@@ -946,6 +927,10 @@
 				Base,
 			);
 			mainGroup = 7FB4F36228EB50F3008557ED;
+			packageReferences = (
+				7F51E5F729E845CC00E5709A /* XCRemoteSwiftPackageReference "Alamofire" */,
+				7F51E5FA29E84B4400E5709A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+			);
 			productRefGroup = 7FB4F36C28EB50F3008557ED /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -967,65 +952,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		224181B6EE225AB941B0669E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Cat-Reloaded-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		57EA2721C29611027A5B6050 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Cat-Reloaded/Pods-Cat-Reloaded-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Cat-Reloaded/Pods-Cat-Reloaded-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cat-Reloaded/Pods-Cat-Reloaded-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9B4BE18BBCE0E01EB866EC57 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Cat-Reloaded/Pods-Cat-Reloaded-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Cat-Reloaded/Pods-Cat-Reloaded-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cat-Reloaded/Pods-Cat-Reloaded-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7FB4F36728EB50F3008557ED /* Sources */ = {
@@ -1274,7 +1200,6 @@
 		};
 		7FB4F38028EB50F4008557ED /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 010DF12504816B4E3B6725EC /* Pods-Cat-Reloaded.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1310,7 +1235,6 @@
 		};
 		7FB4F38128EB50F4008557ED /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E9F7CB4973F7541BA9B959A0 /* Pods-Cat-Reloaded.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1366,6 +1290,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7F51E5F729E845CC00E5709A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		7F51E5FA29E84B4400E5709A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7F51E5F829E845CC00E5709A /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F51E5F729E845CC00E5709A /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		7F51E5FB29E84B4400E5709A /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F51E5FA29E84B4400E5709A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7FB4F36328EB50F3008557ED /* Project object */;
 }

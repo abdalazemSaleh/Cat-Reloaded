@@ -5,14 +5,14 @@
 //  Created by Abdalazem Saleh on 2022-10-29.
 //
 
-import Foundation
 import Alamofire
+import UIKit
 
 
 struct Connectivity {
-  static let sharedInstance = NetworkReachabilityManager()!
-  static var isConnectedToInternet:Bool {
-      return self.sharedInstance.isReachable
+    static let sharedInstance = NetworkReachabilityManager()!
+    static var isConnectedToInternet:Bool {
+        return self.sharedInstance.isReachable
     }
 }
 
@@ -38,7 +38,7 @@ struct NetworkManger {
         
         let url = URLs.baseURL.rawValue + url
         
-        Alamofire.request(url, method: method, parameters: parms, encoding: JSONEncoding.default, headers: header).responseJSON { response in
+        AF.request(url, method: method, parameters: parms, encoding: JSONEncoding.default, headers: header).response { response in
             
             guard Connectivity.isConnectedToInternet else { return completion(.failure(GFError.connectionError)) }
             
@@ -74,7 +74,8 @@ struct NetworkManger {
                 completion(.failure(.invalidResponse))
             }
         }
-    }    
+        
+    }
 }
 
 struct ImageDownloader {
