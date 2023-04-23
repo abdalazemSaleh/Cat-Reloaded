@@ -26,6 +26,7 @@ import UIKit
         static let google       = UIImage(named: "gamil")
         static let networkError = UIImage(named: "404")
         static let serverError  = UIImage(named: "400")
+        static let noData       = UIImage(named: "NoData")
         
         static let becomACATian = UIImage(named: "BecomCATian")
     }

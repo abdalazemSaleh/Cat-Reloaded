@@ -13,6 +13,7 @@ class CircleCell: UICollectionViewCell {
     let view = UIView()
     let imageView   = UIImageView()
     let label  = GFTitleLabel(textAlignment: .center, fontSize: 16, weight: .bold)
+    let indicator = UIActivityIndicatorView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,6 +26,7 @@ class CircleCell: UICollectionViewCell {
     
     private func configure() {
         addSubview(view)
+        view.addSubview(indicator)
         view.addSubview(imageView)
         view.addSubview(label)
         
@@ -37,12 +39,16 @@ class CircleCell: UICollectionViewCell {
         view.translatesAutoresizingMaskIntoConstraints          = false
         imageView.translatesAutoresizingMaskIntoConstraints     = false
         label.translatesAutoresizingMaskIntoConstraints         = false
+        indicator.translatesAutoresizingMaskIntoConstraints     = false
         
         NSLayoutConstraint.activate([
             view.topAnchor.constraint(equalTo: topAnchor),
             view.leadingAnchor.constraint(equalTo: leadingAnchor),
             view.trailingAnchor.constraint(equalTo: trailingAnchor),
             view.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 8),
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
@@ -57,7 +63,13 @@ class CircleCell: UICollectionViewCell {
     }
     
     func set(model: CirclesModel) {
-        imageView.image         = UIImage(named: model.imageUrl)
+        indicator.startAnimating()
+        ImageDownloader(urlString: model.imageUrl).downloadImage { image in
+            DispatchQueue.main.async {
+                self.indicator.removeFromSuperview()
+                self.imageView.image = image
+            }
+        }
         imageView.contentMode   = .scaleToFill
         label.text              = model.name
     }

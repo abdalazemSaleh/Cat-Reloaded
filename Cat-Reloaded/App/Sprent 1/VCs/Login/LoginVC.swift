@@ -119,7 +119,7 @@ class LoginVC: UIViewController {
     }
     @objc func signUpButtonClicked() { presenter.signUp() }
     @objc func googleButtonCliced() {
-//        presenter.loginWithGoogle(controller: self)
+        presenter.loginWithGoogle(controller: self)
     }
     @objc func facebookButtonClicked() { presenter.loginWithFacebook(controller: self) }
 }

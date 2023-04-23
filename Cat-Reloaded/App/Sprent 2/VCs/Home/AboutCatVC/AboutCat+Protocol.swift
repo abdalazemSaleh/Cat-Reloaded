@@ -10,19 +10,16 @@ import UIKit
 extension AboutCatVC: AboutCatView {
     
     func aboutCatInfo(data: [AboutCatInfoModel]) {
-        snapshot.appendSections([.header])
         snapshot.appendItems(data, toSection: .header)
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
     
     func founders(data: [TeamBoardModel]) {
-        snapshot.appendSections([.founders])
         snapshot.appendItems(data, toSection: .founders)
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
     
     func teamBoard(data: [TeamBoardModel]) {
-        snapshot.appendSections([.taemBoard])
         snapshot.appendItems(data, toSection: .taemBoard)
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }

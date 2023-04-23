@@ -29,11 +29,11 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter               = HomePresenter(view: self)
-        presenter.fetchMemories(page: memoriesCurrentPage)
-        presenter.fetchPodCat(page: podCatCurrentPage)
-        presenter.isCatian()
         configureCollectionView()
         configureDataSource()
+        presenter.isCatian()
+        presenter.fetchMemories(page: memoriesCurrentPage)
+        presenter.fetchPodCat(page: podCatCurrentPage)
     }
         
     override func viewWillAppear(_ animated: Bool) {

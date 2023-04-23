@@ -18,13 +18,16 @@ class CirclesPresenter {
     init(view: CirclesView) {
         self.view = view
     }
-    // Code
+    // Variables
+    private(set) var data: [CirclesModel] = []
+    // Functions
     func fetchTechCircles() {
         let techCirclesObject = NetworkManger(url: URLs.techCircles.rawValue, method: .get, parms: nil, header: nil)
         techCirclesObject.request(modal: [CirclesModel].self) { [weak self] response in
             guard let self = self else { return }
             switch response {
             case .success(let data):
+                self.data = data
                 self.view?.techCircles(data: data)
             case .failure(let gFErro):
                 print(gFErro)
@@ -38,6 +41,7 @@ class CirclesPresenter {
             guard let self = self else { return }
             switch response {
             case .success(let data):
+                self.data = data
                 self.view?.nonTechCircles(data: data)
             case .failure(let gFErro):
                 print(gFErro)

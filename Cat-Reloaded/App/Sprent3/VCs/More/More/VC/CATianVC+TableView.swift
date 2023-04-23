@@ -61,7 +61,7 @@ extension CATianVC: UITableViewDelegate, UITableViewDataSource {
         case 0:
             nav(vc: SettingsVC())
         case 1:
-            break
+            nav(vc: PrivacyPolicyVC())
         case 2:
             break
         case 3:
@@ -76,7 +76,6 @@ extension CATianVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
         cell.transform = CGAffineTransform(translationX: 0, y: cell.contentView.frame.height)
         UIView.animate(withDuration: 0.5, delay: 0.05 * Double(indexPath.row) ) {
             cell.transform = CGAffineTransform(translationX: cell.contentView.frame.width, y: cell.contentView.frame.height)
@@ -103,11 +102,11 @@ extension CATianVC: UITableViewDelegate, UITableViewDataSource {
     
     private func deleteUserAccount() {
         
-        presenter.deleteUserAccount()
         
         let alertController = UIAlertController(title: "Are you sure you need to delete your account?", message: "If there is any problem please contact us.", preferredStyle: .actionSheet)
         
         let yes = UIAlertAction(title: "Delete account", style: .destructive) { _ in
+            self.presenter.deleteUserAccount()
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         

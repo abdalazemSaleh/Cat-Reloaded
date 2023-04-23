@@ -30,6 +30,8 @@
 	<string>7d5d102f7effd35620df6aa98351d9f8</string>
 	<key>FacebookDisplayName</key>
 	<string>CAT App</string>
+	<key>GIDClientID</key>
+	<string>783608969759-0brae1mhmc6nnrl682teqi6lr8onhm49.apps.googleusercontent.com</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

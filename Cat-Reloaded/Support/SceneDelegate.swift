@@ -28,8 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        
+        guard let windowScene = (scene as? UIWindowScene) else { return }        
         window                      = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene         = windowScene
         window?.makeKeyAndVisible()
@@ -53,6 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             window?.rootViewController  = GFNavigationController()
         }
+        
         guard let theme = UserDefaults.standard.string(forKey: "theme") else { return }
         if theme == "Dark mode" {
             window?.overrideUserInterfaceStyle = .dark

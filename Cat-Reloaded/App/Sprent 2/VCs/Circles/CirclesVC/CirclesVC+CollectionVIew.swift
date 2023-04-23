@@ -75,7 +75,7 @@ extension CirclesVC {
 
 extension CirclesVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let circle          = data[indexPath.row]
+        let circle          = presenter.data[indexPath.row]
         let vc              = CircleDetailsVC()
         vc.currentCircle    = circle
         nav(vc: vc)

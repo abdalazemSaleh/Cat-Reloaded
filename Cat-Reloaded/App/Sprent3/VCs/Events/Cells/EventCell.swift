@@ -19,7 +19,7 @@ class EventCell: UICollectionViewCell {
     let indicator             = UIActivityIndicatorView()
     
     let padding: CGFloat      = 20
-
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,12 +43,12 @@ class EventCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         
         indicator.translatesAutoresizingMaskIntoConstraints = false
-                    
+        
         NSLayoutConstraint.activate([
             
             indicator.centerXAnchor.constraint(equalTo: centerXAnchor),
             indicator.centerYAnchor.constraint(equalTo: centerYAnchor),
-
+            
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
@@ -56,7 +56,7 @@ class EventCell: UICollectionViewCell {
             
             sessionName.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8),
             sessionName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-
+            
             sessionDate.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8),
             sessionDate.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])

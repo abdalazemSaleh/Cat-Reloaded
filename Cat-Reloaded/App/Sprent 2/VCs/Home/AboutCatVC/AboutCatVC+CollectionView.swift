@@ -69,6 +69,7 @@ extension AboutCatVC {
             supplementaryView.label.text = AboutCatSections.allCases[indexPath.section].rawValue
             return supplementaryView
         }
+        snapshot.appendSections([.header, .founders, .taemBoard])
     }
     
     private func generateAboutCatHeaderLayout() -> NSCollectionLayoutSection {

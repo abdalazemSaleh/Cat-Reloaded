@@ -59,8 +59,7 @@ extension HomeVC {
             supplementaryView.label.text = Section.allCases[indexPath.section].rawValue
             return supplementaryView
         }
-//        snapshot.appendSections([.headerCell, .memorires, .podCat])
-//        DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
+        snapshot.appendSections([.headerCell, .memorires, .podCat])
     }
     /// Handel collectionview flow layout
     private func generateLayout() -> UICollectionViewLayout {

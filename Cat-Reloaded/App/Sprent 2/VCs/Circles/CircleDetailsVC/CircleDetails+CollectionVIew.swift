@@ -45,7 +45,7 @@ extension CircleDetailsVC {
             switch sectionType {
             case .header:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleDetailsHeaderCell.reuseIdentifer, for: indexPath) as! CircleDetailsHeaderCell
-                cell.set(model: model as! CircleDetailsModel, image: self.currentCircle?.imageUrl ?? "ios")
+                cell.set(model: model as! CircleDetailsModel)
                 return cell
             case .main:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleBoardCell.reuseIdentifer, for: indexPath) as! CircleBoardCell

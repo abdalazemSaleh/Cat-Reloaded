@@ -39,7 +39,6 @@ struct NetworkManger {
         let url = URLs.baseURL.rawValue + url
         
         AF.request(url, method: method, parameters: parms, encoding: JSONEncoding.default, headers: header).response { response in
-            
             guard Connectivity.isConnectedToInternet else { return completion(.failure(GFError.connectionError)) }
             
             guard let statusCode = response.response?.statusCode else { return }

@@ -10,18 +10,15 @@ import Foundation
 extension CirclesVC: checkSelectedIndex {
     func checkIndex(_ index: Int) {
         if index == 0 {
-            data.removeAll()
-            appendModel(type: .tech)
+            presenter.fetchTechCircles()
         } else {
-            data.removeAll()
-            appendModel(type: .nonTech)
+            presenter.fetchNonTechCircles()
         }
     }
 }
 
 extension CirclesVC: CirclesView {
     func techCircles(data: [CirclesModel]) {
-        print("my data: - \(data)")
         updateData(on: data)
     }
     

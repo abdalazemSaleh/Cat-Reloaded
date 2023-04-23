@@ -105,8 +105,12 @@ extension CircleDetailsHeaderCell {
 
 // MARK: - Set function
 extension CircleDetailsHeaderCell {
-    func set(model: CircleDetailsModel, image: String) {
-        circleImage.image = UIImage(named: image)
+    func set(model: CircleDetailsModel) {
+        ImageDownloader(urlString: model.imageUrl).downloadImage { image in
+            DispatchQueue.main.async {
+                self.circleImage.image = image
+            }
+        }
         roadMapUrl = model.roadmapUrl ?? ""
         roadMapButton.addTarget(CircleDetailsVC(), action: #selector(openUrl), for: .touchUpInside)
         circleName.text         = model.name
