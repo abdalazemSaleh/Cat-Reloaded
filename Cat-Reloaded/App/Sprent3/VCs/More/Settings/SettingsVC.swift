@@ -7,24 +7,18 @@
 
 import UIKit
 
-class SettingsVC: UIViewController {
+class SettingsVC: UIViewController, SettingsView {
     
     // MARK: - Variables
     var tableView: UITableView!
     
-    let themes = ["Dark mode", "Light mode", "System"]
-    let currentTheme = UserDefaults.standard.string(forKey: "theme")
-    
-    var settings: [SettingsModel] = []
-    
+    var presenter: SettingsPresenter!
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Settings"
-        settings.append(.init(image: SFSymbols.apperance, label: "Apperance", addetionalDetails: currentTheme ?? ""))
-        settings.append(.init(image: SFSymbols.language, label: "Language", addetionalDetails: "English"))
+        presenter = SettingsPresenter(view: self)
         configureTableView()
-        registerTableViewCells()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -36,21 +30,5 @@ class SettingsVC: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles  = true
         
         navigationController?.navigationBar.tintColor = Colors.mainColor
-    }
-    // MARK: - Functions
-    func configureUserInterFace(theme: Theme) {
-
-        let scenes = UIApplication.shared.connectedScenes
-        let windowScene = scenes.first as? UIWindowScene
-        let window = windowScene?.windows.first
-        
-        switch theme {
-        case .light:
-            window?.overrideUserInterfaceStyle = .light
-        case .dark:
-            window?.overrideUserInterfaceStyle = .dark
-        case .system:
-            window?.overrideUserInterfaceStyle = .unspecified
-        }
     }
 }

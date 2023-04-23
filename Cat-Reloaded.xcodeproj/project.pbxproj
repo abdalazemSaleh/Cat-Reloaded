@@ -110,6 +110,7 @@
 		7FD44FAD29C9ABC20080AF42 /* GFLoaderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD44FAC29C9ABC20080AF42 /* GFLoaderButton.swift */; };
 		7FDE9B1E29203C1100949945 /* GFErrorLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FDE9B1D29203C1100949945 /* GFErrorLabel.swift */; };
 		7FE1D0F129F1DC5400999B6F /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE1D0F029F1DC5400999B6F /* URL.swift */; };
+		7FE1D11329F5BCD100999B6F /* SettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE1D11229F5BCD100999B6F /* SettingPresenter.swift */; };
 		7FE959592948C860001B2554 /* GFTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE959582948C860001B2554 /* GFTextView.swift */; };
 		7FE9595B2948D09A001B2554 /* BoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9595A2948D09A001B2554 /* BoardCell.swift */; };
 		7FE9595F29492366001B2554 /* CircleDetailsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9595E29492366001B2554 /* CircleDetailsHeaderCell.swift */; };
@@ -230,6 +231,7 @@
 		7FD44FAC29C9ABC20080AF42 /* GFLoaderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFLoaderButton.swift; sourceTree = "<group>"; };
 		7FDE9B1D29203C1100949945 /* GFErrorLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFErrorLabel.swift; sourceTree = "<group>"; };
 		7FE1D0F029F1DC5400999B6F /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		7FE1D11229F5BCD100999B6F /* SettingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPresenter.swift; sourceTree = "<group>"; };
 		7FE959582948C860001B2554 /* GFTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextView.swift; sourceTree = "<group>"; };
 		7FE9595A2948D09A001B2554 /* BoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCell.swift; sourceTree = "<group>"; };
 		7FE9595E29492366001B2554 /* CircleDetailsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDetailsHeaderCell.swift; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 				7FBE49E0299BE045004105B0 /* EventsPresenter.swift */,
 				7FD4405129D3B0CA00FA1222 /* ProfilePresenter.swift */,
 				7FD4405529D4C6CA00FA1222 /* CATianPresenter.swift */,
+				7FE1D11229F5BCD100999B6F /* SettingPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -983,6 +986,7 @@
 				7F887258298E79E90047A61D /* Events+Protocol.swift in Sources */,
 				7F30C27828EDC5620007AACF /* GFPageControl.swift in Sources */,
 				7FB4F38328EB510C008557ED /* GFNavigationController.swift in Sources */,
+				7FE1D11329F5BCD100999B6F /* SettingPresenter.swift in Sources */,
 				7FB4F38728EB5458008557ED /* GFButton.swift in Sources */,
 				7F88725D2990207F0047A61D /* String.swift in Sources */,
 				7FAAFF8A28F4E117008A9FF2 /* GFCardView.swift in Sources */,

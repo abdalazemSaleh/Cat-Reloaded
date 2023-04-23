@@ -7,52 +7,6 @@
 
 import UIKit
 
-class SettingsCell: GFSimpleCell {
-    // MARK: - Variables
-    static let reuseIdentifer   = "SettingsCell"
-    
-    var menuActions: [UIAction] = []
-    
-    let appearanceLabel = GFBodyLabel(textAlignment: .center)
-    let button = GFSimpleButton()
-    
-    // MARK: - Initilaizer
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(appearanceLabel)
-        contentView.addSubview(button)
-        button.addTarget(self, action: #selector(handel), for: .touchUpInside)
-
-        button.showsMenuAsPrimaryAction  = true
-
-        
-        NSLayoutConstraint.activate([
-            button.topAnchor.constraint(equalTo: topAnchor),
-            button.leadingAnchor.constraint(equalTo: leadingAnchor),
-            button.trailingAnchor.constraint(equalTo: trailingAnchor),
-            button.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            appearanceLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            appearanceLabel.trailingAnchor.constraint(equalTo: arrowImage.leadingAnchor, constant: -8)
-        ])
-    }
-    
-    @objc func handel() {
-        button.menu = UIMenu(children: menuActions)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    // MARK: - Set function
-    func set(model: SettingsModel) {
-        rowImage.image  = model.image
-        labelCell.text  = model.label
-        appearanceLabel.text = model.addetionalDetails
-    }
-    
-}
-
 extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
     
     func configureTableView() {
@@ -62,59 +16,113 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
     }
-    
-    func registerTableViewCells() {
-        tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdentifer)
+        
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return presenter.settingsData.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settings.count
+        if presenter.hiddenSections.contains(section) {
+            return 0
+        }
+        return presenter.settingsData[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifer, for: indexPath) as! SettingsCell
-        let model = settings[indexPath.row]
-        cell.set(model: model)
-        switch indexPath.row {
-        case 0:
-            cell.menuActions = [
-                UIAction(title: "Dark Mode", identifier: UIAction.Identifier(Theme.dark.rawValue), handler: checkApperance),
-                UIAction(title: "Light Mode", identifier: UIAction.Identifier(Theme.light.rawValue), handler: checkApperance),
-                UIAction(title: "System", identifier: UIAction.Identifier(Theme.system.rawValue), handler: checkApperance)
-            ]
-        case 1:
-            cell.menuActions = [
-                UIAction(title: "English", identifier: UIAction.Identifier("English"), handler: checkLanguage),
-                UIAction(title: "Arabic", identifier: UIAction.Identifier("Arabic"), handler: checkLanguage),
-            ]
-        default:
-            break
-        }
+        let cell = UITableViewCell()
+        cell.textLabel?.text = presenter.settingsData[indexPath.section][indexPath.row]
+        cell.selectionStyle = .none
         return cell
     }
     
-    func checkApperance(action: UIAction) {
-        switch action.identifier.rawValue {
-        case Theme.dark.rawValue:
-            configureUserInterFace(theme: .dark)
-        case Theme.light.rawValue:
-            configureUserInterFace(theme: .light)
-        case Theme.system.rawValue:
-            configureUserInterFace(theme: .system)
-        default:
-            print("woops")
+    #warning("Refactor this method")
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        let rowImage            = GFImageView(frame: .zero)
+        let labelCell           = GFTitleLabel(textAlignment: .left, fontSize: 16, weight: .bold)
+        let arrowImage          = GFImageView(frame: .zero)
+        let appearanceLabel     = GFBodyLabel(textAlignment: .center)
+        let button              = GFSimpleButton()
+        view.addSubview(button)
+        view.addSubview(rowImage)
+        view.addSubview(labelCell)
+        view.addSubview(appearanceLabel)
+        view.addSubview(arrowImage)
+
+        labelCell.text = presenter.settings[section].label
+        appearanceLabel.text = presenter.settings[section].addetionalDetails
+        rowImage.image = presenter.settings[section].image
+        rowImage.tintColor = Colors.mainColor
+        arrowImage.image        = UIImage(systemName: "chevron.down")
+        arrowImage.tintColor    = .secondaryLabel
+        
+        button.tag = section
+        button.addTarget(self, action: #selector(hideSection(sender:)), for: .touchUpInside)
+
+        NSLayoutConstraint.activate([
+            rowImage.heightAnchor.constraint(equalToConstant: 24),
+            rowImage.widthAnchor.constraint(equalToConstant: 24),
+            rowImage.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            rowImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+
+            labelCell.leadingAnchor.constraint(equalTo: rowImage.trailingAnchor, constant: 8),
+            labelCell.centerYAnchor.constraint(equalTo: rowImage.centerYAnchor),
+            
+            arrowImage.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            arrowImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            appearanceLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            appearanceLabel.trailingAnchor.constraint(equalTo: arrowImage.leadingAnchor, constant: -8),
+            
+            button.topAnchor.constraint(equalTo: view.topAnchor),
+            button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            button.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 48
+    }
+    
+    @objc private func hideSection(sender: UIButton) {
+        let section = sender.tag
+        func indexPathsForSection() -> [IndexPath] {
+            var indexPaths = [IndexPath]()
+
+            for row in 0..<self.presenter.settingsData[section].count {
+                indexPaths.append(IndexPath(row: row,
+                                            section: section))
+            }
+
+            return indexPaths
+        }
+        if presenter.hiddenSections.contains(section) {
+            presenter.hiddenSections.remove(section)
+            self.tableView.insertRows(at: indexPathsForSection(),
+                                      with: .fade)
+        } else {
+            presenter.hiddenSections.insert(section)
+            self.tableView.deleteRows(at: indexPathsForSection(),
+                                      with: .fade)
         }
     }
-    
-    func checkLanguage(action: UIAction) {
-        print("Working on it.")
-    }
 
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.transform = CGAffineTransform(translationX: 0, y: cell.contentView.frame.height)
-        UIView.animate(withDuration: 0.5, delay: 0.05 * Double(indexPath.row) ) {
-            cell.transform = CGAffineTransform(translationX: cell.contentView.frame.width, y: cell.contentView.frame.height)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                presenter.configureUserInterFace(theme: .dark)
+            case 1:
+                presenter.configureUserInterFace(theme: .light)
+            default:
+                presenter.configureUserInterFace(theme: .system)
+            }
+        default:
+            presentGFAlert(title: "Hello", message: "We Woking on it. 🫠", buttonTitle: "OK")
         }
     }
     
