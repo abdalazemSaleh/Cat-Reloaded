@@ -18,6 +18,8 @@ class SettingsVC: UIViewController, SettingsView {
         super.viewDidLoad()
         title = "Settings"
         presenter = SettingsPresenter(view: self)
+        presenter.hiddenSections.insert(0)
+        presenter.hiddenSections.insert(1)
         configureTableView()
     }
     override func viewWillAppear(_ animated: Bool) {

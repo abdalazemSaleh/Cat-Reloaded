@@ -35,51 +35,16 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    #warning("Refactor this method")
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        let rowImage            = GFImageView(frame: .zero)
-        let labelCell           = GFTitleLabel(textAlignment: .left, fontSize: 16, weight: .bold)
-        let arrowImage          = GFImageView(frame: .zero)
-        let appearanceLabel     = GFBodyLabel(textAlignment: .center)
-        let button              = GFSimpleButton()
-        view.addSubview(button)
-        view.addSubview(rowImage)
-        view.addSubview(labelCell)
-        view.addSubview(appearanceLabel)
-        view.addSubview(arrowImage)
-
-        labelCell.text = presenter.settings[section].label
-        appearanceLabel.text = presenter.settings[section].addetionalDetails
-        rowImage.image = presenter.settings[section].image
-        rowImage.tintColor = Colors.mainColor
-        arrowImage.image        = UIImage(systemName: "chevron.down")
-        arrowImage.tintColor    = .secondaryLabel
         
-        button.tag = section
-        button.addTarget(self, action: #selector(hideSection(sender:)), for: .touchUpInside)
-
-        NSLayoutConstraint.activate([
-            rowImage.heightAnchor.constraint(equalToConstant: 24),
-            rowImage.widthAnchor.constraint(equalToConstant: 24),
-            rowImage.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            rowImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-
-            labelCell.leadingAnchor.constraint(equalTo: rowImage.trailingAnchor, constant: 8),
-            labelCell.centerYAnchor.constraint(equalTo: rowImage.centerYAnchor),
-            
-            arrowImage.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            arrowImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
-            appearanceLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            appearanceLabel.trailingAnchor.constraint(equalTo: arrowImage.leadingAnchor, constant: -8),
-            
-            button.topAnchor.constraint(equalTo: view.topAnchor),
-            button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            button.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        let labelCell = presenter.settings[section].label
+        let appearanceLabel = presenter.settings[section].addetionalDetails
+        let rowImage = presenter.settings[section].image
         
+        let view = SettingsHeaderView(labelCell: labelCell, appearanceLabel: appearanceLabel, rowImage: rowImage) {
+            button.tag = section
+            self.hideSection(sender: button)
+        }
         return view
     }
     

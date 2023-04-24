@@ -14,6 +14,7 @@
 		7F078F182923F52B00895441 /* CircleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F078F172923F52B00895441 /* CircleHeader.swift */; };
 		7F078F1B2923F56B00895441 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F078F1A2923F56B00895441 /* CustomSegmentedControl.swift */; };
 		7F08218F29200B55008AB3BD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F08218E29200B55008AB3BD /* GoogleService-Info.plist */; };
+		7F11EC4E29F708F000029D3A /* SettingsViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F11EC4D29F708F000029D3A /* SettingsViewHeader.swift */; };
 		7F157B4129EDF61E00D5BB98 /* PrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F157B4029EDF61E00D5BB98 /* PrivacyPolicyVC.swift */; };
 		7F30C23528EC44350007AACF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F30C23428EC44350007AACF /* ViewController.swift */; };
 		7F30C23B28ECDCF00007AACF /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F30C23A28ECDCF00007AACF /* Onboarding.swift */; };
@@ -135,6 +136,7 @@
 		7F078F172923F52B00895441 /* CircleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleHeader.swift; sourceTree = "<group>"; };
 		7F078F1A2923F56B00895441 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		7F08218E29200B55008AB3BD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7F11EC4D29F708F000029D3A /* SettingsViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewHeader.swift; sourceTree = "<group>"; };
 		7F157B4029EDF61E00D5BB98 /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyVC.swift; sourceTree = "<group>"; };
 		7F30C23428EC44350007AACF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7F30C23A28ECDCF00007AACF /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
@@ -678,6 +680,7 @@
 				7F55642A28F1FD71009342A6 /* GFAlertContainerView.swift */,
 				7FAAFF8928F4E117008A9FF2 /* GFCardView.swift */,
 				7F549EA22992EBA500E85093 /* GFEmptyStateView.swift */,
+				7F11EC4D29F708F000029D3A /* SettingsViewHeader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -993,6 +996,7 @@
 				7FAAFF7D28F4CE5A008A9FF2 /* HomeVC.swift in Sources */,
 				EACD70F42946386600940592 /* ProfileHeader.swift in Sources */,
 				7F078F102923F45A00895441 /* CirclesVC+CollectionVIew.swift in Sources */,
+				7F11EC4E29F708F000029D3A /* SettingsViewHeader.swift in Sources */,
 				7F73CA042960C3F600579170 /* AboutCatVC+CollectionView.swift in Sources */,
 				7FD4405229D3B0CA00FA1222 /* ProfilePresenter.swift in Sources */,
 				7F62DD8F28FDFB3400FEC944 /* HeaderView.swift in Sources */,
