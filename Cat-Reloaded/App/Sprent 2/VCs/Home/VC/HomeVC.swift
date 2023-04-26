@@ -28,6 +28,7 @@ class HomeVC: UIViewController {
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        add_openCardButton()
         presenter               = HomePresenter(view: self)
         configureCollectionView()
         configureDataSource()
@@ -35,7 +36,7 @@ class HomeVC: UIViewController {
         presenter.fetchMemories(page: memoriesCurrentPage)
         presenter.fetchPodCat(page: podCatCurrentPage)
     }
-        
+            
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationController()

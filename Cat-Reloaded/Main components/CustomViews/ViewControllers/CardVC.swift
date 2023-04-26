@@ -1,0 +1,144 @@
+//
+//  CardVC.swift
+//  Cat-Reloaded
+//
+//  Created by Abdalazem Saleh on 2023-04-24.
+//
+
+import UIKit
+
+class CardVC: UIViewController {
+
+    // MARK: - Variables
+    let containerView   = UIView()
+    let background      = GFImageView(frame: .zero)
+    let catianImage     = GFImageView(frame: .zero)
+    let catianName      = GFTitleLabel(textAlignment: .center, fontSize: 24, weight: .bold)
+    let catianRole      = GFBodyLabel(textAlignment: .center)
+    let catLogo         = GFImageView(frame: .zero)
+    
+    // MARK: - Initilizer
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        self.catianImage.image = UIImage(named: "404")!
+        self.catianName.text   = "Abdalazem"
+        self.catianRole.text   = "catianRole"
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - View life cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureContainerView()
+//        configureCardBackground()
+        configureCatianImageView()
+        configureCatianName()
+        configureCatianRole()
+        configureCatLogo()
+    }
+    
+    private func configureContainerView() {
+        view.addSubview(containerView)
+        
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        containerView.backgroundColor       = .systemBackground
+        containerView.layer.borderWidth     = 2
+        containerView.layer.borderColor     = Colors.mainColor?.cgColor
+        containerView.layer.cornerRadius    = 8
+        
+        let padding: CGFloat = view.frame.width / 4
+        let containerViewHeight: CGFloat = view.frame.height / 2
+        let containerViewWidth: CGFloat  = view.frame.width - padding
+        
+        NSLayoutConstraint.activate([
+            containerView.heightAnchor.constraint(equalToConstant: containerViewHeight),
+            containerView.widthAnchor.constraint(equalToConstant: containerViewWidth),
+            
+            containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
+    func configureCardBackground() {
+        view.addSubview(background)
+        
+        background.image = Images.card01
+        background.contentMode = .scaleToFill
+        
+        NSLayoutConstraint.activate([
+            background.topAnchor.constraint(equalTo: containerView.topAnchor, constant:  -2),
+            background.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant:  -2),
+            background.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant:  2),
+            background.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant:  2)
+        ])
+    }
+    
+    private func configureCatianImageView() {
+        containerView.addSubview(catianImage)
+        
+        let imageSize: CGFloat = 128
+
+        catianImage.layer.borderWidth   = 1
+        catianImage.layer.borderColor   = Colors.mainColor?.cgColor
+        catianImage.layer.cornerRadius  = imageSize/2
+        catianImage.clipsToBounds = true
+                
+        NSLayoutConstraint.activate([
+            catianImage.heightAnchor.constraint(equalToConstant: imageSize),
+            catianImage.widthAnchor.constraint(equalToConstant: imageSize),
+            
+            catianImage.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 32),
+            catianImage.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
+        ])
+        
+    }
+    
+    private func configureCatianName() {
+        containerView.addSubview(catianName)
+        
+        NSLayoutConstraint.activate([
+            catianName.topAnchor.constraint(equalTo: catianImage.bottomAnchor, constant: 24),
+            catianName.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8),
+            catianName.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8)
+        ])
+    }
+    
+    private func configureCatianRole() {
+        containerView.addSubview(catianRole)
+        
+        catianRole.backgroundColor      = Colors.mainColor
+        catianRole.textColor            = .white
+        catianRole.layer.cornerRadius   = 4
+        catianRole.clipsToBounds        = true
+        
+        let font        = UIFont.preferredFont(forTextStyle: .title3)
+        let size        = catianRole.text!.size(withAttributes: [NSAttributedString.Key.font: font])
+        let stringWidth = size.width
+        
+        NSLayoutConstraint.activate([
+            catianRole.topAnchor.constraint(equalTo: catianName.bottomAnchor, constant: 16),
+            catianRole.centerXAnchor.constraint(equalTo: catianName.centerXAnchor),
+            catianRole.heightAnchor.constraint(equalToConstant: 32),
+            catianRole.widthAnchor.constraint(equalToConstant: stringWidth)
+        ])
+    }
+    
+    private func configureCatLogo() {
+        containerView.addSubview(catLogo)
+        
+        catLogo.image = Images.catLogo
+        
+        let width: CGFloat  = view.frame.width / 3
+        
+        NSLayoutConstraint.activate([
+            catLogo.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
+            catLogo.widthAnchor.constraint(equalToConstant: width),
+            catLogo.heightAnchor.constraint(equalToConstant: 48),
+            catLogo.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
+        ])
+    }
+}

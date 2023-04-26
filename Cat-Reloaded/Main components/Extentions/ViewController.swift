@@ -44,16 +44,31 @@ extension UIViewController {
     }
     
     func dismis() {
-        self.navigationController?.popViewController(animated: true)
+       self.navigationController?.popViewController(animated: true)
+    }
+    
+    func add_openCardButton() {
+        let button = UIButton(type: .system)
+        button.setTitle("My Button", for: .normal)
+        button.addTarget(self, action: #selector(presentCardVC), for: .touchUpInside)
+
+        let barButtonItem = UIBarButtonItem(customView: button)
+
+        navigationItem.rightBarButtonItem = barButtonItem
+    }
+    
+    @objc private func presentCardVC() {
+        let cardVC = CardVC()
+        cardVC.modalPresentationStyle  = .overFullScreen
+        cardVC.modalTransitionStyle    = .crossDissolve
+        self.present(cardVC, animated: true)
     }
     
     func presentGFAlert(title: String, message: String, buttonTitle: String) {
-        DispatchQueue.main.async {
-            let alertVC = GFAlertVC(title: title, message: message, buttonTitle: buttonTitle)
-            alertVC.modalPresentationStyle  = .overFullScreen
-            alertVC.modalTransitionStyle    = .crossDissolve
-            self.present(alertVC, animated: true)
-        }
+        let alertVC = GFAlertVC(title: title, message: message, buttonTitle: buttonTitle)
+        alertVC.modalPresentationStyle  = .overFullScreen
+        alertVC.modalTransitionStyle    = .crossDissolve
+        self.present(alertVC, animated: true)
     }
             
     func presentGFTabBar() {
@@ -77,7 +92,7 @@ extension UIViewController {
         vc.modalTransitionStyle     = .crossDissolve
         present(vc, animated: true)
     }
-    
+        
     func openPodCat(with link: String) {
         let urlComponents   = link.components(separatedBy: "=")
         

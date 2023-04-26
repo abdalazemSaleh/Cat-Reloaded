@@ -7,8 +7,6 @@
 
 import UIKit
 
-#warning("Try to refactor this code")
-
 extension LoginVC {
     /// Configure UI
     func configureUI() {
@@ -31,12 +29,17 @@ extension LoginVC {
         scrollView = UIScrollView(frame: .zero)
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+        
+        scrollView.makeConstraints(topAnchor: view.safeAreaLayoutGuide.topAnchor,
+                                   bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor,
+                                   leadingAnchor: view.leadingAnchor,
+                                   trailingAnchor: view.trailingAnchor)
+//        NSLayoutConstraint.activate([
+//            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+//            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+//        ])
     }
 
     /// Configure content view
@@ -44,13 +47,15 @@ extension LoginVC {
         contentView = UIView(frame: .zero)
         scrollView.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
+    
         let heightConstraint = contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
         heightConstraint.priority = UILayoutPriority(250)
         
+        contentView.makeConstraints(topAnchor: scrollView.topAnchor,
+                                    bottomAnchor: scrollView.bottomAnchor,
+                                    leadingAnchor: scrollView.leadingAnchor)
+        
         NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             heightConstraint,
         ])
@@ -69,12 +74,12 @@ extension LoginVC {
         logo.image      = UIImage(named: "logo")
         let logoWidth   = view.frame.width / 2
 
-        NSLayoutConstraint.activate([
-            logo.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 80),
-            logo.widthAnchor.constraint(equalToConstant: logoWidth),
-            logo.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            logo.heightAnchor.constraint(equalToConstant: 80)
-        ])
+        let padding = UIEdgeInsets(top: 80, left: 0, bottom: 0, right: 0)
+        
+        logo.makeConstraints(topAnchor: contentView.topAnchor,
+                             centerXAnchor: contentView.centerXAnchor,
+                             padding: padding,
+                             size: CGSize(width: logoWidth, height: 80))
     }
     
     /// Configure login label
@@ -82,10 +87,11 @@ extension LoginVC {
         loginLabel.text = "Login"
         loginLabel.textColor = Colors.mainColor
         
-        NSLayoutConstraint.activate([
-            loginLabel.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 80),
-            loginLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding)
-        ])
+        let padding = UIEdgeInsets(top: 80, left: padding, bottom: 0, right: 0)
+        
+        loginLabel.makeConstraints(topAnchor: logo.bottomAnchor,
+                                   leadingAnchor: contentView.leadingAnchor,
+                                   padding: padding)
     }
     
     func configureContainers() {
@@ -95,10 +101,8 @@ extension LoginVC {
         passwordContainer.axis      = .vertical
         passwordContainer.spacing   = 4
                 
-        NSLayoutConstraint.activate([
-            phone.heightAnchor.constraint(equalToConstant: 48),
-            password.heightAnchor.constraint(equalToConstant: 48)
-        ])
+        phone.makeConstraints(size: CGSize(width: 0, height: 48))
+        password.makeConstraints(size: CGSize(width: 0, height: 48))
         
         phoneContainer.addArrangedSubview(phone)
         phoneContainer.addArrangedSubview(phoneError)
@@ -118,19 +122,20 @@ extension LoginVC {
         
         textFieldsStack.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            textFieldsStack.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: padding),
-            textFieldsStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            textFieldsStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding)
-        ])
+        let padding = UIEdgeInsets(top: padding, left: padding, bottom: 0, right: padding)
+        textFieldsStack.makeConstraints(topAnchor: loginLabel.bottomAnchor,
+                                        leadingAnchor: contentView.leadingAnchor,
+                                        trailingAnchor: contentView.trailingAnchor,
+                                        padding: padding)
     }
     
     /// Configure forget password
     func configureForgetPassword() {
-        NSLayoutConstraint.activate([
-            forgetPassword.topAnchor.constraint(equalTo: textFieldsStack.bottomAnchor, constant: padding),
-            forgetPassword.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-        ])
+        let padding = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 16)
+        
+        forgetPassword.makeConstraints(topAnchor: textFieldsStack.bottomAnchor,
+                                       trailingAnchor: contentView.trailingAnchor,
+                                       padding: padding)
     }
     
     /// Configure login button
@@ -186,21 +191,18 @@ extension LoginVC {
         
         mediaLoginStack.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            
-            facebookButton.heightAnchor.constraint(equalToConstant: 48),
-            facebookButton.widthAnchor.constraint(equalToConstant: 48),
-            
-            googleButton.heightAnchor.constraint(equalToConstant: 48),
-            googleButton.widthAnchor.constraint(equalToConstant: 48),
-
-            
-            loginWithLabel.topAnchor.constraint(equalTo: loginbutton.bottomAnchor, constant: 40),
-            loginWithLabel.centerXAnchor.constraint(equalTo: loginbutton.centerXAnchor),
-            
-            mediaLoginStack.topAnchor.constraint(equalTo: loginWithLabel.bottomAnchor, constant: padding),
-            mediaLoginStack.centerXAnchor.constraint(equalTo: loginWithLabel.centerXAnchor)
-        ])
+        facebookButton.makeConstraints(size: CGSize(width: 48, height: 48))
+        googleButton.makeConstraints(size: CGSize(width: 48, height: 48))
+        
+        let loginWithLabelPadding = UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
+        loginWithLabel.makeConstraints(topAnchor: loginbutton.bottomAnchor,
+                                       centerXAnchor: loginbutton.centerXAnchor,
+                                       padding: loginWithLabelPadding)
+        
+        let mediaLoginStackPadding = UIEdgeInsets(top: padding, left: 0, bottom: 0, right: 0)
+        mediaLoginStack.makeConstraints(topAnchor: loginWithLabel.bottomAnchor,
+                                        centerXAnchor: loginWithLabel.centerXAnchor,
+                                        padding: mediaLoginStackPadding)
     }
     
     /// Configure sgin up butotn
@@ -215,11 +217,11 @@ extension LoginVC {
 
         sginUpStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            sginUpStackView.topAnchor.constraint(equalTo: mediaLoginStack.bottomAnchor, constant: padding),
-            sginUpStackView.centerXAnchor.constraint(equalTo: mediaLoginStack.centerXAnchor),
-            sginUpStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
-        ])
+        let sginUpStackViewPadding = UIEdgeInsets(top: padding, left: 0, bottom: padding, right: 0)
+        sginUpStackView.makeConstraints(topAnchor: mediaLoginStack.bottomAnchor,
+                                        bottomAnchor: contentView.bottomAnchor,
+                                        centerXAnchor: mediaLoginStack.centerXAnchor,
+                                        padding: sginUpStackViewPadding)
     }
         
     /// Shared comstraint
@@ -227,11 +229,10 @@ extension LoginVC {
         let itemViews: [UIView]  = [textFieldsStack]
         
         for itemView in itemViews {
-            NSLayoutConstraint.activate([
-                itemView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-                itemView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            ])
+            let padding = UIEdgeInsets(top: 0, left: padding, bottom: 0, right: padding)
+            itemView.makeConstraints(leadingAnchor: contentView.leadingAnchor,
+                                     trailingAnchor: contentView.trailingAnchor,
+                                     padding: padding)
         }
     }
 }
-

@@ -27,9 +27,8 @@ class EventsVC: UIViewController {
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        add_openCardButton()
         presenter = EventsPresenter(view: self)
-        
         configureCollectionView()
         configureCollectionViewDataSource()
         presenter.fetchUpComingEvents()

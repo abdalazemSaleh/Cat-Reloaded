@@ -22,6 +22,7 @@ class CirclesVC: UIViewController {
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        add_openCardButton()
         presenter = CirclesPresenter(view: self)
         configureCollectionView()
         configureDataSource()

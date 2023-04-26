@@ -27,6 +27,7 @@ class CATianVC: UIViewController {
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        add_openCardButton()
         presenter = CATianPresenter(view: self)
         catIanArray.append(CATianModel(image: SFSymbols.setting, name: "Settings"))
         catIanArray.append(CATianModel(image: SFSymbols.privacy, name: "Privacy Policy"))

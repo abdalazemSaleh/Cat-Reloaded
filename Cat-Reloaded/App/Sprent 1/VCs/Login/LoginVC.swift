@@ -60,11 +60,11 @@ class LoginVC: UIViewController {
     // MARK: - Functions
     // Configure Action Button
     func configureActionButtons() {
-        loginbutton.addTarget(self, action: #selector(loginButtonClicked), for: .touchUpInside)
-        forgetPassword.addTarget(self, action: #selector(forgetPasswordClicked), for: .touchUpInside)
-        signUpButton.addTarget(self, action: #selector(signUpButtonClicked), for: .touchUpInside)
-        googleButton.addTarget(self, action: #selector(googleButtonCliced), for: .touchUpInside)
-        facebookButton.addTarget(self, action: #selector(facebookButtonClicked), for: .touchUpInside)
+        loginbutton.addTarget(presenter, action: #selector(presenter.loginButtonClicked), for: .touchUpInside)
+        forgetPassword.addTarget(presenter, action: #selector(presenter.forgetPasswordClicked), for: .touchUpInside)
+        signUpButton.addTarget(presenter, action: #selector(presenter.signUpButtonClicked), for: .touchUpInside)
+        googleButton.addTarget(self, action: #selector(googleButtonClicked), for: .touchUpInside)
+        facebookButton.addTarget(presenter, action: #selector(presenter.facebookButtonClicked(controller:)), for: .touchUpInside)
     }
 
     // Handel view while using keyboard
@@ -91,35 +91,7 @@ class LoginVC: UIViewController {
         }
     }
     
-    // Cehck if textfiled is empty
-    func isTextFieldsIsEmpty() -> loginParms {
-        guard let phoneNumber = phone.text, !phoneNumber.isEmpty else {
-            phoneError.isHidden = false
-            return loginParms.init(phone: "", password: "")
-        }
-        guard let password = password.text, !password.isEmpty else {
-            phoneError.isHidden = true
-            passwordError.isHidden = false
-            return loginParms.init(phone: "", password: "")
-        }
-        return loginParms.init(phone: phoneNumber, password: password)
-    }
-    // Action buttons
-    @objc func forgetPasswordClicked() { }
-        
-    @objc func loginButtonClicked() {
-        let model = isTextFieldsIsEmpty()
-        guard !model.phone.isEmpty, !model.password.isEmpty else { return }
-        passwordError.isHidden = true
-        let parms = [
-            "phoneNumber" : model.phone,
-            "password" : model.password
-        ]
-        presenter.login(parms: parms)
-    }
-    @objc func signUpButtonClicked() { presenter.signUp() }
-    @objc func googleButtonCliced() {
+    @objc func googleButtonClicked() {
         presenter.loginWithGoogle(controller: self)
     }
-    @objc func facebookButtonClicked() { presenter.loginWithFacebook(controller: self) }
 }

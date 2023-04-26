@@ -11,10 +11,13 @@ import FBSDKLoginKit
 import GoogleSignIn
 
 protocol LoginView: AnyObject {
+    func isTextFieldsIsEmpty() -> loginParms
     func handelButtonStyle()
     func goToHomeScreen()
     func alertMessage(message: String)
     func goToRegisterVC()
+    func showPasswordError(_ show: Bool)
+    func showPhoneNumberError(_ show: Bool)
 }
 
 class LoginPresenter {
@@ -25,7 +28,7 @@ class LoginPresenter {
     }
     // MARK: - Code
     // Login
-    func login(parms: [String: Any]) {
+    private func login(parms: [String: Any]) {
         self.view?.handelButtonStyle()
         let loginObject = NetworkManger(url: URLs.login.rawValue, method: .post, parms: parms, header: nil)
         loginObject.request(modal: ProfileModel.self) { [weak self] result in
@@ -48,7 +51,7 @@ class LoginPresenter {
         }
     }
     // Login with facebook
-    func loginWithFacebook(controller: UIViewController) {
+    private func loginWithFacebook(controller: UIViewController) {
         let loginManger = LoginManager()
         loginManger.logIn(permissions: ["public_profile", "email"], from: controller) { [weak self] result, error in
             guard let self = self else { return }
@@ -67,12 +70,12 @@ class LoginPresenter {
         GIDSignIn.sharedInstance.signIn(withPresenting: controller) { signInResult, error in
             guard error == nil else { return }
             guard let signInResult = signInResult else { return }
-            
+
             signInResult.user.refreshTokensIfNeeded { [weak self] user, error in
                 guard let self = self else { return }
                 guard error == nil else { return }
                 guard let user = user else { return }
-                
+
                 let idToken = user.idToken
                 // Send ID token to backend
                 let parms = [
@@ -85,7 +88,7 @@ class LoginPresenter {
     }
     
     // func send token to signin
-    func tokenSignIn(url: String, parms: [String: Any]) {
+    private func tokenSignIn(url: String, parms: [String: Any]) {
         let ExtrnalLoginObject = NetworkManger(url: URLs.external.rawValue, method: .post, parms: parms, header: nil)
         
         ExtrnalLoginObject.request(modal: ProfileModel.self) { [weak self] result in
@@ -108,8 +111,30 @@ class LoginPresenter {
             }
         }
     }
-    // SginUp
-    func signUp() {
+    
+    @objc func loginButtonClicked() {
+        guard let model = view?.isTextFieldsIsEmpty() else { return }
+        guard !model.phone.isEmpty, !model.password.isEmpty else { return }
+        view?.showPasswordError(true)
+        let parms = [
+            "phoneNumber" : model.phone,
+            "password" : model.password
+        ]
+        login(parms: parms)
+    }
+    
+    @objc func signUpButtonClicked() {
+        signUp()
+    }
+        
+    @objc func facebookButtonClicked(controller: UIViewController) {
+        loginWithFacebook(controller: controller)
+    }
+    
+    @objc func forgetPasswordClicked() { }
+    
+    private func signUp() {
         view?.goToRegisterVC()
     }
+    
 }
