@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class LoginVC: UIViewController {
 
@@ -29,7 +30,7 @@ class LoginVC: UIViewController {
     let googleButton            = GFMediaButton(backgroundColor: .clear, image: Images.google!)
     let mediaLoginStack         = UIStackView()
     let newGuestLabel           = GFTitleLabel(textAlignment: .left, fontSize: 16, weight: .semibold)
-    let signUpButton            = GFSimpleButton(title: "sgin up", titleColor: Colors.mainColor!)
+    let signUpButton            = GFSimpleButton(title: "Sign up", titleColor: Colors.mainColor!)
     let sginUpStackView         = UIStackView()
     
     var isExpend: Bool              = false

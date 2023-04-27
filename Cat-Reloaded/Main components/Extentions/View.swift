@@ -17,7 +17,6 @@ extension UIView {
 }
 
 // Make constraint
-
 public struct AnchoredConstraints {
     public var top: NSLayoutConstraint?
     public var leading: NSLayoutConstraint?

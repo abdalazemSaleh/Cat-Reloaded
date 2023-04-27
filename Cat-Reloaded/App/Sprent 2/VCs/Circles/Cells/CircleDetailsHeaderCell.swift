@@ -54,7 +54,6 @@ extension CircleDetailsHeaderCell {
         circleImageConstraint()
         circleNameConstraint()
         circleDescrptionConstraint()
-        roadMapConstraint()
         sharedConstraint()
     }
     
@@ -111,8 +110,13 @@ extension CircleDetailsHeaderCell {
                 self.circleImage.image = image
             }
         }
-        roadMapUrl = model.roadmapUrl ?? ""
-        roadMapButton.addTarget(CircleDetailsVC(), action: #selector(openUrl), for: .touchUpInside)
+        if model.roadmapUrl != nil {
+            roadMapConstraint()
+            roadMapUrl = model.roadmapUrl ?? ""
+            roadMapButton.addTarget(CircleDetailsVC(), action: #selector(openUrl), for: .touchUpInside)
+        } else {
+            roadMapButton.removeFromSuperview()
+        }
         circleName.text         = model.name
         circleDescrption.text   = model.description
     }

@@ -186,7 +186,7 @@ extension RegisterVC {
         loginStack.axis         = .horizontal
         loginStack.distribution = .equalSpacing
         loginStack.spacing      = 4
-        familiarCAtian.text     = "Familiar CAtian"
+        familiarCAtian.text     = "Familiar CATian"
         
         loginStack.addArrangedSubview(familiarCAtian)
         loginStack.addArrangedSubview(login)

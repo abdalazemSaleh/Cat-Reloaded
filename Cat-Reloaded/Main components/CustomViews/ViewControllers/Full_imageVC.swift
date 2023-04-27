@@ -20,6 +20,7 @@ class Full_imageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        image.enableZoom()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,4 +86,22 @@ class Full_imageVC: UIViewController {
     @objc private func dismisVC() {
         dismiss(animated: true)
     }
+}
+
+
+extension UIImageView {
+    func enableZoom() {
+      let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(startZooming(_:)))
+      isUserInteractionEnabled = true
+      addGestureRecognizer(pinchGesture)
+    }
+
+    @objc
+    private func startZooming(_ sender: UIPinchGestureRecognizer) {
+      let scaleResult = sender.view?.transform.scaledBy(x: sender.scale, y: sender.scale)
+      guard let scale = scaleResult, scale.a > 1, scale.d > 1 else { return }
+      sender.view?.transform = scale
+      sender.scale = 1
+    }
+
 }

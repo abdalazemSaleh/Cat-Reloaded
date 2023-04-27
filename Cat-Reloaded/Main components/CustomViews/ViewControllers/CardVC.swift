@@ -17,27 +17,34 @@ class CardVC: UIViewController {
     let catianRole      = GFBodyLabel(textAlignment: .center)
     let catLogo         = GFImageView(frame: .zero)
     
-    // MARK: - Initilizer
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        self.catianImage.image = UIImage(named: "404")!
-        self.catianName.text   = "Abdalazem"
-        self.catianRole.text   = "catianRole"
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    let catianData      = UserData.getUserModel()
     
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configure()
+    }
+    // MARK: - Functions
+    private func configure() {
+        configureView()
+        configureCatianData()
         configureContainerView()
-//        configureCardBackground()
         configureCatianImageView()
         configureCatianName()
         configureCatianRole()
         configureCatLogo()
+    }
+    
+    private func configureView() {
+        view.backgroundColor = .black.withAlphaComponent(0.3)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(dismisVC))
+        view.addGestureRecognizer(gesture)
+    }
+            
+    private func configureCatianData() {
+        self.catianImage.image = UIImage(named: "404")!
+        self.catianName.text   = catianData?.fullName ?? "Catian"
+        self.catianRole.text   = catianData?.title 
     }
     
     private func configureContainerView() {
@@ -51,7 +58,7 @@ class CardVC: UIViewController {
         containerView.layer.cornerRadius    = 8
         
         let padding: CGFloat = view.frame.width / 4
-        let containerViewHeight: CGFloat = view.frame.height / 2
+        let containerViewHeight: CGFloat = view.frame.height / 1.7
         let containerViewWidth: CGFloat  = view.frame.width - padding
         
         NSLayoutConstraint.activate([
@@ -66,7 +73,7 @@ class CardVC: UIViewController {
     func configureCardBackground() {
         view.addSubview(background)
         
-        background.image = Images.card01
+//        background.image = Images.card01
         background.contentMode = .scaleToFill
         
         NSLayoutConstraint.activate([
@@ -115,9 +122,9 @@ class CardVC: UIViewController {
         catianRole.layer.cornerRadius   = 4
         catianRole.clipsToBounds        = true
         
-        let font        = UIFont.preferredFont(forTextStyle: .title3)
-        let size        = catianRole.text!.size(withAttributes: [NSAttributedString.Key.font: font])
-        let stringWidth = size.width
+        let font        = UIFont.preferredFont(forTextStyle: .largeTitle)
+        let size        = catianData?.techRole?.size(withAttributes: [NSAttributedString.Key.font: font])
+        let stringWidth: CGFloat = size!.width
         
         NSLayoutConstraint.activate([
             catianRole.topAnchor.constraint(equalTo: catianName.bottomAnchor, constant: 16),
@@ -140,5 +147,9 @@ class CardVC: UIViewController {
             catLogo.heightAnchor.constraint(equalToConstant: 48),
             catLogo.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
         ])
+    }
+    
+    @objc private func dismisVC() {
+        dismiss(animated: true)
     }
 }

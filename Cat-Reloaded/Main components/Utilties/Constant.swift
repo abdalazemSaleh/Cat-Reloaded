@@ -25,14 +25,18 @@ import UIKit
         static let Circles      = UIImage(named: "Circles")
         static let Events       = UIImage(named: "Events")
         static let facebook     = UIImage(named: "facebook")
-        static let google       = UIImage(named: "gamil")
+        static let google       = UIImage(named: "google")
         
         static let networkError = UIImage(named: "404")
         static let serverError  = UIImage(named: "400")
         static let noData       = UIImage(named: "NoData")
         
         static let becomACATian = UIImage(named: "BecomCATian")
-        static let card01       = UIImage(named: "CardBackGround")!
+        
+        static let card           = UIImage(systemName: "lanyardcard.fill")!
+        static let cardBackground = UIImage(named: "CardBackGround")!
+        
+        
     }
     
     enum Colors {

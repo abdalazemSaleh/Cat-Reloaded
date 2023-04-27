@@ -43,18 +43,19 @@ extension UIViewController {
         navigationController?.pushViewController(vc, animated: false)
     }
     
-    func dismis() {
+    @objc func dismis() {
        self.navigationController?.popViewController(animated: true)
     }
     
     func add_openCardButton() {
         let button = UIButton(type: .system)
-        button.setTitle("My Button", for: .normal)
+        button.setImage(Images.card, for: .normal)
+        button.tintColor = Colors.mainColor
         button.addTarget(self, action: #selector(presentCardVC), for: .touchUpInside)
 
         let barButtonItem = UIBarButtonItem(customView: button)
 
-        navigationItem.rightBarButtonItem = barButtonItem
+        navigationItem.leftBarButtonItem = barButtonItem
     }
     
     @objc private func presentCardVC() {

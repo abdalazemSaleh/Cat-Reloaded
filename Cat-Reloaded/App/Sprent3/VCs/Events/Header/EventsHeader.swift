@@ -15,7 +15,7 @@ class EventsHeader: SegmentView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        segmentButtons = ["Up Coming Events", "Previous Events"]
+        segmentButtons = ["Upcoming Events", "Previous Events"]
         configure()
         segmentView.delegate = self
     }
