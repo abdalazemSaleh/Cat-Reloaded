@@ -48,14 +48,20 @@ extension UIViewController {
     }
     
     func add_openCardButton() {
-        let button = UIButton(type: .system)
-        button.setImage(Images.card, for: .normal)
-        button.tintColor = Colors.mainColor
-        button.addTarget(self, action: #selector(presentCardVC), for: .touchUpInside)
+        let cardButton = UIButton(type: .system)
+        cardButton.setImage(Images.card, for: .normal)
+        cardButton.tintColor = Colors.mainColor
+        cardButton.addTarget(self, action: #selector(presentCardVC), for: .touchUpInside)
 
-        let barButtonItem = UIBarButtonItem(customView: button)
+        let notificationButton = UIButton(type: .system)
+        notificationButton.setImage(Images.notification, for: .normal)
+        notificationButton.tintColor = .secondaryLabel
+        notificationButton.addTarget(self, action: #selector(openNotificationsVC), for: .touchUpInside)
+        
+        let cardButtonItem          = UIBarButtonItem(customView: cardButton)
+        let notificationButtonItem  = UIBarButtonItem(customView: notificationButton)
 
-        navigationItem.leftBarButtonItem = barButtonItem
+        navigationItem.rightBarButtonItems = [notificationButtonItem, cardButtonItem]
     }
     
     @objc private func presentCardVC() {
@@ -63,6 +69,10 @@ extension UIViewController {
         cardVC.modalPresentationStyle  = .overFullScreen
         cardVC.modalTransitionStyle    = .crossDissolve
         self.present(cardVC, animated: true)
+    }
+    
+    @objc private func openNotificationsVC() {
+        presentGFAlert(title: "Woops", message: "We working on it", buttonTitle: "OK")
     }
     
     func presentGFAlert(title: String, message: String, buttonTitle: String) {

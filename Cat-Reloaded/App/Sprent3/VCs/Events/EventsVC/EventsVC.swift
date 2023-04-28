@@ -22,6 +22,7 @@ class EventsVC: UIViewController {
     let segmentView = CustomSegmentedControl()
     
     var data: [EventModel] = []
+    let emptyView = GFImageView(frame: .zero)
     
     var presenter: EventsPresenter!
     // MARK: - View life cycle

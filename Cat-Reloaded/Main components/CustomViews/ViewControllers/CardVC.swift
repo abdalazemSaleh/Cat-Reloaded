@@ -29,6 +29,7 @@ class CardVC: UIViewController {
         configureView()
         configureCatianData()
         configureContainerView()
+        configureCardBackground()
         configureCatianImageView()
         configureCatianName()
         configureCatianRole()
@@ -42,7 +43,10 @@ class CardVC: UIViewController {
     }
             
     private func configureCatianData() {
-        self.catianImage.image = UIImage(named: "404")!
+        self.catianImage.image = Images.person
+        ImageDownloader.init(urlString: catianData?.imageUrl ?? "").downloadImage { image in
+            DispatchQueue.main.async { self.catianImage.image = image}
+        }
         self.catianName.text   = catianData?.fullName ?? "Catian"
         self.catianRole.text   = catianData?.title 
     }
@@ -58,11 +62,9 @@ class CardVC: UIViewController {
         containerView.layer.cornerRadius    = 8
         
         let padding: CGFloat = view.frame.width / 4
-        let containerViewHeight: CGFloat = view.frame.height / 1.7
         let containerViewWidth: CGFloat  = view.frame.width - padding
         
         NSLayoutConstraint.activate([
-            containerView.heightAnchor.constraint(equalToConstant: containerViewHeight),
             containerView.widthAnchor.constraint(equalToConstant: containerViewWidth),
             
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -71,16 +73,17 @@ class CardVC: UIViewController {
     }
     
     func configureCardBackground() {
-        view.addSubview(background)
+        containerView.addSubview(background)
         
-//        background.image = Images.card01
+        background.image = Images.cardBackground
         background.contentMode = .scaleToFill
+        background.layer.zPosition = 0
         
         NSLayoutConstraint.activate([
-            background.topAnchor.constraint(equalTo: containerView.topAnchor, constant:  -2),
-            background.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant:  -2),
-            background.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant:  2),
-            background.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant:  2)
+            background.topAnchor.constraint(equalTo: containerView.topAnchor, constant:  8),
+            background.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant:  16),
+            background.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant:  -16),
+            background.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant:  -104)
         ])
     }
     
@@ -88,11 +91,14 @@ class CardVC: UIViewController {
         containerView.addSubview(catianImage)
         
         let imageSize: CGFloat = 128
-
+        
         catianImage.layer.borderWidth   = 1
         catianImage.layer.borderColor   = Colors.mainColor?.cgColor
+        catianImage.backgroundColor     = .systemBackground
+        catianImage.tintColor           = Colors.mainColor
         catianImage.layer.cornerRadius  = imageSize/2
         catianImage.clipsToBounds = true
+        catianImage.layer.zPosition = 1
                 
         NSLayoutConstraint.activate([
             catianImage.heightAnchor.constraint(equalToConstant: imageSize),
@@ -107,6 +113,8 @@ class CardVC: UIViewController {
     private func configureCatianName() {
         containerView.addSubview(catianName)
         
+        catianName.layer.zPosition = 1
+
         NSLayoutConstraint.activate([
             catianName.topAnchor.constraint(equalTo: catianImage.bottomAnchor, constant: 24),
             catianName.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8),
@@ -117,6 +125,7 @@ class CardVC: UIViewController {
     private func configureCatianRole() {
         containerView.addSubview(catianRole)
         
+        catianRole.layer.zPosition = 1
         catianRole.backgroundColor      = Colors.mainColor
         catianRole.textColor            = .white
         catianRole.layer.cornerRadius   = 4
@@ -142,6 +151,7 @@ class CardVC: UIViewController {
         let width: CGFloat  = view.frame.width / 3
         
         NSLayoutConstraint.activate([
+            catLogo.topAnchor.constraint(equalTo: catianRole.bottomAnchor, constant: 64),
             catLogo.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
             catLogo.widthAnchor.constraint(equalToConstant: width),
             catLogo.heightAnchor.constraint(equalToConstant: 48),

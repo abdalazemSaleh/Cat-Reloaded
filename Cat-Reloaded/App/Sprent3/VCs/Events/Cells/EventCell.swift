@@ -63,6 +63,7 @@ class EventCell: UICollectionViewCell {
     }
     
     func set(_ model: EventModel) {
+        guard model.id != "NoData" else { return }
         indicator.startAnimating()
         ImageDownloader(urlString: model.imageUrl).downloadImage { image in
             DispatchQueue.main.async {

@@ -34,9 +34,11 @@ import UIKit
         static let becomACATian = UIImage(named: "BecomCATian")
         
         static let card           = UIImage(systemName: "lanyardcard.fill")!
-        static let cardBackground = UIImage(named: "CardBackGround")!
+        static let cardBackground = UIImage(named: "cardBackground")!
         
+        static let notification   = UIImage(systemName: "bell.square.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large))
         
+        static let person        = UIImage(systemName: "person.crop.circle.fill")
     }
     
     enum Colors {

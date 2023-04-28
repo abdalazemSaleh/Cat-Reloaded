@@ -73,7 +73,6 @@ struct NetworkManger {
                 completion(.failure(.invalidResponse))
             }
         }
-        
     }
 }
 
