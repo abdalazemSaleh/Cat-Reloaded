@@ -36,7 +36,7 @@ extension HomeVC {
             case .headerCell:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeaderCell.reuseIdentifer, for: indexPath) as! HeaderCell
                 guard let model = model as? [HomeHeaderCellModel] else { return cell }
-                cell.set(welcometitle: model[0].name ?? "Cat organization")
+                cell.set(welcometitle: model[0].name ?? "Cat organization", isCatian: self.presenter.isCatian())
                 let aboutCatGesture = UITapGestureRecognizer(target: self, action: #selector(self.aboutCatCardEvent))
                 cell.aboutCatCard.addGestureRecognizer(aboutCatGesture)
                 return cell
@@ -75,11 +75,14 @@ extension HomeVC {
     }
     
     private func generateHeaderCell() -> NSCollectionLayoutSection {
+        var groubHeight: CGFloat = 0        
+        groubHeight = presenter.isCatian() ? 200 : 400
+
         // item
         let itemSize    = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item        = NSCollectionLayoutItem(layoutSize: itemSize)
         // group
-        let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(400))
+        let groupSize   = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(groubHeight))
         let group       = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         // section
         let section     = NSCollectionLayoutSection(group: group)

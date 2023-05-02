@@ -24,41 +24,45 @@ public struct AnchoredConstraints {
     public var trailing: NSLayoutConstraint?
     public var centerX: NSLayoutConstraint?
     public var centerY: NSLayoutConstraint?
+    public var widthAnchore: NSLayoutConstraint?
+    public var heightAnchore: NSLayoutConstraint?
     public var width: NSLayoutConstraint?
     public var height: NSLayoutConstraint?
 }
 extension UIView {
     @discardableResult
     public func makeConstraints(
-          topAnchor: NSLayoutYAxisAnchor? = nil,
-          bottomAnchor: NSLayoutYAxisAnchor? = nil,
-          leadingAnchor: NSLayoutXAxisAnchor? = nil,
-          trailingAnchor: NSLayoutXAxisAnchor? = nil,
-          centerXAnchor: NSLayoutXAxisAnchor? = nil,
-          centerYAnchor: NSLayoutYAxisAnchor? = nil,
-          padding: UIEdgeInsets = .zero,
-          size: CGSize = .zero ) -> AnchoredConstraints {
-              
+        topAnchor: NSLayoutYAxisAnchor? = nil,
+        bottomAnchor: NSLayoutYAxisAnchor? = nil,
+        leadingAnchor: NSLayoutXAxisAnchor? = nil,
+        trailingAnchor: NSLayoutXAxisAnchor? = nil,
+        centerXAnchor: NSLayoutXAxisAnchor? = nil,
+        centerYAnchor: NSLayoutYAxisAnchor? = nil,
+        setWidthAnchor: NSLayoutDimension? = nil,
+        setHeightAnchor: NSLayoutDimension? = nil,
+        padding: UIEdgeInsets = .zero,
+        size: CGSize = .zero ) -> AnchoredConstraints {
+            
             translatesAutoresizingMaskIntoConstraints = false
-          
+            
             var anchoredConstraints = AnchoredConstraints()
-
+            
             if let topAnchor = topAnchor {
                 anchoredConstraints.top = self.topAnchor.constraint(equalTo: topAnchor, constant: padding.top)
             }
-
+            
             if let leadingAnchor = leadingAnchor {
                 anchoredConstraints.leading = self.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding.left)
             }
-
+            
             if let bottomAnchor = bottomAnchor {
                 anchoredConstraints.bottom = self.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding.bottom)
             }
-                  
+            
             if let trailingAnchor = trailingAnchor {
                 anchoredConstraints.trailing = self.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding.right)
             }
-              
+            
             if let centerXAnchor = centerXAnchor {
                 anchoredConstraints.centerX = self.centerXAnchor.constraint(equalTo: centerXAnchor, constant: padding.right > 0 ? -padding.right : padding.left)
             }
@@ -67,17 +71,33 @@ extension UIView {
                 anchoredConstraints.centerY = self.centerYAnchor.constraint(equalTo: centerYAnchor, constant: padding.top > 0 ? padding.top : -padding.bottom)
             }
             
+            if let setWidthAnchor = setWidthAnchor {
+                anchoredConstraints.widthAnchore = self.widthAnchor.constraint(equalTo: setWidthAnchor)
+            }
+            
+            if let setHeightAnchor = setHeightAnchor {
+                anchoredConstraints.heightAnchore = self.heightAnchor.constraint(equalTo: setHeightAnchor)
+            }
+            
             if size.width != 0 {
-              anchoredConstraints.width = widthAnchor.constraint(equalToConstant: size.width)
+                anchoredConstraints.width = widthAnchor.constraint(equalToConstant: size.width)
             }
-
+            
             if size.height != 0 {
-              anchoredConstraints.height = heightAnchor.constraint(equalToConstant: size.height)
+                anchoredConstraints.height = heightAnchor.constraint(equalToConstant: size.height)
             }
-
-              [anchoredConstraints.top, anchoredConstraints.leading, anchoredConstraints.bottom, anchoredConstraints.trailing, anchoredConstraints.width, anchoredConstraints.height, anchoredConstraints.centerX, anchoredConstraints.centerY].forEach { $0?.isActive = true }
-
+            
+            [anchoredConstraints.top, anchoredConstraints.leading, anchoredConstraints.bottom, anchoredConstraints.trailing, anchoredConstraints.widthAnchore, anchoredConstraints.heightAnchore, anchoredConstraints.width, anchoredConstraints.height, anchoredConstraints.centerX, anchoredConstraints.centerY].forEach { $0?.isActive = true }
+            
             return anchoredConstraints
         }
+    
+    func setWidthAnchore(_ width: NSLayoutDimension) {
+        self.widthAnchor.constraint(equalTo: width).isActive = true
+    }
+    
+    func setHeightAnchore(_ height: NSLayoutDimension) {
+        self.heightAnchor.constraint(equalTo: height).isActive = true
+    }
 }
 

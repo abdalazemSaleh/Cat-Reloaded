@@ -18,12 +18,7 @@ extension HomeVC: HomeView {
         snapshot.appendItems(data, toSection: .podCat)
         DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
     }
-    
-    func appendBecomeCatianSection(data: [HomeHeaderCellModel]) {
-        snapshot.appendItems([data], toSection: .headerCell)
-        DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
-    }
-    
+        
     func presentEmptyView(message: String, image: UIImage) {
         DispatchQueue.main.async {
             self.collectionView.isHidden = true

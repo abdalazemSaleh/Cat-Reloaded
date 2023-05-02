@@ -21,6 +21,7 @@ extension AboutCatVC {
         collectionView.register(AboutCatHeaderCell.self, forCellWithReuseIdentifier: AboutCatHeaderCell.reuseIdentifer)
         collectionView.register(CircleBoardCell.self, forCellWithReuseIdentifier: CircleBoardCell.reuseIdentifer)
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: AboutCatVC.sectionHeaderElmentKind, withReuseIdentifier: HeaderView.reuseIdentifier)
+        collectionView.delegate = self
     }
     
     private func generateLayout() -> UICollectionViewLayout {
@@ -126,5 +127,26 @@ extension AboutCatVC {
         section.orthogonalScrollingBehavior = .continuous
         // Return
         return section
+    }
+}
+
+extension AboutCatVC: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if !showen {
+            let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
+            let visiblePoint = CGPoint(x: visibleRect.midX - 140, y: visibleRect.midY - 140)
+            if let indexPath = collectionView.indexPathForItem(at: visiblePoint), indexPath.section == 1 {
+                UIView.animate(withDuration: 1, delay: 0) {
+                    let indexPath = IndexPath(item: 2, section: 2)
+                    self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+                } completion: { _ in
+                    UIView.animate(withDuration: 1, delay: 0) {
+                        let indexPath = IndexPath(item: 0, section: 2)
+                        self.collectionView.scrollToItem(at: indexPath, at: .left, animated: false)
+                    }
+                }
+                showen = true
+            }
+        }
     }
 }

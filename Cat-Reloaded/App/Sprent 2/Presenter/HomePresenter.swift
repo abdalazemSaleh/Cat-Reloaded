@@ -13,7 +13,6 @@ protocol HomeView: AnyObject {
     func getPodCat(data: [PodCatData])
     func presentEmptyView(message: String, image: UIImage)
     func presentAlert(message: String, title: String)
-    func appendBecomeCatianSection(data: [HomeHeaderCellModel])
 }
 
 class HomePresenter {
@@ -23,6 +22,7 @@ class HomePresenter {
         self.view = view
     }
     // Variables
+    private let userData = UserData.getUserModel()
     /// Memories
     private(set) var memories: [MemoriesData]  = []
     private(set) var memoriesPages       = 1
@@ -84,15 +84,13 @@ class HomePresenter {
     }
     
     // check isCatian
-    func isCatian() {
-        let userData = UserData.getUserModel()
+    func isCatian() -> Bool {
         let isCatian = userData?.isCatian ?? true
-                
-        if !isCatian {
-            var data: [HomeHeaderCellModel] = []
-            data.append(.init(name: userData?.fullName))
-            view?.appendBecomeCatianSection(data: data)
-        }
+        return isCatian
+    }
+    
+    func getUserData() -> UserInfo {
+        return userData!
     }
     
     // Check user data ::::

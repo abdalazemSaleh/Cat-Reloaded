@@ -28,14 +28,12 @@ extension RegisterVC {
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+        scrollView.makeConstraints(topAnchor: view.safeAreaLayoutGuide.topAnchor,
+                                   bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor,
+                                   leadingAnchor: view.leadingAnchor,
+                                   trailingAnchor: view.trailingAnchor)
     }
-
+    
     // Configure content view
     func configureContentView() {
         contentView = UIView(frame: .zero)
@@ -43,16 +41,13 @@ extension RegisterVC {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         let heightConstraint = contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
         heightConstraint.priority = UILayoutPriority(250)
-
-        NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            heightConstraint,
-        ])
+        heightConstraint.isActive = true
+        
+        contentView.makeConstraints(topAnchor: scrollView.topAnchor,
+                                    bottomAnchor: scrollView.bottomAnchor,
+                                    setWidthAnchor: scrollView.widthAnchor)
     }
-
+    
     // Add items to content view
     func addItemViewToContentView() {
         itemViews   = [logo, signUpLabel, textFieldsStack, signUpButton, loginStack]
@@ -60,29 +55,31 @@ extension RegisterVC {
             contentView.addSubview(itemView)
         }
     }
-
+    
     // Configure logo
     func configureLogo() {
         logo.image      = UIImage(named: "logo")
         let logoWidth   = view.frame.width / 2
-
-        NSLayoutConstraint.activate([
-            logo.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 80),
-            logo.widthAnchor.constraint(equalToConstant: logoWidth),
-            logo.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            logo.heightAnchor.constraint(equalToConstant: 80)
-        ])
+        
+        let logoPadding = UIEdgeInsets(top: 80, left: 0, bottom: 0, right: 0)
+        
+        logo.makeConstraints(topAnchor: contentView.topAnchor,
+                             centerXAnchor: contentView.centerXAnchor,
+                             padding: logoPadding,
+                             size: CGSizeMake(logoWidth, 80))
     }
-
+    
     // Configure login label
     func configureSginUpLabel() {
         signUpLabel.text = "Sign up"
         signUpLabel.textColor = Colors.mainColor
-
-        NSLayoutConstraint.activate([
-            signUpLabel.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 80),
-            signUpLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding)
-        ])
+        
+        let signUpLabelPadding = UIEdgeInsets(top: 80, left: padding, bottom: 0, right: padding)
+        
+        signUpLabel.makeConstraints(topAnchor: logo.bottomAnchor,
+                                    leadingAnchor: contentView.leadingAnchor,
+                                    trailingAnchor: contentView.trailingAnchor,
+                                    padding: signUpLabelPadding)
     }
     // Configure Containers
     func configureContainers() {
@@ -92,11 +89,9 @@ extension RegisterVC {
             container.spacing   = 4
         }
         let textFileds: [UITextField] = [fullName, email, phoneNumber, password, conformPassword ]
-
+        
         for textFiled in textFileds {
-            NSLayoutConstraint.activate([
-                textFiled.heightAnchor.constraint(equalToConstant: 48),
-            ])
+            textFiled.makeConstraints(size: CGSizeMake(0, 48))
         }
         
         fullNameContainer.addArrangedSubview(fullName)
@@ -124,25 +119,19 @@ extension RegisterVC {
         for container in containers {
             textFieldsStack.addArrangedSubview(container)
         }
-
-        NSLayoutConstraint.activate([
-            textFieldsStack.topAnchor.constraint(equalTo: signUpLabel.bottomAnchor, constant: padding),
-            textFieldsStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            textFieldsStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding)
-        ])
+        
+        let textFieldStackPadding = UIEdgeInsets(top: padding, left: padding, bottom: 0, right: padding)
+        
+        textFieldsStack.makeConstraints(topAnchor: signUpLabel.bottomAnchor,
+                                        leadingAnchor: contentView.leadingAnchor,
+                                        trailingAnchor: contentView.trailingAnchor,
+                                        padding: textFieldStackPadding)
     }
     
     // Configure sgin up button
     func configureSginUpButton() {
         handelSaveButtonConstraint(isLogin: isLoding)
         NSLayoutConstraint.activate(signUpButtonConstraint)
-
-//        signUpButton.customTransactionButton(title: "Sign up")
-//
-//        NSLayoutConstraint.activate([
-//            signUpButton.topAnchor.constraint(equalTo: textFieldsStack.bottomAnchor, constant: 40),
-//            signUpButton.heightAnchor.constraint(equalToConstant: 48),
-//            ])
     }
     
     
@@ -179,7 +168,7 @@ extension RegisterVC {
             NSLayoutConstraint.activate(signUpButtonConstraint)
         }
     }
-
+    
     
     // Configure login button
     func configureLoginButton() {
@@ -190,26 +179,26 @@ extension RegisterVC {
         
         loginStack.addArrangedSubview(familiarCAtian)
         loginStack.addArrangedSubview(login)
-
+        
         loginStack.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            loginStack.topAnchor.constraint(equalTo: signUpButton.bottomAnchor, constant: padding),
-            loginStack.centerXAnchor.constraint(equalTo: signUpButton.centerXAnchor),
-            loginStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
-        ])
+        let loginStackPadding = UIEdgeInsets(top: padding, left: 0, bottom: padding, right: 0)
+        loginStack.makeConstraints(topAnchor: signUpButton.bottomAnchor,
+                                   bottomAnchor: contentView.bottomAnchor,
+                                   centerXAnchor: signUpButton.centerXAnchor,
+                                   padding: loginStackPadding)
     }
-
+    
     /// Shared comstraint
     func sharedConstraint() {
         itemViews = [textFieldsStack]
-
+        
+        let itemViewsPadding = UIEdgeInsets(top: 0, left: padding, bottom: 0, right: padding)
+        
         for itemView in itemViews {
-            NSLayoutConstraint.activate([
-                itemView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-                itemView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            ])
+            itemView.makeConstraints(leadingAnchor: contentView.leadingAnchor,
+                                     trailingAnchor: contentView.trailingAnchor,
+                                     padding: itemViewsPadding)
         }
     }
-
 }

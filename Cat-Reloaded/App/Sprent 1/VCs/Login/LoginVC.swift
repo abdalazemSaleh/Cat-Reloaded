@@ -38,8 +38,8 @@ class LoginVC: UIViewController {
     let padding: CGFloat            = 16
     var presenter: LoginPresenter!
     
+    #warning("remove this array")
     var loginButtonConstraint: [NSLayoutConstraint] = []
-    
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()

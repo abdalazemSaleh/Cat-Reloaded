@@ -32,7 +32,7 @@ class HomeVC: UIViewController {
         presenter               = HomePresenter(view: self)
         configureCollectionView()
         configureDataSource()
-        presenter.isCatian()
+        appendBecomeCatianSection()
         presenter.fetchMemories(page: memoriesCurrentPage)
         presenter.fetchPodCat(page: podCatCurrentPage)
     }
@@ -54,5 +54,12 @@ class HomeVC: UIViewController {
         presenter.fetchPodCat(page: podCatCurrentPage)
         collectionView.refreshControl?.endRefreshing()
     }
-
+    
+    func appendBecomeCatianSection() {
+        let userData = presenter.getUserData()
+        let userName = userData.fullName
+        let data: [HomeHeaderCellModel] = [.init(name: userName)]
+        snapshot.appendItems([data], toSection: .headerCell)
+        DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true)  }
+    }
 }

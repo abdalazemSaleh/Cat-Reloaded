@@ -24,6 +24,8 @@ class HeaderCell: UICollectionViewCell {
     let aboutCatCard             = GFCardView(label: "", bodyLabel: "Know more about CAT world", image: Images.becomACATian!)
     let aboutCatCardStack        = UIStackView()
     
+    let cardsStackView           = UIStackView()
+    
     let padding: CGFloat         = 20
     
     // MARK: - Init
@@ -31,7 +33,7 @@ class HeaderCell: UICollectionViewCell {
         super.init(frame: frame)
         configure()
     }
-        
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -39,24 +41,31 @@ class HeaderCell: UICollectionViewCell {
 
 // MARK: - Configure function
 extension HeaderCell {
-    func configure() {
-        addItemViewToContentView()
-        welcomeCardConstraint()
-        aboutCatCardConstraint()
+    private func configure() {
+        configuerCardsStackView()
     }
 }
 // MARK: - Handel constraint Extention
 extension HeaderCell {
     
-    private func addItemViewToContentView() {
-        let itemViews   = [welcomeCardStack, aboutCatCardStack]
-        for itemView in itemViews {
-            contentView.addSubview(itemView)
-            NSLayoutConstraint.activate([
-                itemView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-                itemView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding)
-            ])
-        }
+    private func configuerCardsStackView() {
+        addSubview(cardsStackView)
+        
+        welcomeCardConstraint()
+        aboutCatCardConstraint()
+        cardsStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        cardsStackView.addArrangedSubview(welcomeCardStack)
+        cardsStackView.addArrangedSubview(aboutCatCardStack)
+        
+        cardsStackView.axis = .vertical
+        cardsStackView.spacing = padding
+        
+        let constraintPadding = UIEdgeInsets(top: padding, left: padding, bottom: 0, right: padding)
+        cardsStackView.makeConstraints(topAnchor: topAnchor,
+                                       leadingAnchor: leadingAnchor,
+                                       trailingAnchor: trailingAnchor,
+                                       padding: constraintPadding)
     }
     
     /// Welcome card
@@ -71,16 +80,11 @@ extension HeaderCell {
         
         welcomeCardStack.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            welcomeCardStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
-            welcomeCard.heightAnchor.constraint(equalToConstant: 140),
-        ])
+        welcomeCard.makeConstraints(size: CGSize(width: 0, height: 140))
     }
     
     /// About cat card
     func aboutCatCardConstraint() {
-        contentView.addSubview(aboutCatCardStack)
-        
         aboutCatTitle.textColor     = Colors.mainColor
         aboutCatTitle.text          = "About CAT"
         
@@ -92,16 +96,17 @@ extension HeaderCell {
         
         aboutCatCardStack.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            aboutCatCardStack.topAnchor.constraint(equalTo: welcomeCardStack.bottomAnchor, constant: padding),
-            aboutCatCard.heightAnchor.constraint(equalToConstant: 140)
-        ])
+        aboutCatCard.makeConstraints(size: CGSize(width: 0, height: 140))
     }
 }
 
 // MARK: - Set function
 extension HeaderCell {
-    func set(welcometitle: String) {
-        welcomeCardTitle.text   = welcometitle
+    func set(welcometitle: String, isCatian: Bool) {
+        if isCatian {
+            welcomeCardStack.removeFromSuperview()
+        } else {
+            welcomeCardTitle.text   = "Welcome" + " " + welcometitle
+        }
     }
 }

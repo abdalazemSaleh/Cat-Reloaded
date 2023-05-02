@@ -18,6 +18,7 @@ class AboutCatVC: UIViewController {
     var emptyStateView = GFEmptyStateView()
     
     var presenter: AboutCatPresenter!
+    var showen: Bool = false
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
