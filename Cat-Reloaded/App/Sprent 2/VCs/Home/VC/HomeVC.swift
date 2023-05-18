@@ -17,13 +17,7 @@ class HomeVC: UIViewController {
     
     var emptyStateView = GFEmptyStateView()
     let padding: CGFloat            = 20
-
-    var memoriesCurrentPage = 1
-    var num_ofMemories      = 10
-        
-    var podCatCurrentPage   = 1
-    var num_ofPodCat        = 10
-    
+            
     var presenter: HomePresenter!
     // MARK: - View life cycle
     override func viewDidLoad() {
@@ -33,8 +27,8 @@ class HomeVC: UIViewController {
         configureCollectionView()
         configureDataSource()
         appendBecomeCatianSection()
-        presenter.fetchMemories(page: memoriesCurrentPage)
-        presenter.fetchPodCat(page: podCatCurrentPage)
+        presenter.fetchMemories(page: 1)
+        presenter.fetchPodCat(page: 1)
     }
             
     override func viewWillAppear(_ animated: Bool) {
@@ -46,13 +40,6 @@ class HomeVC: UIViewController {
     private func configureNavigationController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles  = true
-    }
-        
-    @objc private func refresh() {
-        print("Working in refrishing")
-        presenter.fetchMemories(page: memoriesCurrentPage)
-        presenter.fetchPodCat(page: podCatCurrentPage)
-        collectionView.refreshControl?.endRefreshing()
     }
     
     func appendBecomeCatianSection() {

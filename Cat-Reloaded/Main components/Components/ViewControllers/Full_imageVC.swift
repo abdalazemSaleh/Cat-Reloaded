@@ -50,12 +50,8 @@ class Full_imageVC: UIViewController {
         backgroundImage.frame = view.bounds
         
         indicator.startAnimating()
-        ImageDownloader(urlString: imageUrl).downloadImage { image in
-            DispatchQueue.main.async {
-                self.indicator.removeFromSuperview()
-                self.backgroundImage.image = image
-            }
-        }
+        backgroundImage.kf.setImage(with: URL(string: imageUrl))
+        indicator.removeFromSuperview()
         
         backgroundImage.contentMode = .scaleAspectFit
         
@@ -68,12 +64,9 @@ class Full_imageVC: UIViewController {
         image.contentMode = .scaleAspectFit
         
         indicator.startAnimating()
-        ImageDownloader(urlString: imageUrl).downloadImage { image in
-            DispatchQueue.main.async {
-                self.indicator.removeFromSuperview()
-                self.image.image = image
-            }
-        }
+        
+        image.kf.setImage(with: URL(string: imageUrl))
+        indicator.removeFromSuperview()
 
         NSLayoutConstraint.activate([
             image.centerYAnchor.constraint(equalTo: view.centerYAnchor),

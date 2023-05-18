@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CircleDetailsHeaderCell: UICollectionViewCell {
     // MARK: - Variables
@@ -105,11 +106,9 @@ extension CircleDetailsHeaderCell {
 // MARK: - Set function
 extension CircleDetailsHeaderCell {
     func set(model: CircleDetailsModel) {
-        ImageDownloader(urlString: model.imageUrl).downloadImage { image in
-            DispatchQueue.main.async {
-                self.circleImage.image = image
-            }
-        }
+        guard let url = URL(string: model.imageUrl) else { return }
+        circleImage.kf.setImage(with: url)
+        circleImage.kf.indicatorType = .activity
         if model.roadmapUrl != nil {
             roadMapConstraint()
             roadMapUrl = model.roadmapUrl ?? ""

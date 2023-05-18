@@ -39,7 +39,7 @@ class CATianPresenter {
             case .success(_):
                 self.view?.presentLoginScreen()
             case .failure(let error):
-                self.view?.showAlerMessage(message: error.rawValue)
+                self.view?.showAlerMessage(message: error.localizedDescription)
             }
         }
     }

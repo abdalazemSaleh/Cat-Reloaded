@@ -40,8 +40,10 @@ extension EventsVC: EventsView {
 extension EventsVC: checkSelectedIndex {
     func checkIndex(_ index: Int) {
         if index == 0 {
+            self.data.removeAll()
             presenter.fetchUpComingEvents()
         } else {
+            self.data.removeAll()
             presenter.fetchpreviousEvents()
         }
     }

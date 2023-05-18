@@ -34,12 +34,6 @@ extension LoginVC {
                                    bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor,
                                    leadingAnchor: view.leadingAnchor,
                                    trailingAnchor: view.trailingAnchor)
-//        NSLayoutConstraint.activate([
-//            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-//        ])
     }
 
     /// Configure content view
@@ -50,15 +44,13 @@ extension LoginVC {
     
         let heightConstraint = contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
         heightConstraint.priority = UILayoutPriority(250)
+        heightConstraint.isActive = true
         
         contentView.makeConstraints(topAnchor: scrollView.topAnchor,
                                     bottomAnchor: scrollView.bottomAnchor,
-                                    leadingAnchor: scrollView.leadingAnchor)
+                                    leadingAnchor: scrollView.leadingAnchor,
+                                    setWidthAnchor: scrollView.widthAnchor)
         
-        NSLayoutConstraint.activate([
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            heightConstraint,
-        ])
     }
     
     /// Add items to content view

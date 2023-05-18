@@ -9,6 +9,20 @@ import Alamofire
 import UIKit
 
 
+enum HTTTPMethod {
+    case post, get
+    
+    var type: String {
+        switch self {
+        case .post:
+            return "POST"
+        case .get:
+            return "GET"
+        }
+    }
+}
+
+
 struct Connectivity {
     static let sharedInstance = NetworkReachabilityManager()!
     static var isConnectedToInternet:Bool {
@@ -27,6 +41,43 @@ enum HTTPStatusCode: Int, Error {
     case badGateway             = 502
 }
 
+
+struct NetworkMangerDemo {
+    let url: String
+    let method: HTTTPMethod
+    let parms: [String: Any]?
+    let header: HTTPHeaders?
+
+    func request() async throws -> String? {
+        let urlString = URLs.baseURL.rawValue + url
+        guard let url = URL(string: urlString) else {
+            throw GFError.invalidUrl
+        }
+        
+        do {
+            var request = URLRequest(url: url)
+            request.httpMethod = method.type
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+            
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            do {
+                let info = try JSONDecoder().decode(PodCatModel.self, from: data)
+                print(info)
+            } catch let jsonerror {
+                print(jsonerror.localizedDescription)
+            }
+
+            
+            return nil
+        } catch {
+            throw error
+        }
+    }
+}
+
+
 struct NetworkManger {
     
     let url: String
@@ -38,7 +89,11 @@ struct NetworkManger {
         
         let url = URLs.baseURL.rawValue + url
         
-        AF.request(url, method: method, parameters: parms, encoding: JSONEncoding.default, headers: header).response { response in
+        AF.request(url,
+                   method: method,
+                   parameters: parms,
+                   encoding: JSONEncoding.default,
+                   headers: header).response { response in
             guard Connectivity.isConnectedToInternet else { return completion(.failure(GFError.connectionError)) }
             
             guard let statusCode = response.response?.statusCode else { return }
@@ -73,26 +128,6 @@ struct NetworkManger {
                 completion(.failure(.invalidResponse))
             }
         }
-    }
-}
-
-struct ImageDownloader {
-    let urlString: String
-    func downloadImage(completion: @escaping (UIImage?) -> Void) {
-        guard let url = URL(string: urlString) else { return }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            
-            guard error == nil,
-                  let response = response as? HTTPURLResponse,
-                  response.statusCode == 200,
-                  let data = data else { return }
-            
-            guard let image = UIImage(data: data) else { return }
-            
-            completion(image)
-        }
-        task.resume()
     }
 }
 

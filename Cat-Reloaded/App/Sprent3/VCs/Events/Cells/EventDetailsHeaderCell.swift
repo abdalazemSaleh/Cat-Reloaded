@@ -111,13 +111,9 @@ extension EventDetailsHeaderCell {
 // MARK: - Set function
 extension EventDetailsHeaderCell {
     func set(model: EventModel) {
-        indicator.startAnimating()
-        ImageDownloader(urlString: model.imageUrl).downloadImage { image in
-            DispatchQueue.main.async {
-                self.indicator.removeFromSuperview()
-                self.eventImage.image = image
-            }
-        }
+        eventImage.kf.setImage(with: URL(string: model.imageUrl))
+        eventImage.kf.indicatorType = .activity
+
         eventName.text         = model.name
         eventDate.text         = model.startDate.formattedDate
         eventDescrption.text   = model.description

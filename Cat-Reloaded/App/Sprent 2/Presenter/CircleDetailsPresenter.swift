@@ -8,8 +8,8 @@
 import UIKit
 
 protocol CircleDetailsView: AnyObject {
-    func techCircleDetails(data: CircleDetailsModel)
-    func nonTechCircleDetails(data: CircleDetailsModel)
+    func techCircleDetails(data: [CircleDetailsModel])
+    func nonTechCircleDetails(data: [CircleDetailsModel])
     func presentEmptyView(message: String, image: UIImage)
 }
 
@@ -19,7 +19,12 @@ class CircleDetailsPresenter {
     init(view: CircleDetailsView) {
         self.view = view
     }
-    // Code
+    
+    // MARK: - Variables
+    private var model: [CircleDetailsModel]    = []
+
+    // MARK: - functions
+    
     func featchTechCircleDetails(_ circle: String) {
         let url = URLs.techCircles.rawValue + "/\(circle)"
         let techCircleDetailsObject = NetworkManger(url: url, method: .get, parms: nil, header: nil)
@@ -27,12 +32,13 @@ class CircleDetailsPresenter {
             guard let self = self else { return }
             switch response {
             case .success(let data):
-                self.view?.techCircleDetails(data: data)
+                self.model.append(data)
+                self.view?.techCircleDetails(data: self.model)
             case .failure(let error):
                 if error == .connectionError {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
+                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.networkError!)
                 } else {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.serverError!)
+                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.serverError!)
                 }
             }
         }
@@ -45,12 +51,13 @@ class CircleDetailsPresenter {
             guard let self = self else { return }
             switch response {
             case .success(let data):
-                self.view?.nonTechCircleDetails(data: data)
+                self.model.append(data)
+                self.view?.nonTechCircleDetails(data: self.model)
             case .failure(let error):
                 if error == .connectionError {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
+                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.networkError!)
                 } else {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.serverError!)
+                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.serverError!)
                 }
             }
         }

@@ -39,13 +39,10 @@ extension ProfileHeader {
 // MARK: - Functions
 extension ProfileHeader {
     func handleUserImage(){
-        indicator.startAnimating()
-        ImageDownloader(urlString: UserData.getUserModel()?.imageUrl ?? "").downloadImage { image in
-            DispatchQueue.main.async {
-                self.indicator.removeFromSuperview()
-                self.userImage.image = image
-            }
-        }
+        guard let urlString = UserData.getUserModel()?.imageUrl else { return }
+        print(urlString)
+        userImage.kf.setImage(with: urlString.URLConvert, placeholder: Images.person)
+        userImage.tintColor = Colors.mainColor
         userImage.contentMode = .scaleAspectFill
         userImage.layer.cornerRadius = 40
         userImage.layer.masksToBounds = false

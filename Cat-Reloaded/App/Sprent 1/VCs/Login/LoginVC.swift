@@ -49,6 +49,9 @@ class LoginVC: UIViewController {
         configureUI()
         configureActionButtons()
         handelViewWhileUsingKeyboard()
+        Task {
+            try? await NetworkMangerDemo(url: URLs.podCat.rawValue, method: .get, parms: nil, header: nil).request()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

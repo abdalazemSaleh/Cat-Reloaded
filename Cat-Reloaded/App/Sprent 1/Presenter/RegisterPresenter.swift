@@ -37,11 +37,11 @@ class RegisterPresenter {
                         print("Successed")
                         self.view?.goToHomeScreen()
                     case .failure(let error):
-                        print(error.rawValue)
+                        print(error.localizedDescription)
                     }
                 }
             case .failure(let error):
-                self.view?.alertMessage(message: error.rawValue)
+                self.view?.alertMessage(message: error.localizedDescription)
             }
         }
     }

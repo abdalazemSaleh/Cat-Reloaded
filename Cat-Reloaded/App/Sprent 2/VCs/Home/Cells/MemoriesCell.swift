@@ -24,11 +24,7 @@ class MemoriesCell: ImageContainerCell {
     // MARK: - Set function
     func set(_ memories: MemoriesData) {
         indicator.startAnimating()
-        ImageDownloader(urlString: memories.thumbnailUrl).downloadImage { image in
-            DispatchQueue.main.async {
-                self.indicator.removeFromSuperview()
-                self.imageView.image = image
-            }
-        }
+        imageView.kf.setImage(with: URL(string: memories.thumbnailUrl))
+        indicator.removeFromSuperview()
     }
 }

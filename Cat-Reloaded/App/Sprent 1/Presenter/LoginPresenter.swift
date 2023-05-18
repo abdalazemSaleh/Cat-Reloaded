@@ -42,11 +42,11 @@ class LoginPresenter {
                     case .success(_):
                         self.view?.goToHomeScreen()
                     case .failure(let error):
-                        print(error.rawValue)
+                        print(error.localizedDescription)
                     }
                 }
             case .failure(let error):
-                self.view?.alertMessage(message: error.rawValue)
+                self.view?.alertMessage(message: error.localizedDescription)
             }
         }
     }
@@ -103,11 +103,11 @@ class LoginPresenter {
                     case .success(_):
                         self.view?.goToHomeScreen()
                     case .failure(let error):
-                        print(error.rawValue)
+                        print(error.localizedDescription)
                     }
                 }
             case .failure(let error):
-                self.view?.alertMessage(message: error.rawValue)
+                self.view?.alertMessage(message: error.localizedDescription)
             }
         }
     }

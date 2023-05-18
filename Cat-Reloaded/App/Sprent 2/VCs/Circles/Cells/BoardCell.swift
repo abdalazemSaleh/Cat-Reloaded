@@ -154,13 +154,11 @@ extension CircleBoardCell {
     // MARK: - Set Function
     func set(model: TeamBoardModel) {
         indicator.startAnimating()
-        ImageDownloader(urlString: model.imageUrl).downloadImage { image in
-            DispatchQueue.main.async {
-                self.indicator.removeFromSuperview()
-                self.userImage.image = image
-            }
-        }
+        userImage.kf.setImage(with: model.imageUrl.URLConvert)
+        userImage.kf.indicatorType = .activity
 
+        indicator.removeFromSuperview()
+        
         let users           = model.name.split(separator: " ")
         userFirstName.text  = String(users.first ?? "")
         userLastName.text   = String(users.last ?? "")

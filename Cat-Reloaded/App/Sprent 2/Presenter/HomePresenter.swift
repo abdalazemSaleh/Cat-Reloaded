@@ -21,14 +21,46 @@ class HomePresenter {
     init(view: HomeView) {
         self.view = view
     }
-    // Variables
+    // MARK: -  Variables
     private let userData = UserData.getUserModel()
     /// Memories
-    private(set) var memories: [MemoriesData]  = []
-    private(set) var memoriesPages       = 1
+    private var memories: [MemoriesData] = []
+    private var memoriesPages = 1
+    private var num_ofMemories = 10
+    private var memoriesCurrentPage = 1
     /// PodCat
-    private(set) var podCats: [PodCatData]  = []
-    private(set) var podCatPages         = 1
+    private var podCats: [PodCatData] = []
+    private var podCatPages = 1
+    private var num_ofPodCat = 10
+    private var podCatCurrentPage = 1
+
+    // MARK: - Functions
+    
+    // Demeter functions
+    func getMemories() -> [MemoriesData] {
+        return memories
+    }
+    
+    func getMemoriesPages() -> Int {
+        return memoriesPages
+    }
+    
+    func getPodCats() -> [PodCatData] {
+        return podCats
+    }
+    
+    func getPodCatPages() -> Int {
+        return podCatPages
+    }
+    
+    func isCatian() -> Bool {
+        let isCatian = userData?.isCatian ?? true
+        return isCatian
+    }
+    
+    func getUserData() -> UserInfo {
+        return userData!
+    }
     
     // Memories function
     func fetchMemories(page: Int) {
@@ -52,6 +84,16 @@ class HomePresenter {
         self.view?.getMemories(data: memories)
     }
     
+    func handelMemoriesPageNation(indexPath: IndexPath) {
+        if (indexPath.row == num_ofMemories - 1) {
+            for _ in 1..<memoriesPages  {
+                memoriesCurrentPage += 1
+                num_ofMemories += 10
+                fetchMemories(page: memoriesCurrentPage)
+            }
+        }
+    }
+    
     // PodCat functions
     func fetchPodCat(page: Int) {
         let url = URLs.podCat.rawValue + "/\(page)"
@@ -73,24 +115,25 @@ class HomePresenter {
         self.podCats.append(contentsOf: podCats)
         self.view?.getPodCat(data: podCats)
     }
+    
+    private func handelPodCatPagenation(indexPath: IndexPath) {
+        if (indexPath.row == num_ofPodCat - 1) {
+            let page = podCatPages
+            for _ in 1..<page {
+                podCatCurrentPage += 1
+                num_ofPodCat      += 10
+                fetchPodCat(page: podCatCurrentPage)
+            }
+        }
+    }
 
     // Handel error function
     private func handelErrorState(error: GFError) {
         if error == .connectionError {
-            self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
+            self.view?.presentEmptyView(message: error.localizedDescription, image: Images.networkError!)
         } else {
-            self.view?.presentEmptyView(message: error.rawValue, image: Images.serverError!)
+            self.view?.presentEmptyView(message: error.localizedDescription, image: Images.serverError!)
         }
-    }
-    
-    // check isCatian
-    func isCatian() -> Bool {
-        let isCatian = userData?.isCatian ?? true
-        return isCatian
-    }
-    
-    func getUserData() -> UserInfo {
-        return userData!
     }
     
     // Check user data ::::
@@ -108,7 +151,7 @@ class HomePresenter {
                 print("User token is: - \(data)")
             case .failure(let error):
                 print(error)
-                self.view?.presentAlert(message: error.rawValue, title: "Go to login")
+                self.view?.presentAlert(message: error.localizedDescription, title: "Go to login")
             }
         }
     }

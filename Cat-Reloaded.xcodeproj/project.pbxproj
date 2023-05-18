@@ -102,6 +102,7 @@
 		7FB4F39728EB567E008557ED /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4F39628EB567E008557ED /* Constant.swift */; };
 		7FB4F39928EB56B0008557ED /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4F39828EB56B0008557ED /* ErrorMessages.swift */; };
 		7FBE49E1299BE045004105B0 /* EventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBE49E0299BE045004105B0 /* EventsPresenter.swift */; };
+		7FCBE2062A16797300AEF59E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7FCBE2052A16797300AEF59E /* Kingfisher */; };
 		7FD4404E29D38EAB00FA1222 /* ProfileVC+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4404D29D38EAB00FA1222 /* ProfileVC+Constraints.swift */; };
 		7FD4405029D38EBA00FA1222 /* ProfileVC+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4404F29D38EBA00FA1222 /* ProfileVC+Protocol.swift */; };
 		7FD4405229D3B0CA00FA1222 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4405129D3B0CA00FA1222 /* ProfilePresenter.swift */; };
@@ -257,6 +258,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FCBE2062A16797300AEF59E /* Kingfisher in Frameworks */,
 				7F51E5F929E845CC00E5709A /* Alamofire in Frameworks */,
 				7F51E5FC29E84B4400E5709A /* FacebookLogin in Frameworks */,
 				7F51E60D29E8E25A00E5709A /* GoogleSignIn in Frameworks */,
@@ -745,7 +747,7 @@
 			path = NavigationController;
 			sourceTree = "<group>";
 		};
-		7FB4F39128EB560A008557ED /* CustomViews */ = {
+		7FB4F39128EB560A008557ED /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				7FD44FA929C9AB650080AF42 /* Active Indicator */,
@@ -764,7 +766,7 @@
 				7FB4F38B28EB559F008557ED /* Buttons */,
 				7FB4F38A28EB559C008557ED /* Views */,
 			);
-			path = CustomViews;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		7FB4F39228EB5625008557ED /* Model */ = {
@@ -844,7 +846,7 @@
 			children = (
 				7FB4F39528EB565A008557ED /* Utilties */,
 				7FB4F39428EB5644008557ED /* Managers */,
-				7FB4F39128EB560A008557ED /* CustomViews */,
+				7FB4F39128EB560A008557ED /* Components */,
 				7FB4F39328EB563C008557ED /* Extentions */,
 			);
 			path = "Main components";
@@ -924,6 +926,7 @@
 				7F51E5F829E845CC00E5709A /* Alamofire */,
 				7F51E5FB29E84B4400E5709A /* FacebookLogin */,
 				7F51E60C29E8E25A00E5709A /* GoogleSignIn */,
+				7FCBE2052A16797300AEF59E /* Kingfisher */,
 			);
 			productName = "Cat-Reloaded";
 			productReference = 7FB4F36B28EB50F3008557ED /* Cat-Reloaded.app */;
@@ -957,6 +960,7 @@
 				7F51E5F729E845CC00E5709A /* XCRemoteSwiftPackageReference "Alamofire" */,
 				7F51E5FA29E84B4400E5709A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				7F51E60B29E8E25A00E5709A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				7FCBE2042A16797300AEF59E /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 7FB4F36C28EB50F3008557ED /* Products */;
 			projectDirPath = "";
@@ -1239,7 +1243,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Cat-Reloaded/Cat-Reloaded.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 475V82HT95;
+				DEVELOPMENT_TEAM = VTVS9935PF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Cat-Reloaded/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1248,13 +1252,13 @@
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "abdalazem-saleh.Cat-Reloaded";
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.catreloaded.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1274,7 +1278,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Cat-Reloaded/Cat-Reloaded.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 475V82HT95;
+				DEVELOPMENT_TEAM = VTVS9935PF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Cat-Reloaded/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1283,13 +1287,13 @@
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "abdalazem-saleh.Cat-Reloaded";
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.catreloaded.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1348,6 +1352,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		7FCBE2042A16797300AEF59E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1365,6 +1377,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7F51E60B29E8E25A00E5709A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
+		};
+		7FCBE2052A16797300AEF59E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7FCBE2042A16797300AEF59E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

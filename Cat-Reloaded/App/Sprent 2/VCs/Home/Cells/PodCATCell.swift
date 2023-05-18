@@ -24,11 +24,7 @@ class PodCATCell: ImageContainerCell {
     // MARK: - Set function
     func set(_ podCats: PodCatData) {
         indicator.startAnimating()
-        ImageDownloader(urlString: podCats.thumbnailUrl).downloadImage { image in
-            DispatchQueue.main.async {
-                self.indicator.removeFromSuperview()
-                self.imageView.image = image
-            }
-        }
+        imageView.kf.setImage(with: podCats.thumbnailUrl.URLConvert)
+        indicator.stopAnimating()
     }
 }

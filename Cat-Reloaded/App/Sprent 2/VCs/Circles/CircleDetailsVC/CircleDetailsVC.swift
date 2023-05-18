@@ -16,9 +16,7 @@ class CircleDetailsVC: UIViewController {
     var snapshot = NSDiffableDataSourceSnapshot<CircleDetailsSections, AnyHashable>()
     
     var currentCircle: CirclesModel?
-    
-    var model: [CircleDetailsModel]    = []
-    
+        
     var emptyStateView = GFEmptyStateView()
     
     var presenter: CircleDetailsPresenter!

@@ -64,13 +64,17 @@ class CircleCell: UICollectionViewCell {
     
     func set(model: CirclesModel) {
         indicator.startAnimating()
-        ImageDownloader(urlString: model.imageUrl).downloadImage { image in
-            DispatchQueue.main.async {
-                self.indicator.removeFromSuperview()
-                self.imageView.image = image
-            }
-        }
+        imageView.kf.setImage(with: model.imageUrl.URLConvert)
+        imageView.kf.indicatorType = .activity
+        self.indicator.removeFromSuperview()
         imageView.contentMode   = .scaleToFill
         label.text              = model.name
+    }
+}
+
+
+extension String {
+    var URLConvert: URL? {
+        return URL(string: self) ?? nil
     }
 }

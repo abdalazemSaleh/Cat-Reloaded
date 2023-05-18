@@ -15,9 +15,7 @@ class EventCell: UICollectionViewCell {
     let imageView             = GFImageView(frame: .zero)
     let sessionName           = GFTitleLabel(textAlignment: .left, fontSize: 16, weight: .bold)
     let sessionDate           = GFTitleLabel(textAlignment: .right, fontSize: 16, weight: .semibold)
-    
-    let indicator             = UIActivityIndicatorView()
-    
+        
     let padding: CGFloat      = 20
     
     // MARK: - Init
@@ -33,7 +31,6 @@ class EventCell: UICollectionViewCell {
     
     // MARK: - Configure function
     func configure() {
-        contentView.addSubview(indicator)
         contentView.addSubview(imageView)
         contentView.addSubview(sessionName)
         contentView.addSubview(sessionDate)
@@ -41,14 +38,9 @@ class EventCell: UICollectionViewCell {
         imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 4
         imageView.clipsToBounds = true
-        
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        
+                
         NSLayoutConstraint.activate([
-            
-            indicator.centerXAnchor.constraint(equalTo: centerXAnchor),
-            indicator.centerYAnchor.constraint(equalTo: centerYAnchor),
-            
+                        
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
@@ -64,13 +56,8 @@ class EventCell: UICollectionViewCell {
     
     func set(_ model: EventModel) {
         guard model.id != "NoData" else { return }
-        indicator.startAnimating()
-        ImageDownloader(urlString: model.imageUrl).downloadImage { image in
-            DispatchQueue.main.async {
-                self.indicator.removeFromSuperview()
-                self.imageView.image = image
-            }
-        }
+        imageView.kf.setImage(with: model.imageUrl.URLConvert)
+        imageView.kf.indicatorType = .activity
         sessionName.text = model.name
         sessionDate.text = model.startDate.formattedDate
     }

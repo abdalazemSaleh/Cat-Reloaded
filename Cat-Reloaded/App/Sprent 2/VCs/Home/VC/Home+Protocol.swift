@@ -30,7 +30,6 @@ extension HomeVC: HomeView {
         }
     }
     
-    
     func presentAlert(message: String, title: String) {
         presentGFAlert(title: title, message: message, buttonTitle: "Go to login")
     }
@@ -38,7 +37,7 @@ extension HomeVC: HomeView {
     @objc func retry() {
         emptyStateView.removeFromSuperview()
         self.self.collectionView.isHidden = false
-        self.presenter.fetchMemories(page: self.memoriesCurrentPage)
-        self.presenter.fetchPodCat(page: self.podCatCurrentPage)
+        self.presenter.fetchMemories(page: 1)
+        self.presenter.fetchPodCat(page: 1)
     }
 }

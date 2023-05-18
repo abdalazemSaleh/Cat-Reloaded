@@ -57,7 +57,8 @@ extension ProfileVC {
     
     private func configureUserImage() {
         
-        userImage.image = UIImage(named: "abd")
+        userImage.image = Images.person
+        userImage.tintColor = Colors.mainColor
         userImage.contentMode = .scaleAspectFill
         userImage.layer.borderWidth = 2
         userImage.layer.borderColor = UIColor.label.cgColor
@@ -208,7 +209,6 @@ extension ProfileVC: PHPickerViewControllerDelegate {
         
         dismiss(animated: true)
         guard let provider = results.first?.itemProvider else { return }
-        
         
         if provider.canLoadObject(ofClass: UIImage.self) {
             provider.loadObject(ofClass: UIImage.self) { image, error in

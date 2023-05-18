@@ -18,9 +18,16 @@ class CirclesPresenter {
     init(view: CirclesView) {
         self.view = view
     }
-    // Variables
-    private(set) var data: [CirclesModel] = []
-    // Functions
+    // MARK: - Variables
+    private var data: [CirclesModel] = []
+    // MARK: - Functions
+    
+    // Demeter functoins
+    func getData() -> [CirclesModel] {
+        return data
+    }
+    
+    // functions
     func fetchTechCircles() {
         let techCirclesObject = NetworkManger(url: URLs.techCircles.rawValue, method: .get, parms: nil, header: nil)
         techCirclesObject.request(modal: [CirclesModel].self) { [weak self] response in

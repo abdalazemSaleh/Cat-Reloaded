@@ -45,7 +45,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 case .success(_):
                     self.window?.rootViewController = GFTabBarController()
                 case .failure(let error):
-                    print(error.rawValue)
+                    print(error.localizedDescription)
                     self.window?.rootViewController  = GFNavigationController()
                 }
             }
@@ -92,7 +92,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 self.window?.rootViewController = GFTabBarController()
             case .failure(let error):
                 UserDefaults.standard.set(false, forKey: "UserLogin")
-                print(error.rawValue)
+                print(error.localizedDescription)
                 self.window?.rootViewController  = GFNavigationController()
             }
         }

@@ -143,10 +143,12 @@ extension HomeVC: UICollectionViewDelegate {
         case .headerCell:
             break
         case .memorires:
-            let url = presenter.memories[indexPath.row].imageUrl
+            let memories = presenter.getMemories()
+            let url = memories[indexPath.row].imageUrl
             presentPhoto(with: url)
         case .podCat:
-            let url = presenter.podCats[indexPath.row].episodeUrl
+            let podCats = presenter.getPodCats()
+            let url = podCats[indexPath.row].episodeUrl
             openPodCat(with: url)
         }
     }
@@ -157,29 +159,9 @@ extension HomeVC: UICollectionViewDelegate {
         case .headerCell:
             break
         case .memorires:
-            handelMemoriesPageNation(indexPath: indexPath)
+            presenter.handelMemoriesPageNation(indexPath: indexPath)
         case .podCat:
-            configurePodCatPagenation(indexPath: indexPath)
-        }
-    }
-    
-    private func handelMemoriesPageNation(indexPath: IndexPath) {
-        if (indexPath.row == num_ofMemories - 1 ) {
-            for _ in 1..<presenter.memoriesPages {
-                memoriesCurrentPage += 1
-                num_ofMemories      += 10
-                presenter.fetchMemories(page: memoriesCurrentPage)
-            }
-        }
-    }
-    
-    private func configurePodCatPagenation(indexPath: IndexPath) {
-        if (indexPath.row == num_ofPodCat - 1) {
-            for _ in 1..<presenter.podCatPages {
-                podCatCurrentPage += 1
-                num_ofPodCat      += 10
-                presenter.fetchPodCat(page: podCatCurrentPage)
-            }
+            presenter.handelMemoriesPageNation(indexPath: indexPath)
         }
     }
 }

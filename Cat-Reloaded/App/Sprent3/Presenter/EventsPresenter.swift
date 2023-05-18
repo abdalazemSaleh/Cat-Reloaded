@@ -30,9 +30,9 @@ class EventsPresenter {
                 self.view?.getUpComingEvents(data: data)
             case .failure(let error):
                 if error == .connectionError {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
+                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.networkError!)
                 } else {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.serverError!)
+                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.serverError!)
                 }
             }
         }
@@ -48,9 +48,9 @@ class EventsPresenter {
                 self.view?.getPreviousEvents(data: data)
             case .failure(let error):
                 if error == .connectionError {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
+                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.networkError!)
                 } else {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.serverError!)
+                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.serverError!)
                 }
             }
         }

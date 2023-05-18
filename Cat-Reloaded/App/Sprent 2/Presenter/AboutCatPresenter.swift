@@ -20,9 +20,12 @@ class AboutCatPresenter {
     init(view: AboutCatView) {
         self.view = view
     }
-    // variables
-    private(set) var headerData: [AboutCatInfoModel] =  []
+    // MARK: - Variables
+    private var headerData: [AboutCatInfoModel] =  []
     
+    // MARK: - Functions
+        
+    // Functions
     func fetchAboutCatInfo() {
         let catInfoObject = NetworkManger(url: URLs.info.rawValue, method: .get, parms: nil, header: nil)
         catInfoObject.request(modal: AboutCatInfoModel.self) { [weak self] result in
@@ -33,9 +36,9 @@ class AboutCatPresenter {
                 self.view?.aboutCatInfo(data: self.headerData)
             case .failure(let error):
                 if error == .connectionError {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
+                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.networkError!)
                 } else {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.serverError!)
+                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.serverError!)
                 }
             }
         }
@@ -50,9 +53,9 @@ class AboutCatPresenter {
                 self.view?.founders(data: data)
             case .failure(let error):
                 if error == .connectionError {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
+                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.networkError!)
                 } else {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.serverError!)
+                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.serverError!)
                 }
             }
         }
@@ -67,9 +70,9 @@ class AboutCatPresenter {
                 self.view?.teamBoard(data: data)
             case .failure(let error):
                 if error == .connectionError {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.networkError!)
+                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.networkError!)
                 } else {
-                    self.view?.presentEmptyView(message: error.rawValue, image: Images.serverError!)
+                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.serverError!)
                 }
             }
         }

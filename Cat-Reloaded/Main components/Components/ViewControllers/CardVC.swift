@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CardVC: UIViewController {
 
@@ -43,10 +44,8 @@ class CardVC: UIViewController {
     }
             
     private func configureCatianData() {
-        self.catianImage.image = Images.person
-        ImageDownloader.init(urlString: catianData?.imageUrl ?? "").downloadImage { image in
-            DispatchQueue.main.async { self.catianImage.image = image}
-        }
+        guard let urlString = catianData?.imageUrl, let url = URL(string: urlString) else { return }
+        catianImage.kf.setImage(with: url, placeholder: Images.person)
         self.catianName.text   = catianData?.fullName ?? "Catian"
         self.catianRole.text   = catianData?.title 
     }
