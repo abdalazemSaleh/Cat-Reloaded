@@ -9,20 +9,6 @@ import Alamofire
 import UIKit
 
 
-enum HTTTPMethod {
-    case post, get
-    
-    var type: String {
-        switch self {
-        case .post:
-            return "POST"
-        case .get:
-            return "GET"
-        }
-    }
-}
-
-
 struct Connectivity {
     static let sharedInstance = NetworkReachabilityManager()!
     static var isConnectedToInternet:Bool {
@@ -40,43 +26,6 @@ enum HTTPStatusCode: Int, Error {
     case internalServerError    = 500
     case badGateway             = 502
 }
-
-
-struct NetworkMangerDemo {
-    let url: String
-    let method: HTTTPMethod
-    let parms: [String: Any]?
-    let header: HTTPHeaders?
-
-    func request() async throws -> String? {
-        let urlString = URLs.baseURL.rawValue + url
-        guard let url = URL(string: urlString) else {
-            throw GFError.invalidUrl
-        }
-        
-        do {
-            var request = URLRequest(url: url)
-            request.httpMethod = method.type
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-            
-            let (data, response) = try await URLSession.shared.data(for: request)
-            
-            do {
-                let info = try JSONDecoder().decode(PodCatModel.self, from: data)
-                print(info)
-            } catch let jsonerror {
-                print(jsonerror.localizedDescription)
-            }
-
-            
-            return nil
-        } catch {
-            throw error
-        }
-    }
-}
-
 
 struct NetworkManger {
     
