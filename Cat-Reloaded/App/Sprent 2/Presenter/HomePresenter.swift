@@ -58,7 +58,7 @@ class HomePresenter {
         return isCatian
     }
     
-    func getUserData() -> UserInfo {
+    func getUserData() -> User {
         return userData!
     }
     
@@ -144,7 +144,7 @@ class HomePresenter {
             "Authorization": "Bearer " + token,
         ]
         let userDataObject = NetworkManger(url: url, method: .get, parms: nil, header: header)
-        userDataObject.request(modal: UserInfo.self) { [weak self] response in
+        userDataObject.request(modal: User.self) { [weak self] response in
             guard let self = self else { return }
             switch response {
             case .success(let data):

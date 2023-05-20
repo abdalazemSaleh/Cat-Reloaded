@@ -159,7 +159,9 @@ class RegisterVC: UIViewController {
             "phoneNumber" : model.phonNumber,
             "password" : model.password
         ]
-        presenter.signUp(parms: parms)
+        Task {
+            await presenter.signUp(parms: parms)
+        }
     }
     
     @objc func loginButtonClicked() { presenter.login() }

@@ -5,15 +5,22 @@
 //  Created by Abdalazem Saleh on 2022-10-29.
 //
 
-//import Foundation
-//
-// Login by phone
-struct LoginModel: Codable {
-    let token: String?
+import Foundation
+
+struct User: Codable {
     let id: String?
     let fullName : String?
     let email: String?
     let phoneNumber: String?
+    let isCatian: Bool?
+    let title: String?
+    let imageUrl: String?
+    let techCircle: String?
+    let techRole: String?
+    let nonTechCircle: String?
+    let nonTechRole: String?
+    let generation: String?
+    let token: String?
     let error: String?
     let errorCode: Int?
 }

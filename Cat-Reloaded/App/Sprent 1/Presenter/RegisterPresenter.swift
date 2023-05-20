@@ -18,31 +18,24 @@ protocol RegisterView: AnyObject {
 class RegisterPresenter {
     // about init & delegation
     private weak var view: RegisterView?
+    private var service: RegisterServiceable!
     init(view: RegisterView) {
         self.view = view
+        self.service = RegisterServices()
     }
-    // Code
-    func signUp(parms: [String : Any]) {
+    
+    @MainActor
+    func signUp(parms: [String : Any]) async {
         view?.handelButtonStyle()
-        let signUpObject = NetworkManger(url: URLs.sginup.rawValue, method: .post, parms: parms, header: nil)
-        signUpObject.request(modal: ProfileModel.self) { [weak self] result in
-            guard let self = self else { return }
-            self.view?.handelButtonStyle()
-            switch result {
-            case .success(let user):
-                UserDefaults.standard.set(user.token ?? "", forKey: "UserToken")
-                UserData.fetchUserInfo { response in
-                    switch response {
-                    case .success(_):
-                        print("Successed")
-                        self.view?.goToHomeScreen()
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    }
-                }
-            case .failure(let error):
-                self.view?.alertMessage(message: error.localizedDescription)
-            }
+        do {
+            let user = try await service.register(parms: parms)
+            UserDefaults.standard.set(user.token ?? "", forKey: "UserToken")
+            UserData.chacheUserModel(user: user)
+            view?.goToHomeScreen()
+            view?.handelButtonStyle()            
+        } catch {
+            view?.handelButtonStyle()
+            view?.alertMessage(message: error.localizedDescription)
         }
     }
     

@@ -8,21 +8,6 @@
 import UIKit
 import Alamofire
 
-struct UserInfo: Codable {
-    let id: String?
-    let fullName: String?
-    let email: String?
-    let phoneNumber: String?
-    let isCatian: Bool?
-    let title: String?
-    let imageUrl: String?
-    let techCircle: String?
-    let techRole: String?
-    let nonTechCircle: String?
-    let nonTechRole: String?
-    let generation: String?
-}
-
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -33,18 +18,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene         = windowScene
         window?.makeKeyAndVisible()
 
-//        if UserData.getUserModel() != nil {
-//            window?.rootViewController = GFTabBarController()
-//        } else {
-//            window?.rootViewController  = GFNavigationController()
-//        }
         let isUserLogin = UserDefaults.standard.bool(forKey: "UserLogin")
         if isUserLogin {
-            UserData.fetchUserInfo { response in
-                switch response {
-                case .success(_):
+            Task {
+                do {
+                    let user = try await UserAuth().checkUserAuth()
+                    print(user)
                     self.window?.rootViewController = GFTabBarController()
-                case .failure(let error):
+                } catch {
                     print(error.localizedDescription)
                     self.window?.rootViewController  = GFNavigationController()
                 }
@@ -76,26 +57,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-    }
-
-    private func getUserInfo() {
-        let token = UserDefaults.standard.string(forKey: "UserToken") ?? ""
-        let header: HTTPHeaders = [
-            "Authorization": "Bearer " + token,
-        ]
-        let fetchUserInfo = NetworkManger(url:"/user/info", method: .get, parms: nil, header: header)
-        fetchUserInfo.request(modal: UserInfo.self) { [weak self] response in
-            guard let self = self else { return }
-            switch response {
-            case .success(let user):
-                UserData.chacheUserModel(user: user)
-                self.window?.rootViewController = GFTabBarController()
-            case .failure(let error):
-                UserDefaults.standard.set(false, forKey: "UserLogin")
-                print(error.localizedDescription)
-                self.window?.rootViewController  = GFNavigationController()
-            }
-        }
     }
 }
 

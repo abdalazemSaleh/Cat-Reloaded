@@ -32,7 +32,6 @@
 		7F30C2B128EF4AD50007AACF /* LoginActiveConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F30C2B028EF4AD40007AACF /* LoginActiveConstraint.swift */; };
 		7F30C2B328EF62900007AACF /* GFMediaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F30C2B228EF62900007AACF /* GFMediaButton.swift */; };
 		7F3AD4A92937902400AF0AB1 /* UserDefults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3AD4A82937902400AF0AB1 /* UserDefults.swift */; };
-		7F3AD4AB2937904D00AF0AB1 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3AD4AA2937904D00AF0AB1 /* ProfileModel.swift */; };
 		7F3AD4AD2937927300AF0AB1 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3AD4AC2937927300AF0AB1 /* Encodable.swift */; };
 		7F3E930229F727AC00E83494 /* CardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E930129F727AC00E83494 /* CardVC.swift */; };
 		7F51E5F929E845CC00E5709A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7F51E5F829E845CC00E5709A /* Alamofire */; };
@@ -78,6 +77,11 @@
 		7F8996A72997DB110090C4B2 /* Settings+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8996A62997DB110090C4B2 /* Settings+TableView.swift */; };
 		7F8996AC2997F1360090C4B2 /* GFSimpleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8996AB2997F1360090C4B2 /* GFSimpleCell.swift */; };
 		7F8996AE2998487D0090C4B2 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8996AD2998487D0090C4B2 /* SettingsModel.swift */; };
+		7F8F22CC2A17C705003DE448 /* NetwokServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F22CB2A17C705003DE448 /* NetwokServices.swift */; };
+		7F8F22CE2A17CB2D003DE448 /* NetwokComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F22CD2A17CB2D003DE448 /* NetwokComponents.swift */; };
+		7F8F22D12A184808003DE448 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F22D02A184808003DE448 /* AuthServices.swift */; };
+		7F8F22D42A1946D6003DE448 /* LoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F22D32A1946D6003DE448 /* LoginServices.swift */; };
+		7F8F22D62A19564B003DE448 /* RegisterServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F22D52A19564A003DE448 /* RegisterServices.swift */; };
 		7F9052B128EB731A0044F76C /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B028EB731A0044F76C /* GFTitleLabel.swift */; };
 		7F9052B328EB748C0044F76C /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B228EB748C0044F76C /* GFBodyLabel.swift */; };
 		7F9052B528EB76D20044F76C /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B428EB76D20044F76C /* GFTextField.swift */; };
@@ -156,7 +160,6 @@
 		7F30C2B028EF4AD40007AACF /* LoginActiveConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginActiveConstraint.swift; sourceTree = "<group>"; };
 		7F30C2B228EF62900007AACF /* GFMediaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFMediaButton.swift; sourceTree = "<group>"; };
 		7F3AD4A82937902400AF0AB1 /* UserDefults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefults.swift; sourceTree = "<group>"; };
-		7F3AD4AA2937904D00AF0AB1 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		7F3AD4AC2937927300AF0AB1 /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		7F3E930129F727AC00E83494 /* CardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardVC.swift; sourceTree = "<group>"; };
 		7F549EA22992EBA500E85093 /* GFEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFEmptyStateView.swift; sourceTree = "<group>"; };
@@ -200,6 +203,11 @@
 		7F8996A62997DB110090C4B2 /* Settings+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+TableView.swift"; sourceTree = "<group>"; };
 		7F8996AB2997F1360090C4B2 /* GFSimpleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFSimpleCell.swift; sourceTree = "<group>"; };
 		7F8996AD2998487D0090C4B2 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		7F8F22CB2A17C705003DE448 /* NetwokServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetwokServices.swift; sourceTree = "<group>"; };
+		7F8F22CD2A17CB2D003DE448 /* NetwokComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetwokComponents.swift; sourceTree = "<group>"; };
+		7F8F22D02A184808003DE448 /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
+		7F8F22D32A1946D6003DE448 /* LoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServices.swift; sourceTree = "<group>"; };
+		7F8F22D52A19564A003DE448 /* RegisterServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterServices.swift; sourceTree = "<group>"; };
 		7F9052B028EB731A0044F76C /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
 		7F9052B228EB748C0044F76C /* GFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFBodyLabel.swift; sourceTree = "<group>"; };
 		7F9052B428EB76D20044F76C /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
@@ -589,6 +597,32 @@
 			path = TableViewCells;
 			sourceTree = "<group>";
 		};
+		7F8F22CA2A17C6EF003DE448 /* Network Services */ = {
+			isa = PBXGroup;
+			children = (
+				7F8F22CD2A17CB2D003DE448 /* NetwokComponents.swift */,
+				7F8F22CB2A17C705003DE448 /* NetwokServices.swift */,
+			);
+			path = "Network Services";
+			sourceTree = "<group>";
+		};
+		7F8F22CF2A1847F2003DE448 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7F8F22D02A184808003DE448 /* AuthServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		7F8F22D22A1946C7003DE448 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7F8F22D32A1946D6003DE448 /* LoginServices.swift */,
+				7F8F22D52A19564A003DE448 /* RegisterServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		7FAAFF7728F4CD66008A9FF2 /* GFTab bar controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -603,6 +637,7 @@
 				7FB4F39228EB5625008557ED /* Model */,
 				7FB4F38928EB559A008557ED /* VCs */,
 				7F30C27E28EE08A90007AACF /* Presenter */,
+				7F8F22D22A1946C7003DE448 /* Services */,
 			);
 			path = "Sprent 1";
 			sourceTree = "<group>";
@@ -660,6 +695,7 @@
 		7FB4F38828EB5544008557ED /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				7F8F22CF2A1847F2003DE448 /* Services */,
 				7FB4F36E28EB50F3008557ED /* AppDelegate.swift */,
 				7FB4F37028EB50F3008557ED /* SceneDelegate.swift */,
 				7FB4F37728EB50F4008557ED /* Assets.xcassets */,
@@ -775,7 +811,6 @@
 				7F30C23A28ECDCF00007AACF /* Onboarding.swift */,
 				7F61788F290DD00A00AA101B /* LoginModel.swift */,
 				7F617891290DD1F700AA101B /* SginUpModel.swift */,
-				7F3AD4AA2937904D00AF0AB1 /* ProfileModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -844,6 +879,7 @@
 		7FF92EB028F0751F001EA736 /* Main components */ = {
 			isa = PBXGroup;
 			children = (
+				7F8F22CA2A17C6EF003DE448 /* Network Services */,
 				7FB4F39528EB565A008557ED /* Utilties */,
 				7FB4F39428EB5644008557ED /* Managers */,
 				7FB4F39128EB560A008557ED /* Components */,
@@ -1022,6 +1058,7 @@
 				7F73CA092960C47E00579170 /* HomePresenter.swift in Sources */,
 				7F9052B328EB748C0044F76C /* GFBodyLabel.swift in Sources */,
 				7F30C25128ED8E180007AACF /* BoardingVC.swift in Sources */,
+				7F8F22D12A184808003DE448 /* AuthServices.swift in Sources */,
 				7FE9595B2948D09A001B2554 /* BoardCell.swift in Sources */,
 				7F887253298E76FF0047A61D /* SegmentView.swift in Sources */,
 				7F617892290DD1F700AA101B /* SginUpModel.swift in Sources */,
@@ -1029,6 +1066,7 @@
 				7F078F1B2923F56B00895441 /* CustomSegmentedControl.swift in Sources */,
 				7F30C2B328EF62900007AACF /* GFMediaButton.swift in Sources */,
 				7FF92EBC28F0774B001EA736 /* Register+Protocol.swift in Sources */,
+				7F8F22CC2A17C705003DE448 /* NetwokServices.swift in Sources */,
 				7FD44FAD29C9ABC20080AF42 /* GFLoaderButton.swift in Sources */,
 				7F8996AC2997F1360090C4B2 /* GFSimpleCell.swift in Sources */,
 				7F55642928F1FD10009342A6 /* GFAlertVC.swift in Sources */,
@@ -1049,13 +1087,13 @@
 				7FAAFF8528F4DCD9008A9FF2 /* GFCirclerImage.swift in Sources */,
 				7F73CA0D2960C4F500579170 /* CirclesPresenter.swift in Sources */,
 				7F617890290DD00A00AA101B /* LoginModel.swift in Sources */,
-				7F3AD4AB2937904D00AF0AB1 /* ProfileModel.swift in Sources */,
 				7FA0009529D5207000D26E4C /* GFAlert.swift in Sources */,
 				7F8996A32997B9A70090C4B2 /* SettingsVC.swift in Sources */,
 				7F078F182923F52B00895441 /* CircleHeader.swift in Sources */,
 				7F73C9FD2960C2D200579170 /* Home+Protocol.swift in Sources */,
 				7F8996A72997DB110090C4B2 /* Settings+TableView.swift in Sources */,
 				7F078F122923F49E00895441 /* CirclesVC+Protocol.swift in Sources */,
+				7F8F22D42A1946D6003DE448 /* LoginServices.swift in Sources */,
 				7F078F0E2923F40200895441 /* CircleModel.swift in Sources */,
 				7F88726829915E350047A61D /* EventDetailsHeaderCell.swift in Sources */,
 				7FB4F37128EB50F3008557ED /* SceneDelegate.swift in Sources */,
@@ -1086,10 +1124,12 @@
 				7F887260299025AC0047A61D /* ImageContainerCell.swift in Sources */,
 				7F30C23B28ECDCF00007AACF /* Onboarding.swift in Sources */,
 				7F30C24728ECE79F0007AACF /* GFImageView.swift in Sources */,
+				7F8F22CE2A17CB2D003DE448 /* NetwokComponents.swift in Sources */,
 				7FD4405029D38EBA00FA1222 /* ProfileVC+Protocol.swift in Sources */,
 				7F3E930229F727AC00E83494 /* CardVC.swift in Sources */,
 				7F61788E290DCA8D00AA101B /* URLs.swift in Sources */,
 				7FF92EBA28F07688001EA736 /* RegisterActiveConstraint.swift in Sources */,
+				7F8F22D62A19564B003DE448 /* RegisterServices.swift in Sources */,
 				7F8996A52997D1D70090C4B2 /* DarkTheme.swift in Sources */,
 				7F887251298D46E00047A61D /* EventCell.swift in Sources */,
 				7FE959592948C860001B2554 /* GFTextView.swift in Sources */,

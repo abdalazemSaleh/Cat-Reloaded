@@ -44,14 +44,11 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor    = .systemBackground
-        presenter               = LoginPresenter(view: self)
+        presenter               = LoginPresenter(view: self, service: LoginServices())
         phone.keyboardType      = .decimalPad
         configureUI()
         configureActionButtons()
         handelViewWhileUsingKeyboard()
-        Task {
-            try? await NetworkMangerDemo(url: URLs.podCat.rawValue, method: .get, parms: nil, header: nil).request()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,6 +93,8 @@ class LoginVC: UIViewController {
     }
     
     @objc func googleButtonClicked() {
-        presenter.loginWithGoogle(controller: self)
+        Task {
+            await presenter.loginWithGoogle(controller: self)
+        }
     }
 }
