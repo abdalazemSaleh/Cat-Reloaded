@@ -14,9 +14,7 @@ class CircleBoardCell: UICollectionViewCell {
     let borderView              = UIView()
     
     let userImage               = UIImageView()
-    
-    let indicator               = UIActivityIndicatorView()
-    
+        
     let userFirstName           = GFTitleLabel(textAlignment: .center, fontSize: 16, weight: .bold)
     let userLastName            = GFTitleLabel(textAlignment: .center, fontSize: 16, weight: .bold)
     
@@ -57,7 +55,6 @@ extension CircleBoardCell {
     private func configure() {
         addSubView()
         configureborderViewConstraint()
-        configureIndicator()
         configureUserImageConstraint()
         configureMediaButtonConstraint()
         cnfigureUserNameAndPossetion()
@@ -84,16 +81,7 @@ extension CircleBoardCell {
             borderView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-    
-    private func configureIndicator() {
-        userImage.addSubview(indicator)
         
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        indicator.centerXAnchor.constraint(equalTo: userImage.centerXAnchor).isActive = true
-        indicator.centerYAnchor.constraint(equalTo: userImage.centerYAnchor).isActive = true
-    }
-    
     private func configureUserImageConstraint() {
         userImage.layer.cornerRadius   = 34
         userImage.layer.masksToBounds  = true
@@ -152,7 +140,6 @@ extension CircleBoardCell {
 
 extension CircleBoardCell {
     // MARK: - Set Function
-    
     func set(model: TeamBoardModel) {
         userImage.kf.indicatorType = .activity
         userImage.kf.setImage(with: model.imageUrl.URLConvert)
@@ -221,68 +208,6 @@ extension CircleBoardCell {
         }
         openSocialMedia(with: socialMediaLink, type: type)
     }
-    
-    
-//    func set(model: TeamBoardModel) {
-//        userImage.kf.indicatorType = .activity
-//        userImage.kf.setImage(with: model.imageUrl.URLConvert)
-//
-//        let users           = model.name.split(separator: " ")
-//        userFirstName.text  = String(users.first ?? "")
-//        userLastName.text   = String(users.last ?? "")
-//
-//        userPossetion.text  = model.title
-//
-//        facebookLink        = model.facebookUrl ?? ""
-//        linkedInLink        = model.linkedInUrl ?? ""
-//        gitHubLink          = model.githubUrl ?? ""
-//        twitterLink         = model.twitterUrl ?? ""
-//
-//        mediaButtonStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
-//        mediaButtons.removeAll()
-//
-//        if !facebookLink.isEmpty {
-//            mediaButtons.append(facebook)
-//        }
-//
-//        if !linkedInLink.isEmpty {
-//            mediaButtons.append(linkedin)
-//        }
-//
-//        if !twitterLink.isEmpty {
-//            mediaButtons.append(twitter)
-//        }
-//
-//        if !gitHubLink.isEmpty {
-//            mediaButtons.append(gitHub)
-//        }
-//
-//        for mediaButton in mediaButtons {
-//            mediaButtonStack.addArrangedSubview(mediaButton)
-//        }
-//
-//        facebook.addTarget(self, action: #selector(facebookButtonClicked(_:)), for: .touchUpInside)
-//        twitter.addTarget(self, action: #selector(twitterClicked(_:)), for: .touchUpInside)
-//        linkedin.addTarget(self, action: #selector(linkedInClicked(_:)), for: .touchUpInside)
-//        gitHub.addTarget(self, action: #selector(gitHubClicked(_:)), for: .touchUpInside)
-//    }
-//
-//    @objc func facebookButtonClicked(_ sender: UIButton) {
-//        openSocialMedia(with: facebookLink, type: .facebook)
-//    }
-//
-//    @objc func twitterClicked(_ sender: UIButton) {
-//        guard !twitterLink.isEmpty else { return }
-//        openSocialMedia(with: twitterLink, type: .facebook)
-//    }
-//
-//    @objc func linkedInClicked(_ sender: UIButton) {
-//        openSocialMedia(with: linkedInLink, type: .facebook)
-//    }
-//
-//    @objc func gitHubClicked(_ sender: UIButton) {
-//        openSocialMedia(with: gitHubLink, type: .facebook)
-//    }
 }
 
 enum SocialMediaType {

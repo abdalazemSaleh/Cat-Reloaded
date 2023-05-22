@@ -10,7 +10,6 @@ import UIKit
 class ProfileHeader : UITableViewHeaderFooterView {
     // MARK: - Variables
     let userImage           = GFImageView(frame: .zero)
-    let indicator           = UIActivityIndicatorView()
     let stackView           = UIStackView()
     let userName            = GFTitleLabel(textAlignment: .center, fontSize: 16, weight: .bold)
     let viewProfileButton   = GFSimpleButton(title: "View Profile >", titleColor: .darkGray)
@@ -40,7 +39,7 @@ extension ProfileHeader {
 extension ProfileHeader {
     func handleUserImage(){
         guard let urlString = UserData.getUserModel()?.imageUrl else { return }
-        print(urlString)
+        userImage.kf.indicatorType = .activity
         userImage.kf.setImage(with: urlString.URLConvert, placeholder: Images.person)
         userImage.tintColor = Colors.mainColor
         userImage.contentMode = .scaleAspectFill
@@ -56,7 +55,6 @@ extension ProfileHeader {
 extension ProfileHeader {
     func configureUserImageConstraint() {
         addSubview(userImage)
-        configureIndicator()
         
         NSLayoutConstraint.activate([
             userImage.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -66,14 +64,6 @@ extension ProfileHeader {
         ])
     }
     
-    private func configureIndicator() {
-        userImage.addSubview(indicator)
-        
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        indicator.centerXAnchor.constraint(equalTo: userImage.centerXAnchor).isActive = true
-        indicator.centerYAnchor.constraint(equalTo: userImage.centerYAnchor).isActive = true
-    }
     
     func configureUserNameConstraint() {
         addSubview(userName)

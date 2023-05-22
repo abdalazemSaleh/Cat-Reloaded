@@ -10,7 +10,6 @@ import UIKit
 class Full_imageVC: UIViewController {
     // MARK: - Variables
     let backgroundImage     = GFImageView(frame: .zero)
-    let indicator           = UIActivityIndicatorView()
     let blurEffectView      = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
     let cancelButton        = UIButton()
     let image               = GFImageView(frame: .zero)
@@ -29,19 +28,10 @@ class Full_imageVC: UIViewController {
     }
     // MARK: - Functions
     private func configure() {
-        configureIndicator()
         configureVisualEffectViewConstraint()
         configureImage()
     }
-    
-    private func configureIndicator() {
-        image.addSubview(indicator)
         
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        indicator.centerXAnchor.constraint(equalTo: image.centerXAnchor).isActive = true
-        indicator.centerYAnchor.constraint(equalTo: image.centerYAnchor).isActive = true
-    }
-    
     private func configureVisualEffectViewConstraint() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(dismisVC))
         view.addGestureRecognizer(gesture)
@@ -49,9 +39,7 @@ class Full_imageVC: UIViewController {
         view.addSubview(backgroundImage)
         backgroundImage.frame = view.bounds
         
-        indicator.startAnimating()
         backgroundImage.kf.setImage(with: URL(string: imageUrl))
-        indicator.removeFromSuperview()
         
         backgroundImage.contentMode = .scaleAspectFit
         
@@ -63,10 +51,8 @@ class Full_imageVC: UIViewController {
         view.addSubview(image)
         image.contentMode = .scaleAspectFit
         
-        indicator.startAnimating()
-        
+        image.kf.indicatorType = .activity
         image.kf.setImage(with: URL(string: imageUrl))
-        indicator.removeFromSuperview()
 
         NSLayoutConstraint.activate([
             image.centerYAnchor.constraint(equalTo: view.centerYAnchor),

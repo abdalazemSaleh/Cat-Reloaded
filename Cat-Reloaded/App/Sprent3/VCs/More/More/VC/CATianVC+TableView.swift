@@ -102,7 +102,6 @@ extension CATianVC: UITableViewDelegate, UITableViewDataSource {
     
     private func deleteUserAccount() {
         
-        
         let alertController = UIAlertController(title: "Are you sure you need to delete your account?", message: "If there is any problem please contact us.", preferredStyle: .actionSheet)
         
         let yes = UIAlertAction(title: "Delete account", style: .destructive) { _ in

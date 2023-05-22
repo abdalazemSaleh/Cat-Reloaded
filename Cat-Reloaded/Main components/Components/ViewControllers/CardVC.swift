@@ -47,7 +47,7 @@ class CardVC: UIViewController {
         guard let urlString = catianData?.imageUrl, let url = URL(string: urlString) else { return }
         catianImage.kf.setImage(with: url, placeholder: Images.person)
         self.catianName.text   = catianData?.fullName ?? "Catian"
-        self.catianRole.text   = catianData?.title 
+        self.catianRole.text   = catianData?.title ?? "Non"
     }
     
     private func configureContainerView() {

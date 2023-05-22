@@ -23,8 +23,7 @@ class MemoriesCell: ImageContainerCell {
     
     // MARK: - Set function
     func set(_ memories: MemoriesData) {
-        indicator.startAnimating()
+        imageView.kf.indicatorType = .activity
         imageView.kf.setImage(with: URL(string: memories.thumbnailUrl))
-        indicator.removeFromSuperview()
     }
 }

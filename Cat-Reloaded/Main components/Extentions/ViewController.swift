@@ -52,7 +52,7 @@ extension UIViewController {
         cardButton.setImage(Images.card, for: .normal)
         cardButton.tintColor = Colors.mainColor
         cardButton.addTarget(self, action: #selector(presentCardVC), for: .touchUpInside)
-
+        
         let notificationButton = UIButton(type: .system)
         notificationButton.setImage(Images.notification, for: .normal)
         notificationButton.tintColor = .secondaryLabel
@@ -60,15 +60,23 @@ extension UIViewController {
         
         let cardButtonItem          = UIBarButtonItem(customView: cardButton)
         let notificationButtonItem  = UIBarButtonItem(customView: notificationButton)
-
-        navigationItem.rightBarButtonItems = [notificationButtonItem, cardButtonItem]
+        
+        if UserData.getUserModel()?.isCatian ?? false  {
+            navigationItem.rightBarButtonItems = [notificationButtonItem, cardButtonItem]
+        } else {
+            navigationItem.rightBarButtonItem = notificationButtonItem
+        }
     }
     
     @objc private func presentCardVC() {
-        let cardVC = CardVC()
-        cardVC.modalPresentationStyle  = .overFullScreen
-        cardVC.modalTransitionStyle    = .crossDissolve
-        self.present(cardVC, animated: true)
+        if UserData.getUserModel()?.isCatian ?? false  {
+            let cardVC = CardVC()
+            cardVC.modalPresentationStyle  = .overFullScreen
+            cardVC.modalTransitionStyle    = .crossDissolve
+            self.present(cardVC, animated: true)
+        } else {
+            presentGFAlert(title: "Woops", message: "You need to become a CATian to show your card.", buttonTitle: "OK")
+        }
     }
     
     @objc private func openNotificationsVC() {

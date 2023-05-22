@@ -106,7 +106,16 @@ extension HeaderCell {
         if isCatian {
             welcomeCardStack.removeFromSuperview()
         } else {
-            welcomeCardTitle.text   = "Welcome" + " " + welcometitle
+            let users = welcometitle.split(separator: " ")
+            welcomeCardTitle.text   = ""
+            let title = "Welcome" + " " + (users.first?.capitalized ?? "")
+            var charIndex   = 0.0
+            for character in title {
+                Timer.scheduledTimer(withTimeInterval: 0.09 * charIndex, repeats: false){ (timer) in
+                    self.welcomeCardTitle.text?.append(character)
+                }
+                charIndex += 1
+            }
         }
     }
 }

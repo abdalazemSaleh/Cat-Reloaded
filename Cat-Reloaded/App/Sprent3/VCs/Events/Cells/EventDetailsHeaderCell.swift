@@ -12,7 +12,6 @@ class EventDetailsHeaderCell: UICollectionViewCell {
     static let reuseIdentifer = "CollectionViewHeaderCell"
     
     let eventImage             = GFImageView(frame: .zero)
-    let indicator              = UIActivityIndicatorView()
     let eventName              = GFTitleLabel(textAlignment: .left, fontSize: 24, weight: .bold)
     let eventDate              = GFTitleLabel(textAlignment: .right, fontSize: 24, weight: .semibold)
     let eventDescrption        = GFTextView(textAlignment: .left, fontSize: 14, weight: .regular)
@@ -51,7 +50,6 @@ extension EventDetailsHeaderCell {
 extension EventDetailsHeaderCell {
     private func EventDetailsHeaderConstraint() {
         eventImageConstraint()
-        configureIndicator()
         eventNameConstraint()
         eventDateConstraint()
         eventDescrptionConstraint()
@@ -67,15 +65,7 @@ extension EventDetailsHeaderCell {
             eventImage.heightAnchor.constraint(equalToConstant: 240)
         ])
     }
-    
-    private func configureIndicator() {
-        contentView.addSubview(indicator)
         
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        indicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        indicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-    }
-    
     private func eventNameConstraint() {
         eventName.textColor    = Colors.mainColor
         NSLayoutConstraint.activate([
@@ -111,8 +101,8 @@ extension EventDetailsHeaderCell {
 // MARK: - Set function
 extension EventDetailsHeaderCell {
     func set(model: EventModel) {
-        eventImage.kf.setImage(with: URL(string: model.imageUrl))
         eventImage.kf.indicatorType = .activity
+        eventImage.kf.setImage(with: URL(string: model.imageUrl))
 
         eventName.text         = model.name
         eventDate.text         = model.startDate.formattedDate

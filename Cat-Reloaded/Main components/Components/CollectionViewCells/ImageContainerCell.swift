@@ -11,7 +11,6 @@ class ImageContainerCell: UICollectionViewCell {
     
     // MARK: - Variables
     let imageView = GFImageView(frame: .zero)
-    let indicator = UIActivityIndicatorView()
     let padding: CGFloat = 20
 
     // MARK: - Init
@@ -27,18 +26,13 @@ class ImageContainerCell: UICollectionViewCell {
     // MARK: - Configure function
     func configure() {
         contentView.addSubview(imageView)
-        contentView.addSubview(indicator)
 
         contentView.backgroundColor = .systemBackground
         
         imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 4
         imageView.clipsToBounds = true
-        
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        indicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        indicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-                
+                        
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

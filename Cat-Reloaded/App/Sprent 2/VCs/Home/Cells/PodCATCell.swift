@@ -23,8 +23,7 @@ class PodCATCell: ImageContainerCell {
     
     // MARK: - Set function
     func set(_ podCats: PodCatData) {
-        indicator.startAnimating()
+        imageView.kf.indicatorType = .activity
         imageView.kf.setImage(with: podCats.thumbnailUrl.URLConvert)
-        indicator.stopAnimating()
     }
 }
