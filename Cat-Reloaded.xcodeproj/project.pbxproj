@@ -13,7 +13,6 @@
 		7F078F162923F50700895441 /* CircleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F078F152923F50700895441 /* CircleCell.swift */; };
 		7F078F182923F52B00895441 /* CircleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F078F172923F52B00895441 /* CircleHeader.swift */; };
 		7F078F1B2923F56B00895441 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F078F1A2923F56B00895441 /* CustomSegmentedControl.swift */; };
-		7F08218F29200B55008AB3BD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F08218E29200B55008AB3BD /* GoogleService-Info.plist */; };
 		7F11EC4E29F708F000029D3A /* SettingsViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F11EC4D29F708F000029D3A /* SettingsViewHeader.swift */; };
 		7F157B4129EDF61E00D5BB98 /* PrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F157B4029EDF61E00D5BB98 /* PrivacyPolicyVC.swift */; };
 		7F30C23528EC44350007AACF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F30C23428EC44350007AACF /* ViewController.swift */; };
@@ -82,6 +81,7 @@
 		7F8F22D12A184808003DE448 /* AuthServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F22D02A184808003DE448 /* AuthServices.swift */; };
 		7F8F22D42A1946D6003DE448 /* LoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F22D32A1946D6003DE448 /* LoginServices.swift */; };
 		7F8F22D62A19564B003DE448 /* RegisterServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F22D52A19564A003DE448 /* RegisterServices.swift */; };
+		7F8F22D82A196454003DE448 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F8F22D72A196454003DE448 /* GoogleService-Info.plist */; };
 		7F9052B128EB731A0044F76C /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B028EB731A0044F76C /* GFTitleLabel.swift */; };
 		7F9052B328EB748C0044F76C /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B228EB748C0044F76C /* GFBodyLabel.swift */; };
 		7F9052B528EB76D20044F76C /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9052B428EB76D20044F76C /* GFTextField.swift */; };
@@ -141,7 +141,6 @@
 		7F078F152923F50700895441 /* CircleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCell.swift; sourceTree = "<group>"; };
 		7F078F172923F52B00895441 /* CircleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleHeader.swift; sourceTree = "<group>"; };
 		7F078F1A2923F56B00895441 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
-		7F08218E29200B55008AB3BD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F11EC4D29F708F000029D3A /* SettingsViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewHeader.swift; sourceTree = "<group>"; };
 		7F157B4029EDF61E00D5BB98 /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyVC.swift; sourceTree = "<group>"; };
 		7F30C23428EC44350007AACF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +207,7 @@
 		7F8F22D02A184808003DE448 /* AuthServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServices.swift; sourceTree = "<group>"; };
 		7F8F22D32A1946D6003DE448 /* LoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServices.swift; sourceTree = "<group>"; };
 		7F8F22D52A19564A003DE448 /* RegisterServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterServices.swift; sourceTree = "<group>"; };
+		7F8F22D72A196454003DE448 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F9052B028EB731A0044F76C /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
 		7F9052B228EB748C0044F76C /* GFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFBodyLabel.swift; sourceTree = "<group>"; };
 		7F9052B428EB76D20044F76C /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
@@ -687,7 +687,7 @@
 				7FF92EB128F07529001EA736 /* App */,
 				7FB4F38828EB5544008557ED /* Support */,
 				7FB4F37C28EB50F4008557ED /* Info.plist */,
-				7F08218E29200B55008AB3BD /* GoogleService-Info.plist */,
+				7F8F22D72A196454003DE448 /* GoogleService-Info.plist */,
 			);
 			path = "Cat-Reloaded";
 			sourceTree = "<group>";
@@ -1014,7 +1014,7 @@
 			files = (
 				7FB4F37B28EB50F4008557ED /* LaunchScreen.storyboard in Resources */,
 				7FB4F37828EB50F4008557ED /* Assets.xcassets in Resources */,
-				7F08218F29200B55008AB3BD /* GoogleService-Info.plist in Resources */,
+				7F8F22D82A196454003DE448 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1281,11 +1281,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Cat-Reloaded/Cat-Reloaded.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VTVS9935PF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Cat-Reloaded/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -1316,11 +1318,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Cat-Reloaded/Cat-Reloaded.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VTVS9935PF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Cat-Reloaded/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -1335,6 +1339,7 @@
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.catreloaded.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

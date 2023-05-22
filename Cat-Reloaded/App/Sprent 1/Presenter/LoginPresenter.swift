@@ -64,6 +64,7 @@ class LoginPresenter {
         }
     }
 
+    @MainActor
     func loginWithGoogle(controller: UIViewController) async {
         do {
             let user = try await GIDSignIn.sharedInstance.signIn(withPresenting: controller)

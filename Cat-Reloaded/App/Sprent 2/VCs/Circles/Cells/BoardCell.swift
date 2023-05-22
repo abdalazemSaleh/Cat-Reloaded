@@ -152,64 +152,142 @@ extension CircleBoardCell {
 
 extension CircleBoardCell {
     // MARK: - Set Function
-    func set(model: TeamBoardModel) {
-        indicator.startAnimating()
-        userImage.kf.setImage(with: model.imageUrl.URLConvert)
-        userImage.kf.indicatorType = .activity
-
-        indicator.removeFromSuperview()
-        
-        let users           = model.name.split(separator: " ")
-        userFirstName.text  = String(users.first ?? "")
-        userLastName.text   = String(users.last ?? "")
     
-        userPossetion.text  = model.title
+    func set(model: TeamBoardModel) {
+        userImage.kf.indicatorType = .activity
+        userImage.kf.setImage(with: model.imageUrl.URLConvert)
         
-        facebookLink        = model.facebookUrl ?? ""
-        linkedInLink        = model.linkedInUrl ?? ""
-        gitHubLink          = model.githubUrl ?? ""
-        twitterLink         = model.twitterUrl ?? ""
+        let users = model.name.split(separator: " ")
+        userFirstName.text = users.first.map(String.init) ?? ""
+        userLastName.text = users.last.map(String.init) ?? ""
         
-        if !facebookLink.isEmpty {
-            mediaButtons.append(facebook)
+        userPossetion.text = model.title
+        
+        let socialMediaLinks: [(GFMediaButton, String)] = [
+            (facebook, model.facebookUrl ?? ""),
+            (linkedin, model.linkedInUrl ?? ""),
+            (twitter, model.twitterUrl ?? ""),
+            (gitHub, model.githubUrl ?? "")
+        ]
+        
+        mediaButtons.removeAll()
+        mediaButtonStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        for (button, link) in socialMediaLinks {
+            if !link.isEmpty {
+                mediaButtons.append(button)
+                button.addTarget(self, action: #selector(socialMediaButtonClicked(_:)), for: .touchUpInside)
+            }
         }
         
-        if !linkedInLink.isEmpty {
-            mediaButtons.append(linkedin)
-        }
-
-        if !twitterLink.isEmpty {
-            mediaButtons.append(twitter)
-        }
-
-        if !gitHubLink.isEmpty {
-            mediaButtons.append(gitHub)
-        }
-                
         for mediaButton in mediaButtons {
             mediaButtonStack.addArrangedSubview(mediaButton)
         }
+    }
+
+    @objc func socialMediaButtonClicked(_ sender: UIButton) {
+        var link: String?
         
-        facebook.addTarget(self, action: #selector(facebookButtonClicked), for: .touchUpInside)
-        twitter.addTarget(self, action: #selector(twitterClicked), for: .touchUpInside)
-        linkedin.addTarget(self, action: #selector(linkedInClicked), for: .touchUpInside)
-        gitHub.addTarget(self, action: #selector(gitHubClicked), for: .touchUpInside)
+        switch sender {
+        case facebook:
+            link = facebookLink
+        case twitter:
+            link = twitterLink
+        case linkedin:
+            link = linkedInLink
+        case gitHub:
+            link = gitHubLink
+        default:
+            break
+        }
+        
+        guard let socialMediaLink = link, !socialMediaLink.isEmpty else {
+            return
+        }
+        
+        let type: SocialMediaNav
+        
+        switch sender {
+        case facebook:
+            type = .facebook
+        case twitter:
+            type = .twitter
+        case linkedin:
+            type = .linkedin
+        case gitHub:
+            type = .github
+        default:
+            return
+        }
+        openSocialMedia(with: socialMediaLink, type: type)
     }
     
-    @objc func facebookButtonClicked() {
-        openSocialMedia(with: facebookLink, type: .facebook)
-    }
     
-    @objc func twitterClicked() {
-        guard !twitterLink.isEmpty else { return }
-        openSocialMedia(with: twitterLink, type: .facebook)
-    }
+//    func set(model: TeamBoardModel) {
+//        userImage.kf.indicatorType = .activity
+//        userImage.kf.setImage(with: model.imageUrl.URLConvert)
+//
+//        let users           = model.name.split(separator: " ")
+//        userFirstName.text  = String(users.first ?? "")
+//        userLastName.text   = String(users.last ?? "")
+//
+//        userPossetion.text  = model.title
+//
+//        facebookLink        = model.facebookUrl ?? ""
+//        linkedInLink        = model.linkedInUrl ?? ""
+//        gitHubLink          = model.githubUrl ?? ""
+//        twitterLink         = model.twitterUrl ?? ""
+//
+//        mediaButtonStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+//        mediaButtons.removeAll()
+//
+//        if !facebookLink.isEmpty {
+//            mediaButtons.append(facebook)
+//        }
+//
+//        if !linkedInLink.isEmpty {
+//            mediaButtons.append(linkedin)
+//        }
+//
+//        if !twitterLink.isEmpty {
+//            mediaButtons.append(twitter)
+//        }
+//
+//        if !gitHubLink.isEmpty {
+//            mediaButtons.append(gitHub)
+//        }
+//
+//        for mediaButton in mediaButtons {
+//            mediaButtonStack.addArrangedSubview(mediaButton)
+//        }
+//
+//        facebook.addTarget(self, action: #selector(facebookButtonClicked(_:)), for: .touchUpInside)
+//        twitter.addTarget(self, action: #selector(twitterClicked(_:)), for: .touchUpInside)
+//        linkedin.addTarget(self, action: #selector(linkedInClicked(_:)), for: .touchUpInside)
+//        gitHub.addTarget(self, action: #selector(gitHubClicked(_:)), for: .touchUpInside)
+//    }
+//
+//    @objc func facebookButtonClicked(_ sender: UIButton) {
+//        openSocialMedia(with: facebookLink, type: .facebook)
+//    }
+//
+//    @objc func twitterClicked(_ sender: UIButton) {
+//        guard !twitterLink.isEmpty else { return }
+//        openSocialMedia(with: twitterLink, type: .facebook)
+//    }
+//
+//    @objc func linkedInClicked(_ sender: UIButton) {
+//        openSocialMedia(with: linkedInLink, type: .facebook)
+//    }
+//
+//    @objc func gitHubClicked(_ sender: UIButton) {
+//        openSocialMedia(with: gitHubLink, type: .facebook)
+//    }
+}
 
-    @objc func linkedInClicked() {
-        openSocialMedia(with: linkedInLink, type: .facebook)
-    }
-
-    @objc func gitHubClicked() {
-        openSocialMedia(with: gitHubLink, type: .facebook)
-    }
+enum SocialMediaType {
+    case facebook
+    case twitter
+    case linkedin
+    case github
 }
