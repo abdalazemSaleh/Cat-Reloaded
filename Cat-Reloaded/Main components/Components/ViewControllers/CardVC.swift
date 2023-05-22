@@ -44,7 +44,8 @@ class CardVC: UIViewController {
     }
             
     private func configureCatianData() {
-        guard let urlString = catianData?.imageUrl, let url = URL(string: urlString) else { return }
+        let urlString = catianData?.imageUrl ?? ""
+        let url = URL(string: urlString)
         catianImage.kf.setImage(with: url, placeholder: Images.person)
         self.catianName.text   = catianData?.fullName ?? "Catian"
         self.catianRole.text   = catianData?.title ?? "Non"

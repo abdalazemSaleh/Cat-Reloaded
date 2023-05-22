@@ -64,7 +64,6 @@ extension ProfileHeader {
         ])
     }
     
-    
     func configureUserNameConstraint() {
         addSubview(userName)
         userName.text = UserData.getUserModel()?.fullName
