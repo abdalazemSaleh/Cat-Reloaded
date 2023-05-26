@@ -59,6 +59,7 @@ class RegisterVC: UIViewController {
         view.backgroundColor    = .systemBackground
         presenter               = RegisterPresenter(view: self)
         configureUI()
+        setTextFieldsDelegate()
         configureActionButtons()
         handelViewWhileUsingKeyboard()
     }

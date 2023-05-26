@@ -44,6 +44,7 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
         presenter = ProfilePresenter(view: self)
         configureUI()
+        setTextFieldsDelegate()
         handelViewWhileUsingKeyboard()
     }
     

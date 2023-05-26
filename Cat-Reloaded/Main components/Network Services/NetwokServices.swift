@@ -8,11 +8,11 @@
 import Foundation
 
 protocol NetworkServices {
-    func request<T: Codable>(endPoint: EndPoint, model: T.Type) async throws -> T
+    func request(endPoint: EndPoint) async throws -> Data
 }
 
 extension NetworkServices {
-    func request<T: Codable>(endPoint: EndPoint, model: T.Type) async throws -> T {
+    func request(endPoint: EndPoint) async throws -> Data {
         // URL Components
         var urlComponents = URLComponents()
         urlComponents.scheme = endPoint.scheme
@@ -39,36 +39,16 @@ extension NetworkServices {
             // Check connection, response, and response type
             guard Connectivity.isConnectedToInternet else { throw GFError.connectionError }
             guard let response = response as? HTTPURLResponse else { throw GFError.invalidResponse }
-            guard let responseType: HTTPStatusCode = HTTPStatusCode(rawValue: response.statusCode) else {
-                throw GFError.invalidResponse
-            }
-            
-            // Work with reponse state
-            switch responseType {
-            case .ok:
-                do {
-                    let info = try JSONDecoder().decode(T.self, from: data)
-                    return info
-                } catch {
-                    throw error
-                }
-            case .badRequest:
-                throw GFError.alreadyInFavorites
-            case .notAuthorized:
-                throw GFError.alreadyInFavorites
-            case .forbidden:
-                throw GFError.alreadyInFavorites
-            case .notFound:
-                throw GFError.alreadyInFavorites
-            case .DataInvalid:
+            let statusCode = response.statusCode
+            switch statusCode {
+            case 200...299:
+                return data
+            case 401:
                 throw GFError.invalidData
-            case .internalServerError:
-                throw GFError.alreadyInFavorites
-            case .badGateway:
-                throw GFError.alreadyInFavorites
+            default:
+                throw GFError.UnKnownError
             }
         } catch {
-            print(error.localizedDescription)
             throw error
         }
     }

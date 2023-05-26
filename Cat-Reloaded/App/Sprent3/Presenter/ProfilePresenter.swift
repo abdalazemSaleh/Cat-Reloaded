@@ -19,32 +19,23 @@ protocol ProfileView: AnyObject {
 class ProfilePresenter {
     // about init & delegation
     private weak var view: ProfileView?
+    private var service: EditProfileServiceable!
     init(view: ProfileView) {
         self.view = view
+        self.service = EditProfileServices()
     }
     
-    // Code
+    @MainActor
     func updateUserProfile(parms: [String: Any]) {
-        let url = URLs.updateProfile.rawValue
-        
-        let token = UserDefaults.standard.string(forKey: "UserToken") ?? ""
-        let header: HTTPHeaders = [
-            "Authorization": "Bearer " + token,
-        ]
-
-        
-        let updateProfileObject = NetworkManger(url: url, method: .post, parms: parms, header: header)
-        updateProfileObject.request(modal: UpdateUserData.self) { [weak self] response in
-            guard let self = self else { return }
-            switch response {
-            case .success(_):
+        Task {
+            do {
+                _ = try await service.editProfile(parms: parms)
                 self.view?.handelButtonStyle()
                 self.view?.showAlerMessage(message: "Data changed successfuly")
-            case .failure(_):
+            } catch {
                 self.view?.handelButtonStyle()
                 self.view?.showAlerMessage(message: "Error while changing data please try agine later.")
             }
         }
-        
     }
 }

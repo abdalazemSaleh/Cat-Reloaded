@@ -41,11 +41,12 @@ enum HTTPMethodd {
 
 enum HTTPStatusCode: Int, Error {
     case ok                     = 200
+    case done                   = 204
     case badRequest             = 400
     case notAuthorized          = 401
     case forbidden              = 402
     case notFound               = 404
     case DataInvalid            = 422
     case internalServerError    = 500
-    case badGateway             = 502
+    case badGateway             = 502    
 }

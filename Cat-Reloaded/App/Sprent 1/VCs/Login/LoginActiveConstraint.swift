@@ -21,6 +21,7 @@ extension LoginVC {
         configureLoginWithMediaAccount()
         ConfigureSginUpButton()
         sharedConstraint()
+        password.returnKeyType = .done
     }
     
     /// Configure Scroll View

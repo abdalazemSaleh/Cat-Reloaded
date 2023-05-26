@@ -18,6 +18,7 @@ enum GFError: Error, LocalizedError {
     case invalidData
     case unableToFavorite
     case alreadyInFavorites
+    case UnKnownError
     
     var errorDescription: String? {
         switch self {
@@ -37,6 +38,8 @@ enum GFError: Error, LocalizedError {
             return NSLocalizedString("Woops, There was an error favoriting this user. Please try agine later.", comment: "")
         case .alreadyInFavorites:
             return NSLocalizedString("Woops, This user is already in favorite list.", comment: "")
+        case .UnKnownError:
+            return NSLocalizedString("Unrecognized error please try again later.", comment: "")
         }
     }
 }

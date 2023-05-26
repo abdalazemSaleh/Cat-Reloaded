@@ -36,6 +36,7 @@ class CircleBoardCell: UICollectionViewCell {
     
     var views: [UIView]         = []
     var mediaButtons: [GFMediaButton]  = []
+    var targetLink = ""
     
     // MARK: - initializer
     override init(frame: CGRect) {
@@ -149,13 +150,18 @@ extension CircleBoardCell {
         userLastName.text = users.last.map(String.init) ?? ""
         
         userPossetion.text = model.title
-        
+                
         let socialMediaLinks: [(GFMediaButton, String)] = [
             (facebook, model.facebookUrl ?? ""),
             (linkedin, model.linkedInUrl ?? ""),
             (twitter, model.twitterUrl ?? ""),
             (gitHub, model.githubUrl ?? "")
         ]
+        
+        facebookLink = model.facebookUrl ?? ""
+        linkedInLink = model.linkedInUrl ?? ""
+        twitterLink = model.twitterUrl ?? ""
+        gitHubLink = model.githubUrl ?? ""
         
         mediaButtons.removeAll()
         mediaButtonStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
@@ -187,7 +193,7 @@ extension CircleBoardCell {
         default:
             break
         }
-        
+                
         guard let socialMediaLink = link, !socialMediaLink.isEmpty else {
             return
         }

@@ -97,6 +97,9 @@
 		7FAAFF8C28F5B5C0008A9FF2 /* Home+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAFF8B28F5B5C0008A9FF2 /* Home+CollectionView.swift */; };
 		7FAAFF8E28F5ED1B008A9FF2 /* MemoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAFF8D28F5ED1A008A9FF2 /* MemoriesCell.swift */; };
 		7FAAFF9328F82A05008A9FF2 /* PodCATCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAAFF9228F82A05008A9FF2 /* PodCATCell.swift */; };
+		7FB2D1352A1F7D6900FE935B /* EditProfileServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2D1342A1F7D6900FE935B /* EditProfileServices.swift */; };
+		7FB2D1372A1F8C6100FE935B /* Register+TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2D1362A1F8C6100FE935B /* Register+TextFields.swift */; };
+		7FB2D1392A1F8F2D00FE935B /* Profile+TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2D1382A1F8F2D00FE935B /* Profile+TextField.swift */; };
 		7FB4F36F28EB50F3008557ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4F36E28EB50F3008557ED /* AppDelegate.swift */; };
 		7FB4F37128EB50F3008557ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4F37028EB50F3008557ED /* SceneDelegate.swift */; };
 		7FB4F37828EB50F4008557ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FB4F37728EB50F4008557ED /* Assets.xcassets */; };
@@ -223,6 +226,9 @@
 		7FAAFF8B28F5B5C0008A9FF2 /* Home+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Home+CollectionView.swift"; sourceTree = "<group>"; };
 		7FAAFF8D28F5ED1A008A9FF2 /* MemoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoriesCell.swift; sourceTree = "<group>"; };
 		7FAAFF9228F82A05008A9FF2 /* PodCATCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodCATCell.swift; sourceTree = "<group>"; };
+		7FB2D1342A1F7D6900FE935B /* EditProfileServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileServices.swift; sourceTree = "<group>"; };
+		7FB2D1362A1F8C6100FE935B /* Register+TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Register+TextFields.swift"; sourceTree = "<group>"; };
+		7FB2D1382A1F8F2D00FE935B /* Profile+TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+TextField.swift"; sourceTree = "<group>"; };
 		7FB4F36B28EB50F3008557ED /* Cat-Reloaded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cat-Reloaded.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FB4F36E28EB50F3008557ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FB4F37028EB50F3008557ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -529,6 +535,7 @@
 				7FD4405129D3B0CA00FA1222 /* ProfilePresenter.swift */,
 				7FD4405529D4C6CA00FA1222 /* CATianPresenter.swift */,
 				7FE1D11229F5BCD100999B6F /* SettingPresenter.swift */,
+				7FB2D1332A1F7D5700FE935B /* Services */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -575,6 +582,7 @@
 			children = (
 				7F89969F2997B91A0090C4B2 /* ProfileVC.swift */,
 				7FD4404D29D38EAB00FA1222 /* ProfileVC+Constraints.swift */,
+				7FB2D1382A1F8F2D00FE935B /* Profile+TextField.swift */,
 				7FD4404F29D38EBA00FA1222 /* ProfileVC+Protocol.swift */,
 			);
 			path = VC;
@@ -661,6 +669,14 @@
 				7F62DD9028FDFB4100FEC944 /* Cells */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		7FB2D1332A1F7D5700FE935B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7FB2D1342A1F7D6900FE935B /* EditProfileServices.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		7FB4F36228EB50F3008557ED = {
@@ -903,6 +919,7 @@
 			children = (
 				7FF92EB728F07624001EA736 /* RegisterVC.swift */,
 				7FF92EB928F07688001EA736 /* RegisterActiveConstraint.swift */,
+				7FB2D1362A1F8C6100FE935B /* Register+TextFields.swift */,
 				7FF92EBB28F0774B001EA736 /* Register+Protocol.swift */,
 			);
 			path = Register;
@@ -1113,6 +1130,7 @@
 				7F73CA0B2960C49900579170 /* AboutCatPresenter.swift in Sources */,
 				7F157B4129EDF61E00D5BB98 /* PrivacyPolicyVC.swift in Sources */,
 				7FF92EBE28F08A94001EA736 /* GFPickerTextField.swift in Sources */,
+				7FB2D1372A1F8C6100FE935B /* Register+TextFields.swift in Sources */,
 				7F30C2B128EF4AD50007AACF /* LoginActiveConstraint.swift in Sources */,
 				7F30C23F28ECDDF50007AACF /* GFSimpleButton.swift in Sources */,
 				7FD4405429D4735300FA1222 /* View.swift in Sources */,
@@ -1127,6 +1145,7 @@
 				7F8F22CE2A17CB2D003DE448 /* NetwokComponents.swift in Sources */,
 				7FD4405029D38EBA00FA1222 /* ProfileVC+Protocol.swift in Sources */,
 				7F3E930229F727AC00E83494 /* CardVC.swift in Sources */,
+				7FB2D1392A1F8F2D00FE935B /* Profile+TextField.swift in Sources */,
 				7F61788E290DCA8D00AA101B /* URLs.swift in Sources */,
 				7FF92EBA28F07688001EA736 /* RegisterActiveConstraint.swift in Sources */,
 				7F8F22D62A19564B003DE448 /* RegisterServices.swift in Sources */,
@@ -1143,6 +1162,7 @@
 				7FAAFF7928F4CD83008A9FF2 /* GFTabBarController.swift in Sources */,
 				7FAAFF9328F82A05008A9FF2 /* PodCATCell.swift in Sources */,
 				7F549EA32992EBA500E85093 /* GFEmptyStateView.swift in Sources */,
+				7FB2D1352A1F7D6900FE935B /* EditProfileServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1289,7 +1309,7 @@
 				INFOPLIST_FILE = "Cat-Reloaded/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
@@ -1326,7 +1346,7 @@
 				INFOPLIST_FILE = "Cat-Reloaded/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = "";

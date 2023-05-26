@@ -49,6 +49,8 @@ struct NetworkManger {
                         completion(.failure(error))
                     }
                 }
+            case .done:
+                return
 #warning("don't forget Return error message with completion")
             case .badRequest:
                 completion(.failure(.alreadyInFavorites))

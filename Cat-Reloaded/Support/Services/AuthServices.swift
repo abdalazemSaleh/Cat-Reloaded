@@ -37,10 +37,15 @@ protocol UserAuthService {
 struct UserAuth: UserAuthService, NetworkServices {
     func checkUserAuth() async throws -> User {
         do {
-            let user = try await request(endPoint: UserAuthEndPoint.main, model: User.self)
-            UserDefaults.standard.set(true, forKey: "UserLogin")
-            UserData.chacheUserModel(user: user)
-            return user
+            let userData = try await request(endPoint: UserAuthEndPoint.main)
+            do {
+                let user = try JSONDecoder().decode(User.self, from: userData)
+                UserDefaults.standard.set(true, forKey: "UserLogin")
+                UserData.chacheUserModel(user: user)
+                return user
+            } catch {
+                throw error
+            }
         } catch {
             UserDefaults.standard.set(false, forKey: "UserLogin")
             throw error

@@ -206,10 +206,8 @@ extension ProfileVC {
 
 extension ProfileVC: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        
         dismiss(animated: true)
         guard let provider = results.first?.itemProvider else { return }
-        
         if provider.canLoadObject(ofClass: UIImage.self) {
             provider.loadObject(ofClass: UIImage.self) { image, error in
                 if let image = image as? UIImage {
@@ -221,6 +219,5 @@ extension ProfileVC: PHPickerViewControllerDelegate {
                 }
             }
         }
-
     }
 }

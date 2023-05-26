@@ -15,6 +15,7 @@ enum SocialMediaNav: String {
     case twitter    = "twitter"
 }
 
+#warning("Refactor opem social media")
 extension UICollectionViewCell {
     func openSocialMedia(with link: String, type: SocialMediaNav) {
         var urlComponents = link.components(separatedBy: ".com/")
@@ -38,6 +39,26 @@ extension UICollectionViewCell {
 }
 
 extension UIViewController {
+    
+    func openSocialMedia(with link: String, type: SocialMediaNav) {
+        var urlComponents = link.components(separatedBy: ".com/")
+        
+        if type == .twitter {
+            urlComponents = link.components(separatedBy: "in/")
+        } else if type == .youtube {
+            urlComponents   = link.components(separatedBy: "=")
+        }
+        
+        let urlId         = urlComponents.last ?? ""
+        var url           = URL(string: "\(type.rawValue)://\(urlId)")!
+        
+        if UIApplication.shared.canOpenURL(url as URL){
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            url = URL(string:link)!
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
     
     func nav(vc: UIViewController) {
         navigationController?.pushViewController(vc, animated: false)

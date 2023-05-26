@@ -15,15 +15,15 @@ extension RegisterEndPoints: EndPoint {
     var path: String {
         return "/auth/signup/password"
     }
-
+    
     var method: HTTPMethodd {
         .post
     }
-
+    
     var header: [String : String]? {
         nil
     }
-
+    
     var body: [String : Any]? {
         switch self {
         case .main(let parms):
@@ -38,7 +38,14 @@ protocol RegisterServiceable {
 
 struct RegisterServices: RegisterServiceable, NetworkServices {
     func register(parms: [String: Any]) async throws -> User {
-        let user = try await request(endPoint: RegisterEndPoints.main(parms), model: User.self)
-        return user
+        let userData = try await request(endPoint: RegisterEndPoints.main(parms))
+        do {
+            let user = try JSONDecoder().decode(User.self, from: userData)
+            UserDefaults.standard.set(true, forKey: "UserLogin")
+            UserData.chacheUserModel(user: user)
+            return user
+        } catch {
+            throw error
+        }
     }
 }

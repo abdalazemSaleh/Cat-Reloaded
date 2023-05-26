@@ -63,9 +63,12 @@ extension CATianVC: UITableViewDelegate, UITableViewDataSource {
         case 1:
             nav(vc: PrivacyPolicyVC())
         case 2:
-            break
+            let vc = ContactUsVC()
+            vc.modalPresentationStyle  = .overFullScreen
+            vc.modalTransitionStyle    = .crossDissolve
+            self.present(vc, animated: true)
         case 3:
-            break
+            openSocialMedia(with: "https://www.facebook.com/groups/11705900412", type: .facebook)
         default:
             deleteUserAccount()
         }
@@ -130,5 +133,81 @@ extension CATianVC: UITableViewDelegate, UITableViewDataSource {
         alertController.addAction(cancel)
         
         present(alertController, animated: true)
+    }
+}
+
+
+class ContactUsVC: UIViewController {
+    
+    let containerView = UIView()
+    
+    let facebookButton = GFMediaButton(backgroundColor: .clear, image: Images.facebook!)
+    let googleButton = GFMediaButton(backgroundColor: .clear, image: Images.google!)
+    let linkedinButton = GFMediaButton(backgroundColor: .clear, image: Images.linkedin)
+    let instagramButton = GFMediaButton(backgroundColor: .clear, image: Images.instagram)
+
+    let mediaStackView = UIStackView()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureContainerView()
+        configureStackView()
+    }
+    
+    private func configureContainerView() {
+        view.backgroundColor = .black.withAlphaComponent(0.05)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(dismisVC))
+        view.addGestureRecognizer(gesture)
+        view.addSubview(containerView)
+        containerView.backgroundColor = .systemBackground
+        containerView.layer.cornerRadius = 8
+        containerView.addShadow()
+        containerView.makeConstraints(centerXAnchor: view.centerXAnchor,
+                                      centerYAnchor: view.centerYAnchor,
+                                      size: CGSize(width: view.frame.width - 80, height: 128))
+        
+    }
+    
+    @objc private func dismisVC() {
+        dismiss(animated: true)
+    }
+    
+    private func configureStackView() {
+        containerView.addSubview(mediaStackView)
+        let buttons: [GFMediaButton] = [facebookButton, googleButton, linkedinButton, instagramButton]
+        for button in buttons {
+            mediaStackView.addArrangedSubview(button)
+            button.makeConstraints(size: CGSize(width: 40, height: 40))
+        }
+        configureButtonsAction()
+        mediaStackView.axis = .horizontal
+        mediaStackView.spacing = 32
+        
+        mediaStackView.makeConstraints(centerXAnchor: view.centerXAnchor,
+                                       centerYAnchor: view.centerYAnchor)
+    }
+    
+    private func configureButtonsAction() {
+        facebookButton.addTarget(self, action: #selector(openFacebook), for: .touchUpInside)
+        googleButton.addTarget(self, action: #selector(openGoogle), for: .touchUpInside)
+        linkedinButton.addTarget(self, action: #selector(openLinkedin), for: .touchUpInside)
+        instagramButton.addTarget(self, action: #selector(openinstagram), for: .touchUpInside)
+    }
+    
+    @objc private func openFacebook() {
+        openSocialMedia(with: "https://www.facebook.com/groups/11705900412", type: .facebook)
+    }
+    
+    @objc private func openGoogle() {
+        UIApplication.shared.open(URL(string: "mailto:catreloaded.support@catreloaded.net")! as URL,
+            options: [:], completionHandler: nil)
+    }
+    
+    @objc private func openLinkedin() {
+        openSocialMedia(with: "https://www.linkedin.com/company/cat-reloaded/?originalSubdomain=eg", type: .linkedin)
+    }
+
+    @objc private func openinstagram() {
+        openSocialMedia(with: "https://www.instagram.com/catreloaded/", type: .facebook)
     }
 }

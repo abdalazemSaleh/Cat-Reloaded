@@ -9,6 +9,7 @@ import Foundation
 
 extension CirclesVC: checkSelectedIndex {
     func checkIndex(_ index: Int) {
+        finalIndex = index
         if index == 0 {
             presenter.fetchTechCircles()
         } else {

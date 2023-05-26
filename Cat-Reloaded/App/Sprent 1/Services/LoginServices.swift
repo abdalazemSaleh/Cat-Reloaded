@@ -47,12 +47,27 @@ protocol LoginServiceable {
 
 struct LoginServices: LoginServiceable, NetworkServices {
     func login(parms: [String: Any]) async throws -> User {
-        let user = try await request(endPoint: LoginEndPoints.phoneNumber(parms), model: User.self)
-        return user
+        //User.self
+        let userData = try await request(endPoint: LoginEndPoints.phoneNumber(parms))
+        do {
+            let user = try JSONDecoder().decode(User.self, from: userData)
+            UserDefaults.standard.set(true, forKey: "UserLogin")
+            UserData.chacheUserModel(user: user)
+            return user
+        } catch {
+            throw error
+        }
     }
     
     func loginWithSocileMedia(parms: [String: Any]) async throws -> User {
-        let user = try await request(endPoint: LoginEndPoints.socileMedia(parms), model: User.self)
-        return user
+        let userData = try await request(endPoint: LoginEndPoints.socileMedia(parms))
+        do {
+            let user = try JSONDecoder().decode(User.self, from: userData)
+            UserDefaults.standard.set(true, forKey: "UserLogin")
+            UserData.chacheUserModel(user: user)
+            return user
+        } catch {
+            throw error
+        }
     }
 }

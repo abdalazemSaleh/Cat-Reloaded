@@ -22,11 +22,25 @@ class CustomSegmentedControl: UIView {
     
     weak var delegate:CustomSegmentedControlDelegate?
     
-    public private(set) var selectedIndex : Int = 0
+    private(set) var selectedIndex : Int = 0
     
     convenience init(frame:CGRect,buttonTitle:[String]) {
         self.init(frame: frame)
         self.buttonTitles = buttonTitle
+    }
+    
+//    override func didMoveToWindow() {
+//        super.didMoveToWindow()
+//        if selectedIndex == 0 {
+//            self.selectorView.frame.origin.x = 0
+//        } else{
+//            self.selectorView.frame.origin.x = 200
+//        }
+//    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setIndex(index: selectedIndex)
     }
     
     override func draw(_ rect: CGRect) {
@@ -34,7 +48,7 @@ class CustomSegmentedControl: UIView {
         self.backgroundColor = UIColor.systemBackground
         updateView()
     }
-    
+        
     func setButtonTitles(buttonTitles:[String]) {
         self.buttonTitles = buttonTitles
         self.updateView()
@@ -46,7 +60,7 @@ class CustomSegmentedControl: UIView {
         selectedIndex = index
         button.setTitleColor(selectorTextColor, for: .normal)
         let selectorPosition = frame.width/CGFloat(buttonTitles.count) * CGFloat(index)
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.3) {
             self.selectorView.frame.origin.x = selectorPosition
         }
     }

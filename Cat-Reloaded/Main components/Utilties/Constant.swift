@@ -26,6 +26,8 @@ import UIKit
         static let Events       = UIImage(named: "Events")
         static let facebook     = UIImage(named: "facebook")
         static let google       = UIImage(named: "google")
+        static let linkedin     = UIImage(named: "linkedin")!
+        static let instagram    = UIImage(named: "instagram")!
         
         static let networkError = UIImage(named: "404")
         static let serverError  = UIImage(named: "400")
