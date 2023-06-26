@@ -37,7 +37,9 @@ extension HomeVC: HomeView {
     @objc func retry() {
         emptyStateView.removeFromSuperview()
         self.self.collectionView.isHidden = false
-        self.presenter.fetchMemories(page: 1)
-        self.presenter.fetchPodCat(page: 1)
+        Task {
+            await self.presenter.fetchMemories(page: 1)
+            await self.presenter.fetchPodCat(page: 1)
+        }
     }
 }

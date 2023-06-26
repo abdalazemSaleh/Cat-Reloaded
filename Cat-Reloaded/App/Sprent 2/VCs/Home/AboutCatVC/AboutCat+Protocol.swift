@@ -38,9 +38,10 @@ extension AboutCatVC: AboutCatView {
     @objc func retry() {
         emptyStateView.removeFromSuperview()
         self.self.collectionView.isHidden = false
-        self.presenter.fetchAboutCatInfo()
-        self.presenter.fetchFounders()
-        self.presenter.fetchTeamBoard()
+        Task {
+            await self.presenter.fetchAboutCatInfo()
+            await self.presenter.fetchFounders()
+            await self.presenter.fetchTeamBoard()
+        }
     }
-
 }

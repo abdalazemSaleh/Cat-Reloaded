@@ -108,7 +108,11 @@
 		7FB4F38728EB5458008557ED /* GFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4F38628EB5458008557ED /* GFButton.swift */; };
 		7FB4F39728EB567E008557ED /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4F39628EB567E008557ED /* Constant.swift */; };
 		7FB4F39928EB56B0008557ED /* ErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB4F39828EB56B0008557ED /* ErrorMessages.swift */; };
+		7FBE33F72A476D4C008AB6AA /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7FBE33F62A476D4C008AB6AA /* FirebaseAnalytics */; };
+		7FBE33F92A476D4C008AB6AA /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 7FBE33F82A476D4C008AB6AA /* FirebaseMessaging */; };
 		7FBE49E1299BE045004105B0 /* EventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBE49E0299BE045004105B0 /* EventsPresenter.swift */; };
+		7FC4C06D2A471C9B00E61218 /* HomeServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4C06C2A471C9B00E61218 /* HomeServices.swift */; };
+		7FC4C06F2A47298C00E61218 /* AboutCatServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4C06E2A47298C00E61218 /* AboutCatServices.swift */; };
 		7FCBE2062A16797300AEF59E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7FCBE2052A16797300AEF59E /* Kingfisher */; };
 		7FD4404E29D38EAB00FA1222 /* ProfileVC+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4404D29D38EAB00FA1222 /* ProfileVC+Constraints.swift */; };
 		7FD4405029D38EBA00FA1222 /* ProfileVC+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD4404F29D38EBA00FA1222 /* ProfileVC+Protocol.swift */; };
@@ -240,6 +244,8 @@
 		7FB4F39628EB567E008557ED /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		7FB4F39828EB56B0008557ED /* ErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessages.swift; sourceTree = "<group>"; };
 		7FBE49E0299BE045004105B0 /* EventsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPresenter.swift; sourceTree = "<group>"; };
+		7FC4C06C2A471C9B00E61218 /* HomeServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServices.swift; sourceTree = "<group>"; };
+		7FC4C06E2A47298C00E61218 /* AboutCatServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCatServices.swift; sourceTree = "<group>"; };
 		7FD4404D29D38EAB00FA1222 /* ProfileVC+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileVC+Constraints.swift"; sourceTree = "<group>"; };
 		7FD4404F29D38EBA00FA1222 /* ProfileVC+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileVC+Protocol.swift"; sourceTree = "<group>"; };
 		7FD4405129D3B0CA00FA1222 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
@@ -272,9 +278,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FBE33F92A476D4C008AB6AA /* FirebaseMessaging in Frameworks */,
 				7FCBE2062A16797300AEF59E /* Kingfisher in Frameworks */,
 				7F51E5F929E845CC00E5709A /* Alamofire in Frameworks */,
 				7F51E5FC29E84B4400E5709A /* FacebookLogin in Frameworks */,
+				7FBE33F72A476D4C008AB6AA /* FirebaseAnalytics in Frameworks */,
 				7F51E60D29E8E25A00E5709A /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -656,6 +664,7 @@
 				7F078F082923EF7100895441 /* Model */,
 				7F617894290EE74100AA101B /* VCs */,
 				7F73CA072960C45F00579170 /* Presenter */,
+				7FC4C06B2A471C7700E61218 /* Services */,
 			);
 			path = "Sprent 2";
 			sourceTree = "<group>";
@@ -866,6 +875,15 @@
 			path = Utilties;
 			sourceTree = "<group>";
 		};
+		7FC4C06B2A471C7700E61218 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7FC4C06C2A471C9B00E61218 /* HomeServices.swift */,
+				7FC4C06E2A47298C00E61218 /* AboutCatServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		7FD44FA929C9AB650080AF42 /* Active Indicator */ = {
 			isa = PBXGroup;
 			children = (
@@ -980,6 +998,8 @@
 				7F51E5FB29E84B4400E5709A /* FacebookLogin */,
 				7F51E60C29E8E25A00E5709A /* GoogleSignIn */,
 				7FCBE2052A16797300AEF59E /* Kingfisher */,
+				7FBE33F62A476D4C008AB6AA /* FirebaseAnalytics */,
+				7FBE33F82A476D4C008AB6AA /* FirebaseMessaging */,
 			);
 			productName = "Cat-Reloaded";
 			productReference = 7FB4F36B28EB50F3008557ED /* Cat-Reloaded.app */;
@@ -1014,6 +1034,7 @@
 				7F51E5FA29E84B4400E5709A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				7F51E60B29E8E25A00E5709A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				7FCBE2042A16797300AEF59E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				7FBE33F52A476D4C008AB6AA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 7FB4F36C28EB50F3008557ED /* Products */;
 			projectDirPath = "";
@@ -1072,6 +1093,7 @@
 				7FD44FAB29C9AB770080AF42 /* GFActiveIndicator.swift in Sources */,
 				7FE1D0F129F1DC5400999B6F /* URL.swift in Sources */,
 				7F9052B528EB76D20044F76C /* GFTextField.swift in Sources */,
+				7FC4C06D2A471C9B00E61218 /* HomeServices.swift in Sources */,
 				7F73CA092960C47E00579170 /* HomePresenter.swift in Sources */,
 				7F9052B328EB748C0044F76C /* GFBodyLabel.swift in Sources */,
 				7F30C25128ED8E180007AACF /* BoardingVC.swift in Sources */,
@@ -1135,6 +1157,7 @@
 				7F30C23F28ECDDF50007AACF /* GFSimpleButton.swift in Sources */,
 				7FD4405429D4735300FA1222 /* View.swift in Sources */,
 				7F9052B128EB731A0044F76C /* GFTitleLabel.swift in Sources */,
+				7FC4C06F2A47298C00E61218 /* AboutCatServices.swift in Sources */,
 				7F73CA112960C92000579170 /* Full_imageVC.swift in Sources */,
 				7FAAFF8E28F5ED1B008A9FF2 /* MemoriesCell.swift in Sources */,
 				7F30C24128ECE2710007AACF /* HelperUI.swift in Sources */,
@@ -1303,7 +1326,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Cat-Reloaded/Cat-Reloaded.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = VTVS9935PF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Cat-Reloaded/Info.plist";
@@ -1340,7 +1363,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Cat-Reloaded/Cat-Reloaded.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = VTVS9935PF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Cat-Reloaded/Info.plist";
@@ -1417,6 +1440,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		7FBE33F52A476D4C008AB6AA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		7FCBE2042A16797300AEF59E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1442,6 +1473,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7F51E60B29E8E25A00E5709A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
+		};
+		7FBE33F62A476D4C008AB6AA /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7FBE33F52A476D4C008AB6AA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		7FBE33F82A476D4C008AB6AA /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7FBE33F52A476D4C008AB6AA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 		7FCBE2052A16797300AEF59E /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

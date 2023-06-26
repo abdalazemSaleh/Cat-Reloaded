@@ -23,12 +23,14 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         add_openCardButton()
-        presenter               = HomePresenter(view: self)
+        presenter               = HomePresenter(view: self, service: HomeServices())
         configureCollectionView()
         configureDataSource()
         appendBecomeCatianSection()
-        presenter.fetchMemories(page: 1)
-        presenter.fetchPodCat(page: 1)
+        Task {
+            await presenter.fetchMemories(page: 1)
+            await presenter.fetchPodCat(page: 1)
+        }
     }
             
     override func viewWillAppear(_ animated: Bool) {

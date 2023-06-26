@@ -18,8 +18,10 @@ protocol HomeView: AnyObject {
 class HomePresenter {
     // about init & delegation
     private weak var view: HomeView?
-    init(view: HomeView) {
+    private var service: HomeServiceable
+    init(view: HomeView, service: HomeServiceable) {
         self.view = view
+        self.service = service
     }
     // MARK: -  Variables
     private let userData = UserData.getUserModel()
@@ -63,20 +65,16 @@ class HomePresenter {
     }
     
     // Memories function
-    func fetchMemories(page: Int) {
-        let url = URLs.memories.rawValue + "/\(page)"
-        let memoriesObject = NetworkManger(url: url, method: .get, parms: nil, header: nil)
-        memoriesObject.request(modal: MemoriesModel.self) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let data):
-                self.handelFetchMemoriesSuccessState(data: data)
-            case .failure(let error):
-                self.handelErrorState(error: error)
-            }
+    @MainActor
+    func fetchMemories(page: Int) async {
+        do {
+            let memories = try await service.fetchMemories(page: page)
+            handelFetchMemoriesSuccessState(data: memories)
+        } catch {
+            self.handelErrorState(error: error as! GFError)
         }
     }
-    
+        
     private func handelFetchMemoriesSuccessState(data: MemoriesModel) {
         let memories = data.data
         self.memoriesPages = data.totalPages
@@ -89,23 +87,21 @@ class HomePresenter {
             for _ in 1..<memoriesPages  {
                 memoriesCurrentPage += 1
                 num_ofMemories += 10
-                fetchMemories(page: memoriesCurrentPage)
+                Task {
+                    await fetchMemories(page: memoriesCurrentPage)
+                }
             }
         }
     }
     
     // PodCat functions
-    func fetchPodCat(page: Int) {
-        let url = URLs.podCat.rawValue + "/\(page)"
-        let podCatObject = NetworkManger(url: url, method: .get, parms: nil, header: nil)
-        podCatObject.request(modal: PodCatModel.self) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let data):
-                self.handelFetchPodCatSuccessState(data: data)
-            case .failure(let error):
-                self.handelErrorState(error: error)
-            }
+    @MainActor
+    func fetchPodCat(page: Int) async {
+        do {
+            let podCats = try await service.fetchPodCats(page: page)
+            handelFetchPodCatSuccessState(data: podCats)
+        } catch {
+            handelErrorState(error: error as! GFError)
         }
     }
     
@@ -122,7 +118,9 @@ class HomePresenter {
             for _ in 1..<page {
                 podCatCurrentPage += 1
                 num_ofPodCat      += 10
-                fetchPodCat(page: podCatCurrentPage)
+                Task {
+                    await fetchPodCat(page: podCatCurrentPage)
+                }
             }
         }
     }
@@ -133,26 +131,6 @@ class HomePresenter {
             self.view?.presentEmptyView(message: error.localizedDescription, image: Images.networkError!)
         } else {
             self.view?.presentEmptyView(message: error.localizedDescription, image: Images.serverError!)
-        }
-    }
-    
-    // Check user data ::::
-    func checkUserData() {
-        let url = URLs.userData.rawValue
-        let token = UserDefaults.standard.string(forKey: "UserToken") ?? ""
-        let header: HTTPHeaders = [
-            "Authorization": "Bearer " + token,
-        ]
-        let userDataObject = NetworkManger(url: url, method: .get, parms: nil, header: header)
-        userDataObject.request(modal: User.self) { [weak self] response in
-            guard let self = self else { return }
-            switch response {
-            case .success(let data):
-                print("User token is: - \(data)")
-            case .failure(let error):
-                print(error)
-                self.view?.presentAlert(message: error.localizedDescription, title: "Go to login")
-            }
         }
     }
 }

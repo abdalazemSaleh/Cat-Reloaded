@@ -17,64 +17,52 @@ protocol AboutCatView: AnyObject {
 class AboutCatPresenter {
     // about init & delegation
     private weak var view: AboutCatView?
-    init(view: AboutCatView) {
+    private var services: AboutCatServiceable
+    init(view: AboutCatView, services: AboutCatServiceable) {
         self.view = view
+        self.services = services
     }
     // MARK: - Variables
     private var headerData: [AboutCatInfoModel] =  []
     
     // MARK: - Functions
         
-    // Functions
-    func fetchAboutCatInfo() {
-        let catInfoObject = NetworkManger(url: URLs.info.rawValue, method: .get, parms: nil, header: nil)
-        catInfoObject.request(modal: AboutCatInfoModel.self) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let data):
-                self.headerData.append(AboutCatInfoModel.init(about: data.about, history: data.history, vision: data.vision))
-                self.view?.aboutCatInfo(data: self.headerData)
-            case .failure(let error):
-                if error == .connectionError {
-                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.networkError!)
-                } else {
-                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.serverError!)
-                }
-            }
+    @MainActor
+    func fetchAboutCatInfo() async {
+        do {
+            let info = try await services.fetchInfo()
+            self.headerData.append(AboutCatInfoModel.init(about: info.about, history: info.history, vision: info.vision))
+            self.view?.aboutCatInfo(data: self.headerData)
+        } catch {
+            handelErrorState(error: error as! GFError)
+        }
+    }
+        
+    @MainActor
+    func fetchFounders() async {
+        do {
+            let founders = try await services.fetchFounders()
+            self.view?.founders(data: founders)
+        } catch {
+            handelErrorState(error: error as! GFError)
         }
     }
     
-    func fetchFounders() {
-        let founderObject = NetworkManger(url: URLs.founders.rawValue, method: .get, parms: nil, header: nil)
-        founderObject.request(modal: [TeamBoardModel].self) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let data):
-                self.view?.founders(data: data)
-            case .failure(let error):
-                if error == .connectionError {
-                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.networkError!)
-                } else {
-                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.serverError!)
-                }
-            }
+    @MainActor
+    func fetchTeamBoard() async {
+        do {
+            let teamBoard = try await services.fetchTeamBoard()
+            self.view?.teamBoard(data: teamBoard)
+        } catch {
+            handelErrorState(error: error as! GFError)
         }
     }
     
-    func fetchTeamBoard() {
-        let teamBoardObject = NetworkManger(url: URLs.teamBoard.rawValue, method: .get, parms: nil, header: nil)
-        teamBoardObject.request(modal: [TeamBoardModel].self) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let data):
-                self.view?.teamBoard(data: data)
-            case .failure(let error):
-                if error == .connectionError {
-                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.networkError!)
-                } else {
-                    self.view?.presentEmptyView(message: error.localizedDescription, image: Images.serverError!)
-                }
-            }
+    private func handelErrorState(error: GFError) {
+        if error == .connectionError {
+            self.view?.presentEmptyView(message: error.localizedDescription, image: Images.networkError!)
+        } else {
+            self.view?.presentEmptyView(message: error.localizedDescription, image: Images.serverError!)
         }
     }
 }

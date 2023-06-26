@@ -23,10 +23,12 @@ class AboutCatVC: UIViewController {
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter               = AboutCatPresenter(view: self)
-        presenter.fetchAboutCatInfo()
-        presenter.fetchFounders()
-        presenter.fetchTeamBoard()
+        presenter               = AboutCatPresenter(view: self, services: AboutCatServices())
+        Task {
+            await presenter.fetchAboutCatInfo()
+            await presenter.fetchFounders()
+            await presenter.fetchTeamBoard()
+        }
         configureCollectionView()
         configureDataSource()
     }

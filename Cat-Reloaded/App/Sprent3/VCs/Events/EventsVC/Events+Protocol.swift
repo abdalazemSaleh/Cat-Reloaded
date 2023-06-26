@@ -9,18 +9,21 @@ import UIKit
 
 extension EventsVC: EventsView {
     func getUpComingEvents(data: [EventModel]) {
+        collectionView.allowsSelection = true
         emptyView.removeFromSuperview()
         self.data.removeAll()
         self.data = data
         if data.isEmpty {
-            updateData(on: [.init(id: "NoData", name: "", description: "", url: "", imageUrl: "", startDate: "", upcoming: false)])
+            updateData(on: [.init(id: "201", name: "", description: "", url: "", imageUrl: "", startDate: "2010", upcoming: true)])
             presentEmptyView(message: "No data to show", image: Images.noData!)
+            collectionView.allowsSelection = false
         } else {
             updateData(on: data)
         }
     }
     
     func getPreviousEvents(data: [EventModel]) {
+        collectionView.allowsSelection = true
         emptyView.removeFromSuperview()
         self.data.removeAll()
         self.data = data

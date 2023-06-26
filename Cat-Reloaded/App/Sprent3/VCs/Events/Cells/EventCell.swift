@@ -55,10 +55,13 @@ class EventCell: UICollectionViewCell {
     }
     
     func set(_ model: EventModel) {
-        guard model.id != "NoData" else { return }
         imageView.kf.indicatorType = .activity
         imageView.kf.setImage(with: model.imageUrl.URLConvert)
         sessionName.text = model.name
-        sessionDate.text = model.startDate.formattedDate
+        if model.startDate == "2010" {
+            sessionDate.text = ""
+        } else {
+            sessionDate.text = model.startDate.formattedDate
+        }
     }
 }
