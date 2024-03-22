@@ -8,7 +8,6 @@
 import Foundation
 
 #warning("this messages from GitHub App don't forget. 👻")
-
 enum GFError: Error, LocalizedError {
     case invalidUrl
     case connectionError

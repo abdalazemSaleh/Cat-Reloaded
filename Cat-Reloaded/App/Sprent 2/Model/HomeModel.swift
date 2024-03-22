@@ -15,7 +15,7 @@ struct MemoriesModel: Codable, Hashable {
 }
 
 struct MemoriesData: Codable, Hashable {
-    let id: Int
+    let id: String
     let description: String
     let imageUrl: String
     let thumbnailUrl: String
@@ -29,7 +29,7 @@ struct PodCatModel: Codable, Hashable {
 }
 
 struct PodCatData: Codable, Hashable {
-    let id: Int
+    let id: String
     let season: Int
     let episode: Int
     let title: String

@@ -71,7 +71,12 @@ class HomePresenter {
             let memories = try await service.fetchMemories(page: page)
             handelFetchMemoriesSuccessState(data: memories)
         } catch {
-            self.handelErrorState(error: error as! GFError)
+            print(error.localizedDescription)
+            if let error = error as? GFError {
+                self.handelErrorState(error: error)
+            } else {
+                self.handelErrorState(error: .UnKnownError)
+            }
         }
     }
         
@@ -101,7 +106,12 @@ class HomePresenter {
             let podCats = try await service.fetchPodCats(page: page)
             handelFetchPodCatSuccessState(data: podCats)
         } catch {
-            handelErrorState(error: error as! GFError)
+            print(error.localizedDescription)
+            if let error = error as? GFError {
+                self.handelErrorState(error: error)
+            } else {
+                self.handelErrorState(error: .UnKnownError)
+            }
         }
     }
     

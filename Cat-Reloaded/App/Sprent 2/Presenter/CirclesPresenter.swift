@@ -34,6 +34,7 @@ class CirclesPresenter {
             guard let self = self else { return }
             switch response {
             case .success(let data):
+                print(data)
                 self.data = data
                 self.view?.techCircles(data: data)
             case .failure(let gFErro):

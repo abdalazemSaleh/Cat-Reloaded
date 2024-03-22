@@ -42,7 +42,7 @@ extension HomeVC {
                 return cell
             case .memorires:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MemoriesCell.reuseIdentifer, for: indexPath) as! MemoriesCell
-                guard let myModel   = model as? MemoriesData else { return cell }
+                guard let myModel = model as? MemoriesData else { return cell }
                 cell.set(myModel)
                 return cell
             case .podCat:

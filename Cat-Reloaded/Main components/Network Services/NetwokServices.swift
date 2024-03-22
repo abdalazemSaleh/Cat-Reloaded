@@ -36,6 +36,10 @@ extension NetworkServices {
             // Start session
             let (data, response) = try await URLSession.shared.data(for: request)
             
+            if let jsonString = String(data: data, encoding: .utf8) {
+               print(jsonString)
+            }
+
             // Check connection, response, and response type
             guard Connectivity.isConnectedToInternet else { throw GFError.connectionError }
             guard let response = response as? HTTPURLResponse else { throw GFError.invalidResponse }
